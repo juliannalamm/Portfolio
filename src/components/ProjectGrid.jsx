@@ -23,11 +23,11 @@ const projects = [
 
 export default function ProjectGrid({ onImageClick }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 p-2 w-full max-w-10xl mx-auto">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-2 w-full max-w-10xl mx-auto">
       {projects.map((project, index) => (
         <div
           key={index}
-          className="cursor-pointer group bg-gray-100 rounded-lg shadow-lg p-4 hover:shadow-2xl transition-shadow duration-300 w-full max-w-[500px] mx-auto"
+          className="cursor-pointer group bg-white rounded-lg p-4 hover:shadow-2xl transition-shadow duration-300 w-full max-w-[500px] mx-auto"
           onClick={() => onImageClick(project.link)}
         >
           {/* Image Section */}
