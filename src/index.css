@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 🌟 Container */
+/* 🌟 Remove default margins/padding */
+html, body {
+  @apply bg-gray-100 text-gray-900 min-h-screen;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* 🌟 Ensure Full-Page Background */
+#root {
+  @apply min-h-screen flex flex-col;
+}
+
+/* 🌟 Section Padding Consistency */
+.section-spacing {
+  @apply py-8 px-6;
+}
+
+/* 🌟 Ensure no unwanted white space */
+.container {
+  @apply w-full max-w-7xl mx-auto;
+}
+
+/* 🌟 Navigation Bar */
+.nav-bar {
+  @apply bg-blue-600 text-white py-1 shadow-md rounded-lg px-6 mb-8;
+}
+
+.nav-content {
+  @apply max-w-6xl mx-auto flex justify-between items-center;
+}
+
+.nav-title {
+  @apply text-2xl font-bold;
+}
+
+.nav-links {
+  @apply flex space-x-6 text-lg font-medium;
+}
+
+.nav-link {
+  @apply hover:text-gray-200 transition;
+}
+
+/* 🌟 Titles */
+.title {
+  @apply text-5xl font-bold text-center mb-6;
+}
+
+.section-header {
+  @apply text-4xl font-bold text-center text-gray-900 mb-6;
+}
+
+/* 🌟 Section Spacing */
+.section-spacing {
+  @apply mt-8 md:mt-10 lg:mt-12;
+}
+
+/* 🌟 Hero Section */
+.hero-content {
+  @apply flex flex-col md:flex-row items-center gap-6;
+}
+
+.profile-image {
+  @apply w-64 h-64 object-cover rounded-full shadow-lg;
+}
+
+.description {
+  @apply text-xl leading-relaxed text-gray-700 text-justify;
+}
+
+/* 🌟 Content Offsets */
+.content-offset {
+  @apply mt-4;
+}
