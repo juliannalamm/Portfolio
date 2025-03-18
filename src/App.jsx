@@ -3,6 +3,7 @@ import ProjectGrid from "./components/ProjectGrid";
 import SpermTrack from "./components/SpermTrack";
 import Navbar from "./components/NavBar";  // Import Navbar
 
+
 const App = () => {
   const spermTrackSectionRef = useRef(null);
 
@@ -17,11 +18,11 @@ const App = () => {
       <Navbar />
 
       {/* No more pt-20 needed */}
-      <div className="px-6 md:px-10 lg:px-16">
+      <div>
         
         {/* Bio Section */}
         <section className="section-spacing flex justify-center mt-10">
-          <div className="bg-white rounded-2xl p-8 max-w-3xl w-full text-center">
+          <div className="bg-gray-100 rounded-2xl p-8 max-w-3xl w-full text-center">
             <img
               src="/images/Julianna.jpg"
               alt="Julianna Lamm"
@@ -44,10 +45,7 @@ const App = () => {
         </section>
 
         {/* Project Grid Section */}
-        <div className="section-spacing mt-10">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-6">
-            My Projects
-          </h2>
+        <div>
           <ProjectGrid onImageClick={handleScrollToSection} />
         </div>
 
@@ -55,6 +53,7 @@ const App = () => {
         <div ref={spermTrackSectionRef} className="mt-10">
           <SpermTrack />
         </div>
+        
       </div>
     </div>
   );
