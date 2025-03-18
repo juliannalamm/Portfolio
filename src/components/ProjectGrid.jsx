@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const projects = [
   { 
     title: "YOLO Sperm Tracking and Detection",
     date: "03.10.2025",
     imgSrc: "/gifs/spermtrack.gif",
-    link: "#sperm-track-section"
+    link: "/sperm-track" // Updated for React Router navigation
   },
   { 
     title: "Unsupervised Motility Classification",
@@ -16,20 +17,26 @@ const projects = [
   { 
     title: "Gouger: Anti-gouging detection app",
     date: "01.23.2025",
-    imgSrc: "/images/gougerIcon.png",
+    imgSrc: "/images/gouger.png",
     link: "/projects/gouger"
   }
 ];
 
 export default function ProjectGrid() {
-  // Smooth Scrolling Function
+  const navigate = useNavigate(); //  React Router navigation hook
+
   const handleClick = (e, link) => {
     e.preventDefault();
-    const target = document.querySelector(link);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (link.startsWith("#")) {
+      // ✅ Smooth scrolling for in-page anchors
+      const target = document.querySelector(link);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     } else {
-      window.location.href = link; // Fallback for external links
+      //  Use React Router for internal navigation
+      navigate(link);
     }
   };
 
@@ -44,7 +51,7 @@ export default function ProjectGrid() {
             key={index} 
             href={project.link} 
             onClick={(e) => handleClick(e, project.link)}
-            className="block group border-t border-gray-700 pt-6"
+            className="block group border-t border-gray-700 pt-6 cursor-pointer"
           >
             {/* Project Image */}
             <div className="w-full h-[300px] overflow-hidden mb-4">
