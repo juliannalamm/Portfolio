@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ProjectGrid from "./components/ProjectGrid";
 import SpermTrack from "./components/SpermTrack";
-import Navbar from "./components/Navbar";  // Import Navbar
+import Navbar from "./components/NavBar";  // Import Navbar
 
 const App = () => {
   const spermTrackSectionRef = useRef(null);
@@ -14,7 +14,6 @@ const App = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* ✅ Navbar now takes up space & pushes content down */}
       <Navbar />
 
       {/* No more pt-20 needed */}
