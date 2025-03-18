@@ -3,6 +3,7 @@ import React from "react";
 const SpermTrackIntro = () => {
     return (
         <section id="sperm-track-card" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
+            {/* adjust size of card here*/}
             <div className="max-w-10xl w-full grid md:grid-cols-2 bg-gray-100 rounded-lg overflow-hidden shadow-sm border border-gray-300">
                 
                 {/* Left Side: Text Content (White Background) */}
@@ -32,24 +33,32 @@ const SpermTrackIntro = () => {
                             target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                             VISEM-Tracking dataset</a>, containing manually annotated sperm tracking data.
                         </p>
+                        <ul className="list-disc list-inside text-lg text-gray-800 leading-relaxed mt-4 space-y-2">
+                        <li>Video recordings of 30 seconds (comprising 29,196 frames from 20 participants).</li>
+                        <li>Wet semen preparations with manually annotated bounding-box coordinates.</li>
+                        <li>Includes sperm characteristics analyzed by domain experts.</li>
+                        <li>Provides unlabeled video clips for easy access to self- or unsupervised learning methods.</li>
+                    </ul>
                     </div>
                 </div>
 
                 {/* Right Side: Video (Pale Blue Background) */}
-                <div className="bg-blue-100 flex items-center justify-center p-6">
-                    <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full max-w-lg h-auto rounded-lg border border-gray-300"
-                    >
-                        <source src="/videos/12custom_botsort.webm" type="video/webm" />
-                        <source src="/videos/12custom_botsort.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                <div className="bg-blue-100 flex flex-col items-center justify-center p-6">
+                <h3 className="text-xl font-semibold mb-2">YOLOv8s Architecture</h3>
+                    <img
+                        src="/images/yoloarchitecture.png"
+                        alt="YOLOv8s Architecture"
+                        className="w-full max-w-md rounded-lg shadow-lg"
+                    />
+                    
+                    {/* Explanation */}
+                    <div className="text-gray-900 text-lg leading-relaxed mt-4 px-6">
+                        <p><strong>Backbone:</strong> Extracts features using Conv layers, C2F blocks, and SPPF.</p>
+                        <p><strong>Conv Layers:</strong> The core building blocks of YOLO, convolutional layers extract spatial features such as edges, textures, and patterns while reducing image dimensions.</p>
+                        <p><strong>C2F Blocks:</strong> A variant of CSPNet that enhances feature extraction by splitting and re-merging feature maps. It improves gradient flow and reduces redundant computations, making the model more efficient.</p>
+                        <p><strong>Backbone → Neck → Head:</strong> The backbone extracts features, the neck enhances multi-scale learning, and the head predicts bounding boxes and class labels.</p>
+                    </div>
                 </div>
-
             </div>
         </section>
     );

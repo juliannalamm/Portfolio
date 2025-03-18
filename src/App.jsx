@@ -11,7 +11,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/sperm-track" element={<SpermTrackPage />} />
+          <Route path="/sperm-track" element={<SpermTrackPage/>} />
         </Routes>
       </div>
     </Router>
