@@ -159,7 +159,7 @@ const SpermTrack = () => {
                                     <td className="p-4">0.539</td>
                                     <td className="p-4">0.548</td>
                                     <td className="p-4">0.444</td>
-                                    <td className="p-4">0.143</td>
+                                    <td className="p-4">0.14</td>
                                 </tr>
                             </tbody>
                         </table>
