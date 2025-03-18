@@ -154,6 +154,13 @@ const SpermTrack = () => {
                                     <td className="p-4">0.450</td>
                                     <td className="p-4">0.125</td>
                                 </tr>
+                                <tr className="border-t">
+                                    <td className="p-4">YOLOv11s</td>
+                                    <td className="p-4">0.539</td>
+                                    <td className="p-4">0.548</td>
+                                    <td className="p-4">0.444</td>
+                                    <td className="p-4">0.143</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -164,7 +171,7 @@ const SpermTrack = () => {
                         <p className="text-lg leading-relaxed text-gray-800">
                             The addition of the P2 layer was hypothesized to improve small object detection by reducing the stride 
                             and creating a finer-grained feature map. However, further investigation revealed that the majority of 
-                            bounding box sizes for sperm in the dataset were around 16x16 pixels, which already falls within the **P3 layer** 
+                            bounding box sizes for sperm in the dataset were around 16x16 pixels, which already falls within the P3 convolutional layer 
                             of YOLOv8's feature pyramid. As a result, the additional P2 layer did not contribute significantly to detection improvements.
                         </p>
                         <p className="text-lg leading-relaxed text-gray-800 mt-4">
