@@ -43,7 +43,7 @@ const SpermTrackIntro = () => {
                 </div>
 
                 {/* Right Side: Video (Pale Blue Background) */}
-                <div className="bg-blue-100 flex flex-col items-center justify-center p-6">
+                <div className="bg-black-100 flex flex-col items-center justify-center p-6">
                 <h3 className="text-xl font-semibold mb-2">YOLOv8s Architecture</h3>
                     <img
                         src="/images/yoloarchitecture.png"

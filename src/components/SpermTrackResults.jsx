@@ -1,22 +1,41 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 const SpermTrackResults = () => {
+    const videoRefs = useRef([]);
+
+    useEffect(() => {
+        videoRefs.current.forEach((video) => {
+            if (video) {
+                video.playbackRate = 0.4; // Adjust playback speed if needed
+            }
+        });
+    }, []);
+
+    const handleLoadedMetadata = (video) => {
+        if (video.duration > 10) {
+            setInterval(() => {
+                if (video.currentTime >= 10) {
+                    video.currentTime = 0; // Restart video after 10 seconds
+                }
+            }, 1000);
+        }
+    };
+
     return (
         <section id="sperm-track-card" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
-            {/* adjust size of card here*/}
-            <div className="max-w-10xl w-full grid md:grid-cols-2 bg-gray-100 rounded-lg overflow-hidden shadow-sm border border-gray-300">
+            {/* White and Blue Split Column */}
+            <div className="max-w-10xl w-full grid md:grid-cols-2 bg-gray-100 rounded-lg overflow-hidden border border-gray-100">
                 
-                {/* Left Side: Text Content (White Background) */}
-                <div className="bg-white p-10 md:p-14 flex flex-col justify-center">
-                    <div className="mt-10">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Results</h3>
-                    <p className="text-lg leading-relaxed text-gray-800 mb-6">
+                {/* White Section - Detection Results */}
+                <div className="bg-white p-10 md:p-14 flex flex-col">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-3 text-center">Detection Model Results</h3>
+                    <p className="text-lg leading-relaxed text-gray-800 mb-6 text-center">
                         The following table presents the performance of different YOLO-based models for sperm detection.
                     </p>
 
                     {/* Results Table */}
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left border border-gray-300 rounded-lg shadow-md">
+                        <table className="w-full bg-gray-100 text-left border border-gray-100 rounded-lg">
                             <thead className="bg-gray-200 text-gray-900">
                                 <tr>
                                     <th className="p-4">Model</th>
@@ -65,36 +84,78 @@ const SpermTrackResults = () => {
                             </tbody>
                         </table>
                     </div>
-                    </div>
-                    {/* Section Line */}
-                    <div className="border-b border-gray-400 my-6"></div>
-
                 </div>
 
-                {/* Right Side: Video (Pale Blue Background) */}
-                <div className="bg-blue-100 flex flex-col items-center justify-center p-6">
-                    <div className="grid grid-cols-5 gap-2 max-w-7xl mx-auto">
-    
-                    {/* Column Headers */}
-                    {[
-                        "YOLOv11s Prediction", "YOLOv8s + Focus Prediction",
-                        "YOLOv8s + P2 Prediction", "YOLOv8s Prediction", "Ground Truth Labels"
-                    ].map((title, index) => (
-                    <div key={index} className="text-center font-bold text-gray-900 bg-gray-300 p-2 rounded">
-                        {title}
-                    </div>
-                    ))}
-    
-                    {/* Image Rows (Example Paths) */}
-                {[...Array(5)].map((_, rowIndex) => (
-            <>
-                <img key={`yolov11s_pred_${rowIndex}`} src={`/images/YOLOV11s/prediction_${rowIndex}.jpg`} className="w-full h-auto rounded shadow-md" />
-                <img key={`yolov8s_focus_pred_${rowIndex}`} src={`/images/yolov8s_focus_pred_${rowIndex}.jpg`} className="w-full h-auto rounded shadow-md" />
-                <img key={`yolov8s_p2_pred_${rowIndex}`} src={`/images/yolov8s_p2_pred_${rowIndex}.jpg`} className="w-full h-auto rounded shadow-md" />
-                <img key={`yolov8s_pred_${rowIndex}`} src={`/images/yolov8s_pred_${rowIndex}.jpg`} className="w-full h-auto rounded shadow-md" />
-                <img key={`labels_${rowIndex}`} src={`/images/labels_${rowIndex}.jpg`} className="w-full h-auto rounded shadow-md" />
-            </>
-            ))}
+                {/* Blue Section - Tracker Performance */}
+                <div className="bg-blue-100 flex flex-col items-center p-10 md:p-14">
+                    
+                    {/* Section Title */}
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-3 text-center">
+                        Tracker Performance Comparison
+                    </h2>
+
+                    <p className="text-lg text-gray-800 leading-relaxed mt-4 text-center">
+                        Comparison of tracking performance using <strong>ByteTrack</strong> and <strong>BoT-SORT</strong> in both baseline and custom configurations.
+                    </p>
+
+                    {/* Grid Layout for Videos */}
+                    <div className="grid grid-cols-2 gap-6 mt-6 w-full">
+                        
+                        {/* ByteTrack - Baseline */}
+                        <div>
+                            <h3 className="text-md font-semibold text-gray-900 mb-2 text-center">Baseline - ByteTrack</h3>
+                            <video
+                                ref={(el) => (videoRefs.current[0] = el)}
+                                className="w-full max-w-md h-auto rounded-lg border border-gray-100"
+                                controls
+                                onLoadedMetadata={(e) => handleLoadedMetadata(e.target)}
+                            >
+                                <source src="/videos/12bytetrack_compressed.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        {/* Byte-Track - Custom */}
+                        <div>
+                            <h3 className="text-md font-semibold text-gray-900 mb-2 text-center">Custom -ByteTrack</h3>
+                            <video
+                                ref={(el) => (videoRefs.current[1] = el)}
+                                className="w-full max-w-md h-auto rounded-lg  border border-gray-100"
+                                controls
+                                onLoadedMetadata={(e) => handleLoadedMetadata(e.target)}
+                            >
+                                <source src="/videos/12custom_bytetrack_compressed.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        {/* Bot-Sort - Baseline */}
+                        <div>
+                            <h3 className="text-md font-semibold text-gray-900 mb-2 text-center"> Baseline - BoT-SORT</h3>
+                            <video
+                                ref={(el) => (videoRefs.current[2] = el)}
+                                className="w-full max-w-md h-auto rounded-lg  border-gray-100"
+                                controls
+                                onLoadedMetadata={(e) => handleLoadedMetadata(e.target)}
+                            >
+                                <source src="/videos/12botsort_compressed.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        {/* BoT-SORT - Custom */}
+                        <div>
+                            <h3 className="text-md font-semibold text-gray-900 mb-2 text-center">Custom - BoT-SORT</h3>
+                            <video
+                                ref={(el) => (videoRefs.current[3] = el)}
+                                className="w-full max-w-md h-auto rounded-lg  border border-gray-100"
+                                controls
+                                onLoadedMetadata={(e) => handleLoadedMetadata(e.target)}
+                            >
+                                <source src="/videos/12custom_botsort_compressed.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
                     </div>
                 </div>
             </div>
