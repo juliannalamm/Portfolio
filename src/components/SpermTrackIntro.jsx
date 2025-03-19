@@ -4,7 +4,7 @@ const SpermTrackIntro = () => {
     return (
         <section id="sperm-track-card" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
             {/* adjust size of card here*/}
-            <div className="max-w-10xl w-full grid md:grid-cols-2 bg-gray-100 rounded-lg overflow-hidden shadow-sm border border-gray-300">
+            <div className="max-w-10xl w-full grid md:grid-cols-2 bg-gray-100 rounded-lg overflow-hidden border border-gray-100">
                 
                 {/* Left Side: Text Content (White Background) */}
                 <div className="bg-white p-10 md:p-14 flex flex-col justify-center">
@@ -48,7 +48,7 @@ const SpermTrackIntro = () => {
                     <img
                         src="/images/yoloarchitecture.png"
                         alt="YOLOv8s Architecture"
-                        className="w-full max-w-md rounded-lg shadow-lg"
+                        className="w-full max-w-md rounded-lg"
                     />
                     
                     {/* Explanation */}

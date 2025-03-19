@@ -4,7 +4,7 @@ const SpermTrackMethods = () => {
     return (
         <section id="sperm-track-card" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
             {/* Main Container */}
-            <div className="max-w-7xl w-full bg-blue-100 rounded-sm overflow-hidden border border-gray-300 p-10 md:p-14">
+            <div className="max-w-7xl w-full bg-blue-100 rounded-sm overflow-hidden border border-gray-100 p-10 md:p-14">
                 
                 {/* Section Title */}
                 <h2 className="text-4xl font-extrabold text-gray-900 leading-tight text-center">
@@ -34,7 +34,7 @@ const SpermTrackMethods = () => {
                 {/* Detection Model Configurations Table */}
                 <h3 className="text-2xl font-semibold mb-6 text-center">Detection Model Configurations</h3>
                 <div className="overflow-x-auto">
-                    <table className="w-full bg-white text-left border border-gray-300 rounded-sm">
+                    <table className="w-full bg-white text-left border border-gray-100 rounded-sm">
                         <thead className="bg-gray-200 text-gray-900">
                             <tr>
                                 <th className="p-6 text-center">Model</th>
@@ -91,7 +91,7 @@ const SpermTrackMethods = () => {
 
                 {/* Tracker Comparison Table */}
                 <div className="overflow-x-auto mt-6">
-                    <table className="w-full bg-white text-left border border-gray-300 rounded-sm">
+                    <table className="w-full bg-white text-left border border-gray-100 rounded-sm">
                         <thead className="bg-gray-200 text-gray-900">
                             <tr>
                                 <th className="p-6 text-center">Tracker</th>
