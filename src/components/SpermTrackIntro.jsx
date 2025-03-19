@@ -52,7 +52,7 @@ const SpermTrackIntro = () => {
                     />
                     
                     {/* Explanation */}
-                    <div className="text-gray-900 text-lg leading-relaxed mt-4 px-6">
+                    <div className="text-gray-900 text-lg leading-relaxed mt-4 px-6 text-center">
                         <p><strong>Backbone:</strong> Extracts features using Conv layers, C2F blocks, and SPPF.</p>
                         <p><strong>Conv Layers:</strong> The core building blocks of YOLO, convolutional layers extract spatial features such as edges, textures, and patterns while reducing image dimensions.</p>
                         <p><strong>C2F Blocks:</strong> A variant of CSPNet that enhances feature extraction by splitting and re-merging feature maps. It improves gradient flow and reduces redundant computations, making the model more efficient.</p>
