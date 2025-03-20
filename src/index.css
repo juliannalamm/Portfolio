@@ -8,8 +8,9 @@
 
 @theme {
   --color-burgundy: #481231;
-  --color-lightblue: #e3f3fb;
+  --color-lightblue: #e3f2fe;
   --color-skyblue: #bfdaf7;
+  --color-orangebright: #fe4939;
 }
 /* 🌟 Ensure Full-Page Background */
 #root {

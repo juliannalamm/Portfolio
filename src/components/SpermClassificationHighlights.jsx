@@ -5,7 +5,7 @@ const KeyHighlights = () => {
     return (
         <section id="key-highlights" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
             {/* Main Container */}
-            <div className="max-w-7xl w-full bg-blue-100 rounded-sm overflow-hidden p-10 md:p-14">
+            <div className="max-w-7xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14">
                 
                 {/* Section Title */}
                 <h2 className="text-4xl font-extrabold text-burgundy leading-tight text-center">
@@ -19,9 +19,9 @@ const KeyHighlights = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
                     {/* Feature Engineering */}
-                    <div className="bg-blue-50 p-6 rounded-lg">
+                    <div className="bg-lightblue p-6 rounded-lg">
                         <div className="flex items-center space-x-3">
-                            <RadicalIcon className="text-violet-900 w-8 h-8" />
+                            <RadicalIcon className="text-orangebright w-10 h-10" />
                             <h3 className="text-xl font-semibold text-burgundy">Feature Engineering & CASA Metrics</h3>
                         </div>
                         <ul className="list-disc list-inside text-burgundy mt-3 pl-2">
@@ -42,9 +42,9 @@ const KeyHighlights = () => {
                     </div>
 
                     {/* Clustering for Sperm Motility */}
-                    <div className="bg-blue-50 p-6 rounded-lg ">
+                    <div className="bg-lightblue p-6 rounded-lg ">
                         <div className="flex items-center space-x-3">
-                            <Shapes className="text-violet-900 w-8 h-8" />
+                            <Shapes className="text-orangebright w-10 h-10" />
                             <h3 className="text-xl font-semibold text-burgundy">Classification through Unsupervised Learning</h3>
                         </div>
                         <p className="text-burgundy mt-3">
@@ -63,9 +63,9 @@ const KeyHighlights = () => {
                     </div>
 
                     {/* Automated Fertility Assessment */}
-                    <div className="bg-blue-50 p-6 rounded-lg">
+                    <div className="bg-lightblue p-6 rounded-lg">
                         <div className="flex items-center space-x-3">
-                            <CheckCircle className="text-violet-900 w-8 h-8" />
+                            <CheckCircle className="text-orangebright w-10 h-10" />
                             <h3 className="text-xl font-semibold text-burgundy">Automating Fertility Sample Analysis</h3>
                         </div>
                         <p className="text-burgundy mt-3">

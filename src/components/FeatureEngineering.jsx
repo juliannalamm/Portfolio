@@ -4,7 +4,7 @@ const metrics = [
   {
     name: "VSL",
     definition:
-      "VSL is determined by finding the straight-line distance between the first and last points of the trajectory and correcting for time.",
+    "VSL is determined by finding the straight-line distance between the first and last points of the trajectory and correcting for time. This value then gives the net space gain within the observation period.",
     equation: "VSL = D(p1, pN) × FrameRate / (N-1) × μ",
     diagram: "/path/to/VSL_diagram.png",
   },
@@ -57,7 +57,7 @@ export default function MetricViewer() {
   return (
     <section className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
       {/* Main Container - Matches KeyHighlights Styling */}
-      <div className="max-w-7xl w-full bg-blue-100 rounded-sm overflow-hidden p-10 md:p-14">
+      <div className="max-w-7xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14">
         
         {/* Section Title */}
         <h2 className="text-4xl font-extrabold text-burgundy leading-tight text-center">
@@ -73,10 +73,10 @@ export default function MetricViewer() {
             <button
               key={metric.name}
               onClick={() => setSelectedMetric(metric)}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
+              className={`px-10 py-2 rounded-full text-m bg-burgundy font-semibold transition ${
                 selectedMetric.name === metric.name
-                  ? "bg-rose-300 text-black"
-                  : "bg-rose-900 text-white hover:bg-gray-600"
+                  ? "bg-orangebright text-white"
+                  : "bg-burgundy text-white hover:bg-orangebright"
               }`}
             >
               {metric.name}
@@ -85,7 +85,7 @@ export default function MetricViewer() {
         </div>
 
         {/* Metric Details Box - Matches the Card Style */}
-        <div className="bg-blue-50 p-6 rounded-lg text-burgundy">
+        <div className="bg-lightblue p-6 rounded-lg text-burgundy">
           <h3 className="text-xl font-semibold">{selectedMetric.name}</h3>
           <p className="mt-2 text-burgundy">{selectedMetric.definition}</p>
           <p className="mt-2 text-burgundy font-mono font-semibold">

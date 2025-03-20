@@ -84,7 +84,7 @@ const SpermHero = () => {
         <div className="text-left">
         <button 
             onClick={handleScrollToHighlights} 
-            className="mt-8 inline-block px-6 py-3 border-2 border-white rounded-full text-white font-bold text-lg transition duration-300 hover:bg-white hover:text-gray-900"
+            className="mt-8 inline-block px-6 py-3 border-2 border-orangebright bg-orangebright rounded-full text-white font-bold text-lg transition duration-300 hover:border-white hover:bg-white hover:text-black "
         >
             <span className="tracking-wide">LEARN MORE</span>
             <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">

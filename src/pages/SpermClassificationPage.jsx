@@ -14,11 +14,9 @@ const SpermTrackClassification = () => {
          {/* Key Highlights Section */}
          <KeyHighlights />
 
-         <div className="mt-10 w-full max-w-4xl">
-         <MetricViewer />        </div>
-        
-        
-        
+         <div className="mt-10 w-full max-w-8xl">
+         <MetricViewer />        
+         </div>
         
         
         <h1 className="text-4xl font-extrabold text-gray-900 mb-6 text-center">
