@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import SpermTrackPage from "./pages/SpermTrackPage";
+import SpermTrackClassification from "./pages/SpermClassificationPage";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sperm-track" element={<SpermTrackPage/>} />
+          <Route path="/projects/sperm-classification" element={<SpermTrackClassification />} />
         </Routes>
       </div>
     </Router>

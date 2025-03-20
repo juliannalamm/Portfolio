@@ -13,7 +13,7 @@ const projects = [
     title: "Unsupervised Motility Classification",
     date: "02.19.2025",
     imgSrc: "/images/kmeans.png",
-    link: "/projects/kmeans"
+    link: "/projects/sperm-classification"
   },
   { 
     title: "Gouger: Anti-gouging detection app",
