@@ -1,4 +1,5 @@
 import React from "react";
+import KeyHighlights from "../components/SpermClassificationHighlights";
 
 const SpermTrackClassification = () => {
   return (
@@ -7,18 +8,26 @@ const SpermTrackClassification = () => {
         Unsupervised Sperm Motility Classification
       </h1>
       <p className="text-lg text-gray-700 max-w-3xl text-center">
-        This project utilizes uses a variety of techniques including: feature engineering, unsupervised learning techniques such as K-Means clustering 
-        and hierarchical clustering, 
-        to classify sperm motility based on extracted trajectory features. The system enables 
-        objective sperm classification, reducing human bias and increasing efficiency.
-      </p>
+        This project builds upon the custom{" "}
+        <a href="/sperm-track" className="text-blue-600 hover:underline font-semibold">
+        sperm detection and tracking project
+        </a>{" "}
+        by extracting precise cell positions across frames from the BoT-SorT tracking model and applying feature engineering to compute clinically relevant kinematic metrics
+         commonly used in computer-assisted sperm analysis (CASA).  
+        These metrics provide critical insights into sperm health and fertility, aiding in the diagnosis of infertility.  
+
+        Using bounding box data** from the detection algorithm, we leverage unsupervised learning techniques such as K-Means clustering and hierarchical clustering
+        to classify sperm movement into four distinct groups:  
+        Hyperactivated, Progressive, Progressive Linear, and Weakly Motile Sperm.  
+        This approach enables an objective, automated fertility assessment, reducing human bias and improving clinical efficiency.
+    </p>
 
       {/* Video Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 max-w-6xl">
         {[
           { webm: "/videos/tracks/straightline.webm", mp4: "/videos/tracks/straightline.mp4", text: "Straight Line Motion" },
           { webm: "/videos/tracks/progressive.webm", mp4: "/videos/tracks/progressive.mp4", text: "Progressive Motion" },
-          { webm: "/videos/tracks/starspin.webm", MP4: "/videos/tracks/starspin.mp4", text: "Hyperactivated Motion" }
+          { webm: "/videos/tracks/starspin.webm", mp4: "/videos/tracks/star.mp4", text: "Hyperactivated Motion" }
         ].map((video, index) => (
           <div key={index} className="relative group w-full h-[300px] bg-black overflow-hidden rounded-lg shadow-lg">
             {/* Video */}
@@ -30,6 +39,7 @@ const SpermTrackClassification = () => {
               muted
               playsInline
             >
+              {/* WebM loads first, MP4 as fallback */}
               <source src={video.webm} type="video/webm" />
               <source src={video.mp4} type="video/mp4" />
               Your browser does not support the video tag.
@@ -42,15 +52,9 @@ const SpermTrackClassification = () => {
           </div>
         ))}
       </div>
+      {/* Key Highlights Section */}
+        <KeyHighlights />
 
-      {/* Placeholder for Images/Figures */}
-      <div className="mt-10">
-        <img 
-          src="/images/kmeans.png" 
-          alt="K-Means Clustering" 
-          className="rounded-lg shadow-lg w-full max-w-xl"
-        />
-      </div>
 
       {/* Back Button */}
       <div className="mt-6">

@@ -28,7 +28,7 @@ export default function ProjectGrid() {
 
   const handleClick = (e, link) => {
     e.preventDefault();
-
+  
     if (link.startsWith("#")) {
       // ✅ Smooth scrolling for in-page anchors
       const target = document.querySelector(link);
@@ -36,8 +36,9 @@ export default function ProjectGrid() {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     } else {
-      //  Use React Router for internal navigation
+      // ✅ Navigate and scroll to top
       navigate(link);
+      window.scrollTo(0, 0); // Forces scroll to top on navigation
     }
   };
 
