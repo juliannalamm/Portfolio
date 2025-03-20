@@ -113,15 +113,19 @@ export default function MetricViewer() {
           <div className="mt-2 font-mono font-semibold text-burgundy">
             <BlockMath math={selectedMetric.equation} />
           </div>
-           {/* Render the variable explanation below the equation */}
-           <p className="mt-2 text-burgundy">
-            {selectedMetric.variableExplanation}
-          </p>
-          <img
-            src={selectedMetric.diagram}
-            alt={`${selectedMetric.name} diagram`}
-            className="mt-4 rounded-lg w-full max-w-md mx-auto"
-          />
+           {/* Render Variable Explanation */}
+          {selectedMetric.variableExplanation && (
+            <p className="mt-2 text-burgundy">{selectedMetric.variableExplanation}</p>
+          )}
+
+          {/* Render the Diagram ONLY if it exists */}
+          {selectedMetric.diagram && (
+            <img
+              src={selectedMetric.diagram}
+              alt={`${selectedMetric.name} diagram`}
+              className="mt-1 rounded-lg w-full max-w-md mx-auto"
+            />
+          )}
         </div>
       </div>
     </section>
