@@ -1,9 +1,12 @@
 import React from "react";
 import KeyHighlights from "../components/SpermClassificationHighlights";
+import SpermHero from "../components/SpermHero";
 
 const SpermTrackClassification = () => {
   return (
+
     <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 py-16">
+    <SpermHero />
       <h1 className="text-4xl font-extrabold text-gray-900 mb-6 text-center">
         Unsupervised Sperm Motility Classification
       </h1>
@@ -25,9 +28,9 @@ const SpermTrackClassification = () => {
       {/* Video Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 max-w-6xl">
         {[
-          { webm: "/videos/tracks/straightline.webm", mp4: "/videos/tracks/straightline.mp4", text: "Straight Line Motion" },
-          { webm: "/videos/tracks/progressive.webm", mp4: "/videos/tracks/progressive.mp4", text: "Progressive Motion" },
-          { webm: "/videos/tracks/starspin.webm", mp4: "/videos/tracks/star.mp4", text: "Hyperactivated Motion" }
+          { mp4: "/videos/tracks/straightline.mp4", text: "Straight Line Motion" },
+          { mp4: "/videos/tracks/progressive.mp4", text: "Progressive Motion" },
+          { mp4: "/videos/tracks/starspin.mp4", text: "Hyperactivated Motion" }
         ].map((video, index) => (
           <div key={index} className="relative group w-full h-[300px] bg-black overflow-hidden rounded-lg shadow-lg">
             {/* Video */}
