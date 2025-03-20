@@ -57,8 +57,8 @@ const SpermTrackPage = () => {
 
       {/* Sidebar TOC (Only Appears After Hero Section) */}
       {showTOC && (
-        <div className="hidden md:flex flex-col fixed left-6 top-24 text-gray-700">
-          <h2 className="text-lg font-semibold text-gray-900 mb-2">Table of Contents</h2>
+        <div className="hidden md:flex flex-col fixed left-6 top-24 text-burgundy">
+          <h2 className="text-lg font-semibold text-burgundy mb-2">Table of Contents</h2>
           <ul className="space-y-1">
             {sections.map(({ id, label }) => (
               <li key={id}>

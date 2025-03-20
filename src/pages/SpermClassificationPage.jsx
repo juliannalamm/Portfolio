@@ -1,6 +1,7 @@
 import React from "react";
 import KeyHighlights from "../components/SpermClassificationHighlights";
 import SpermHero from "../components/SpermHero";
+import MetricViewer from "../components/FeatureEngineering";
 
 const SpermTrackClassification = () => {
   return (
@@ -10,6 +11,16 @@ const SpermTrackClassification = () => {
 
       {/* Main Content Section - Now Has Padding */}
       <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 py-16">
+         {/* Key Highlights Section */}
+         <KeyHighlights />
+
+         <div className="mt-10 w-full max-w-4xl">
+         <MetricViewer />        </div>
+        
+        
+        
+        
+        
         <h1 className="text-4xl font-extrabold text-gray-900 mb-6 text-center">
           Unsupervised Sperm Motility Classification
         </h1>
@@ -56,8 +67,7 @@ const SpermTrackClassification = () => {
           ))}
         </div>
 
-        {/* Key Highlights Section */}
-        <KeyHighlights />
+
 
         {/* Back Button */}
         <div className="mt-6">

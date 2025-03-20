@@ -33,6 +33,12 @@ const SpermHero = () => {
     });
     setIsAutoplayBlocked(false);
   };
+  const handleScrollToHighlights = () => {
+    const section = document.getElementById("key-highlights");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center px-0 overflow-hidden">
@@ -75,12 +81,17 @@ const SpermHero = () => {
           Unsupervised Learning and classification transforms 
           raw motion data into insights for clinical diagnostics and assisted reproduction.
         </p>
-        <a
-          href="/sperm-classification"
-          className="mt-6 inline-block bg-white text-gray-900 font-semibold text-lg py-3 px-6 rounded-full hover:bg-gray-200 transition"
+        <div className="text-left">
+        <button 
+            onClick={handleScrollToHighlights} 
+            className="mt-8 inline-block px-6 py-3 border-2 border-white rounded-full text-white font-bold text-lg transition duration-300 hover:bg-white hover:text-gray-900"
         >
-          Learn More
-        </a>
+            <span className="tracking-wide">LEARN MORE</span>
+            <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1">
+            ➝
+            </span>
+        </button>
+        </div>
       </div>
 
       {/* Overlay for User Interaction (Only in Safari) */}
