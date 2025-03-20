@@ -5,7 +5,7 @@ const KeyHighlights = () => {
     return (
         <section id="key-highlights" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
             {/* Main Container */}
-            <div className="max-w-7xl w-full bg-blue-100 rounded-sm overflow-hidden border border-gray-100 p-10 md:p-14">
+            <div className="max-w-7xl w-full bg-blue-100 rounded-sm overflow-hidden p-10 md:p-14">
                 
                 {/* Section Title */}
                 <h2 className="text-4xl font-extrabold text-gray-900 leading-tight text-center">
@@ -19,7 +19,7 @@ const KeyHighlights = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     
                     {/* Feature Engineering */}
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center space-x-3">
                             <RadicalIcon className="text-violet-900 w-8 h-8" />
                             <h3 className="text-xl font-semibold text-gray-900">Feature Engineering & CASA Metrics</h3>
@@ -38,7 +38,7 @@ const KeyHighlights = () => {
                     </div>
 
                     {/* Clustering for Sperm Motility */}
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-blue-50 p-6 rounded-lg ">
                         <div className="flex items-center space-x-3">
                             <Shapes className="text-violet-900 w-8 h-8" />
                             <h3 className="text-xl font-semibold text-gray-900">Classification through Unsupervised Learning</h3>
@@ -59,7 +59,7 @@ const KeyHighlights = () => {
                     </div>
 
                     {/* Automated Fertility Assessment */}
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center space-x-3">
                             <CheckCircle className="text-violet-900 w-8 h-8" />
                             <h3 className="text-xl font-semibold text-gray-900">Automating Fertility Sample Analysis</h3>

@@ -6,13 +6,13 @@ const projects = [
   { 
     title: "YOLO Sperm Tracking and Detection",
     date: "03.10.2025",
-    videoSrc: "/videos/compressed_video.mp4", // ✅ Replace GIF with Video
+    videoSrc: "/videos/compressed_video.mp4", 
     link: "/sperm-track"
   },
   { 
     title: "Unsupervised Motility Classification",
     date: "02.19.2025",
-    imgSrc: "/images/kmeans.png",
+    videoSrc: "/videos/tracks/starspin.mp4",
     link: "/projects/sperm-classification"
   },
   { 
