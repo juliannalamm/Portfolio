@@ -34,7 +34,7 @@ const SpermTrackAnalysis = () => {
                     <p className="text-lg text-burgundy leading-relaxed">
                         <strong>BoT-SORT</strong> outperformed ByteTrack due to its use of <strong>appearance-based Re-Identification (ReID)</strong> and <strong>Global Motion Compensation (GMC)</strong>, which allowed it to maintain consistent sperm identities over time. In contrast, ByteTrack’s confidence-based tracking struggled with high-speed movement and frequent occlusions.
                     </p>
-                    <p className="text-lg text-burgundyleading-relaxed mt-4">
+                    <p className="text-lg text-burgundy leading-relaxed mt-4">
                         Our custom BoT-SORT modifications significantly improved performance by:
                     </p>
                     <ul className="list-disc list-inside text-lg text-burgundy leading-relaxed mt-4 space-y-2">

@@ -73,7 +73,7 @@ const SpermTrackMethods = () => {
                 </div>
 
                 {/* Section Line */}
-                <div className="border-b border-gray-400 my-8"></div>
+                <div className="border-b border-burgundy-400 my-8"></div>
 
                 {/* Tracker Configurations Section */}
                 <h3 className="text-2xl font-semibold mb-6 text-center">Tracker Configurations</h3>
