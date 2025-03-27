@@ -130,24 +130,8 @@ const SpermTrackResults = () => {
                             <div className="border-b border-burgundy my-8"></div>
 
                             {/* Training Setup */}
-                            <h3 className="text-2xl font-semibold mb-6 text-center">Detection Results</h3>
-                            {/* Analysis Section */}
-                            <div className="mt-6">
-                                
-                                <p className="text-lg text-burgundy leading-relaxed">
-                                    The addition of the <strong>P2 layer</strong> was hypothesized to improve small object detection by reducing the stride and creating a finer-grained feature map. However, further investigation revealed that the majority of bounding box sizes for sperm in the dataset were around <strong>16x16 pixels</strong>, which already falls within the <strong>P3 convolutional layer</strong> of YOLOv8’s feature pyramid. As a result, P2 did not provide significant improvements.
-                                </p>
-                                <p className="text-lg text-burgundy leading-relaxed mt-4">
-                                    Additionally, evaluation of validation and training losses suggests <strong>overfitting</strong> limited performance improvements. The <strong>Focus layer</strong>, designed to preserve spatial detail, showed marginal precision gains. Future improvements should explore:
-                                </p>
-                                <ul className="list-disc list-inside text-lg text-burgundy leading-relaxed mt-4 space-y-2">
-                                    <li>Refining the Feature Pyramid Network (FPN) for small object detection.</li>
-                                    <li>Experimenting with self-supervised pretraining for better generalization.</li>
-                                    <li>Applying data augmentation techniques such as synthetic sperm trajectories.</li>
-                                    <li>Optimizing hyperparameters to mitigate overfitting and improve recall.</li>
-                                </ul>
-                            </div>
                             <DetectionComparison />
+                            
                         </div>
                     </div>
                 </div>
