@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
-import LoopingVideo from "./LoopingVideo"; // Adjust the path accordingly
+import LoopingVideo from "./LoopingVideo"; 
+import DetectionComparison from "./DetectionComparison"; 
+
 
 
 const trackerVideos = {
@@ -95,28 +97,28 @@ const SpermTrackResults = () => {
                                         <td className="p-4">0.191</td>
                                     </tr>
                                     <tr className="border-t">
-                                        <td className="p-4">YOLOv8s</td>
-                                        <td className="p-4">0.608</td>
-                                        <td className="p-4">0.582</td>
-                                        <td className="p-4">0.502</td>
-                                        <td className="p-4">0.150</td>
+                                        <td className="p-4"> <strong>YOLOv8s-Conf@.25 (ours)</strong></td>
+                                        <td className="p-4"><strong>0.608</strong></td>
+                                        <td className="p-4"><strong>0.582</strong></td>
+                                        <td className="p-4"><strong>0.534</strong></td>
+                                        <td className="p-4"><strong>0.185</strong></td>
                                     </tr>
                                     <tr className="border-t">
-                                        <td className="p-4">YOLOv8s + P2</td>
+                                        <td className="p-4">YOLOv8s + P2 (ours) </td>
                                         <td className="p-4">0.578</td>
                                         <td className="p-4">0.586</td>
                                         <td className="p-4">0.479</td>
                                         <td className="p-4">0.143</td>
                                     </tr>
                                     <tr className="border-t">
-                                        <td className="p-4">YOLOv8s + Focus</td>
+                                        <td className="p-4">YOLOv8s + Focus (ours)</td>
                                         <td className="p-4">0.600</td>
                                         <td className="p-4">0.549</td>
                                         <td className="p-4">0.450</td>
                                         <td className="p-4">0.125</td>
                                     </tr>
                                     <tr className="border-t">
-                                        <td className="p-4">YOLOv11s</td>
+                                        <td className="p-4">YOLOv11s (ours) </td>
                                         <td className="p-4">0.539</td>
                                         <td className="p-4">0.548</td>
                                         <td className="p-4">0.444</td>
@@ -124,10 +126,35 @@ const SpermTrackResults = () => {
                                     </tr>
                                 </tbody>
                             </table>
+                            {/* Section Line */}
+                            <div className="border-b border-burgundy my-8"></div>
+
+                            {/* Training Setup */}
+                            <h3 className="text-2xl font-semibold mb-6 text-center">Detection Results</h3>
+                            {/* Analysis Section */}
+                            <div className="mt-6">
+                                
+                                <p className="text-lg text-burgundy leading-relaxed">
+                                    The addition of the <strong>P2 layer</strong> was hypothesized to improve small object detection by reducing the stride and creating a finer-grained feature map. However, further investigation revealed that the majority of bounding box sizes for sperm in the dataset were around <strong>16x16 pixels</strong>, which already falls within the <strong>P3 convolutional layer</strong> of YOLOv8’s feature pyramid. As a result, P2 did not provide significant improvements.
+                                </p>
+                                <p className="text-lg text-burgundy leading-relaxed mt-4">
+                                    Additionally, evaluation of validation and training losses suggests <strong>overfitting</strong> limited performance improvements. The <strong>Focus layer</strong>, designed to preserve spatial detail, showed marginal precision gains. Future improvements should explore:
+                                </p>
+                                <ul className="list-disc list-inside text-lg text-burgundy leading-relaxed mt-4 space-y-2">
+                                    <li>Refining the Feature Pyramid Network (FPN) for small object detection.</li>
+                                    <li>Experimenting with self-supervised pretraining for better generalization.</li>
+                                    <li>Applying data augmentation techniques such as synthetic sperm trajectories.</li>
+                                    <li>Optimizing hyperparameters to mitigate overfitting and improve recall.</li>
+                                </ul>
+                            </div>
+                            <DetectionComparison />
                         </div>
                     </div>
                 </div>
+
             </section>
+
+
 
             {/* Tracker Performance Section */}
             <section
@@ -144,8 +171,8 @@ const SpermTrackResults = () => {
                                 key={tracker}
                                 onClick={() => setSelectedTracker(tracker)}
                                 className={`px-10 py-3 rounded-full text-m font-semibold transition ${selectedTracker === tracker
-                                        ? "bg-orangebright text-white"
-                                        : "bg-burgundy text-white hover:bg-orangebright"
+                                    ? "bg-orangebright text-white"
+                                    : "bg-burgundy text-white hover:bg-orangebright"
                                     }`}
                             >
                                 {tracker}
