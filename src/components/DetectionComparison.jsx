@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import ClickableImage from "./ClickableImage";
 
 
 const detectionModels = {
@@ -45,7 +46,7 @@ const DetectionComparison = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
           <div className="flex flex-col items-center">
-            <img
+            <ClickableImage
               src={detectionModels[selectedModel].labels}
               alt={`${selectedModel} ground truth labels`}
               className="w-full max-w-xl h-auto rounded sm"
@@ -53,7 +54,7 @@ const DetectionComparison = () => {
             <p className="text-md font-semibold text-burgundy mb-2 text-center">Ground Truth</p>
           </div>
           <div className="flex flex-col items-center">
-            <img
+            <ClickableImage
               src={detectionModels[selectedModel].prediction}
               alt={`${selectedModel} detection predictions`}
               className="w-full max-w-xl h-auto rounded sm"

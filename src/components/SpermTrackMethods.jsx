@@ -71,48 +71,10 @@ const SpermTrackMethods = () => {
                         </tbody>
                     </table>
                 </div>
-
-                {/* Section Line */}
-                <div className="border-b border-burgundy-400 my-8"></div>
-
-                {/* Tracker Configurations Section */}
-                <h3 className="text-2xl font-semibold mb-6 text-center">Tracker Configurations</h3>
-                <p className="text-lg text-gray-800 leading-relaxed">
-                    Two tracking methods were tested to improve the sperm tracking pipeline. 
-                    <strong>BoT-SORT</strong> leverages Re-ID (appearance matching) and global motion compensation (GMC), while 
-                    <strong>ByteTrack</strong> relies on confidence-based association without Re-ID.
-                </p>
-
-                <p className="text-lg text-gray-800 leading-relaxed mt-4">
-                    Custom modifications were made to improve performance in high-occlusion environments, 
-                    ensuring better identity preservation over time. The following table outlines the key 
-                    differences and adjustments implemented.
-                </p>
-
-                {/* Tracker Comparison Table */}
-                <div className="overflow-x-auto mt-6">
-                    <table className="w-full bg-white text-left border border-gray-100 rounded-sm">
-                        <thead className="bg-gray-200 text-gray-900">
-                            <tr>
-                                <th className="p-6 text-center">Tracker</th>
-                                <th className="p-6 text-center">Description</th>
-                                <th className="p-6 text-center">Custom Adjustments</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-300">
-                            <tr>
-                                <td className="p-6 text-center">BoT-SORT</td>
-                                <td className="p-6">Uses Kalman Filtering, GMC, and Re-ID for long-term tracking.</td>
-                                <td className="p-6">Increased <strong>track buffer</strong> from 30 to 200, adjusted <strong>appearance threshold</strong>, enabled ReID.</td>
-                            </tr>
-                            <tr>
-                                <td className="p-6 text-center">ByteTrack</td>
-                                <td className="p-6">Tracks objects by filtering low-confidence detections for stability.</td>
-                                <td className="p-6">Reduced <strong>matching threshold</strong> and increased <strong>track buffer</strong> to handle occlusions.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    
+                   
+                
+                
             </div>
         </section>
     );
