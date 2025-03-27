@@ -1,32 +1,30 @@
 import React, { useRef, useEffect, useState } from "react";
 import LoopingVideo from "./LoopingVideo"; // Adjust the path accordingly
 
+
 const trackerVideos = {
     ByteTrack: [
         {
             title: "Baseline - ByteTrack",
             src: "/videos/12custom_bytetrack_compressed.mp4",
-            description:
-                "Baseline ByteTrack struggles to maintain persistent ID's, particularly for objects that suddenly change speed or direction.",
+            description: "Baseline ByteTrack struggles to maintain persistent ID's, particularly for objects that suddenly change speed or direction."
         },
         {
             title: "Custom - ByteTrack",
             src: "/videos/12bytetrack_compressed.mp4",
-            description:
-                "Reducing the matching threshold and increasing the track buffer visually improves ByteTrack's ability to maintain persistent ID's although not as effective as BoT-SORT.",
+            description: "Reducing the matching threshold and increasing the track buffer visually improves ByteTrack's ability to maintain persistent ID's although not as effective as BoT-SORT."
         },
     ],
     "BoT-SORT": [
         {
             title: "Baseline - BoT-SORT",
             src: "/videos/12botsort_compressed.mp4",
-            description: "This is the baseline performance using BoT-SORT.",
+            description: "This is the baseline performance using BoT-SORT."
         },
         {
             title: "Custom - BoT-SORT",
             src: "/videos/12custom_botsort_compressed.mp4",
-            description:
-                "This is the custom configuration using BoT-SORT.",
+            description: "This is the custom configuration using BoT-SORT."
         },
     ],
 };
@@ -35,51 +33,28 @@ const SpermTrackResults = () => {
     const videoRefs = useRef([]);
     const [selectedTracker, setSelectedTracker] = useState("ByteTrack");
 
-    // Clear refs and update playback rate & looping for new videos when tracker changes
     useEffect(() => {
-        // Clear previous refs
-        videoRefs.current = [];
+        videoRefs.current.forEach((video) => {
+            if (video) {
+                video.playbackRate = 0.4;
 
-        // When new videos are rendered, wait a tick for them to be in the DOM
-        setTimeout(() => {
-            videoRefs.current.forEach((video) => {
-                if (video) {
-                    // Set playback rate
-                    video.playbackRate = 0.1;
-
-                    // Define a timeupdate listener for smooth looping
-                    const handleTimeUpdate = () => {
-                        if (video.currentTime >= 10) {
-                            video.currentTime = 0;
-                        }
-                    };
-
-                    video.addEventListener("timeupdate", handleTimeUpdate);
-
-                    // Optional: Clean up listener when the video is unmounted
-                    // (React will remove the DOM element when switching trackers)
-                    video._cleanupTimeUpdate = () => {
-                        video.removeEventListener("timeupdate", handleTimeUpdate);
-                    };
-                }
-            });
-        }, 0);
-    }, [selectedTracker]);
-
-    // Optionally, cleanup listeners when the component unmounts
-    useEffect(() => {
-        return () => {
-            videoRefs.current.forEach((video) => {
-                if (video && video._cleanupTimeUpdate) {
-                    video._cleanupTimeUpdate();
-                }
-            });
-        };
+            }
+        });
     }, []);
+
+    const handleLoadedMetadata = (video) => {
+        if (video.duration > 10) {
+            setInterval(() => {
+                if (video.currentTime >= 10) {
+                    video.currentTime = 0; // Restart video after 10 seconds
+                }
+            }, 1000);
+        }
+    };
 
     return (
         <>
-            {/* Detection Results Section */}
+            { /* Detection Results Section */}
             <section
                 id="detection-results"
                 className="flex justify-center px-4 md:px-8 lg:px-12 mt-16"
@@ -106,22 +81,47 @@ const SpermTrackResults = () => {
                                 </thead>
                                 <tbody>
                                     <tr className="border-t">
-                                        <td className="p-4">
-                                            YOLOv5s{" "}
-                                            <a
-                                                href="https://www.nature.com/articles/s41597-023-02173
-                        href="https://www.nature.com/articles/s41597-023-02173-4"
-                                                className="text-blue-500"
-                                            >
-                                                (Thambawita et al.)
-                                            </a>
-                                        </td>
+                                        <td className="p-4">YOLOv5s <a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-500">(Thambawita et al.)</a> </td>
                                         <td className="p-4">0.4292</td>
                                         <td className="p-4">0.2560</td>
                                         <td className="p-4">0.2102</td>
                                         <td className="p-4">0.0567</td>
                                     </tr>
-                                    {/* ... other rows ... */}
+                                    <tr className="border-t">
+                                        <td className="p-4">YOLOv8s-Conf@.25 <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-500"> (Nguyen et al.) </a> </td>
+                                        <td className="p-4">0.5</td>
+                                        <td className="p-4">0.638</td>
+                                        <td className="p-4">0.506</td>
+                                        <td className="p-4">0.191</td>
+                                    </tr>
+                                    <tr className="border-t">
+                                        <td className="p-4">YOLOv8s</td>
+                                        <td className="p-4">0.608</td>
+                                        <td className="p-4">0.582</td>
+                                        <td className="p-4">0.502</td>
+                                        <td className="p-4">0.150</td>
+                                    </tr>
+                                    <tr className="border-t">
+                                        <td className="p-4">YOLOv8s + P2</td>
+                                        <td className="p-4">0.578</td>
+                                        <td className="p-4">0.586</td>
+                                        <td className="p-4">0.479</td>
+                                        <td className="p-4">0.143</td>
+                                    </tr>
+                                    <tr className="border-t">
+                                        <td className="p-4">YOLOv8s + Focus</td>
+                                        <td className="p-4">0.600</td>
+                                        <td className="p-4">0.549</td>
+                                        <td className="p-4">0.450</td>
+                                        <td className="p-4">0.125</td>
+                                    </tr>
+                                    <tr className="border-t">
+                                        <td className="p-4">YOLOv11s</td>
+                                        <td className="p-4">0.539</td>
+                                        <td className="p-4">0.548</td>
+                                        <td className="p-4">0.444</td>
+                                        <td className="p-4">0.142</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -155,27 +155,28 @@ const SpermTrackResults = () => {
 
                     <p className="text-lg text-burgundy leading-relaxed mb-6 text-center">
                         Two tracking methods were tested to improve the sperm tracking pipeline.
-                        Custom modifications were made to improve performance in high-occlusion
-                        environments, ensuring better identity preservation over time.
+                        Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
+                        {/* Section Line */}
                         <div className="border-b border-burgundy my-8"></div>
+
+
                         {selectedTracker === "ByteTrack" ? (
                             <>
-                                <strong>ByteTrack</strong> tracks objects by filtering low-confidence
-                                detections for stability. In our custom adjustments, we reduced the{" "}
-                                <strong>matching threshold</strong> and increased the{" "}
-                                <strong>track buffer</strong> to handle occlusion-driven sudden bounding
-                                box changes. It is simple, fast, and uses IoU matching and a basic Kalman filter.
+                                <strong> ByteTrack</strong> Tracks objects by filtering low-confidence detections for stability. In our custom adjustments,
+                                we reduced the <strong>matching threshold</strong> and increased <strong>track buffer</strong> to handle occlusion driven sudden bounding
+                                box changes. It is simple, fast and uses IoU matching and basic Kalman filter.
                             </>
                         ) : (
                             <>
-                                <strong>BoT-SORT</strong> is an enhanced version of SORT (Simple Online
-                                and Realtime Tracking) that incorporates ReID embeddings, improved Kalman
-                                filter tuning, and appearance-based matching. It is more robust to occlusions
-                                and offers better long-term identity consistency when ReID is enabled.
+                                <strong> BoT-SORT</strong> is an enhanced version of SORT (Simple Online and Realtime Tracking) and incorporates ReID embeddings,improved Kalman filter tuning,
+                                and appearance based matching. It is more robust to occlusions and has better long-terem identity consistency when ReID is selected.
                             </>
                         )}
                     </p>
 
+                    {/* Tracker Selector Buttons */}
+
+                    {/* Grid Layout for Tracker Videos */}
                     <div className="grid grid-cols-2 gap-6 mt-6 w-full">
                         {trackerVideos[selectedTracker].map((video, idx) => (
                             <div key={`${selectedTracker}-${idx}`} className="flex flex-col items-center text-center">
