@@ -2,8 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import LoopingVideo from "./LoopingVideo";
 import DetectionComparison from "./DetectionComparison";
 
-
-
 const trackerVideos = {
     ByteTrack: [
         {
@@ -63,15 +61,15 @@ const SpermTrackResults = () => {
             >
                 <div className="max-w-10xl w-full rounded-sm overflow-hidden">
                     <div className="bg-skyblue p-10 md:p-14 flex flex-col">
-                        <h3 className="text-2xl font-semibold text-burgundy mb-3 text-center">
+                        <h2 className="text-4xl font-extrabold text-burgundy leading-tight text-center">
                             Detection Model Results
-                        </h3>
-                        <p className="text-lg leading-relaxed text-burgundy mb-6 text-center">
+                        </h2>
+                        <p className="text-lg leading-relaxed text-burgundy mt-6 text-center">
                             The following table presents the performance of different YOLO-based
                             models for sperm detection.
                         </p>
                         <div className="overflow-x-auto">
-                            <table className="w-full bg-lightblue text-left rounded-lg">
+                            <table className="w-full mt-6 bg-lightblue text-left rounded-lg">
                                 <thead className="bg-lightblue burgundy">
                                     <tr>
                                         <th className="p-4">Model</th>
@@ -82,42 +80,42 @@ const SpermTrackResults = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className="border-t">
+                                    <tr className="border-t border-burgundy">
                                         <td className="p-4">YOLOv5s <a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-500">(Thambawita et al.)</a> </td>
                                         <td className="p-4">0.4292</td>
                                         <td className="p-4">0.2560</td>
                                         <td className="p-4">0.2102</td>
                                         <td className="p-4">0.0567</td>
                                     </tr>
-                                    <tr className="border-t">
+                                    <tr className="border-t border-burgundy">
                                         <td className="p-4">YOLOv8s-Conf@.25 <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-500"> (Nguyen et al.) </a> </td>
                                         <td className="p-4">0.5</td>
                                         <td className="p-4">0.638</td>
                                         <td className="p-4">0.506</td>
                                         <td className="p-4">0.191</td>
                                     </tr>
-                                    <tr className="border-t">
+                                    <tr className="border-t border-burgundy">
                                         <td className="p-4"> <strong>YOLOv8s-Conf@.25 (ours)</strong></td>
                                         <td className="p-4"><strong>0.608</strong></td>
                                         <td className="p-4"><strong>0.582</strong></td>
                                         <td className="p-4"><strong>0.534</strong></td>
                                         <td className="p-4"><strong>0.185</strong></td>
                                     </tr>
-                                    <tr className="border-t">
+                                    <tr className="border-t border-burgundy">
                                         <td className="p-4">YOLOv8s + P2 (ours) </td>
                                         <td className="p-4">0.578</td>
                                         <td className="p-4">0.586</td>
                                         <td className="p-4">0.479</td>
                                         <td className="p-4">0.143</td>
                                     </tr>
-                                    <tr className="border-t">
+                                    <tr className="border-t border-burgundy">
                                         <td className="p-4">YOLOv8s + Focus (ours)</td>
                                         <td className="p-4">0.600</td>
                                         <td className="p-4">0.549</td>
                                         <td className="p-4">0.450</td>
                                         <td className="p-4">0.125</td>
                                     </tr>
-                                    <tr className="border-t">
+                                    <tr className="border-t border-burgundy">
                                         <td className="p-4">YOLOv11s (ours) </td>
                                         <td className="p-4">0.539</td>
                                         <td className="p-4">0.548</td>
@@ -237,6 +235,7 @@ const SpermTrackResults = () => {
                         ))}
                     </div>
                 </div>
+                {/* TODO: JUMP TO SECTION DISSECTING SPERM TRACKS GENERATED BY BOUNDING BOXES */}
             </section>
         </>
     );

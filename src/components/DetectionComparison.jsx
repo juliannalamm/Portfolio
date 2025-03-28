@@ -8,8 +8,8 @@ const detectionModels = {
     prediction: "/images/detectionresults/YOLOv8s/prediction.jpg",
     description: (
         <>
-          Our baseline YOLOv8s model witha confidence threshold of 0.25 closely replicated the results reported by
-          <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-500"> Nguyen et al. </a> Our model achieved a Precision of 0.608 and recall of 0.582 demonstrating that the model correctly identified most sperm instances but still produced a moderate number of false positives and missed detections.  
+          Our baseline YOLOv8s model closely replicated the results reported by
+          <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-500"> Nguyen et al. </a>  on the same dataset. Our model achieved a Precision of 0.608 and recall of 0.582 demonstrating that the model correctly identified most sperm instances but still produced a moderate number of false positives and missed detections.  
             The mAP@0.5 score of 0.532 indicates decent localization accuracy, though the relatively low performance at higher IoU thresholds (reflected in mAP@0.5:0.95) suggests that bounding box alignment could be improved. These limitations are explored further in the following section.
         </>
       )
@@ -83,21 +83,21 @@ const DetectionComparison = () => {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8">
           
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center mt-6">
             <ClickableImage
               src={detectionModels[selectedModel].labels}
               alt={`${selectedModel} ground truth labels`}
-              className="w-full max-w-xl h-auto rounded-sm mb-6"
+              className="w-full max-w-xl h-auto rounded-sm"
             />
-            <p className="text-md font-semibold text-burgundy mb-6 text-center">Ground Truth</p>
+            <p className="text-md font-semibold text-burgundy mt-6 text-center">Ground Truth</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center mt-6">
             <ClickableImage
               src={detectionModels[selectedModel].prediction}
               alt={`${selectedModel} detection predictions`}
-              className="w-full max-w-xl h-auto rounded-sm mb-6"
+              className="w-full max-w-xl h-auto rounded-sm"
             />
-            <p className="text-md font-semibold text-burgundy mb-6 text-center">Val Prediction</p>
+            <p className="text-md font-semibold text-burgundy mt-6 text-center">Val Prediction</p>
           </div>
         </div>
         <p className="mt-4 text-lg text-burgundy text-lg">
