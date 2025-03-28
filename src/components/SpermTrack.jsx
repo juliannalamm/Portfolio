@@ -166,28 +166,7 @@ const SpermTrack = () => {
                     </div>
 
                     {/* Results Summary */}
-                    <div className="mt-6">
-                        <h3 className="text-xl font-semibold text-gray-900 mb-3">Analysis & Next Steps</h3>
-                        <p className="text-lg leading-relaxed text-gray-800">
-                            The addition of the P2 layer was hypothesized to improve small object detection by reducing the stride 
-                            and creating a finer-grained feature map. However, further investigation revealed that the majority of 
-                            bounding box sizes for sperm in the dataset were around 16x16 pixels, which already falls within the P3 convolutional layer 
-                            of YOLOv8's feature pyramid. As a result, the additional P2 layer did not contribute significantly to detection improvements.
-                        </p>
-                        <p className="text-lg leading-relaxed text-gray-800 mt-4">
-                            Additionally, evaluation of validation and training losses suggest overfitting may have played a role in limiting performance improvements. 
-                            The Focus layer, designed to preserve spatial detail, showed promise in maintaining precision, but gains were marginal. Future work 
-                            should explore the following adjustments:
-                        </p>
-                        <ul className="list-disc list-inside text-lg leading-relaxed text-gray-800 mt-4">
-                            <li>Refining the Feature Pyramid Network (FPN) layers further enhance small object detection.</li>
-                            <li>Experimenting with self-supervised pretraining to boost performance on limited datasets.</li>
-                            <li>Applying data augmentation techniques such as synthetic sperm trajectories to improve generalization, 
-                                potentially incorporating additional images from<a href="https://paperswithcode.com/dataset/mhsma" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline"> MHSMA (The Modified Human Sperm Morphology Analysis) 
-                                </a> dataset</li>  
-                            <li>Optimizing hyperparameters further to reduce overfitting and improve recall.</li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </div>

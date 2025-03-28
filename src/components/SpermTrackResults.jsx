@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import LoopingVideo from "./LoopingVideo"; 
-import DetectionComparison from "./DetectionComparison"; 
+import LoopingVideo from "./LoopingVideo";
+import DetectionComparison from "./DetectionComparison";
 
 
 
@@ -131,7 +131,41 @@ const SpermTrackResults = () => {
 
                             {/* Training Setup */}
                             <DetectionComparison />
-                            
+                            {/* Section Line */}
+                            <div className="border-b border-burgundy my-8"></div>
+
+                            {/* Suggestions for Improvement */}
+                            <section id="improvement-suggestions">
+                                <h3 className="text-2xl font-semibold text-burgundy mb-3 text-center">
+                                    Limitations and Suggested Improvements
+                                </h3>
+
+                                <ul className="list-disc list-inside text-lg text-burgundy leading-relaxed space-y-2">
+                                    <li>
+                                        Despite multiple architectural modifications, including Focus layers and custom detection heads, 
+                                        performance gains were modest and key metrics eventually plateaued. 
+                                        This suggests that YOLO-based architectures may be nearing their ceiling on this particular dataset.
+                                    </li>
+                                    <li>
+                                        Signs of overfitting were observed in training vs. validation loss trends, 
+                                        highlighting the need for stronger regularization and better generalization techniques.
+                                    </li>
+                                    <li>
+                                        Dataset-specific factors—such as small object size, occlusions, and minimal visual variation—may limit the representational power of current models. 
+                                        Enhanced data augmentation strategies, including synthetic sperm trajectories, could improve robustness.
+                                    </li>
+                                    <li>
+                                        Feature pyramid optimization remains a promising avenue. Methods like dynamic FPN scaling or attention-based fusion could help recover spatial detail lost in deeper layers by dynamicaly assigning importance
+                                        to various feature maps, enabling the network to focus on the most relevant information for a given task <a href = "https://openaccess.thecvf.com/content/CVPR2021/papers/Dai_Dynamic_Head_Unifying_Object_Detection_Heads_With_Attentions_CVPR_2021_paper.pdf" className = "text-blue-500">(Dai et al.)</a>.
+                                    </li>
+                                    <li>
+                                        Transformer-based architectures offer a compelling alternative. Their ability to capture long-range spatial dependencies and preserve fine-grained features could improve detection in dense, small-object environments. Models like DETR or Swin Transformer may be especially suited for this task.
+                                    </li>
+                                    <li>
+                                        In future work, I plan to deepen my understanding of transformer-based detection models and apply them to a follow-up project focused on spatiotemporal sperm tracking in video sequences.
+                                    </li>
+                                </ul>
+                            </section>
                         </div>
                     </div>
                 </div>

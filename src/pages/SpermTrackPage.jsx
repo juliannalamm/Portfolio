@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import SpermTrack from "../components/SpermTrack";
 import { Link } from "react-router-dom";
 import HeroSection from "../components/HeroSection";
 import SpermTrackIntro from "../components/SpermTrackIntro";
 import SpermTrackMethods from "../components/SpermTrackMethods";
 import SpermTrackResults from "../components/SpermTrackResults";
-import SpermTrackAnalysis from "../components/SpermTrackAnalysis";
 
 const sections = [
   { id: "sperm-track-intro", label: "Introduction" },
@@ -81,9 +79,8 @@ const SpermTrackPage = () => {
         <div id="sperm-track-intro" className="max-w-7xl w-full"><SpermTrackIntro /></div>
         <div id="sperm-track-methods" className="max-w-7xl w-full"><SpermTrackMethods /></div>
         <div id="sperm-track-results" className="max-w-7xl w-full"><SpermTrackResults /></div>
-        <div id="sperm-track-analysis" className="max-w-7xl w-full"><SpermTrackAnalysis /></div>
-        <Link to="/" className="mt-6 text-blue-500 hover:underline">← Back to Home</Link>
-      </div>
+        <Link to="/" className="mt-3 mb-10 text-blue-500 hover:underline">← Back to Home</Link>
+      </div> 
     </div>
   );
 };
