@@ -9,7 +9,6 @@ const sections = [
   { id: "sperm-track-intro", label: "Introduction" },
   { id: "sperm-track-methods", label: "Methods" },
   { id: "sperm-track-results", label: "Results" },
-  { id: "sperm-track-analysis", label: "Analysis" },
 ];
 
 const SpermTrackPage = () => {
@@ -71,6 +70,7 @@ const SpermTrackPage = () => {
               </li>
             ))}
           </ul>
+          {/* TODO: UPDATE TOC */}
         </div>
       )}
 

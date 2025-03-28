@@ -81,14 +81,14 @@ const SpermTrackResults = () => {
                                 </thead>
                                 <tbody>
                                     <tr className="border-t border-burgundy">
-                                        <td className="p-4">YOLOv5s <a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-500">(Thambawita et al.)</a> </td>
+                                        <td className="p-4">YOLOv5s <a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-600 hover:underline">(Thambawita et al.)</a> </td>
                                         <td className="p-4">0.4292</td>
                                         <td className="p-4">0.2560</td>
                                         <td className="p-4">0.2102</td>
                                         <td className="p-4">0.0567</td>
                                     </tr>
                                     <tr className="border-t border-burgundy">
-                                        <td className="p-4">YOLOv8s-Conf@.25 <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-500"> (Nguyen et al.) </a> </td>
+                                        <td className="p-4">YOLOv8s-Conf@.25 <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-600 hover:underline"> (Nguyen et al.) </a> </td>
                                         <td className="p-4">0.5</td>
                                         <td className="p-4">0.638</td>
                                         <td className="p-4">0.506</td>
@@ -154,7 +154,7 @@ const SpermTrackResults = () => {
                                     </li>
                                     <li>
                                         Feature pyramid optimization remains a promising avenue. Methods like dynamic FPN scaling or attention-based fusion could help recover spatial detail lost in deeper layers by dynamicaly assigning importance
-                                        to various feature maps, enabling the network to focus on the most relevant information for a given task <a href = "https://openaccess.thecvf.com/content/CVPR2021/papers/Dai_Dynamic_Head_Unifying_Object_Detection_Heads_With_Attentions_CVPR_2021_paper.pdf" className = "text-blue-500">(Dai et al.)</a>.
+                                        to various feature maps, enabling the network to focus on the most relevant information for a given task <a href = "https://openaccess.thecvf.com/content/CVPR2021/papers/Dai_Dynamic_Head_Unifying_Object_Detection_Heads_With_Attentions_CVPR_2021_paper.pdf" className = "text-blue-600 hover:underline">(Dai et al.)</a>.
                                     </li>
                                     <li>
                                         Transformer-based architectures offer a compelling alternative. Their ability to capture long-range spatial dependencies and preserve fine-grained features could improve detection in dense, small-object environments. Models like DETR or Swin Transformer may be especially suited for this task.

@@ -9,7 +9,7 @@ const detectionModels = {
     description: (
         <>
           Our baseline YOLOv8s model closely replicated the results reported by
-          <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-500"> Nguyen et al. </a>  on the same dataset. Our model achieved a Precision of 0.608 and recall of 0.582 demonstrating that the model correctly identified most sperm instances but still produced a moderate number of false positives and missed detections.  
+          <a href="https://ceur-ws.org/Vol-3658/paper21.pdf" className="text-blue-600 hover:underline"> Nguyen et al. </a>  on the same dataset. Our model achieved a Precision of 0.608 and recall of 0.582 demonstrating that the model correctly identified most sperm instances but still produced a moderate number of false positives and missed detections.  
             The mAP@0.5 score of 0.532 indicates decent localization accuracy, though the relatively low performance at higher IoU thresholds (reflected in mAP@0.5:0.95) suggests that bounding box alignment could be improved. These limitations are explored further in the following section.
         </>
       )
@@ -34,7 +34,7 @@ const detectionModels = {
     Both our baseline YOLOv8s model and the results reported by{" "}
     <a
       href="https://ceur-ws.org/Vol-3658/paper21.pdf"
-      className="text-blue-500 underline"
+      className="text-blue-600 hover:underline"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -50,8 +50,8 @@ const detectionModels = {
     prediction: "/images/detectionresults/YOLOv11s/prediction.jpg",
     description: (
         <>
-        YOLOv11 produced the second weakest performance across all metrics (with the exception of YOLOv5s reported by the original dataset paper published by <a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-500"> Thambawita et al.</a>).
-        YOLOv11s achieved a precision of 0.539, recall of 0.548, mAP@0.5 of 0.444, and mAP@0.5:0.95 of 0.142. The YOLOv11 model is the newest model released by<a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-500"> Ultralytics </a> and is designed to offer faster training and inference times. 
+        YOLOv11 produced the second weakest performance across all metrics (with the exception of YOLOv5s reported by the original dataset paper published by <a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-600 hover:underline"> Thambawita et al.</a>).
+        YOLOv11s achieved a precision of 0.539, recall of 0.548, mAP@0.5 of 0.444, and mAP@0.5:0.95 of 0.142. The YOLOv11 model is the newest model released by<a href="https://www.nature.com/articles/s41597-023-02173-4" className="text-blue-600 hover:underline"> Ultralytics </a> and is designed to offer faster training and inference times. 
         While this design reduces computational complexity and may perform well in real-time applications, it appears to sacrifice some detection accuracy—particularly for small and dense objects like sperm. The lower mAP scores suggest that the simplified architecture may struggle to extract and aggregate high-resolution spatial features necessary for precise localization in this task.
         </>
     ) ,
