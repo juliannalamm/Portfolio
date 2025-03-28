@@ -3,6 +3,7 @@ import KeyHighlights from "../components/SpermClassificationHighlights";
 import SpermHero from "../components/SpermHero";
 import MetricViewer from "../components/FeatureEngineering";
 import Clustering from "../components/Clustering";
+import FlowChart from "../components/FlowChart";
 
 const SpermTrackClassification = () => {
   return (
@@ -18,7 +19,19 @@ const SpermTrackClassification = () => {
          <div className="mt-10 w-full max-w-8xl">
          <MetricViewer />        
          </div>
+         <div className="mt-10 w-full max-w-8xl">
          <Clustering/>
+         </div>
+
+         
+         <FlowChart/>
+       
+    
+    
+        
+
+         
+          
         
         
         <h1 className="text-4xl font-extrabold text-gray-900 mb-6 text-center">
