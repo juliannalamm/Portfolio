@@ -1,15 +1,16 @@
+// In DashboardChart.js
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import ClusteringChart from './ClusteringChart';
 
-const Dashboard = () => {
+const DashboardChart = () => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
     Papa.parse('/data/dashboard_data.csv', {
       download: true,
       header: true,
-      skipEmptyLines: true,  // solve the cluster undefined issue
+      skipEmptyLines: true,
       complete: (results) => {
         const data = results.data;
         const pointsData = data.filter(row => {
@@ -21,13 +22,17 @@ const Dashboard = () => {
           return val === "true";
         });
         
+        // Extract numeric data and additional fields
         const x = pointsData.map(row => parseFloat(row['PCA Feature 1']));
         const y = pointsData.map(row => parseFloat(row['PCA Feature 2']));
         const clusters = pointsData.map(row => row.Cluster);
+        const participant = pointsData.map(row => row.participant);
+        const fid = pointsData.map(row => row.fid);
+        
         const centX = centroidsData.map(row => parseFloat(row['PCA Feature 1']));
         const centY = centroidsData.map(row => parseFloat(row['PCA Feature 2']));
 
-        setChartData({ x, y, clusters, centX, centY });
+        setChartData({ x, y, clusters, participant, fid, centX, centY });
       },
       error: (err) => console.error("Error parsing CSV:", err)
     });
@@ -39,15 +44,12 @@ const Dashboard = () => {
 
   return (
     <section id="chart" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
-    <div className='max-w-7xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14'>
-      <h1>Interactive Clustering Dashboard</h1>
-      <ClusteringChart chartData={chartData} />
-    </div>
+      <div className='max-w-7xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14'>
+        <h1>Interactive Clustering Dashboard</h1>
+        <ClusteringChart chartData={chartData} />
+      </div>
     </section>
   );
 };
 
-// TODO: WHEN A CLUSTER IS CLICKED ON, DISPLAY THE AVERAGE VCL, VAP, VSL, LIN, STR, WOB, ALH VALUES FOR THAT CLUSTER
-//TODO: CLICK ON CLUSTER 0 TO GENERATE SUBCLUSTER
-
-export default Dashboard;
+export default DashboardChart;

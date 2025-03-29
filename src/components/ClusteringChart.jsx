@@ -1,6 +1,7 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
+// PLOTLY RENDERING COMPONENT 
 const ClusteringChart = ({ chartData }) => {
     // Get unique clusters from your data
     const uniqueClusters = [...new Set(chartData.clusters)];
@@ -25,8 +26,8 @@ const ClusteringChart = ({ chartData }) => {
 
         // Build a hover text string for each point using template literals:
         const hoverText = indices.map(i =>
-            `Cluster ${cluster}`
-        );
+            `Cluster ${cluster}<br>Participant: ${chartData.participant[i]}<br>FID: ${chartData.fid[i]}`
+          );
 
         return {
             x,
@@ -39,7 +40,7 @@ const ClusteringChart = ({ chartData }) => {
             },
             name: `Cluster ${cluster}`,
             text: hoverText,
-            hovertemplate: '%{text}<br>x: %{x}<br>y: %{y}<extra></extra>',
+            hovertemplate: '%{text}<br><extra></extra>',
         };
     });
 
@@ -70,5 +71,8 @@ const ClusteringChart = ({ chartData }) => {
         />
     );
 };
+
+//TODO: display fid and participant in tooltip 
+
 
 export default ClusteringChart;
