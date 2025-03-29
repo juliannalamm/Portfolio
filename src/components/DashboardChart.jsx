@@ -9,7 +9,7 @@ const Dashboard = () => {
     Papa.parse('/data/dashboard_data.csv', {
       download: true,
       header: true,
-      skipEmptyLines: true,
+      skipEmptyLines: true,  // solve the cluster undefined issue
       complete: (results) => {
         const data = results.data;
         const pointsData = data.filter(row => {
@@ -46,5 +46,8 @@ const Dashboard = () => {
     </section>
   );
 };
+
+// TODO: WHEN A CLUSTER IS CLICKED ON, DISPLAY THE AVERAGE VCL, VAP, VSL, LIN, STR, WOB, ALH VALUES FOR THAT CLUSTER
+//TODO: CLICK ON CLUSTER 0 TO GENERATE SUBCLUSTER
 
 export default Dashboard;
