@@ -61,9 +61,9 @@ const Clustering = () => {
                             Identify **Progressive, Linear, Hyperactivated, and Weakly Motile** sperm types.
                         </p>
                     </div>
-
                 </div>
             </div>
+            
         </section>
     );
 };

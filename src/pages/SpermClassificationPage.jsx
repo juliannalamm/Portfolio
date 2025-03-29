@@ -21,11 +21,15 @@ const SpermTrackClassification = () => {
          </div>
          <div className="mt-10 w-full max-w-8xl">
          <Clustering/>
+
+         <FlowChart/>
          </div>
+      
+  
 
          
-         <FlowChart/>
-       
+        
+         
     
     
         
