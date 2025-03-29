@@ -2,35 +2,56 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 
 const ClusteringChart = ({ chartData }) => {
+  // Get unique clusters from your data
+  const uniqueClusters = [...new Set(chartData.clusters)];
+
+  // Define a color for each cluster (adjust these colors as desired)
+  const clusterColors = {
+    0: '#bfdaf7', // blue
+    1: '#481231', // red-orange
+    2: '#fe4939'  // green
+  };
+
+  // Create a trace for each cluster
+  const clusterTraces = uniqueClusters.map(cluster => {
+    // Find indices for this cluster
+    const indices = chartData.clusters
+      .map((c, i) => (c == cluster ? i : null))
+      .filter(i => i !== null);
+      
+    const x = indices.map(i => chartData.x[i]);
+    const y = indices.map(i => chartData.y[i]);
+
+    return {
+      x,
+      y,
+      mode: 'markers',
+      type: 'scatter',
+      marker: {
+        size: 10,
+        color: clusterColors[cluster] || 'gray',
+      },
+      name: `Cluster ${cluster}`,
+    };
+  });
+
+  // Create a trace for centroids
+  const centroidsTrace = {
+    x: chartData.centX,
+    y: chartData.centY,
+    mode: 'markers',
+    type: 'scatter',
+    marker: {
+      symbol: 'x',
+      size: 16,
+      color: 'black',
+    },
+    name: 'Centroids',
+  };
+
   return (
     <Plot
-      data={[
-        {
-          x: chartData.x,
-          y: chartData.y,
-          mode: 'markers',
-          type: 'scatter',
-          marker: {
-            size: 10,
-            color: chartData.clusters, // Colors the points based on cluster IDs
-            colorscale: 'Viridis',
-            showscale: true,
-          },
-          name: 'Individual Sperm',
-        },
-        {
-          x: chartData.centX,
-          y: chartData.centY,
-          mode: 'markers',
-          type: 'scatter',
-          marker: {
-            symbol: 'x',
-            size: 16,
-            color: 'red',
-          },
-          name: 'Centroids',
-        },
-      ]}
+      data={[...clusterTraces, centroidsTrace]}
       layout={{
         title: 'K-means Clustering with 2D PCA',
         xaxis: { title: 'PCA Feature 1' },
