@@ -4,6 +4,8 @@ import SpermHero from "../components/SpermHero";
 import MetricViewer from "../components/FeatureEngineering";
 import Clustering from "../components/Clustering";
 import FlowChart from "../components/FlowChart";
+import DashboardChart from '../components/DashboardChart';
+
 
 const SpermTrackClassification = () => {
   return (
@@ -24,6 +26,10 @@ const SpermTrackClassification = () => {
 
          <FlowChart/>
          </div>
+
+         <div className="mt-10 w-full max-w-8xl">
+          <DashboardChart />
+          </div>
       
   
 
