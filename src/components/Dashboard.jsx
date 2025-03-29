@@ -1,6 +1,6 @@
 
 import React from "react";
-import DashboardClusterChart from './DashboardClusterChart';
+import DashboardClusterChart from './Charts/DashboardClusterChart';
 
 const Dashboard = () => {
     return(
