@@ -1,11 +1,11 @@
 const FlowChart = () => (
   <section className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
-    <div className="flex w-full max-w-7xl">
+    <div className="flex w-full max-w-8xl">
       {/* Left Explanation Section */}
       <div className="w-1/5 bg-skyblue p-6 flex items-start">
         <div>
           <div className="border-b border-burgundy my-2"></div>
-          <p className="text-burgundy">
+          <p className="text-lg text-burgundy">
             An end-to-end sperm classification pipeline for fertility assessment
           </p>
         </div>

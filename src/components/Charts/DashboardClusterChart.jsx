@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import ClusteringChart from './ClusteringChart';
+import AverageBarChart from './AverageBarChart';
 
 
 //data loading and rendering
@@ -94,22 +95,17 @@ const DashboardClusterChart = () => {
           </select>
         </div>
         <ClusteringChart chartData={chartData} />
-      </div>
-      {/* Display average metrics if a cluster is selected */}
-      {selectedCluster !== null && averageMetrics && (
-        <div className="max-w-7xl w-full mt-4 p-4 bg-white border rounded shadow">
-          <h2 className="text-xl font-bold mb-2">Average Metrics for Cluster {selectedCluster}</h2>
-          <ul className="list-disc pl-6">
-            <li>VCL: {averageMetrics.VCL}</li>
-            <li>VAP: {averageMetrics.VAP}</li>
-            <li>VSL: {averageMetrics.VSL}</li>
-            <li>LIN: {averageMetrics.LIN}</li>
-            <li>STR: {averageMetrics.STR}</li>
-            <li>WOB: {averageMetrics.WOB}</li>
-            <li>ALH: {averageMetrics.ALH}</li>
-          </ul>
+         {selectedCluster !== null && averageMetrics && (
+        <div className="mt-4">
+          <AverageBarChart
+          averageMetrics={averageMetrics}
+          selectedCluster={selectedCluster}
+          />
         </div>
       )}
+      </div>
+      {/* Display average metrics if a cluster is selected */}
+     
     </section>
   );
 };

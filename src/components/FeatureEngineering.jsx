@@ -87,7 +87,7 @@ export default function MetricViewer() {
 
   return (
     <section className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
-      <div className="max-w-7xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14">
+      <div className="max-w-8xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14">
         <h2 className="text-4xl font-extrabold text-burgundy leading-tight text-center">
           CASA Kinematic Metrics
         </h2>
