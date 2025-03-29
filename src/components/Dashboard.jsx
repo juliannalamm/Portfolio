@@ -4,9 +4,8 @@ import DashboardClusterChart from './Charts/DashboardClusterChart';
 
 const Dashboard = () => {
     return(
-        
          <DashboardClusterChart />
-        
+     
     )
 }
 

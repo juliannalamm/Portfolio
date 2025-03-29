@@ -1,15 +1,16 @@
 import React from "react";
 import { BarChart, Network, CheckCircle, Shapes } from "lucide-react"; 
+import FlowChart from "./FlowChart";
 
 const Clustering = () => {
     return (
         <section id="clustering" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
             {/* Main Container */}
-            <div className="max-w-7xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14">
+            <div className="max-w-8xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14">
                 
                 {/* Section Title */}
                 <h2 className="text-4xl font-extrabold text-burgundy leading-tight text-center">
-                    Clustering Process for Sperm Motility Patterns
+                    Motility Analysis Pipeline
                 </h2>
 
                 {/* Section Line */}
@@ -25,7 +26,7 @@ const Clustering = () => {
                             <h3 className="text-xl font-semibold text-burgundy">Feature Extraction</h3>
                         </div>
                         <p className="text-burgundy mt-3">
-                            Extract key motion parameters like **VCL, VSL, ALH, and LIN** from the tracking data.
+                            Calculate key motion parameters including: VCL, VSL, ALH, and LIN from the bounding boxes generated from tracking model.
                         </p>
                     </div>
 
@@ -36,7 +37,7 @@ const Clustering = () => {
                             <h3 className="text-xl font-semibold text-burgundy">Dimensionality Reduction</h3>
                         </div>
                         <p className="text-burgundy mt-3">
-                            Apply **Principal Component Analysis (PCA)** to reduce feature space while maintaining variance.
+                            Apply Principal Component Analysis (PCA) to reduce feature space while maintaining variance.
                         </p>
                     </div>
 
@@ -47,7 +48,7 @@ const Clustering = () => {
                             <h3 className="text-xl font-semibold text-burgundy">Unsupervised Clustering</h3>
                         </div>
                         <p className="text-burgundy mt-3">
-                            Use **Hierarchical Clustering and K-Means** to classify motility types.
+                            Use Hierarchical Clustering and K-Means** to classify motility types.
                         </p>
                     </div>
 
@@ -58,10 +59,11 @@ const Clustering = () => {
                             <h3 className="text-xl font-semibold text-burgundy">Final Track Patterns</h3>
                         </div>
                         <p className="text-burgundy mt-3">
-                            Identify **Progressive, Linear, Hyperactivated, and Weakly Motile** sperm types.
+                            Identify Progressive, Linear, Hyperactivated, and Weakly Motile** sperm types.
                         </p>
                     </div>
                 </div>
+              
             </div>
             
         </section>
