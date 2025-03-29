@@ -9,6 +9,7 @@ const Dashboard = () => {
     Papa.parse('/data/dashboard_data.csv', {
       download: true,
       header: true,
+      skipEmptyLines: true,
       complete: (results) => {
         const data = results.data;
         const pointsData = data.filter(row => {
