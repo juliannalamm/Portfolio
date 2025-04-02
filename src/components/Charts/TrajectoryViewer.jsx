@@ -16,10 +16,7 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
   }
 
   return (
-    <div className="border rounded shadow-sm bg-white p-4 w-full h-full">
-      <h3 className="font-bold text-sm mb-2">
-        {fid ? `ID: ${fid}` : 'Trajectory Viewer'}
-      </h3>
+ 
       <Plot
         data={[
           {
@@ -27,7 +24,8 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
             y,
             mode: 'lines',
             type: 'scatter',
-            line: { color: 'black', width: 2 },
+            line: { color: '#fe4939', width: 3 },
+            hoverinfo: 'skip',
           }
         ]}
         layout={{
@@ -49,11 +47,11 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
           },
           showlegend: false,
           paper_bgcolor: 'white',
-          plot_bgcolor: 'white',
+          plot_bgcolor: '#481231',
         }}
         config={{ displayModeBar: false }}
       />
-    </div>
+
   );
 };
 

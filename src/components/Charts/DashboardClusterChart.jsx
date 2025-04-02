@@ -105,31 +105,37 @@ const DashboardClusterChart = () => {
           ))}
         </select>
       </div>
-      <div className="flex flex-col lg:flex-row gap-50">
-        <div className="lg:w-2/3">
-          <ClusteringChart
-            chartData={chartData}
-            onHoverFid={setHoveredFid}
-            selectedCluster={selectedCluster}
-          />
-        </div>
+      <div className="flex flex-col space-y-6">
+  {/* Cluster chart + trajectory viewer side by side on large screens */}
+  <div className="flex flex-col lg:flex-row gap-6">
+    <div className="lg:w-2/3 w-full">
+      <ClusteringChart
+        chartData={chartData}
+        onHoverFid={setHoveredFid}
+        selectedCluster={selectedCluster}
+        coordinateData={coordinateData}
+      />
+    </div>
 
-        <div className="lg:w-1/3 flex items-start">
-          <TrajectoryViewer
-            fid={hoveredFid}
-            coordinateData={coordinateData}
-          />
-        </div>
-      </div>
+    <div className="lg:w-1/3 w-full">
+      <TrajectoryViewer
+        fid={hoveredFid}
+        coordinateData={coordinateData}
+      />
+    </div>
+  </div>
 
-      {selectedCluster !== null && averageMetrics && (
-        <div className="mt-4">
-          <AverageBarChart
-            averageMetrics={averageMetrics}
-            selectedCluster={selectedCluster}
-          />
-        </div>
-      )}
+  {/* Average bar chart below both */}
+  {selectedCluster !== null && averageMetrics && (
+    <div className="w-full">
+      <AverageBarChart
+        averageMetrics={averageMetrics}
+        selectedCluster={selectedCluster}
+      />
+    </div>
+  )}
+</div>
+
     </div>
   );
 };
