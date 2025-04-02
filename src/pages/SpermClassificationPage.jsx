@@ -26,10 +26,10 @@ const SpermTrackClassification = () => {
 
          <FlowChart/>
          </div>
-
-         <div className="mt-10 w-full max-w-8xl">
-          <Dashboard />
-          </div>
+         </section>
+        
+        <Dashboard/>
+     
       
   
 
@@ -42,8 +42,6 @@ const SpermTrackClassification = () => {
 
          
           
-        
-        
         <h1 className="text-4xl font-extrabold text-gray-900 mb-6 text-center">
           Unsupervised Sperm Motility Classification
         </h1>
@@ -101,7 +99,7 @@ const SpermTrackClassification = () => {
             ← Back to Home
           </a>
         </div>
-      </section>
+     
     </>
   );
 };

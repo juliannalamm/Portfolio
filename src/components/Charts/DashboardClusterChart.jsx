@@ -117,7 +117,7 @@ const DashboardClusterChart = () => {
       />
     </div>
 
-    <div className="lg:w-1/3 w-full">
+    <div className="lg:w-1/3 w-full max-w-[350px] overflow-hidden">
       <TrajectoryViewer
         fid={hoveredFid}
         coordinateData={coordinateData}

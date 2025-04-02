@@ -35,7 +35,7 @@ const ClusteringChart = ({ chartData, onHoverFid }) => {
             x,
             y,
             mode: 'markers',
-            type: 'scatter', 
+            type: 'scatter',
             marker: {
                 size: 10,
                 color: clusterColors[cluster] || 'gray',
@@ -56,7 +56,7 @@ const ClusteringChart = ({ chartData, onHoverFid }) => {
         marker: {
             symbol: 'x',
             size: 16,
-            color: 'black',
+            color: 'red',
         },
         name: 'Centroids',
     };
@@ -64,37 +64,39 @@ const ClusteringChart = ({ chartData, onHoverFid }) => {
     // Handle hover events to show the track line, prop passed from DashboardClusterChart
     const handleHover = (event) => {
         if (event?.points?.[0]?.customdata) {
-          onHoverFid(event.points[0].customdata);
+            onHoverFid(event.points[0].customdata);
         }
-      };
-      
-      const handleUnhover = () => {
+    };
+
+    const handleUnhover = () => {
         onHoverFid(null);
-      };
-      
+    };
+
 
     // Combine all traces (clusters, centroids, and hovered track if exists)
     const dataTraces = [...clusterTraces, centroidsTrace];
 
     return (
         <div className="w-full h-[600px]">
-          <Plot
-            data={dataTraces}
-            layout={{
-              title: 'K-means Clustering with 2D PCA',
-              xaxis: { title: 'PCA Feature 1' },
-              yaxis: { title: 'PCA Feature 2' },
-              autosize: true,
-              margin: { t: 50, l: 50, r: 50, b: 50 },
-            }}
-            config={{ displayModeBar: false }}
-            useResizeHandler={true}
-            style={{ width: "100%", height: "100%" }}
-            onHover={handleHover}
-            onUnhover={handleUnhover}
-          />
+            <Plot
+                data={dataTraces}
+                layout={{
+                    width: 850, // or 900, 1000 etc
+                    height: 600,
+                    title: 'K-means Clustering with 2D PCA',
+                    xaxis: { title: 'PCA Feature 1' },
+                    yaxis: { title: 'PCA Feature 2' },
+                    // autosize: true,
+                    margin: { t: 50, l: 30, r: 80, b: 50 },
+                }}
+                config={{ displayModeBar: false }}
+                useResizeHandler={true}
+                style={{ width: "100%", height: "100%" }}
+                onHover={handleHover}
+                onUnhover={handleUnhover}
+            />
         </div>
-      );
+    );
 };
 
 

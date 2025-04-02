@@ -11,6 +11,7 @@ const Dashboard = () => {
       </h1>
       <div className="w-full max-w-screen-lg mx-auto bg-white rounded shadow-lg p-8">
         <DashboardClusterChart />
+        
       </div>
     </section>
   );
