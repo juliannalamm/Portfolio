@@ -12,5 +12,6 @@ const Navbar = () => {
     </nav>
   );
 };
+// Compare this snippet from src/components/Footer.jsx:
 
 export default Navbar;

@@ -2,24 +2,7 @@ import React, { useState, useMemo } from 'react';
 import Plot from 'react-plotly.js';
 
 // PLOTLY RENDERING COMPONENT 
-const ClusteringChart = ({ chartData, coordinateData }) => {
-    const [hoverTrack, setHoverTrack] = useState(null);
-
- // Precompute the track mapping only if coordinateData is available
- const trackMapping = useMemo(() => {
-    if (!coordinateData || !coordinateData.fid) return {};
-    const mapping = {};
-    for (let i = 0; i < coordinateData.fid.length; i++) {
-      const fid = coordinateData.fid[i];
-      if (!mapping[fid]) {
-        mapping[fid] = { x: [], y: [] };
-      }
-      mapping[fid].x.push(coordinateData.bb0[i]);
-      mapping[fid].y.push(coordinateData.bb1[i]);
-    }
-    return mapping;
-  }, [coordinateData]);
-
+const ClusteringChart = ({ chartData, onHoverFid }) => {
 
     // Define a color for each cluster (adjust these colors as desired)
     const clusterColors = {
@@ -52,7 +35,7 @@ const ClusteringChart = ({ chartData, coordinateData }) => {
             x,
             y,
             mode: 'markers',
-            type: 'scatter',
+            type: 'scatter', 
             marker: {
                 size: 10,
                 color: clusterColors[cluster] || 'gray',
@@ -78,38 +61,20 @@ const ClusteringChart = ({ chartData, coordinateData }) => {
         name: 'Centroids',
     };
 
-    // Handle hover events to show the track line
+    // Handle hover events to show the track line, prop passed from DashboardClusterChart
     const handleHover = (event) => {
-        if (event && event.points && event.points.length > 0) {
-            const point = event.points[0];
-            const fid = point.customdata;
-            const track = trackMapping[fid];
-            if (track) {
-                setHoverTrack({ ...track, fid });
-            }
+        if (event?.points?.[0]?.customdata) {
+          onHoverFid(event.points[0].customdata);
         }
-    };
-
-    const handleUnhover = () => {
-        setHoverTrack(null);
-    };
+      };
+      
+      const handleUnhover = () => {
+        onHoverFid(null);
+      };
+      
 
     // Combine all traces (clusters, centroids, and hovered track if exists)
     const dataTraces = [...clusterTraces, centroidsTrace];
-    if (hoverTrack) {
-        dataTraces.push({
-            x: hoverTrack.x,
-            y: hoverTrack.y,
-            mode: 'lines',
-            type: 'scatter',
-            line: { width: 2, dash: 'dash' },
-            name: `Track for FID ${hoverTrack.fid}`,
-            hoverinfo: 'skip',
-        });
-    }
-
-
-
 
     return (
         <Plot

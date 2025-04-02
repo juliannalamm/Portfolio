@@ -2,10 +2,12 @@ import React, { useState, useEffect, use } from 'react';
 import Papa from 'papaparse';
 import ClusteringChart from './ClusteringChart';
 import AverageBarChart from './AverageBarChart';
+import TrajectoryViewer from './TrajectoryViewer';
 
 
 const DashboardClusterChart = () => {
   const [chartData, setChartData] = useState(null);
+  const [hoveredFid, setHoveredFid] = useState(null);
   const [selectedCluster, setSelectedCluster] = useState(null);
   const [averageMetrics, setAverageMetrics] = useState(null);
   const [coordinateData, setCoordinateData] = useState(null);
@@ -26,7 +28,7 @@ const DashboardClusterChart = () => {
           const val = row.Centroid ? row.Centroid.toString().trim().toLowerCase() : "";
           return val === "true";
         });
-        
+
         const x = pointsData.map(row => parseFloat(row['PCA Feature 1']));
         const y = pointsData.map(row => parseFloat(row['PCA Feature 2']));
         const clusters = pointsData.map(row => row.Cluster);
@@ -45,8 +47,8 @@ const DashboardClusterChart = () => {
   //load coordintate data (trajectories)
   useEffect(() => {
     Papa.parse('/data/initialcluster_w_bb.csv', {
-      download: true, 
-      header: true, 
+      download: true,
+      header: true,
       skipEmptyLines: true,
       complete: (results) => {
         const data = results.data;
@@ -89,9 +91,9 @@ const DashboardClusterChart = () => {
         <label htmlFor="cluster-select" className="mr-2 font-bold">
           Select Cluster:
         </label>
-        <select 
-          id="cluster-select" 
-          value={selectedCluster || ""} 
+        <select
+          id="cluster-select"
+          value={selectedCluster || ""}
           onChange={(e) => setSelectedCluster(e.target.value)}
           className="p-2 border rounded"
         >
@@ -103,9 +105,15 @@ const DashboardClusterChart = () => {
           ))}
         </select>
       </div>
-      <ClusteringChart 
-        chartData={chartData} 
-        coordinateData={coordinateData}/>
+      <ClusteringChart
+        chartData={chartData}
+        coordinateData={coordinateData}
+        onHoverFid={setHoveredFid}
+      />
+      <TrajectoryViewer
+        fid={hoveredFid}
+        coordinateData={coordinateData}
+      />
 
       {selectedCluster !== null && averageMetrics && (
         <div className="mt-4">
