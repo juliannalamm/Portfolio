@@ -1,15 +1,15 @@
-// In DashboardChart.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import Papa from 'papaparse';
 import ClusteringChart from './ClusteringChart';
 import AverageBarChart from './AverageBarChart';
 
 
-//data loading and rendering
 const DashboardClusterChart = () => {
   const [chartData, setChartData] = useState(null);
   const [selectedCluster, setSelectedCluster] = useState(null);
   const [averageMetrics, setAverageMetrics] = useState(null);
+  const [coordinateData, setCoordinateData] = useState(null);
+
 
   useEffect(() => {
     Papa.parse('/data/dashboard_data.csv', {
@@ -27,86 +27,95 @@ const DashboardClusterChart = () => {
           return val === "true";
         });
         
-        // Extract numeric data and additional fields
         const x = pointsData.map(row => parseFloat(row['PCA Feature 1']));
         const y = pointsData.map(row => parseFloat(row['PCA Feature 2']));
         const clusters = pointsData.map(row => row.Cluster);
         const participant = pointsData.map(row => row.participant);
         const fid = pointsData.map(row => row.fid);
-        //Extract metric values 
         const VCL = pointsData.map(row => parseFloat(row.VCL));
-        //extract centroid data
         const centX = centroidsData.map(row => parseFloat(row['PCA Feature 1']));
         const centY = centroidsData.map(row => parseFloat(row['PCA Feature 2']));
 
-        setChartData({ x, y, clusters, participant, fid, VCL,centX, centY });
+        setChartData({ x, y, clusters, participant, fid, VCL, centX, centY });
       },
       error: (err) => console.error("Error parsing CSV:", err)
     });
   }, []);
 
-  // When a cluster is selected, calculate average metrics for that cluster
+  //load coordintate data (trajectories)
+  useEffect(() => {
+    Papa.parse('/data/initialcluster_w_bb.csv', {
+      download: true, 
+      header: true, 
+      skipEmptyLines: true,
+      complete: (results) => {
+        const data = results.data;
+        const fid = data.map(row => row.fid);
+        const bb0 = data.map(row => parseFloat(row.bb0));
+        const bb1 = data.map(row => parseFloat(row.bb1));
+        setCoordinateData({ fid, bb0, bb1 });
+      },
+      error: (err) => console.error("Error parsing coordinated data:", err)
+    })
+  }, []);
+
   useEffect(() => {
     if (chartData && selectedCluster !== null) {
-      // Get indices for the selected cluster
       const indices = chartData.clusters
         .map((c, i) => (c === selectedCluster ? i : null))
         .filter(i => i !== null);
 
-      // Helper function to calculate average for an array using the indices
       const calculateAvg = (arr) => {
         const sum = indices.reduce((acc, i) => acc + arr[i], 0);
         return (sum / indices.length).toFixed(2);
       };
+
       const averages = {
         VCL: calculateAvg(chartData.VCL),
-      }
+      };
       setAverageMetrics(averages);
     }
   }, [chartData, selectedCluster]);
 
-
-
-  if (!chartData) {
+  if (!chartData || !coordinateData) {
     return <div>Loading chart...</div>;
   }
   const uniqueClusters = [...new Set(chartData.clusters)];
 
-
   return (
-    <section id="chart" className="flex justify-center px-4 md:px-8 lg:px-12 mt-16">
-      <div className='max-w-7xl w-full bg-skyblue rounded-sm overflow-hidden p-10 md:p-14'>
-        <h1>Interactive Clustering Dashboard</h1>
-        {/* Dropdown for selecting a cluster */}
-        <div className="mb-4">
-          <label htmlFor="cluster-select" className="mr-2 font-bold">Select Cluster:</label>
-          <select 
-            id="cluster-select" 
-            value={selectedCluster || ""} 
-            onChange={(e) => setSelectedCluster(e.target.value)}
-            className="p-2 border rounded"
-          >
-            <option value="" disabled>Select a cluster</option>
-            {uniqueClusters.map(cluster => (
-              <option key={cluster} value={cluster}>
-                Cluster {cluster}
-              </option>
-            ))}
-          </select>
-        </div>
-        <ClusteringChart chartData={chartData} />
-         {selectedCluster !== null && averageMetrics && (
+    <div>
+      {/* Dropdown for selecting a cluster */}
+      <div className="mb-4">
+        <label htmlFor="cluster-select" className="mr-2 font-bold">
+          Select Cluster:
+        </label>
+        <select 
+          id="cluster-select" 
+          value={selectedCluster || ""} 
+          onChange={(e) => setSelectedCluster(e.target.value)}
+          className="p-2 border rounded"
+        >
+          <option value="" disabled>Select a cluster</option>
+          {uniqueClusters.map(cluster => (
+            <option key={cluster} value={cluster}>
+              Cluster {cluster}
+            </option>
+          ))}
+        </select>
+      </div>
+      <ClusteringChart 
+        chartData={chartData} 
+        coordinateData={coordinateData}/>
+
+      {selectedCluster !== null && averageMetrics && (
         <div className="mt-4">
           <AverageBarChart
-          averageMetrics={averageMetrics}
-          selectedCluster={selectedCluster}
+            averageMetrics={averageMetrics}
+            selectedCluster={selectedCluster}
           />
         </div>
       )}
-      </div>
-      {/* Display average metrics if a cluster is selected */}
-     
-    </section>
+    </div>
   );
 };
 

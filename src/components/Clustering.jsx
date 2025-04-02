@@ -48,7 +48,7 @@ const Clustering = () => {
                             <h3 className="text-xl font-semibold text-burgundy">Unsupervised Clustering</h3>
                         </div>
                         <p className="text-burgundy mt-3">
-                            Use Hierarchical Clustering and K-Means** to classify motility types.
+                            Use Hierarchical Clustering and K-Means to classify motility types.
                         </p>
                     </div>
 
@@ -59,11 +59,10 @@ const Clustering = () => {
                             <h3 className="text-xl font-semibold text-burgundy">Final Track Patterns</h3>
                         </div>
                         <p className="text-burgundy mt-3">
-                            Identify Progressive, Linear, Hyperactivated, and Weakly Motile** sperm types.
+                            Identify Progressive, Linear, Hyperactivated, and Weakly Motile sperm types.
                         </p>
                     </div>
-                </div>
-              
+                </div>              
             </div>
             
         </section>
