@@ -105,15 +105,22 @@ const DashboardClusterChart = () => {
           ))}
         </select>
       </div>
-      <ClusteringChart
-        chartData={chartData}
-        coordinateData={coordinateData}
-        onHoverFid={setHoveredFid}
-      />
-      <TrajectoryViewer
-        fid={hoveredFid}
-        coordinateData={coordinateData}
-      />
+      <div className="flex flex-col lg:flex-row gap-50">
+        <div className="lg:w-2/3">
+          <ClusteringChart
+            chartData={chartData}
+            onHoverFid={setHoveredFid}
+            selectedCluster={selectedCluster}
+          />
+        </div>
+
+        <div className="lg:w-1/3 flex items-start">
+          <TrajectoryViewer
+            fid={hoveredFid}
+            coordinateData={coordinateData}
+          />
+        </div>
+      </div>
 
       {selectedCluster !== null && averageMetrics && (
         <div className="mt-4">
