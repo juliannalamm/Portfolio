@@ -117,27 +117,23 @@ const DashboardClusterChart = () => {
       />
     </div>
 
-    <div className="lg:w-1/3 w-full max-w-[350px] overflow-hidden">
+  <div className="lg:w-1/3 w-full max-w-[300px] ml-4 flex flex-col space-y-4">
       <TrajectoryViewer
         fid={hoveredFid}
         coordinateData={coordinateData}
       />
-    </div>
-  </div>
-
   {/* Average bar chart below both */}
   {selectedCluster !== null && averageMetrics && (
-    <div className="w-full">
       <AverageBarChart
         averageMetrics={averageMetrics}
         selectedCluster={selectedCluster}
       />
+    )}
     </div>
-  )}
 </div>
-
-    </div>
+</div>
+</div>
   );
-};
+}
 
 export default DashboardClusterChart;

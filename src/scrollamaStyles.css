@@ -1,0 +1,50 @@
+/* Ensure the scroll container takes full viewport height */
+#scroll {
+  min-height: 100vh;
+}
+
+/* Use flexbox to position the graphic and text side by side */
+.scroll-container {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Graphic container on the left */
+.scroll__graphic {
+  /* Adjust the width as needed */
+  width: 50%;
+  /* Use CSS sticky to have it remain fixed as you scroll */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Ensure the chart fills the graphic container */
+.scroll__graphic .chart {
+  width: 100%;
+  height: 100%;
+}
+
+/* Text container on the right */
+.scroll__text {
+  width: 50%;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+/* Styling for each step */
+.step {
+  opacity: 0.4;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #f4f4f4;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
+}
+
+/* Highlight active step */
+.step.is-active {
+  opacity: 1;
+  background: #e0e0e0;
+}
