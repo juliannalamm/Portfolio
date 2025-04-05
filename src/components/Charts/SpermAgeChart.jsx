@@ -22,8 +22,10 @@ const SpermAgePlot = () => {
       });
   }, []);
 
-  // Extract unique metrics to create traces
-  const metrics = [...new Set(data.map(d => d.metric))];
+  // Extract unique metrics to create traces, filtering out "Normalized HR"
+  const metrics = [...new Set(data.map(d => d.metric))]
+    .filter(metric => metric !== 'Normalized HR');
+  
   const traces = metrics.map((metric, i) => {
     const colorPalette = ['#1f77b4', '#2ca02c', '#d62728', '#ff7f0e'];
     const dashStyle = metric === 'Normalized Time to Pregnancy' ? 'dash' : 'solid';
@@ -47,9 +49,16 @@ const SpermAgePlot = () => {
     <Plot
       data={traces}
       layout={{
+        font: {
+            family: 'TiemposTextRegular, serif', // Use your desired custom font here
+            size: 12,
+            color: '#333'
+          },
         title: {
           text: 'Normalized Reproductive Metrics by Paternal Age',
-          font: { size: 20 }
+          font: { 
+            family: 'AtlasBold, sans-serif',
+            size: 20 }
         },
         xaxis: {
           title: 'Paternal Age (years)',
@@ -70,7 +79,7 @@ const SpermAgePlot = () => {
         legend: { title: { text: 'Metric' } },
         margin: { t: 60, l: 60, r: 20, b: 60 },
         hovermode: 'closest',
-        // Add a vertical dashed line at age 35
+        // Vertical dashed line at age 35
         shapes: [
           {
             type: 'line',
@@ -86,32 +95,31 @@ const SpermAgePlot = () => {
             }
           }
         ],
-        // Add an annotation pointing to the vertical line
+        // Annotation with an arrow pointing to the vertical line
         annotations: [
-            {
-              x: 35,
-              y: 0.85,
-              xref: 'x',
-              yref: 'y',
-              text: 'John is here',
-              showarrow: true,
-              arrowhead: 2,
-              arrowsize: 1,
-              arrowwidth: 2,
-              arrowcolor: 'purple',
-              // Adjust these offsets to control the angle:
-              ax: -100, // x offset (negative moves the arrow tail to the left)
-              ay: -100, // y offset (negative moves the arrow tail downwards)
-              bordercolor: 'purple',
-              borderwidth: 1,
-              borderpad: 4,
-              bgcolor: 'rgba(255,255,255,0.8)', // white with slight transparency
-              font: {
-                color: 'purple',
-                size: 12
-              }
+          {
+            x: 35,
+            y: 0.85,
+            xref: 'x',
+            yref: 'y',
+            text: 'John is 35',
+            showarrow: true,
+            arrowhead: 2,
+            arrowsize: 1,
+            arrowwidth: 2,
+            arrowcolor: 'purple',
+            ax: -100,
+            ay: 80,
+            bordercolor: 'purple',
+            borderwidth: 1,
+            borderpad: 4,
+            bgcolor: 'rgba(255,255,255,0.8)',
+            font: {
+              color: 'purple',
+              size: 12
             }
-          ]
+          }
+        ]
       }}
       style={{ width: '100%', height: '600px' }}
     />
