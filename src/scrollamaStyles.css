@@ -12,7 +12,7 @@
 /* Graphic container on the left */
 .scroll__graphic {
   /* Adjust the width as needed */
-  width: 50%;
+  width: 60%;
   /* Use CSS sticky to have it remain fixed as you scroll */
   position: sticky;
   top: 0;
@@ -28,23 +28,23 @@
 
 /* Text container on the right */
 .scroll__text {
-  width: 50%;
+  width: 40%;
   padding: 1rem;
   overflow: hidden;
 }
 
 /* Styling for each step */
 .step {
-  opacity: 0.4;
+  opacity: 1;
   padding: 1rem;
   margin-bottom: 1rem;
-  background: #f4f4f4;
+  background: #e3f2fe;
   border-radius: 4px;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.8s ease; 
 }
 
 /* Highlight active step */
-.step.is-active {
+/* .step.is-active {
   opacity: 1;
   background: #e0e0e0;
-}
+} */

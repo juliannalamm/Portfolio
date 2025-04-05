@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import scrollama from "scrollama";
 import Plot from "react-plotly.js";
 import "../scrollamaStyles.css";
+import JohnImage from "../assets/John.svg";
+
 
 
 export const ScrollamaDemo = () => {
@@ -96,17 +98,37 @@ export const ScrollamaDemo = () => {
     // useRef to point to the main section of the page
     <section id="scroll" ref={containerRef}>
       {/* our div container holding graphic area on left and text/step area on right, display: flex is defined in CSS to lay the two columns side by side*/}
-      <div className="scroll-container">
+      <div className="scroll-container bg-lightblue">
         {/* Sticky graphic container on the left*/}
         <div className="scroll__graphic">
           <div className="chart">
-            <Plot
-              data={data}
-              layout={layout}
-              style={{ width: "100%", height: "100%" }}
-              useResizeHandler={true}
-            />
+            {activeStep >= 0 && activeStep <= 2 ? (
+              <img
+                src={JohnImage}
+                alt="John illustration"
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              />
+            ) : activeStep === 3 ? (
+              <Plot
+                data={[{ x: [1, 2, 3], y: [4, 5, 6], type: "scatter" }]}
+                layout={{ title: "Line Chart for Step 1" }}
+                style={{ width: "100%", height: "100%" }}
+                useResizeHandler={true}
+              />
+            ) : activeStep === 4 ? (
+              <Plot
+                data={[{ x: ["A", "B", "C"], y: [10, 8, 6], type: "bar" }]}
+                layout={{ title: "Bar Chart for Step 2" }}
+                style={{ width: "100%", height: "100%" }}
+                useResizeHandler={true}
+              />
+            ) : (
+              <div style={{ textAlign: "center", padding: "2rem" }}>
+                <p>No visualization for this step.</p>
+              </div>
+            )}
           </div>
+
         </div>
 
         {/* Text container with steps on the right, defined in css classes
@@ -117,6 +139,9 @@ export const ScrollamaDemo = () => {
         */}
         <div className="scroll__text" ref={textRef}>
           <div className="step" ref={addToStepRefs}>
+            <h1 className="text-4xl font-extrabold text-burgundy mt-8 text-center">
+              Meet John
+            </h1>
             <p>This is Step 1 — shows Line Chart</p>
           </div>
           <div className="step" ref={addToStepRefs}>

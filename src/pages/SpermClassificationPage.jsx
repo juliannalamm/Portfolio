@@ -17,7 +17,7 @@ const SpermTrackClassification = () => {
       <SpermHero />
 
       {/* Main Content Section - Now Has Padding */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 py-16">
+      <section className="flex flex-col items-center justify-center min-h-screen bg-lightblue px-6 py-16">
          {/* Key Highlights Section */}
          <KeyHighlights />
 
