@@ -3,6 +3,7 @@ import scrollama from "scrollama";
 import Plot from "react-plotly.js";
 import "../scrollamaStyles.css";
 import JohnImage from "../assets/John.svg";
+import SpermAgePlot from "../components/Charts/SpermAgeChart"; 
 
 
 
@@ -109,19 +110,13 @@ export const ScrollamaDemo = () => {
                 style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />
             ) : activeStep === 3 ? (
-              <Plot
-                data={[{ x: [1, 2, 3], y: [4, 5, 6], type: "scatter" }]}
-                layout={{ title: "Line Chart for Step 1" }}
-                style={{ width: "100%", height: "100%" }}
-                useResizeHandler={true}
-              />
+              <div className="p-8">
+                <SpermAgePlot />
+              </div>
             ) : activeStep === 4 ? (
-              <Plot
-                data={[{ x: ["A", "B", "C"], y: [10, 8, 6], type: "bar" }]}
-                layout={{ title: "Bar Chart for Step 2" }}
-                style={{ width: "100%", height: "100%" }}
-                useResizeHandler={true}
-              />
+              <div className="p-8">
+                <SpermAgePlot />
+              </div>
             ) : (
               <div style={{ textAlign: "center", padding: "2rem" }}>
                 <p>No visualization for this step.</p>
