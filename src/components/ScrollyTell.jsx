@@ -8,7 +8,7 @@ export const ScrollamaDemo = () => {
   const containerRef = useRef(null); //reference to the main <section> that wraps scrollytelling. lets us refer to specific part of webpage
   const textRef = useRef(null); //points to the container of the steps
   const stepRefs = useRef([]); // is an array of individual step elements
-  
+
   const [activeStep, setActiveStep] = useState(0); // state to keep track of the active step
 
   // as each step of a <div> selement is rendered the function collects them into stepRefs array
@@ -23,7 +23,7 @@ export const ScrollamaDemo = () => {
     const scroller = scrollama(); // scrollama instance. UseEffect hook  to allow us to runcode after the component is shown on the screen. "do something to this"
 
     // when browser resizes, tell scrollama to make each step taller 
-    const handleResize = () => { 
+    const handleResize = () => {
       const stepHeight = Math.floor(window.innerHeight * 0.75);
       stepRefs.current.forEach((step) => {
         step.style.height = `${stepHeight}px`;
@@ -37,7 +37,7 @@ export const ScrollamaDemo = () => {
       stepRefs.current.forEach((step, i) => {
         step.classList.toggle("is-active", i === index); // add class to the active step
       });
-      };
+    };
 
     //hook everything up to scrollama, tells scrollama where everything is
 
@@ -60,86 +60,51 @@ export const ScrollamaDemo = () => {
   }, []);
 
   const chartForStep = (step) => {
-    switch (step) {
-      case 0:
-        return [
-          {
-            data: [
-              {
-                x: [1, 2, 3],
-                y: [10, 15, 13],
-                type: "scatter",
-                mode: "lines+markers",
-              },
-            ],
-            layout: { title: "Line Chart: Step 1" },
-          },
-        ];
-      case 1:
-        return [
-          {
-            data: [
-              {
-                x: ["A", "B", "C"],
-                y: [5, 7, 3],
-                type: "bar",
-              },
-            ],
-            layout: { title: "Bar Chart: Step 2" },
-          },
-        ];
-      case 2:
-        return [
-          {
-            data: [
-              {
-                labels: ["Apples", "Oranges", "Bananas"],
-                values: [30, 50, 20],
-                type: "pie",
-              },
-            ],
-            layout: { title: "Pie Chart: Step 3" },
-          },
-        ];
-      case 3:
-        return [
-          {
-            data: [
-              {
-                z: [[1, 2, 3], [4, 5, 6]],
-                type: "heatmap",
-              },
-            ],
-            layout: { title: "Heatmap: Step 4" },
-          },
-        ];
-      default:
-        return [
-          {
-            data: [],
-            layout: { title: "No Chart" },
-          },
-        ];
+    if (step === 0 || step === 1) {
+      return [
+        {
+          data: [
+            { x: [1, 2, 3], y: [10, 15, 13], type: "scatter", mode: "lines+markers" },
+          ],
+          layout: { title: "Line Chart (Steps 1 & 2)" },
+        },
+      ];
+    } else if (step === 2 || step === 3 || step === 4) {
+      return [
+        {
+          data: [
+            { x: ["A", "B", "C"], y: [5, 7, 3], type: "bar" },
+          ],
+          layout: { title: "Bar Chart (Steps 3–5)" },
+        },
+      ];
+    } else {
+      return [
+        {
+          data: [],
+          layout: { title: "Fallback or empty chart" },
+        },
+      ];
     }
   };
 
-  const { data, layout } = chartForStep(activeStep)[0];
 
+  const { data, layout } = chartForStep(activeStep)[0];
 
 
   return (
     // useRef to point to the main section of the page
     <section id="scroll" ref={containerRef}>
       {/* our div container holding graphic area on left and text/step area on right, display: flex is defined in CSS to lay the two columns side by side*/}
-      <div className="scroll-container"> 
+      <div className="scroll-container">
         {/* Sticky graphic container on the left*/}
         <div className="scroll__graphic">
           <div className="chart">
             <Plot
-               data = {data}
-               layout = {layout}
-               style = {{ width: "100%", height: "100%" }}
-               useResizeHandler={true}
+              data={data}
+              layout={layout}
+              style={{ width: "100%", height: "100%" }}
+              useResizeHandler={true}
             />
           </div>
         </div>
@@ -150,22 +115,24 @@ export const ScrollamaDemo = () => {
          3. ref={addToStepRefs} is used to collect each step into the stepRefs array
         
         */}
-        <div className="scroll__text" ref={textRef}>  
-          <div className="step" data-step="1" ref={addToStepRefs}>
-            <p>This is Step 1 — Line Chart</p>
+        <div className="scroll__text" ref={textRef}>
+          <div className="step" ref={addToStepRefs}>
+            <p>This is Step 1 — shows Line Chart</p>
           </div>
-          <div className="step" data-step="2" ref={addToStepRefs}>
-            <p>This is Step 2 — Bar Chart</p>
+          <div className="step" ref={addToStepRefs}>
+            <p>This is Step 2 — also shows Line Chart</p>
           </div>
-          <div className="step" data-step="3" ref={addToStepRefs}>
-            <p>This is Step 3 — Pie Chart</p>
+          <div className="step" ref={addToStepRefs}>
+            <p>This is Step 3 — now shows Bar Chart</p>
           </div>
-          <div className="step" data-step="4" ref={addToStepRefs}>
-            <p>This is Step 4 — Heatmap</p>
-          
+          <div className="step" ref={addToStepRefs}>
+            <p>This is Step 4 — still shows Bar Chart</p>
+          </div>
+          <div className="step" ref={addToStepRefs}>
+            <p>This is Step 5 — still shows Bar Chart</p>
           </div>
           {/* end of scroll__text */}
-        </div> 
+        </div>
         {/* end of scroll-container */}
       </div>
       {/* end of whole section */}
