@@ -7,6 +7,7 @@ import FlowChart from "../components/FlowChart";
 import Dashboard from '../components/Dashboard';
 import ScrollamaDemo from "../components/scrollytell";
 import { Scroll } from "lucide-react";
+import ScrollamaDemoTwo from "../components/ScrollyTellTwo";
 
 
 const SpermTrackClassification = () => {
@@ -32,6 +33,7 @@ const SpermTrackClassification = () => {
         
         <Dashboard/>
         <ScrollamaDemo/>
+        {/* <ScrollamaDemoTwo/> */}
   
       
   

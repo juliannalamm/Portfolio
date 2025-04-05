@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import scrollama from "scrollama";
 import Plot from "react-plotly.js";
 import "../scrollamaStyles.css";
@@ -7,7 +7,9 @@ import "../scrollamaStyles.css";
 export const ScrollamaDemo = () => {
   const containerRef = useRef(null); //reference to the main <section> that wraps scrollytelling. lets us refer to specific part of webpage
   const textRef = useRef(null); //points to the container of the steps
-  const stepRefs = useRef([]); // is an array of individual step elements 
+  const stepRefs = useRef([]); // is an array of individual step elements
+  
+  const [activeStep, setActiveStep] = useState(0); // state to keep track of the active step
 
   // as each step of a <div> selement is rendered the function collects them into stepRefs array
   const addToStepRefs = (el) => {
@@ -31,15 +33,11 @@ export const ScrollamaDemo = () => {
 
     // when you scroll to a step, scrollama gives us an index. we loop through every step, if its the current step we highlight it by adding a class
     const handleStepEnter = ({ index }) => {
+      setActiveStep(index); // update the active step state
       stepRefs.current.forEach((step, i) => {
-        if (i === index) {
-          step.classList.add("is-active");
-        } else {
-          step.classList.remove("is-active");
-        }
+        step.classList.toggle("is-active", i === index); // add class to the active step
       });
-      // Optionally update the graphic (e.g. update Plotly chart) based on active step
-    };
+      };
 
     //hook everything up to scrollama, tells scrollama where everything is
 
@@ -61,6 +59,74 @@ export const ScrollamaDemo = () => {
     };
   }, []);
 
+  const chartForStep = (step) => {
+    switch (step) {
+      case 0:
+        return [
+          {
+            data: [
+              {
+                x: [1, 2, 3],
+                y: [10, 15, 13],
+                type: "scatter",
+                mode: "lines+markers",
+              },
+            ],
+            layout: { title: "Line Chart: Step 1" },
+          },
+        ];
+      case 1:
+        return [
+          {
+            data: [
+              {
+                x: ["A", "B", "C"],
+                y: [5, 7, 3],
+                type: "bar",
+              },
+            ],
+            layout: { title: "Bar Chart: Step 2" },
+          },
+        ];
+      case 2:
+        return [
+          {
+            data: [
+              {
+                labels: ["Apples", "Oranges", "Bananas"],
+                values: [30, 50, 20],
+                type: "pie",
+              },
+            ],
+            layout: { title: "Pie Chart: Step 3" },
+          },
+        ];
+      case 3:
+        return [
+          {
+            data: [
+              {
+                z: [[1, 2, 3], [4, 5, 6]],
+                type: "heatmap",
+              },
+            ],
+            layout: { title: "Heatmap: Step 4" },
+          },
+        ];
+      default:
+        return [
+          {
+            data: [],
+            layout: { title: "No Chart" },
+          },
+        ];
+    }
+  };
+
+  const { data, layout } = chartForStep(activeStep)[0];
+
+
+
   return (
     // useRef to point to the main section of the page
     <section id="scroll" ref={containerRef}>
@@ -70,17 +136,10 @@ export const ScrollamaDemo = () => {
         <div className="scroll__graphic">
           <div className="chart">
             <Plot
-              data={[
-                {
-                  x: [1, 2, 3, 4],
-                  y: [2, 6, 3, 5],
-                  type: "scatter",
-                  mode: "lines+markers",
-                },
-              ]}
-              layout={{ title: "Plotly Chart" }}
-              style={{ width: "100%", height: "100%" }} // stretches to fill the container
-              useResizeHandler={true}
+               data = {data}
+               layout = {layout}
+               style = {{ width: "100%", height: "100%" }}
+               useResizeHandler={true}
             />
           </div>
         </div>
@@ -93,16 +152,16 @@ export const ScrollamaDemo = () => {
         */}
         <div className="scroll__text" ref={textRef}>  
           <div className="step" data-step="1" ref={addToStepRefs}>
-            <p>STEP 1</p>
+            <p>This is Step 1 — Line Chart</p>
           </div>
           <div className="step" data-step="2" ref={addToStepRefs}>
-            <p>STEP 2</p>
+            <p>This is Step 2 — Bar Chart</p>
           </div>
           <div className="step" data-step="3" ref={addToStepRefs}>
-            <p>STEP 3</p>
+            <p>This is Step 3 — Pie Chart</p>
           </div>
           <div className="step" data-step="4" ref={addToStepRefs}>
-            <p>STEP 4</p>
+            <p>This is Step 4 — Heatmap</p>
           
           </div>
           {/* end of scroll__text */}
