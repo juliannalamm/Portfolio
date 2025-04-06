@@ -6,7 +6,8 @@ import JohnImage from "../assets/John.svg";
 import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
 import JohnSad from "../assets/JohnSad.svg";
 import MotilityOnly from "./Charts/MotilityOnly";
-import CountOnly from "./Charts/CountOnly"; 
+import CountOnly from "./Charts/CountOnly";
+import TTPOnly from "./Charts/TTPOnly";
 
 
 
@@ -53,7 +54,7 @@ export const ScrollamaDemo = () => {
         text: textRef.current,
         step: ".step", // track every element that has class "step"
         offset: 0.5,
-        debug: false,
+        debug: true,
       })
       .onStepEnter(handleStepEnter); // when a new step is entered, run the function above 
 
@@ -124,6 +125,11 @@ export const ScrollamaDemo = () => {
               <div className=" mx-auto mt-20" style={{ position: "relative" }}>
 
                 <CountOnly />
+              </div>
+
+            ) : activeStep === 5 ? (
+              <div className=" mx-auto mt-20" style={{ position: "relative" }}>
+                <TTPOnly />
               </div>
 
 
@@ -203,9 +209,19 @@ export const ScrollamaDemo = () => {
           </div>
 
           {/* Step 4 */}
-          <div className="step" ref={addToStepRefs}>
-            <p>This is Step 5 — still shows Bar Chart</p>
+          <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
+            <p>This is Step 4 — still shows Bar Chart</p>
           </div>
+          {/* Step 5*/}
+         
+            <div className="step flex flex-col justify-center min-h-screen py-32" ref={addToStepRefs}>
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto mb-100">
+              Time to Pregnancy (TTP) increases significantly with paternal age.
+              This means it may take longer to conceive as men get older,
+              especially after age 35.
+            </p>
+          </div>
+          <div style={{ height: "100vh" }}></div>
         </div>
         {/* end of scroll-container */}
       </div>
