@@ -11,6 +11,9 @@ module.exports = {
           heading: ['AtlasBold', 'sans-serif'],
           body: ['TiemposTextRegular', 'serif'],
         },
+        fontSize: {
+          mdplus: '1.175rem'
+        },
       },
     },
     plugins: [],

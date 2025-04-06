@@ -1,3 +1,6 @@
 progressive: cl4xuuxyo000n356f8derlp9a
 straightline: cl4wf08be0043356h59jlarps
 starspin: cl4usazue001u356pderw22y6
+
+
+fonts: we created fonts.css, modified main.jsx to use fonts.css and left app.css as is so i dont think were using tailwind config 

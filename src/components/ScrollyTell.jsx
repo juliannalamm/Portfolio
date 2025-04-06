@@ -3,7 +3,9 @@ import scrollama from "scrollama";
 import Plot from "react-plotly.js";
 import "../scrollamaStyles.css";
 import JohnImage from "../assets/John.svg";
-import SpermAgePlot from "../components/Charts/SpermAgeChart"; 
+import SpermAgePlot from "../components/Charts/SpermAgeChart";
+import JohnSad from "../assets/JohnSad.svg";
+
 
 
 
@@ -103,17 +105,52 @@ export const ScrollamaDemo = () => {
         {/* Sticky graphic container on the left*/}
         <div className="scroll__graphic">
           <div className="chart">
-            {activeStep >= 0 && activeStep <= 2 ? (
-              <img
-                src={JohnImage}
-                alt="John illustration"
-                style={{ width: "100%", height: "100%", objectFit: "contain" }}
-              />
-            ) : activeStep === 3 ? (
-              <div className="p-8">
-                <SpermAgePlot />
+            {activeStep === 0 ? (
+              <div className=" mx-auto mt-60">
+                <img
+                  src={JohnImage}
+                  alt="John illustration"
+                  style={{ width: "70%", height: "100%", objectFit: "contain" }}
+                />
               </div>
-            ) : activeStep === 4 ? (
+            ) : activeStep === 1 ? (
+
+              <div className=" mx-auto mt-60">
+                <img
+                  src={JohnImage}
+                  alt="John illustration"
+                  style={{ width: "70%", height: "100%", objectFit: "contain" }}
+                />
+              </div>
+            ) : activeStep === 2 ? (
+              <div className=" mx-auto mt-60" style={{ position: "relative" }}>
+                <img
+                  src={JohnSad}
+                  alt="John illustration"
+                  style={{ width: "70%", height: "100%", objectFit: "contain" }}
+                />
+
+
+                {/* Chart container positioned absolutely */}
+                {/* Chart container positioned absolutely */}
+                <div style={{
+                  position: "absolute",
+                  top: "-220px",    // Adjust this value as needed
+                  right: "-30px",    // Some padding from the right edge
+                  width: "550px",   // Fixed width instead of percentage
+                  height: "320px",  // Fixed height to maintain aspect ratio
+                  aspectRatio:"4/3",
+                  backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background
+                }}>
+                  <SpermAgePlot />
+                </div>
+              </div>
+
+
+
+
+
+            ) : activeStep === 3 ? (
               <div className="p-8">
                 <SpermAgePlot />
               </div>
@@ -133,25 +170,37 @@ export const ScrollamaDemo = () => {
         
         */}
         <div className="scroll__text" ref={textRef}>
-          <div className="step" ref={addToStepRefs}>
-            <h1 className="text-4xl font-extrabold text-burgundy mt-8 text-center">
-              Meet John
+          {/* Step 0 */}
+          <div className="step flex flex-col" ref={addToStepRefs}>
+            <h1 className="text-6xl font-extrabold text-burgundy mt-20 mb-20 text-center">
+              Meet John!
             </h1>
-            <p>This is Step 1 — shows Line Chart</p>
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto mb-10">
+              John is a 35-year-old male. He is a healthy individual with no known medical conditions.
+            </p>
           </div>
+
+          {/* Step 1 */}
           <div className="step" ref={addToStepRefs}>
-            <p>This is Step 2 — also shows Line Chart</p>
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto">
+              Recently, John and his partner have been trying to conceive, but they have not been successful.
+            </p>
           </div>
+
+          {/* Step 2 */}
           <div className="step" ref={addToStepRefs}>
             <p>This is Step 3 — now shows Bar Chart</p>
           </div>
+
+          {/* Step 3 */}
           <div className="step" ref={addToStepRefs}>
             <p>This is Step 4 — still shows Bar Chart</p>
           </div>
+
+          {/* Step 4 */}
           <div className="step" ref={addToStepRefs}>
             <p>This is Step 5 — still shows Bar Chart</p>
           </div>
-          {/* end of scroll__text */}
         </div>
         {/* end of scroll-container */}
       </div>

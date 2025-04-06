@@ -1,0 +1,17 @@
+/* ScrollyTell.module.css */
+.heading {
+    font-family: 'AtlasBold', sans-serif;
+    font-size: 2rem; /* Adjust as needed */
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .paragraph {
+    font-family: 'TiemposTextRegular', serif;
+    font-size: 1.175rem; /* Custom size between text-lg and text-xl */
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* You can also add any additional component-specific styles here */
+  

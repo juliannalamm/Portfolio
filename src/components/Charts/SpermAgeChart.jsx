@@ -1,129 +1,148 @@
+import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
-import { useEffect, useState } from 'react';
 
 const SpermAgePlot = () => {
-  const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
-  // Fetch the reshaped (melted) CSV data
-  useEffect(() => {
-    fetch('/data/Reshaped_Sperm_Data.csv')
-      .then(res => res.text())
-      .then(csv => {
-        const rows = csv.split('\n').filter(r => r.trim().length > 0);
-        const parsed = rows.slice(1).map(row => {
-          const [age, metric, value] = row.split(',');
-          return {
-            age: parseFloat(age.replace(/[^\d.]/g, '')),
-            metric: metric.trim(),
-            value: parseFloat(value)
-          };
-        });
-        setData(parsed);
-      });
-  }, []);
+    // Fetch CSV data and parse it (unchanged)
+    useEffect(() => {
+        fetch('/data/Reshaped_Sperm_Data.csv')
+            .then(res => res.text())
+            .then(csv => {
+                const rows = csv.split('\n').filter(r => r.trim().length > 0);
+                const parsed = rows.slice(1).map(row => {
+                    const [age, metric, value] = row.split(',');
+                    return {
+                        age: parseFloat(age.replace(/[^\d.]/g, '')),
+                        metric: metric.trim(),
+                        value: parseFloat(value)
+                    };
+                });
+                setData(parsed);
+            });
+    }, []);
 
-  // Extract unique metrics to create traces, filtering out "Normalized HR"
-  const metrics = [...new Set(data.map(d => d.metric))]
-    .filter(metric => metric !== 'Normalized HR');
-  
-  const traces = metrics.map((metric, i) => {
-    const colorPalette = ['#1f77b4', '#2ca02c', '#d62728', '#ff7f0e'];
-    const dashStyle = metric === 'Normalized Time to Pregnancy' ? 'dash' : 'solid';
-    const filtered = data.filter(d => d.metric === metric);
-    return {
-      x: filtered.map(d => d.age),
-      y: filtered.map(d => d.value),
-      mode: 'lines+markers',
-      name: metric,
-      line: {
-        color: colorPalette[i % colorPalette.length],
-        dash: dashStyle,
-        shape: 'linear'
-      },
-      connectgaps: true,
-      hovertemplate: `Age: %{x}<br>${metric}: %{y:.2f}<extra></extra>`,
-    };
-  });
+    // Create traces (unchanged)
+    const metrics = [...new Set(data.map(d => d.metric))].filter(metric => metric !== 'Normalized HR');
 
-  return (
-    <Plot
-      data={traces}
-      layout={{
-        font: {
-            family: 'TiemposTextRegular, serif', // Use your desired custom font here
-            size: 12,
-            color: '#333'
-          },
-        title: {
-          text: 'Normalized Reproductive Metrics by Paternal Age',
-          font: { 
-            family: 'AtlasBold, sans-serif',
-            size: 20 }
-        },
-        xaxis: {
-          title: 'Paternal Age (years)',
-          range: [18, 56],
-          tickmode: 'linear',
-          tick0: 20,
-          dtick: 5,
-          showgrid: false
-        },
-        yaxis: {
-          title: 'Normalized Value (0–1)',
-          range: [0, 1.05],
-          zeroline: false,
-          showgrid: false
-        },
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)',
-        legend: { title: { text: 'Metric' } },
-        margin: { t: 60, l: 60, r: 20, b: 60 },
-        hovermode: 'closest',
-        // Vertical dashed line at age 35
-        shapes: [
-          {
-            type: 'line',
-            x0: 35,
-            y0: 0,
-            x1: 35,
-            y1: 1.05,
-            xref: 'x',
-            yref: 'y',
+    const traces = metrics.map((metric, i) => {
+        const colorPalette = ['#fe4939', '#481231', '#4fa0f7'];
+        const dashStyle = metric === 'Normalized Time to Pregnancy' ? 'dash' : 'solid';
+        const filtered = data.filter(d => d.metric === metric);
+        return {
+            x: filtered.map(d => d.age),
+            y: filtered.map(d => d.value),
+            mode: 'lines+markers',
+            name: metric,
             line: {
-              color: 'purple',
-              dash: 'dash'
-            }
-          }
-        ],
-        // Annotation with an arrow pointing to the vertical line
-        annotations: [
-          {
-            x: 35,
-            y: 0.85,
-            xref: 'x',
-            yref: 'y',
-            text: 'John is 35',
-            showarrow: true,
-            arrowhead: 2,
-            arrowsize: 1,
-            arrowwidth: 2,
-            arrowcolor: 'purple',
-            ax: -100,
-            ay: 80,
-            bordercolor: 'purple',
-            borderwidth: 1,
-            borderpad: 4,
-            bgcolor: 'rgba(255,255,255,0.8)',
-            font: {
-              color: 'purple',
-              size: 12
-            }
-          }
-        ]
-      }}
-      style={{ width: '100%', height: '600px' }}
-    />
-  );
+                color: colorPalette[i % colorPalette.length],
+                dash: dashStyle,
+                shape: 'linear'
+            },
+            connectgaps: true,
+            hovertemplate: `Age: %{x}<br>${metric}: %{y:.2f}<extra></extra>`,
+        };
+    });
+
+    return (
+        <Plot
+            data={traces}
+            layout={{
+                autosize: true,
+                aspectratio: { x: 1, y: 0.7 },
+                font: {
+                    family: 'TiemposTextRegular, serif',
+                    size: 10,
+                    color: '#333'
+                },
+                title: {
+                    text: 'Normalized Reproductive Metrics by Paternal Age',
+                    font: {
+                        family: 'AtlasBold, sans-serif',
+                        size: 16
+                    }
+                },
+                xaxis: {
+                    title: {
+                        text: 'Paternal Age (years)',
+                        font: { family: 'TiemposTextRegular, serif', size: 14, color: '#333' }
+                    },
+                    range: [18, 56],
+                    tickmode: 'linear',
+                    tick0: 20,
+                    dtick: 5,
+                    showgrid: false
+                },
+                yaxis: {
+                    title: 'Normalized Value (0–1)',
+                    range: [0, 1.05],
+                    zeroline: false,
+                    showgrid: false
+                },
+
+
+                paper_bgcolor: 'rgba(0,0,0,0)',
+                plot_bgcolor: 'rgba(0,0,0,0)',
+                legend: {
+                    title: { text: 'Metric' },
+                    x: 1.0,
+                    y: 1.0,
+                    xanchor: 'right',
+                    yanchor: 'top',
+                    font: {
+                        size: 9
+                    }
+                },
+                margin: { t: 50, l: 80, r: 20, b: 50 },
+                hovermode: 'closest',
+                shapes: [
+                    {
+                        type: 'line',
+                        x0: 35,
+                        y0: 0,
+                        x1: 35,
+                        y1: 1.05,
+                        xref: 'x',
+                        yref: 'y',
+                        line: {
+                            color: '#481231',
+                            dash: 'dash'
+                        }
+                    }
+                ],
+                annotations: [
+                    {
+                        x: 35,
+                        y: 0.85,
+                        xref: 'x',
+                        yref: 'y',
+                        text: 'John is 35',
+                        showarrow: true,
+                        arrowhead: 2,
+                        arrowsize: 1,
+                        arrowwidth: 2,
+                        arrowcolor: '#481231',
+                        ax: -100,
+                        ay: 80,
+                        bordercolor: '#481231',
+                        borderwidth: 1,
+                        borderpad: 4,
+                        bgcolor: 'rgba(255,255,255,0.8)',
+                        font: {
+                            color: '#481231',
+                            size: 12
+                        }
+                    }
+                ]
+            }}
+            useResizeHandler={true}
+            style={{ width: '100%', height: '100%' }}
+            config={{
+                responsive: true,
+                displayModeBar: false
+            }}
+        />
+    );
 };
 
 export default SpermAgePlot;
