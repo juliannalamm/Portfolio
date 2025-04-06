@@ -3,7 +3,6 @@ import scrollama from "scrollama";
 import Plot from "react-plotly.js";
 import "../scrollamaStyles.css";
 import JohnImage from "../assets/John.svg";
-import SpermAgePlot from "../components/Charts/SpermAgeChart";
 import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
 import JohnSad from "../assets/JohnSad.svg";
 
@@ -65,38 +64,6 @@ export const ScrollamaDemo = () => {
     };
   }, []);
 
-  const chartForStep = (step) => {
-    if (step === 0 || step === 1) {
-      return [
-        {
-          data: [
-            { x: [1, 2, 3], y: [10, 15, 13], type: "scatter", mode: "lines+markers" },
-          ],
-          layout: { title: "Line Chart (Steps 1 & 2)" },
-        },
-      ];
-    } else if (step === 2 || step === 3 || step === 4) {
-      return [
-        {
-          data: [
-            { x: ["A", "B", "C"], y: [5, 7, 3], type: "bar" },
-          ],
-          layout: { title: "Bar Chart (Steps 3–5)" },
-        },
-      ];
-    } else {
-      return [
-        {
-          data: [],
-          layout: { title: "Fallback or empty chart" },
-        },
-      ];
-    }
-  };
-
-
-  const { data, layout } = chartForStep(activeStep)[0];
-
 
   return (
     // useRef to point to the main section of the page
@@ -136,8 +103,8 @@ export const ScrollamaDemo = () => {
                   position: "absolute",
                   top: "-170px",    // Adjust this value as needed
                   right: "0",
-                  left: "230px",    // Some padding from the right edge
-                  width: "600px",   // Fixed width instead of percentage
+                  left: "240px",    // Some padding from the right edge
+                  width: "550px",   // Fixed width instead of percentage
                   height: "320px",  // Fixed height to maintain aspect ratio
                   aspectRatio: "4/3",
                   backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background
@@ -155,14 +122,14 @@ export const ScrollamaDemo = () => {
                 />
 
 
-                
+
                 {/* Chart container positioned absolutely */}
                 <div style={{
                   position: "absolute",
                   top: "-170px",    // Adjust this value as needed
                   right: "0",
-                  left: "230px",    // Some padding from the right edge
-                  width: "600px",   // Fixed width instead of percentage
+                  left: "240px",    // Some padding from the right edge
+                  width: "550px",   // Fixed width instead of percentage
                   height: "320px",  // Fixed height to maintain aspect ratio
                   aspectRatio: "4/3",
                   backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background
@@ -187,40 +154,54 @@ export const ScrollamaDemo = () => {
         */}
         <div className="scroll__text" ref={textRef}>
           {/* Step 0 */}
-          <div className="step flex flex-col" ref={addToStepRefs}>
-            <h1 className="text-6xl font-extrabold text-burgundy mt-20 mb-20 text-center">
+          <div className="step flex flex-col justify-between min-h-screen pt-30 pb-10" ref={addToStepRefs}>
+
+            {/* Heading near the top */}
+            <h1 className="text-6xl font-extrabold text-burgundy text-center mt-10">
               Meet John!
             </h1>
-            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto mb-10">
-              John is a 35-year-old male. He is a healthy individual with no known medical conditions.
+
+            {/* Centered paragraph block */}
+            <div className="flex flex-col items-center justify-center flex-grow space-y-6">
+              <p className="text-[1.175rem] text-burgundy max-w-3xl text-left leading-relaxed">
+                John is a 35-year-old male. He is a healthy individual with no known medical conditions.
+              </p>
+            </div>
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left leading-relaxed">
+              Recently, John and his partner have been trying to conceive, but they have not been successful.
             </p>
           </div>
 
-          {/* Step 1 */}
-          <div className="step" ref={addToStepRefs}>
-            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto mb-10">
-            Recently, John and his partner have been trying to conceive, but they have not been successful.
 
-            </p>
+
+          {/* Step 1 */}
+          <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
+            <div className="flex flex-col items-center justify-center flex-grow space-y-6">
+              <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto mb-10">
+                As is common, John's partner went to see a fertility specialist and everything came back totally normal.
+                It wasn't until John started doing his own research that he realized ...
+              </p>
+            </div>
+            <h1 className="text-3xl font-extrabold text-burgundy text-left  mb-10 ">
+              Men have a biological clock too!
+            </h1>
           </div>
 
           {/* Step 2 */}
-          <div className="step" ref={addToStepRefs}>
-            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-20 mx-auto">
-            As it turns out, this isn't super uncommon, and he is certainly not alone. 
+          <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
+          <div className="flex flex-col items-center justify-center flex-grow space-y-6">
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-10 mx-auto">
+              Data from multiple studies show that sperm quality begins to decline in men around the age of 35.
+              We calculated the percent decline relative to age 20 for three important sperm metrics:
             </p>
-            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-20 mx-auto"> 
-            Data from multiple studies show that sperm quality begins to decline in men around the age of 35.
-            
-            <br /> <br></br>
-            We calculated the percent change across three metrics from age 20-50 <br></br>
-
-            <ul className="list-disc list-inside">
-              <li>Sperm Motility</li>
-              <li>Sperm Morphology</li>
-              <li>Sperm Concentration</li>
-            </ul>
-            </p>
+          </div>
+          <p className="text-[1.175rem] text-burgundy text-left mb-10 mx-auto">
+          <ul className="mb-10 list-disc list-inside">
+                <li>Sperm Motility</li>
+                <li>Sperm Morphology</li>
+                <li>Sperm Concentration</li>
+              </ul>
+          </p>
           </div>
 
           {/* Step 3 */}
