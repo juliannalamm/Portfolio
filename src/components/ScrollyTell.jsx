@@ -137,7 +137,7 @@ export const ScrollamaDemo = () => {
                   position: "absolute",
                   top: "-200px",    // Adjust this value as needed
                   right: "0",
-                  left:"250px",    // Some padding from the right edge
+                  left:"270px",    // Some padding from the right edge
                   width: "600px",   // Fixed width instead of percentage
                   height: "320px",  // Fixed height to maintain aspect ratio
                   aspectRatio:"4/3",

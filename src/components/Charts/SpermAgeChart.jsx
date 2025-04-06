@@ -65,7 +65,7 @@ const SpermAgePlot = () => {
                 xaxis: {
                     title: {
                         text: 'Paternal Age (years)',
-                        font: { family: 'TiemposTextRegular, serif', size: 14, color: '#333' }
+                        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
                     },
                     range: [18, 56],
                     tickmode: 'linear',
@@ -74,7 +74,10 @@ const SpermAgePlot = () => {
                     showgrid: false
                 },
                 yaxis: {
-                    title: 'Normalized Value (0–1)',
+                    title: { text:'Normalized Value (0–1)' ,
+                    font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
+
+                    } ,
                     range: [0, 1.05],
                     zeroline: false,
                     showgrid: false
@@ -90,7 +93,7 @@ const SpermAgePlot = () => {
                     xanchor: 'left',
                     yanchor: 'top',
                     font: {
-                        size: 7
+                        size: 9,
                     }
                 },
                 margin: { t: 50, l: 80, r: 20, b: 50 },
