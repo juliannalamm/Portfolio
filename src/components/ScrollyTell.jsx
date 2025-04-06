@@ -54,7 +54,7 @@ export const ScrollamaDemo = () => {
         text: textRef.current,
         step: ".step", // track every element that has class "step"
         offset: 0.5,
-        debug: true,
+        debug: false,
       })
       .onStepEnter(handleStepEnter); // when a new step is entered, run the function above 
 

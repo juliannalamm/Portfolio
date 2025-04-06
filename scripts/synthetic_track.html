@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Sperm Track Demo with Real VAP Formula</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    #controls {
+      margin-bottom: 15px;
+    }
+    label {
+      margin-right: 20px;
+    }
+    #trackCanvas {
+      border: 1px solid #999;
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Sperm Track Demo (VSL, VCL, VAP with Rolling Average)</h1>
+
+<div id="controls">
+  <label>
+    VSL:
+    <input type="range" id="vsl" min="1" max="10" step="0.1" value="5" />
+    <span id="vslVal">5</span>
+  </label>
+  <label>
+    VCL:
+    <input type="range" id="vcl" min="1" max="10" step="0.1" value="5" />
+    <span id="vclVal">5</span>
+  </label>
+  <label>
+    VAP:
+    <input type="range" id="vap" min="1" max="50" step="1" value="20" />
+    <span id="vapVal">20</span>
+  </label>
+</div>
+
+<canvas id="trackCanvas" width="800" height="500"></canvas>
+
+<script>
+//---------------------------
+// GLOBAL SETTINGS
+//---------------------------
+const N = 200;            // number of frames (points)
+const frameRate = 30;     // frames per second
+const w = 10;             // window size for rolling average
+const mu = 1.0;           // scaling factor in formula (e.g. microns/pixel if desired)
+                          // If you want unit conversions, adjust mu accordingly.
+
+//---------------------------
+// DOM Elements
+//---------------------------
+const canvas = document.getElementById("trackCanvas");
+const ctx = canvas.getContext("2d");
+
+const vslSlider = document.getElementById("vsl");
+const vclSlider = document.getElementById("vcl");
+const vapSlider = document.getElementById("vap");
+
+const vslVal = document.getElementById("vslVal");
+const vclVal = document.getElementById("vclVal");
+const vapVal = document.getElementById("vapVal");
+
+// Update track whenever a slider changes
+[vslSlider, vclSlider, vapSlider].forEach(slider => {
+  slider.addEventListener("input", updateTrack);
+});
+
+// Initial draw on page load
+window.addEventListener("load", updateTrack);
+
+//---------------------------
+// MAIN FUNCTION
+//---------------------------
+function updateTrack() {
+  // 1) Get user inputs
+  const vsl = parseFloat(vslSlider.value);
+  const vcl = parseFloat(vclSlider.value);
+  const desiredVAP = parseFloat(vapSlider.value);
+
+  // Update numeric labels
+  vslVal.textContent = vsl.toFixed(1);
+  vclVal.textContent = vcl.toFixed(1);
+  vapVal.textContent = desiredVAP.toFixed(0);
+
+  // 2) Generate a raw path from VSL & VCL (unscaled)
+  const rawPoints = generateRawPath(N, vsl, vcl);
+
+  // 3) Compute the average (smoothed) path with window w
+  const avgPoints = rollingAverage(rawPoints, w);
+
+  // 4) Measure the "raw" VAP from that path
+  const rawVAP = measureVAP(avgPoints, frameRate, w, mu);
+
+  // 5) Determine scaling factor so that final VAP matches user slider
+  //    If rawVAP is 10 but user wants 20, we need to multiply all distances by 2.
+  let scaleFactor = 1.0;
+  if (rawVAP > 0) {
+    scaleFactor = desiredVAP / rawVAP;
+  }
+
+  // 6) Scale the raw path by this factor
+  const scaledPoints = scalePath(rawPoints, scaleFactor);
+
+  // 7) For clarity, we can re-compute the average path & final VAP after scaling 
+  //    so you see the actual final measurement:
+  const scaledAvgPoints = rollingAverage(scaledPoints, w);
+  const finalVAP = measureVAP(scaledAvgPoints, frameRate, w, mu);
+  // If you want, you could log it:
+  console.log("Final VAP after scaling:", finalVAP.toFixed(2));
+
+  // 8) Draw the final scaled path on the canvas
+  drawSinglePath(scaledPoints);
+}
+
+//---------------------------
+// Step A: Generate Raw Path
+//---------------------------
+/**
+ * Creates a simple “sperm-like” path:
+ *  - Forward movement in X depends on VSL.
+ *  - Wiggles in Y from a sine wave depends on VCL.
+ * 
+ * We do NOT incorporate VAP directly here. We'll just
+ * generate a path that we can later measure and scale.
+ */
+function generateRawPath(numPoints, vsl, vcl) {
+  const points = [];
+  
+  // We'll pretend totalTime = N / frameRate, but let's keep it simpler:
+  let x = 0;
+  let y = 0;
+
+  // The bigger the "baseForward" => the more net forward movement per frame
+  const baseForward = vsl * 0.5;  
+  // The amplitude of the wiggle in Y => depends on VCL
+  const wiggleAmp = vcl * 2;  
+  // The frequency of the wiggle
+  const freq = 0.2;  // tweak to taste
+
+  for (let i = 0; i < numPoints; i++) {
+    // Move forward in X a bit
+    x += baseForward;
+    // Add a sine wave in Y
+    y = wiggleAmp * Math.sin(freq * i);
+
+    points.push({ x, y });
+  }
+  return points;
+}
+
+//---------------------------
+// Step B: Rolling Average
+//---------------------------
+function rollingAverage(points, windowSize) {
+  const smoothed = [];
+  for (let i = 0; i < points.length; i++) {
+    let start = Math.max(0, i - Math.floor(windowSize/2));
+    let end = Math.min(points.length - 1, i + Math.floor(windowSize/2));
+    let sumX = 0, sumY = 0, count = 0;
+
+    for (let j = start; j <= end; j++) {
+      sumX += points[j].x;
+      sumY += points[j].y;
+      count++;
+    }
+    smoothed.push({ x: sumX / count, y: sumY / count });
+  }
+  return smoothed;
+}
+
+//---------------------------
+// Step C: Measure VAP
+//---------------------------
+/**
+ * Using the formula:
+ *   VAP = ( sum of distances along avg path * FrameRate ) / (N - w) * mu
+ */
+function measureVAP(avgPoints, frameRate, w, mu) {
+  if (avgPoints.length <= w) return 0;  // avoid dividing by zero
+
+  let distSum = 0;
+  for (let i = 0; i < avgPoints.length - 1; i++) {
+    let dx = avgPoints[i+1].x - avgPoints[i].x;
+    let dy = avgPoints[i+1].y - avgPoints[i].y;
+    distSum += Math.sqrt(dx*dx + dy*dy);
+  }
+  
+  // The formula:
+  //  VAP = (distSum * frameRate) / (N - w) * mu
+  let denom = (avgPoints.length - w);
+  if (denom <= 0) denom = 1; // fallback
+
+  let vap = (distSum * frameRate / denom) * mu;
+  return vap;
+}
+
+//---------------------------
+// Step D: Scale Entire Path
+//---------------------------
+function scalePath(points, factor) {
+  return points.map(p => {
+    return { x: p.x * factor, y: p.y * factor };
+  });
+}
+
+//---------------------------
+// Step E: Draw Final Path
+//---------------------------
+function drawSinglePath(points) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Just center it somewhat
+  const offsetX = 50;
+  const offsetY = canvas.height / 2;
+
+  ctx.strokeStyle = "black";
+  ctx.lineWidth = 2;
+
+  if (!points.length) return;
+
+  ctx.beginPath();
+  ctx.moveTo(points[0].x + offsetX, offsetY - points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    let px = points[i].x + offsetX;
+    let py = offsetY - points[i].y;
+    ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+}
+</script>
+</body>
+</html>
