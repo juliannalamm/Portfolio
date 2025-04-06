@@ -135,9 +135,10 @@ export const ScrollamaDemo = () => {
                 {/* Chart container positioned absolutely */}
                 <div style={{
                   position: "absolute",
-                  top: "-220px",    // Adjust this value as needed
-                  right: "-30px",    // Some padding from the right edge
-                  width: "550px",   // Fixed width instead of percentage
+                  top: "-200px",    // Adjust this value as needed
+                  right: "0",
+                  left:"250px",    // Some padding from the right edge
+                  width: "600px",   // Fixed width instead of percentage
                   height: "320px",  // Fixed height to maintain aspect ratio
                   aspectRatio:"4/3",
                   backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background

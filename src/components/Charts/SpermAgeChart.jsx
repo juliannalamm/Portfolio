@@ -85,12 +85,12 @@ const SpermAgePlot = () => {
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 legend: {
                     title: { text: 'Metric' },
-                    x: 1.0,
+                    x: 1,
                     y: 1.0,
-                    xanchor: 'right',
+                    xanchor: 'left',
                     yanchor: 'top',
                     font: {
-                        size: 9
+                        size: 7
                     }
                 },
                 margin: { t: 50, l: 80, r: 20, b: 50 },
