@@ -5,6 +5,7 @@ import "../scrollamaStyles.css";
 import JohnImage from "../assets/John.svg";
 import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
 import JohnSad from "../assets/JohnSad.svg";
+import MotilityOnly from "./Charts/MotilityOnly";
 
 
 
@@ -134,7 +135,7 @@ export const ScrollamaDemo = () => {
                   aspectRatio: "4/3",
                   backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background
                 }}>
-                  <SpermMotilityAge />
+                  <MotilityOnly />
                 </div>
               </div>
             ) : (
@@ -204,26 +205,11 @@ export const ScrollamaDemo = () => {
               </ul>
             </p>
             </div>
-            <div className="flex flex-col items-center justify-center flex-grow space-y-6">
-
-            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left leading-relaxed">
-              Men have a biological clock too!
-            </p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center flex-grow space-y-6">
-
-<p className="text-[1.175rem] text-burgundy max-w-3xl text-left leading-relaxed">
-  Men have a biological clock too!
-</p>
-</div>
-            
-          
           </div>
 
           {/* Step 3 */}
           <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
-            <p>This is Step 4 — still shows Bar Chart</p>
+            <p>Sperm Motility declines by 21.66% from age 20 to age 55, peaking at age 35 and declining corresponding to an average 2.14% decrease per year </p>
           </div>
 
           {/* Step 4 */}
