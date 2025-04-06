@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 
-const MotilityOnly = () => {
+const CountOnly = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -22,11 +22,11 @@ const MotilityOnly = () => {
     }, []);
 
     const metrics = [...new Set(data.map(d => d.metric))].filter(metric =>
-        ['Motility'].includes(metric)
+        ['Total Sperm'].includes(metric)
     );
 
     const traces = metrics.map((metric, i) => {
-        const colorPalette = ['#fe4939'];
+        const colorPalette = ['4fa0f7'];
         const filtered = data.filter(d => d.metric === metric);
         return {
             x: filtered.map(d => d.age),
@@ -63,7 +63,7 @@ const MotilityOnly = () => {
                     color: '#333'
                 },
                 title: {
-                    text: '% Motility Decline Relative to Age 20',
+                    text: '% Decline in Total Sperm Count Relative to Age 20',
                     font: {
                         family: 'AtlasBold, sans-serif',
                         size: 16
@@ -86,7 +86,7 @@ const MotilityOnly = () => {
                 },
                 yaxis: {
                     title: {
-                        text: '% Change in Motility',
+                        text: '% Change in Total Sperm Count',
                         font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
                     },
                     range: [-40, 10],
@@ -162,4 +162,4 @@ const MotilityOnly = () => {
     );
 };
 
-export default MotilityOnly;
+export default CountOnly;

@@ -1,0 +1,33 @@
+Age,Metric,Value
+20.0,Normalized HR,0.0856
+22.5,Normalized HR,0.0
+27.0,Normalized HR,0.038
+32.0,Normalized HR,0.1597
+37.0,Normalized HR,0.1597
+42.0,Normalized HR,0.1559
+47.0,Normalized HR,0.4943
+50.0,Normalized HR,1.0
+24.6,% Motility,0.8808
+32.5,% Motility,0.9007
+34.9,% Motility,1.0
+36.8,% Motility,0.9338
+39.0,% Motility,0.7219
+41.3,% Motility,0.6623
+44.6,% Motility,0.6093
+50.0,% Motility,0.0
+20.0,Time to Pregnancy,0.0076
+22.5,Time to Pregnancy,0.0
+27.0,Time to Pregnancy,0.038
+32.0,Time to Pregnancy,0.1597
+37.0,Time to Pregnancy,0.1597
+42.0,Time to Pregnancy,0.1559
+47.0,Time to Pregnancy,0.4943
+50.0,Time to Pregnancy,1.0
+24.6,Total Sperm,0.8831
+32.5,Total Sperm,1.0
+34.9,Total Sperm,0.974
+36.8,Total Sperm,0.8961
+39.0,Total Sperm,0.6623
+41.3,Total Sperm,0.6104
+44.6,Total Sperm,0.5195
+50.0,Total Sperm,0.0

@@ -6,7 +6,7 @@ import JohnImage from "../assets/John.svg";
 import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
 import JohnSad from "../assets/JohnSad.svg";
 import MotilityOnly from "./Charts/MotilityOnly";
-
+import CountOnly from "./Charts/CountOnly"; 
 
 
 
@@ -115,34 +115,24 @@ export const ScrollamaDemo = () => {
               </div>
 
             ) : activeStep === 3 ? (
-              <div className=" mx-auto mt-60" style={{ position: "relative" }}>
-                <img
-                  src={JohnSad}
-                  alt="John illustration"
-                  style={{ width: "70%", height: "100%", objectFit: "contain" }}
-                />
+              <div className=" mx-auto mt-20" style={{ position: "relative" }}>
 
-
-
-                {/* Chart container positioned absolutely */}
-                <div style={{
-                  position: "absolute",
-                  top: "-170px",    // Adjust this value as needed
-                  right: "0",
-                  left: "240px",    // Some padding from the right edge
-                  width: "550px",   // Fixed width instead of percentage
-                  height: "320px",  // Fixed height to maintain aspect ratio
-                  aspectRatio: "4/3",
-                  backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background
-                }}>
-                  <MotilityOnly />
-                </div>
+                <MotilityOnly />
               </div>
+
+            ) : activeStep === 4 ? (
+              <div className=" mx-auto mt-20" style={{ position: "relative" }}>
+
+                <CountOnly />
+              </div>
+
+
             ) : (
               <div style={{ textAlign: "center", padding: "2rem" }}>
                 <p>No visualization for this step.</p>
               </div>
             )}
+            {/* end chart graphic */}
           </div>
 
         </div>
@@ -193,17 +183,17 @@ export const ScrollamaDemo = () => {
 
           {/* Step 2 */}
           <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
-          
-          <div className="flex flex-col items-center justify-center flex-grow space-y-6">
-            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-10 mx-auto">
-              Data from multiple studies show that sperm quality begins to decline in men around the age of 35.
-              We calculated the percent decline relative to age 20 for three important sperm metrics:
-              <ul className="mb-10 list-disc  text-left list-inside">
-                <li> Sperm Motility  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className = "text-blue-600 hover:underline"> [1]</a> </li>
-                <li>Total Sperm Count  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className = "text-blue-600 hover:underline"> [2]</a> </li>
-                <li>Time to Pregnancy (TTP <a href="https://www.fertstert.org/article/S0015-0282(03)00366-2/fulltext#" className = "text-blue-600 hover:underline"> [3]</a></li>
-              </ul>
-            </p>
+
+            <div className="flex flex-col items-center justify-center flex-grow space-y-6">
+              <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-10 mx-auto">
+                Data from multiple studies show that sperm quality begins to decline in men around the age of 35.
+                We calculated the percent decline relative to age 20 for three important sperm metrics:
+                <ul className="mb-10 list-disc  text-left list-inside">
+                  <li> Sperm Motility  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className="text-blue-600 hover:underline"> [1]</a> </li>
+                  <li>Total Sperm Count  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className="text-blue-600 hover:underline"> [2]</a> </li>
+                  <li>Time to Pregnancy (TTP <a href="https://www.fertstert.org/article/S0015-0282(03)00366-2/fulltext#" className="text-blue-600 hover:underline"> [3]</a></li>
+                </ul>
+              </p>
             </div>
           </div>
 
