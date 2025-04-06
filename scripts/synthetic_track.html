@@ -51,7 +51,7 @@
 //---------------------------
 const N = 200;            // number of frames (points)
 const frameRate = 30;     // frames per second
-const w = 10;             // window size for rolling average
+const w = 20;             // window size for rolling average
 const mu = 1.0;           // scaling factor in formula (e.g. microns/pixel if desired)
                           // If you want unit conversions, adjust mu accordingly.
 
@@ -223,7 +223,7 @@ function drawSinglePath(points) {
   const offsetY = canvas.height / 2;
 
   ctx.strokeStyle = "black";
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 3;
 
   if (!points.length) return;
 
