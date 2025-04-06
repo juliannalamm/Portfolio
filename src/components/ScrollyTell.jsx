@@ -176,36 +176,53 @@ export const ScrollamaDemo = () => {
 
           {/* Step 1 */}
           <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
+
             <div className="flex flex-col items-center justify-center flex-grow space-y-6">
               <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto mb-10">
                 As is common, John's partner went to see a fertility specialist and everything came back totally normal.
                 It wasn't until John started doing his own research that he realized ...
               </p>
             </div>
+
             <h1 className="text-3xl font-extrabold text-burgundy text-left  mb-10 ">
               Men have a biological clock too!
             </h1>
+
           </div>
 
           {/* Step 2 */}
           <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
+          
           <div className="flex flex-col items-center justify-center flex-grow space-y-6">
             <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-10 mx-auto">
               Data from multiple studies show that sperm quality begins to decline in men around the age of 35.
               We calculated the percent decline relative to age 20 for three important sperm metrics:
-            </p>
-          </div>
-          <p className="text-[1.175rem] text-burgundy text-left mb-10 mx-auto">
-          <ul className="mb-10 list-disc list-inside">
-                <li>Sperm Motility</li>
-                <li>Sperm Morphology</li>
-                <li>Sperm Concentration</li>
+              <ul className="mb-10 list-disc  text-left list-inside">
+                <li> Sperm Motility  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className = "text-blue-600 hover:underline"> [1]</a> </li>
+                <li>Total Sperm Count  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className = "text-blue-600 hover:underline"> [2]</a> </li>
+                <li>Time to Pregnancy (TTP <a href="https://www.fertstert.org/article/S0015-0282(03)00366-2/fulltext#" className = "text-blue-600 hover:underline"> [3]</a></li>
               </ul>
-          </p>
+            </p>
+            </div>
+            <div className="flex flex-col items-center justify-center flex-grow space-y-6">
+
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left leading-relaxed">
+              Men have a biological clock too!
+            </p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center flex-grow space-y-6">
+
+<p className="text-[1.175rem] text-burgundy max-w-3xl text-left leading-relaxed">
+  Men have a biological clock too!
+</p>
+</div>
+            
+          
           </div>
 
           {/* Step 3 */}
-          <div className="step" ref={addToStepRefs}>
+          <div className="step flex flex-col justify-center min-h-screen" ref={addToStepRefs}>
             <p>This is Step 4 — still shows Bar Chart</p>
           </div>
 
