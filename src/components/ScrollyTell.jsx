@@ -4,6 +4,7 @@ import Plot from "react-plotly.js";
 import "../scrollamaStyles.css";
 import JohnImage from "../assets/John.svg";
 import SpermAgePlot from "../components/Charts/SpermAgeChart";
+import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
 import JohnSad from "../assets/JohnSad.svg";
 
 
@@ -130,30 +131,44 @@ export const ScrollamaDemo = () => {
                   style={{ width: "70%", height: "100%", objectFit: "contain" }}
                 />
 
-
-                {/* Chart container positioned absolutely */}
                 {/* Chart container positioned absolutely */}
                 <div style={{
                   position: "absolute",
-                  top: "-200px",    // Adjust this value as needed
+                  top: "-170px",    // Adjust this value as needed
                   right: "0",
-                  left:"270px",    // Some padding from the right edge
+                  left: "230px",    // Some padding from the right edge
                   width: "600px",   // Fixed width instead of percentage
                   height: "320px",  // Fixed height to maintain aspect ratio
-                  aspectRatio:"4/3",
+                  aspectRatio: "4/3",
                   backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background
                 }}>
-                  <SpermAgePlot />
+                  <SpermMotilityAge />
                 </div>
               </div>
 
-
-
-
-
             ) : activeStep === 3 ? (
-              <div className="p-8">
-                <SpermAgePlot />
+              <div className=" mx-auto mt-60" style={{ position: "relative" }}>
+                <img
+                  src={JohnSad}
+                  alt="John illustration"
+                  style={{ width: "70%", height: "100%", objectFit: "contain" }}
+                />
+
+
+                
+                {/* Chart container positioned absolutely */}
+                <div style={{
+                  position: "absolute",
+                  top: "-170px",    // Adjust this value as needed
+                  right: "0",
+                  left: "230px",    // Some padding from the right edge
+                  width: "600px",   // Fixed width instead of percentage
+                  height: "320px",  // Fixed height to maintain aspect ratio
+                  aspectRatio: "4/3",
+                  backgroundColor: "rgba(255,255,255,0.0)"  // Transparent background
+                }}>
+                  <SpermMotilityAge />
+                </div>
               </div>
             ) : (
               <div style={{ textAlign: "center", padding: "2rem" }}>
@@ -183,14 +198,29 @@ export const ScrollamaDemo = () => {
 
           {/* Step 1 */}
           <div className="step" ref={addToStepRefs}>
-            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto">
-              Recently, John and his partner have been trying to conceive, but they have not been successful.
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mx-auto mb-10">
+            Recently, John and his partner have been trying to conceive, but they have not been successful.
+
             </p>
           </div>
 
           {/* Step 2 */}
           <div className="step" ref={addToStepRefs}>
-            <p>This is Step 3 — now shows Bar Chart</p>
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-20 mx-auto">
+            As it turns out, this isn't super uncommon, and he is certainly not alone. 
+            </p>
+            <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-20 mx-auto"> 
+            Data from multiple studies show that sperm quality begins to decline in men around the age of 35.
+            
+            <br /> <br></br>
+            We calculated the percent change across three metrics from age 20-50 <br></br>
+
+            <ul className="list-disc list-inside">
+              <li>Sperm Motility</li>
+              <li>Sperm Morphology</li>
+              <li>Sperm Concentration</li>
+            </ul>
+            </p>
           </div>
 
           {/* Step 3 */}
