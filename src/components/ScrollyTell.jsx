@@ -164,15 +164,10 @@ export const ScrollamaDemo = () => {
                 <TTPOnly />
               </div>
             ) : activeStep === 6 ? (
-              <div
-              ref={tableauWrapperRef} // ✅ reference the container to measure its width
-              className="mx-auto mt-20"
-              style={{
-                position: "relative",
-                width: "100%",
-                maxWidth: "1000px", // Optional: prevent it from being too huge on big screens
-              }}
-            >
+              <div 
+              ref={tableauWrapperRef} //  reference the container to measure its width
+              className="mt-20 pl-16 max-w-[1000px] w-full"
+              >
               <TableauReport
                 url={tableauUrl}
                 options={tableauOptions}
