@@ -73,6 +73,8 @@ function MinimalScrollamaDemo() {
             stepRefs.current.forEach((step, i) => {
                 step.classList.toggle("is-active", i === index);
             });
+            window.dispatchEvent(new Event('resize'));
+
         };
 
         // Initialize scrollama
@@ -82,7 +84,7 @@ function MinimalScrollamaDemo() {
                 text: textRef.current,          // the container with .step
                 step: ".step",                  // each step class
                 offset: 0.5,                    // trigger in the middle of the viewport
-                debug: true,                    // show debug lines
+                debug: false,                    // show debug lines
             })
             .onStepEnter(handleStepEnter);
 
@@ -140,20 +142,20 @@ function MinimalScrollamaDemo() {
         } else if (activeStep === 2) {
             // John Sad + Chart
             return (
-                <div style={{ position: "relative" }}>
+                <div style={{ width: '80%', height: '400px' }}>
                     <MotilityOnly />
                 </div>
             );
         } else if (activeStep === 3) {
             // John Sad + Chart
             return (
-                <div style={{ position: "relative" }}>
+                <div style={{ width: '80%', height: '400px' }}>
                     <CountOnly />
                 </div>
             );
         } else if (activeStep === 4) {
             return (
-                <div style={{ position: "relative" }}>
+                <div style={{ width: '80%', height: '400px' }}>
                     <TTPOnly />
                 </div>
             );
