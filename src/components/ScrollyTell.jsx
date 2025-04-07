@@ -41,14 +41,6 @@ export const ScrollamaDemo = () => {
 
 
 
-    const updateTableauWidth = () => {
-      if (tableauWrapperRef.current) {
-        const containerWidth = tableauWrapperRef.current.offsetWidth;
-        setTableauWidth(containerWidth);
-      }
-    };
-
-
   //instantiate a scrollama instance  
   useEffect(() => {
     const scroller = scrollama(); // scrollama instance. UseEffect hook  to allow us to runcode after the component is shown on the screen. "do something to this"
@@ -70,8 +62,14 @@ export const ScrollamaDemo = () => {
       });
     };
 
-    //hook everything up to scrollama, tells scrollama where everything is
+    const updateTableauWidth = () => {
+      if (tableauWrapperRef.current) {
+        const containerWidth = tableauWrapperRef.current.offsetWidth;
+        setTableauWidth(containerWidth);
+      }
+    };
 
+    //hook everything up to scrollama, tells scrollama where everything is
     scroller
       .setup({
         container: containerRef.current,
@@ -81,20 +79,19 @@ export const ScrollamaDemo = () => {
         debug: false,
       })
       .onStepEnter(handleStepEnter); // when a new step is entered, run the function above 
-
+    //initial adjustments 
     handleResize(); // run the resize function to set the height of each step
-    window.addEventListener("resize", handleResize); //update when window changes 
+    updateTableauWidth(); // Set on load
+    
+    //event listeners 
+    window.addEventListener("resize", handleResize); //update when window changes
+    window.addEventListener("resize", updateTableauWidth); // Update on resize
+ 
     return () => {
       window.removeEventListener("resize", handleResize); // cleanup when component removed
+      window.addEventListener("resize", updateTableauWidth); // Update on resize
+
       scroller.destroy(); // tell scrollama to shut down 
-    };
-
-    //initial measure 
-    updateTableauWidth(); // Set on load
-    window.addEventListener("resize", updateTableauWidth); // Update on resize
-
-    return () => {
-      window.removeEventListener("resize", updateTableauWidth);
     };
   }, [])
 
