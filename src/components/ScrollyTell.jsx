@@ -193,13 +193,14 @@ export const ScrollamaDemo = () => {
             <div className="flex flex-col items-center justify-center flex-grow space-y-6">
               <p className="text-[1.175rem] text-burgundy max-w-3xl text-left mb-10 mx-auto">
                 Data from multiple studies show that sperm quality begins to decline in men around the age of 35.
+                </p>
                 We calculated the percent decline relative to age 20 for three important sperm metrics:
                 <ul className="mb-10 list-disc  text-left list-inside">
                   <li> Sperm Motility  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className="text-blue-600 hover:underline"> [1]</a> </li>
                   <li>Total Sperm Count  <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext" className="text-blue-600 hover:underline"> [2]</a> </li>
                   <li>Time to Pregnancy (TTP <a href="https://www.fertstert.org/article/S0015-0282(03)00366-2/fulltext#" className="text-blue-600 hover:underline"> [3]</a></li>
                 </ul>
-              </p>
+              
             </div>
           </div>
 
