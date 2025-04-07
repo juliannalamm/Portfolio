@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import scrollama from "scrollama";
 import TableauReport from "tableau-react";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 
 // Example images
@@ -32,8 +34,8 @@ function MinimalScrollamaDemo() {
     };
 
     // active step index
-    const [activeStep, setActiveStep] = useState(0);
-    const tableauWrapperRef = useRef(null);
+    const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
+    const tableauWrapperRef = useRef(null); //access tableau element, once the component renders we will point to the element its attached to 
     const [tableauWidth, setTableauWidth] = useState(900);
 
     const tableauUrl =
@@ -57,7 +59,7 @@ function MinimalScrollamaDemo() {
             });
             scroller.resize();
         };
-
+        // checks if the ref is pointing to the actual element, gets width of the element (offsetWidth) stores the width in the state variable
         const updateTableauWidth = () => {
             if (tableauWrapperRef.current) {
                 const containerWidth = tableauWrapperRef.current.offsetWidth;
@@ -161,6 +163,7 @@ function MinimalScrollamaDemo() {
             );
         } else if (activeStep === 5) {
             return (
+                // attach ref to the wrapper div so that we can measure the width 
                 <div
                     ref={tableauWrapperRef}
                     style={{ position: "relative" }}>
@@ -189,9 +192,19 @@ function MinimalScrollamaDemo() {
 
                 {/* LEFT: sticky graphic panel */}
                 <div className="scroll__graphic">
-                    <div className="chart">
-                        {renderVisual()}
-                    </div>
+
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeStep}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5 }}
+                            className="chart"
+                        >
+                            {renderVisual()}
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
                 {/* RIGHT: scrolly text steps */}
