@@ -20,6 +20,9 @@ export const ScrollamaDemo = () => {
 
   const [activeStep, setActiveStep] = useState(0); // state to keep track of the active step
 
+  const tableauWrapperRef = useRef(null);
+  const [tableauWidth, setTableauWidth] = useState(900); 
+
   // as each step of a <div> selement is rendered the function collects them into stepRefs array
   const addToStepRefs = (el) => {
     if (el && !stepRefs.current.includes(el)) {
@@ -30,13 +33,20 @@ export const ScrollamaDemo = () => {
   const tableauUrl =
     "https://public.tableau.com/views/Book2_17439735185420/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link";
 
-  const options = {
-    height: 600,
-    width: 1000,
-    hideTabs: true,
-    // You can add more vizCreate options if needed:
-    // https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#vizcreateoptions_record
-  };
+    const tableauOptions = {
+      height: 800,
+      width: tableauWidth,
+      hideTabs: false,
+    };
+
+
+
+    const updateTableauWidth = () => {
+      if (tableauWrapperRef.current) {
+        const containerWidth = tableauWrapperRef.current.offsetWidth;
+        setTableauWidth(containerWidth);
+      }
+    };
 
 
   //instantiate a scrollama instance  
@@ -78,7 +88,15 @@ export const ScrollamaDemo = () => {
       window.removeEventListener("resize", handleResize); // cleanup when component removed
       scroller.destroy(); // tell scrollama to shut down 
     };
-  }, []);
+
+    //initial measure 
+    updateTableauWidth(); // Set on load
+    window.addEventListener("resize", updateTableauWidth); // Update on resize
+
+    return () => {
+      window.removeEventListener("resize", updateTableauWidth);
+    };
+  }, [])
 
 
   return (
@@ -146,14 +164,21 @@ export const ScrollamaDemo = () => {
                 <TTPOnly />
               </div>
             ) : activeStep === 6 ? (
-              <div className="mx-auto mt-20" style={{ position: "relative" }}>
-                <TableauReport
-                  url={tableauUrl}
-                  options={options}
-                  // optional query override
-                  query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
-                />
-              </div>
+              <div
+              ref={tableauWrapperRef} // ✅ reference the container to measure its width
+              className="mx-auto mt-20"
+              style={{
+                position: "relative",
+                width: "100%",
+                maxWidth: "1000px", // Optional: prevent it from being too huge on big screens
+              }}
+            >
+              <TableauReport
+                url={tableauUrl}
+                options={tableauOptions}
+                query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
+              />
+            </div>
 
 
             ) : (
