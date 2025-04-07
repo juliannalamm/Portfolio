@@ -7,6 +7,7 @@ import FlowChart from "../components/FlowChart";
 import Dashboard from '../components/Dashboard';
 import ScrollamaDemo from "../components/scrollytell";
 import { Scroll } from "lucide-react";
+import MinimalScrollamaDemo from "../components/ScrollyTellTest";
 
 
 
@@ -33,7 +34,8 @@ const SpermTrackClassification = () => {
       </section>
 
       <Dashboard />
-      <ScrollamaDemo />
+      <MinimalScrollamaDemo />
+      {/* <ScrollamaDemo /> */}
       {/* <ScrollamaDemoTwo/> */}
       
 
@@ -76,7 +78,7 @@ const SpermTrackClassification = () => {
           { mp4: "/videos/tracks/progressive.mp4", text: "Progressive Motion" },
           { mp4: "/videos/tracks/starspin.mp4", text: "Hyperactivated Motion" }
         ].map((video, index) => (
-          <div key={index} className="relative group w-full h-[300px] bg-black overflow-hidden rounded-lg shadow-lg">
+          <div key={index} className="relative group w-full h-[300px] bg-black rounded-lg shadow-lg">
             {/* Video */}
             <video
               className="w-full h-full object-cover bg-black"

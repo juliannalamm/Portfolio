@@ -1,0 +1,36 @@
+/* scrollytelling container is split in 2 columns */
+.scroll-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: "4rem";
+    min-height: 100vh;
+  }
+  
+  /* left sticky column for visuals */
+  .scroll__graphic {
+    width: 60%;
+    position: sticky;
+    top: 2rem;
+    height: 100vh;
+    overflow: hidden;
+    background: #e3f2fe; /* optional, just to see it clearly */
+  }
+  
+  /* right column for scrolly text steps */
+  .scroll__text {
+    width: 40%;
+    padding: 1rem;
+  }
+  
+  /* each step has some vertical space, background color, etc. */
+  .step {
+    background: #e3f2fe;
+    margin-bottom: 1rem;
+    transition: opacity 0.8s;
+  }
+  
+  /* highlight the active step */
+  .step.is-active {
+    background: #ddeafc;
+  }
+  

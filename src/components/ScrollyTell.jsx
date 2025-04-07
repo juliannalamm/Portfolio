@@ -65,6 +65,7 @@ export const ScrollamaDemo = () => {
 
     // when you scroll to a step, scrollama gives us an index. we loop through every step, if its the current step we highlight it by adding a class
     const handleStepEnter = ({ index }) => {
+      console.log("Entering step index:", index); // debug
       setActiveStep(index); // update the active step state
       // CHECK IF TABLEAU HAS BEEN REACHED
       if (index === 6) {
@@ -83,7 +84,7 @@ export const ScrollamaDemo = () => {
         text: textRef.current,
         step: ".step", // track every element that has class "step"
         offset: 0.5,
-        debug: false,
+        debug: False,
       })
       .onStepEnter(handleStepEnter); // when a new step is entered, run the function above 
 
@@ -117,6 +118,8 @@ export const ScrollamaDemo = () => {
         position: "relative",
         width: "100%",
         maxWidth: "1000px",
+        display: activeStep === 6 ? "block" : "none",
+
         // Fade in if step=6, otherwise keep hidden but still mounted
         
        

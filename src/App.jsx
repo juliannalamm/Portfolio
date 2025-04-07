@@ -8,7 +8,7 @@ import SpermTrackClassification from "./pages/SpermClassificationPage";
 const App = () => {
   return (
     <Router>
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-lightblue min-h-screen">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
