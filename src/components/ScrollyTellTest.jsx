@@ -129,10 +129,10 @@ function MinimalScrollamaDemo() {
                     <div
                         style={{
                             position: "absolute",
-                            top: "10%",
+                            top: "-40%",
                             left: "30%",
-                            width: "40%", // a fraction of the parent's width
-                            height: "40%",
+                            width: "70%", // a fraction of the parent's width
+                            height: "90%",
                         }}
                     >
                         <SpermMotilityAge />
