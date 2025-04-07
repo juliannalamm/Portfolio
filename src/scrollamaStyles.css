@@ -1,50 +1,56 @@
-/* Ensure the scroll container takes full viewport height */
-#scroll {
-  min-height: 100vh;
-}
-
-/* Use flexbox to position the graphic and text side by side */
+/* The main container splits into 2 columns: sticky graphic on the left, text on the right */
 .scroll-container {
   display: flex;
   flex-direction: row;
+  min-height: 100vh;
 }
 
-/* Graphic container on the left */
+/* LEFT: sticky container */
 .scroll__graphic {
-  /* Adjust the width as needed */
   width: 60%;
-  /* Use CSS sticky to have it remain fixed as you scroll */
   position: sticky;
   top: 0;
   height: 100vh;
-  /* overflow: hidden; */
+  /* for one at a time effect, keep hidden overflow so large visuals are clipped 
+     but we'll scale them below so they fit */
+  overflow: hidden;
+  background-color: #e3f2fe; /* optional */
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
 }
 
-/* Ensure the chart fills the graphic container */
-.scroll__graphic.chart {
+/* We'll center anything inside .chart. */
+.chart {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Text container on the right */
+/* We'll ensure images or chart containers never exceed 80% of the panel. */
+.chart img,
+.chart > div {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain; /* scale proportionally */
+}
+
+/* RIGHT: scrolly text container */
 .scroll__text {
   width: 40%;
-  padding: 0rem;
-  overflow: hidden;
-}
-
-/* Styling for each step */
-.step {
-  opacity: 1;
   padding: 1rem;
-  margin-bottom: 1rem;
-  background: #e3f2fe;
-  border-radius: 4px;
-  transition: opacity 0.8s ease; 
 }
 
-/* Highlight active step */
-/* .step.is-active {
-  opacity: 1;
-  background: #e0e0e0;
-} */
+/* Step containers. We'll highlight the active one. */
+.step {
+  background: #e3f2fe;
+  margin-bottom: 1rem;
+  transition: opacity 0.8s;
+}
+
+/* highlight active step */
+.step.is-active {
+  background: #ddeafc;
+}
