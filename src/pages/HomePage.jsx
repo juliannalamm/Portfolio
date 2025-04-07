@@ -1,26 +1,9 @@
 import React from "react";
-import TableauReport from "tableau-react";
 
 import ProjectGrid from "../components/ProjectGrid";
 import { Table } from "lucide-react";
 
 const HomePage = () => {
-
-
-  // Replace with your actual Tableau Public URL
-  const tableauUrl =
-    "https://public.tableau.com/views/Book2_17439735185420/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
-
-
-  const options = {
-    height: 600,
-    width: 1000,
-    hideTabs: true
-    // You can add other vizCreate options here if desired:
-    // https://help.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#vizcreateoptions_record
-  };
-
-
 
   return (
     <div>
@@ -45,15 +28,6 @@ const HomePage = () => {
 
       {/* Project Grid */}
       <ProjectGrid />
-
-      <div className="flex justify-center mt-8">
-        <TableauReport
-          url={tableauUrl}
-             // optional
-          // Overwrite default query params (optional)
-          // The defaults are '?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes'
-        />
-      </div>
 
 
     </div>
