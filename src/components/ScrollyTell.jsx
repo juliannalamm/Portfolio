@@ -31,7 +31,7 @@ export const ScrollamaDemo = () => {
   };
 
   const tableauUrl =
-    "https://public.tableau.com/views/Book2_17439735185420/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link";
+    "https://public.tableau.com/views/Tracks_17439916171590/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link";
 
     const tableauOptions = {
       height: 800,
