@@ -19,9 +19,11 @@ export const ScrollamaDemo = () => {
   const stepRefs = useRef([]); // is an array of individual step elements
 
   const [activeStep, setActiveStep] = useState(0); // state to keep track of the active step
+  const [hasReachedTableau, setHasReachedTableau] = useState(false);
+
 
   const tableauWrapperRef = useRef(null);
-  const [tableauWidth, setTableauWidth] = useState(900); 
+  const [tableauWidth, setTableauWidth] = useState(900);
 
   // as each step of a <div> selement is rendered the function collects them into stepRefs array
   const addToStepRefs = (el) => {
@@ -33,11 +35,11 @@ export const ScrollamaDemo = () => {
   const tableauUrl =
     "https://public.tableau.com/views/Tracks_17439916171590/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link";
 
-    const tableauOptions = {
-      height: 800,
-      width: tableauWidth,
-      hideTabs: false,
-    };
+  const tableauOptions = {
+    height: 800,
+    width: tableauWidth,
+    hideTabs: false,
+  };
 
 
 
@@ -54,19 +56,24 @@ export const ScrollamaDemo = () => {
       scroller.resize();
     };
 
-    // when you scroll to a step, scrollama gives us an index. we loop through every step, if its the current step we highlight it by adding a class
-    const handleStepEnter = ({ index }) => {
-      setActiveStep(index); // update the active step state
-      stepRefs.current.forEach((step, i) => {
-        step.classList.toggle("is-active", i === index); // add class to the active step
-      });
-    };
-
     const updateTableauWidth = () => {
       if (tableauWrapperRef.current) {
         const containerWidth = tableauWrapperRef.current.offsetWidth;
         setTableauWidth(containerWidth);
       }
+    };
+
+    // when you scroll to a step, scrollama gives us an index. we loop through every step, if its the current step we highlight it by adding a class
+    const handleStepEnter = ({ index }) => {
+      setActiveStep(index); // update the active step state
+      // CHECK IF TABLEAU HAS BEEN REACHED
+      if (index === 6) {
+        setHasReachedTableau(true);
+      }
+      // the other steps 
+      stepRefs.current.forEach((step, i) => {
+        step.classList.toggle("is-active", i === index); // add class to the active step
+      });
     };
 
     //hook everything up to scrollama, tells scrollama where everything is
@@ -79,21 +86,51 @@ export const ScrollamaDemo = () => {
         debug: false,
       })
       .onStepEnter(handleStepEnter); // when a new step is entered, run the function above 
+
+
     //initial adjustments 
     handleResize(); // run the resize function to set the height of each step
     updateTableauWidth(); // Set on load
-    
+
     //event listeners 
     window.addEventListener("resize", handleResize); //update when window changes
     window.addEventListener("resize", updateTableauWidth); // Update on resize
- 
+
     return () => {
       window.removeEventListener("resize", handleResize); // cleanup when component removed
-      window.addEventListener("resize", updateTableauWidth); // Update on resize
-
+      window.removeEventListener("resize", updateTableauWidth); // Update on resize
       scroller.destroy(); // tell scrollama to shut down 
     };
   }, [])
+
+  /* Persistent Tableau
+    1. hasReachedTableau = True on step 6
+    2. Once mounted, it never unmounts 
+    3. Fade in/out based on active step 
+  
+  */
+  const tableauEmbed = hasReachedTableau && (
+    <div
+      ref={tableauWrapperRef}
+      className="mx-auto mt-20 pl-16 transition-all duration-500 ease-in-out"
+      style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: "1000px",
+        // Fade in if step=6, otherwise keep hidden but still mounted
+        
+       
+      }}
+    >
+      <TableauReport
+        url={tableauUrl}
+        options={tableauOptions}
+        query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
+      />
+    </div>
+  );
+
+
 
 
   return (
@@ -160,17 +197,15 @@ export const ScrollamaDemo = () => {
               <div className=" mx-auto mt-20" style={{ position: "relative" }}>
                 <TTPOnly />
               </div>
+             /* === STEP 6: Placeholder div, so your layout doesn't break === */
             ) : activeStep === 6 ? (
-              <div 
-              ref={tableauWrapperRef} //  reference the container to measure its width
-              className="mt-20 pl-16 max-w-[1000px] w-full"
+              <div
+                className="mx-auto mt-20 pl-16"
+                style={{ minHeight: "800px" }}
               >
-              <TableauReport
-                url={tableauUrl}
-                options={tableauOptions}
-                query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
-              />
-            </div>
+                {/* This reserved space lines up the step text with the embed below */}
+              </div>
+            
 
 
             ) : (
@@ -178,6 +213,8 @@ export const ScrollamaDemo = () => {
                 <p>No visualization for this step.</p>
               </div>
             )}
+            {tableauEmbed}
+
             {/* end chart graphic */}
           </div>
 
