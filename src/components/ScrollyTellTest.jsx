@@ -13,6 +13,7 @@ import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
 import MotilityOnly from "./Charts/MotilityOnly";
 import CountOnly from "./Charts/CountOnly";
 import TTPOnly from "./Charts/TTPOnly";
+import FertilityWaffleChart from "./Charts/FertilityWaffleChart";
 
 
 
@@ -105,7 +106,12 @@ function MinimalScrollamaDemo() {
         };
     }, []);
 
-    // We'll switch out the visual based on the activeStep
+    // keep johnhappy to johnsad as unanimated. 
+    const shouldAnimate = [2, 3].includes(activeStep);
+
+
+
+
     const renderVisual = () => {
         if (activeStep === 0) {
             return (
@@ -161,12 +167,19 @@ function MinimalScrollamaDemo() {
                     <TTPOnly />
                 </div>
             );
+
         } else if (activeStep === 5) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
+                    <FertilityWaffleChart />
+                </div>
+            );
+        } else if (activeStep === 6) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
                     ref={tableauWrapperRef}
-                    style={{ position: "relative" }}>
+                    style={{ width: '90%', height: '900px' }}>
                     <TableauReport
                         url={tableauUrl}
                         options={tableauOptions}
@@ -174,6 +187,8 @@ function MinimalScrollamaDemo() {
                     />
                 </div>
             );
+            
+            
 
 
         } else {
@@ -194,16 +209,22 @@ function MinimalScrollamaDemo() {
                 <div className="scroll__graphic">
 
                     <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeStep}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.5 }}
-                            className="chart"
-                        >
-                            {renderVisual()}
-                        </motion.div>
+                        {shouldAnimate ? (
+                            <motion.div
+                                key={activeStep}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.5 }}
+                                className="chart"
+                            >
+                                {renderVisual()}
+                            </motion.div>
+                        ) : (
+                            <div className="chart" key={activeStep}>
+                                {renderVisual()}
+                            </div>
+                        )}
                     </AnimatePresence>
                 </div>
 
@@ -247,10 +268,17 @@ function MinimalScrollamaDemo() {
                             TTP
                         </p>
                     </div>
+                     {/* Step 5 */}
+                     <div className="step" ref={addToStepRefs}>
+                        <h2>Step 5: wafflechart!</h2>
+                        <p>
+                            TTP
+                        </p>
+                    </div>
 
-                    {/* Step 5 */}
+                    {/* Step 6 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 5: tableau!</h2>
+                        <h2>Step 6: tableau!</h2>
                         <p>
                             Tableau will go here
                         </p>
