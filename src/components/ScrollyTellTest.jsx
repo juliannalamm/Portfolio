@@ -1,3 +1,9 @@
+/* REMINDER TO SELF, IF THE LAST STEP IS NOT GETTING ACTIVATED AND YOU HAVE
+CHECKED THAT THERE IS NO MISMATCH IN THE STEPS AND GRAPHIC LOGIC, THEN REFRESH THE 
+DAMN PAGE
+*/
+
+
 import React, { useEffect, useRef, useState } from "react";
 import scrollama from "scrollama";
 import TableauReport from "tableau-react";
@@ -14,6 +20,7 @@ import MotilityOnly from "./Charts/MotilityOnly";
 import CountOnly from "./Charts/CountOnly";
 import TTPOnly from "./Charts/TTPOnly";
 import FertilityWaffleChart from "./Charts/FertilityWaffleChart";
+import TrackVideoGrid from "./Charts/TrackVideoGrid";
 
 
 
@@ -187,12 +194,16 @@ function MinimalScrollamaDemo() {
                     />
                 </div>
             );
-            
-            
+        } else if (activeStep === 7) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
+                    <TrackVideoGrid />
+                </div>
+            );
 
 
         } else {
-            // Step 6 and beyond
+            // Step 8 and beyond
             return (
                 <p style={{ textAlign: "center" }}>
                     No more visuals.
@@ -268,8 +279,8 @@ function MinimalScrollamaDemo() {
                             TTP
                         </p>
                     </div>
-                     {/* Step 5 */}
-                     <div className="step" ref={addToStepRefs}>
+                    {/* Step 5 */}
+                    <div className="step" ref={addToStepRefs}>
                         <h2>Step 5: wafflechart!</h2>
                         <p>
                             TTP
@@ -283,12 +294,20 @@ function MinimalScrollamaDemo() {
                             Tableau will go here
                         </p>
                     </div>
+                    {/* Step 7 */}
 
-
-
-                    {/* Step 6 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 6: No more visuals!</h2>
+                        <h2>Step 7: track video !</h2>
+                        <p>
+                            track video
+                        </p>
+                    </div>
+
+
+
+                    {/* Step 8 */}
+                    <div className="step" ref={addToStepRefs}>
+                        <h2>Step 8: No more visuals!</h2>
                         <p>
                             The left side returns "No more visuals."
                         </p>
