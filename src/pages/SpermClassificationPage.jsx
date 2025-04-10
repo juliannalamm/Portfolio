@@ -5,9 +5,9 @@ import MetricViewer from "../components/FeatureEngineering";
 import Clustering from "../components/Clustering";
 import FlowChart from "../components/FlowChart";
 import Dashboard from '../components/Dashboard';
-import ScrollamaDemo from "../components/scrollytell";
 import { Scroll } from "lucide-react";
-import MinimalScrollamaDemo from "../components/ScrollyTellTest";
+import ScrollamaIntro from "../components/ScrollyTellIntro";
+import ScrollamaResults from "../components/ScrollyTellResults";
 
 
 
@@ -34,8 +34,9 @@ const SpermTrackClassification = () => {
       </section>
 
 
-      <MinimalScrollamaDemo />
+      <ScrollamaIntro />
       <Dashboard />
+      <ScrollamaResults />
       {/* <ScrollamaDemo /> */}
       {/* <ScrollamaDemoTwo/> */}
       
