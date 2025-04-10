@@ -14,7 +14,7 @@ const DashboardClusterChart = () => {
 
 
   useEffect(() => {
-    Papa.parse('/data/dashboard_data.csv', {
+    Papa.parse('/data/subkmeans_w_metadata.csv', {
       download: true,
       header: true,
       skipEmptyLines: true,
@@ -31,7 +31,7 @@ const DashboardClusterChart = () => {
 
         const x = pointsData.map(row => parseFloat(row['PCA Feature 1']));
         const y = pointsData.map(row => parseFloat(row['PCA Feature 2']));
-        const clusters = pointsData.map(row => row.Cluster);
+        const clusters = pointsData.map(row => row.Subcluster);
         const participant = pointsData.map(row => row.participant);
         const fid = pointsData.map(row => row.fid);
         const VCL = pointsData.map(row => parseFloat(row.VCL));
@@ -107,7 +107,7 @@ const DashboardClusterChart = () => {
       </div>
       <div className="flex flex-col space-y-6">
   {/* Cluster chart + trajectory viewer side by side on large screens */}
-  <div className="flex flex-col lg:flex-row gap-6">
+  <div className="flex flex-col lg:flex-row bg-transparent gap-6">
     <div className="lg:w-2/3 w-full">
       <ClusteringChart
         chartData={chartData}

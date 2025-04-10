@@ -11,10 +11,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 
-// Example images
+// images
 import JohnImage from "../assets/John.svg";
 import JohnSad from "../assets/JohnSad.svg";
-// Example chart
+// chart
 import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
 import MotilityOnly from "./Charts/MotilityOnly";
 import CountOnly from "./Charts/CountOnly";
@@ -27,6 +27,7 @@ import TrackVideoGrid from "./Charts/TrackVideoGrid";
 
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../simplifiedScrollamaStyles.css";
+import DashboardClusterChart from "./Charts/DashboardClusterChart";
 
 function MinimalScrollamaDemo() {
     const containerRef = useRef(null);
@@ -186,7 +187,7 @@ function MinimalScrollamaDemo() {
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
                     ref={tableauWrapperRef}
-                    style={{ width: '90%', height: '900px' }}>
+                    style={{ width: '90%', height: '1000px' }}>
                     <TableauReport
                         url={tableauUrl}
                         options={tableauOptions}
@@ -198,6 +199,12 @@ function MinimalScrollamaDemo() {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
+                </div>
+            );
+        } else if (activeStep === 8) {
+            return (
+                <div style={{ width: '80%', height: '700px' }}>
+                    <DashboardClusterChart />
                 </div>
             );
 
@@ -302,6 +309,15 @@ function MinimalScrollamaDemo() {
                             track video
                         </p>
                     </div>
+
+
+                    <div className="step" ref={addToStepRefs}>
+                        <h2>Step 8: Dashboard cluster !</h2>
+                        <p>
+                            Dashboard Cluster
+                        </p>
+                    </div>
+
 
 
 

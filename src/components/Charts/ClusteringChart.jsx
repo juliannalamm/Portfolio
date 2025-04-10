@@ -77,17 +77,17 @@ const ClusteringChart = ({ chartData, onHoverFid }) => {
     const dataTraces = [...clusterTraces, centroidsTrace];
 
     return (
-        <div className="w-full h-[600px]">
+        <div className="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] bg-transparent">
             <Plot
                 data={dataTraces}
                 layout={{
-                    width: 850, // or 900, 1000 etc
-                    height: 600,
+                    autosize: true,
                     title: 'K-means Clustering with 2D PCA',
                     xaxis: { title: 'PCA Feature 1' },
                     yaxis: { title: 'PCA Feature 2' },
-                    // autosize: true,
                     margin: { t: 50, l: 30, r: 80, b: 50 },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)',
                 }}
                 config={{ displayModeBar: false }}
                 useResizeHandler={true}
