@@ -33,8 +33,9 @@ const SpermTrackClassification = () => {
         </div>
       </section>
 
-      <Dashboard />
+
       <MinimalScrollamaDemo />
+      <Dashboard />
       {/* <ScrollamaDemo /> */}
       {/* <ScrollamaDemoTwo/> */}
       

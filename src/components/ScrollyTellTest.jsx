@@ -201,21 +201,6 @@ function MinimalScrollamaDemo() {
                     <TrackVideoGrid />
                 </div>
             );
-        } else if (activeStep === 8) {
-            return (
-                <div style={{ width: '80%', height: '700px' }}>
-                    <DashboardClusterChart />
-                </div>
-            );
-
-
-        } else {
-            // Step 8 and beyond
-            return (
-                <p style={{ textAlign: "center" }}>
-                    No more visuals.
-                </p>
-            );
         }
     };
 
@@ -311,29 +296,8 @@ function MinimalScrollamaDemo() {
                     </div>
 
 
-                    <div className="step" ref={addToStepRefs}>
-                        <h2>Step 8: Dashboard cluster !</h2>
-                        <p>
-                            Dashboard Cluster
-                        </p>
-                    </div>
-
-
-
-
-                    {/* Step 8 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <h2>Step 8: No more visuals!</h2>
-                        <p>
-                            The left side returns "No more visuals."
-                        </p>
-                    </div>
-
-
-
-
                     {/* Extra space so Step 2 can actually become active */}
-                    <div style={{ height: "200vh" }} />
+                    <div style={{ height: "0vh" }} />
                 </div>
             </div>
         </section>
