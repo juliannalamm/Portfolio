@@ -15,19 +15,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import JohnImage from "../assets/John.svg";
 import JohnSad from "../assets/JohnSad.svg";
 // chart
-import SpermMotilityAge from "../components/Charts/SpermMotilityChart";
-import MotilityOnly from "./Charts/MotilityOnly";
-import CountOnly from "./Charts/CountOnly";
-import TTPOnly from "./Charts/TTPOnly";
-import FertilityWaffleChart from "./Charts/FertilityWaffleChart";
-import TrackVideoGrid from "./Charts/TrackVideoGrid";
+import SpermMotilityAge from "../src/components/Charts/SpermMotilityChart";
+import MotilityOnly from "../src/components/Charts/MotilityOnly";
+import CountOnly from "../src/components/Charts/CountOnly";
+import TTPOnly from "../src/components/Charts/TTPOnly";
+import FertilityWaffleChart from "../src/components/Charts/FertilityWaffleChart";
+import TrackVideoGrid from "../src/components/Charts/TrackVideoGrid";
 
 
 
 
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../simplifiedScrollamaStyles.css";
-import DashboardClusterChart from "./Charts/DashboardClusterChart";
+import DashboardClusterChart from "../src/components/Charts/DashboardClusterChart";
 
 function MinimalScrollamaDemo() {
     const containerRef = useRef(null);
