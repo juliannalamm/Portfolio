@@ -6,14 +6,11 @@ const clusterColors = {
   1: '#481231',
   2: '#fe4939',
   3: '#ffb347',
-  4: '#6a0dad'
+
 };
 
-const AllClustersFertilityBoxPlot = ({ chartData }) => {
+const AllClustersFertilityBarChartNormalized = ({ chartData }) => {
   const metrics = [
-    'Sperm concentration (x10⁶/mL)',
-    'Total sperm count (x10⁶)',
-    'Ejaculate volume (mL)',
     'Sperm vitality (%)',
     'Normal spermatozoa (%)',
     'Head defects (%)',
@@ -28,29 +25,43 @@ const AllClustersFertilityBoxPlot = ({ chartData }) => {
     'DNA fragmentation index, DFI (%)'
   ];
 
+  // Step 1: Compute global min-max for each metric
+  const metricMinMax = {};
+  metrics.forEach(metric => {
+    const values = chartData[metric]?.filter(v => typeof v === 'number' && !isNaN(v));
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    metricMinMax[metric] = { min, max };
+  });
+
   const clusters = [...new Set(chartData.clusters.map((c) => String(c).trim()))];
   const traces = [];
 
-  metrics.forEach(metric => {
-    clusters.forEach(cluster => {
-      const indices = chartData.clusters
-        .map((c, i) => (String(c).trim() === cluster ? i : null))
-        .filter(i => i !== null);
+  clusters.forEach(cluster => {
+    const indices = chartData.clusters
+      .map((c, i) => (String(c).trim() === cluster ? i : null))
+      .filter(i => i !== null);
 
-      traces.push({
-        y: indices.map(i => chartData[metric]?.[i]),
-        x: Array(indices.length).fill(metric),
-        name: `Cluster ${cluster}`,
-        type: 'box',
-        boxpoints: 'outliers',
-        jitter: 0.3,
-        pointpos: 0,
-        marker: { color: clusterColors[cluster] || '#ccc' },
-        fillcolor: clusterColors[cluster] || '#ccc',
-        legendgroup: `cluster-${cluster}`,
-        showlegend: false,
-        offsetgroup: cluster,
+    const normalizedMeans = metrics.map(metric => {
+      const { min, max } = metricMinMax[metric];
+      const values = indices.map(i => {
+        const raw = chartData[metric][i];
+        return typeof raw === 'number' && !isNaN(raw)
+          ? (raw - min) / (max - min)
+          : null;
       });
+
+      const valid = values.filter(v => typeof v === 'number' && !isNaN(v));
+      const mean = valid.length > 0 ? valid.reduce((a, b) => a + b, 0) / valid.length : null;
+      return mean;
+    });
+
+    traces.push({
+      x: metrics,
+      y: normalizedMeans,
+      type: 'bar',
+      name: `Cluster ${cluster}`,
+      marker: { color: clusterColors[cluster] || '#ccc' }
     });
   });
 
@@ -58,11 +69,12 @@ const AllClustersFertilityBoxPlot = ({ chartData }) => {
     <Plot
       data={traces}
       layout={{
+        barmode: 'group',
         title: {
-          text: 'Fertility Metrics by Cluster',
+          text: 'Normalized Fertility Metrics by Cluster',
           font: { size: 16 },
         },
-        margin: { t: 30, b: 60, l: 40, r: 10 },
+        margin: { t: 30, b: 100, l: 40, r: 10 },
         xaxis: {
           title: 'Metric',
           type: 'category',
@@ -70,10 +82,10 @@ const AllClustersFertilityBoxPlot = ({ chartData }) => {
           automargin: true,
         },
         yaxis: {
-          title: 'Value',
+          title: 'Normalized Mean (0–1)',
+          range: [0, 1],
           automargin: true,
         },
-        boxmode: 'group',
         showlegend: true,
         legend: { orientation: 'h', y: -0.3 },
         paper_bgcolor: 'rgba(0,0,0,0)',
@@ -86,4 +98,4 @@ const AllClustersFertilityBoxPlot = ({ chartData }) => {
   );
 };
 
-export default AllClustersFertilityBoxPlot;
+export default AllClustersFertilityBarChartNormalized;

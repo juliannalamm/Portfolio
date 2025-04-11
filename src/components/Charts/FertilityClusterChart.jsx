@@ -25,9 +25,7 @@ const FertilityClusterChart = () => {
 
         // Fertility metrics only
         const fertilityMetrics = {
-          "Sperm concentration (x10⁶/mL)": [],
-          "Total sperm count (x10⁶)": [],
-          "Ejaculate volume (mL)": [],
+         
           "Sperm vitality (%)": [],
           "Normal spermatozoa (%)": [],
           "Head defects (%)": [],

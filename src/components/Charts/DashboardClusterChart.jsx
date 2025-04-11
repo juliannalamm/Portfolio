@@ -13,7 +13,7 @@ const DashboardClusterChart = () => {
 
   // Parse clustering CSV data
   useEffect(() => {
-    Papa.parse('/data/subkmeans_w_metadata.csv', {
+    Papa.parse('/data/subkmeans_with_fertility_label.csv', {
       download: true,
       header: true,
       skipEmptyLines: true,
@@ -107,6 +107,8 @@ const DashboardClusterChart = () => {
         {/* Cluster chart and trajectory viewer */}
         <div className="flex flex-col lg:flex-row bg-transparent gap-6">
           <div className="lg:w-1/2 w-full">
+            
+            {/* child component */}
             <ClusteringChart
               chartData={chartData}
               onHoverFid={setHoveredFid}
@@ -116,6 +118,7 @@ const DashboardClusterChart = () => {
           </div>
 
           <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col items-center space-y-4">
+            {/* child component */}
             <TrajectoryViewer
               fid={hoveredFid}
               coordinateData={coordinateData}
