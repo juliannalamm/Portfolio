@@ -3,6 +3,7 @@ import Papa from 'papaparse';
 import ClusteringChart from './ClusteringChart';
 import TrajectoryViewer from './TrajectoryViewer';
 import MetricBoxPlot from './MetricBoxPlot';
+import AllClustersBoxPlot from './AllClustersBoxPlot';
 
 const DashboardClusterChart = () => {
   const [chartData, setChartData] = useState(null);
@@ -121,13 +122,16 @@ const DashboardClusterChart = () => {
             />
 
             {/* MetricBoxPlot: always rendered when a cluster is selected */}
-            <div className="h-[400px] max-h-[400px] overflow-hidden">
+            {selectedCluster !== null ? (
               <MetricBoxPlot
-                key={`metric-box-${selectedCluster ?? 'all'}`}
+                key={`metric-box-${selectedCluster}`}
                 chartData={chartData}
-                selectedCluster={selectedCluster} // null means all clusters
+                selectedCluster={selectedCluster}
               />
-            </div>
+            ) : (
+              <AllClustersBoxPlot chartData={chartData} />
+            )}
+
 
 
           </div>

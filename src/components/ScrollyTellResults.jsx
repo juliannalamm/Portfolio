@@ -64,6 +64,7 @@ function ScrollamaResults() {
             })
             .onStepEnter(handleStepEnter);
 
+            
         // run once on load
         handleResize();
         window.addEventListener("resize", handleResize);

@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import Plot from 'react-plotly.js';
 
+
 const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
   if (!chartData) return <div>Loading metrics...</div>;
 
