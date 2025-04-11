@@ -31,7 +31,7 @@ const DashboardClusterChart = () => {
         const x = pointsData.map(row => parseFloat(row['PCA Feature 1']));
         const y = pointsData.map(row => parseFloat(row['PCA Feature 2']));
         // Note: the CSV column for cluster is "Subcluster" as a string.
-        const clusters = pointsData.map(row => row.Subcluster);
+        const clusters = pointsData.map(row => row.Subcluster ? row.Subcluster.trim() : "");
         const participant = pointsData.map(row => row.participant);
         const fid = pointsData.map(row => row.fid);
         const VCL = pointsData.map(row => parseFloat(row.VCL));
@@ -43,11 +43,10 @@ const DashboardClusterChart = () => {
         // For columns with spaces, store them exactly so that MetricBoxPlot can use bracket notation.
         const ALH_Mean = pointsData.map(row => parseFloat(row["ALH Mean"]));
         const ALH_Max = pointsData.map(row => parseFloat(row["ALH Max"]));
-        const centX = centroidsData.map(row => parseFloat(row['PCA Feature 1']));
-        const centY = centroidsData.map(row => parseFloat(row['PCA Feature 2']));
+      
 
-        setChartData({ 
-          x, y, clusters, participant, fid, centX, centY, 
+        setChartData({
+          x, y, clusters, participant, fid,
           VCL, VSL, VAP, LIN, WOB, STR,
           "ALH Mean": ALH_Mean,
           "ALH Max": ALH_Max
@@ -123,7 +122,7 @@ const DashboardClusterChart = () => {
             {selectedCluster !== null && (
               <MetricBoxPlot
                 chartData={chartData}
-                selectedCluster={selectedCluster} 
+                selectedCluster={selectedCluster}
               />
             )}
           </div>

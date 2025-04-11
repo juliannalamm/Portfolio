@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import Plot from 'react-plotly.js';
 
 // PLOTLY RENDERING COMPONENT 
-const ClusteringChart = ({ chartData, onHoverFid }) => {
+const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
 
     // Define a color for each cluster (adjust these colors as desired)
     const clusterColors = {
@@ -15,17 +15,17 @@ const ClusteringChart = ({ chartData, onHoverFid }) => {
 
 
     // Create a trace for each cluster
-    const clusterTraces = uniqueClusters.map(cluster => {
-        // Find indices for this cluster
+    const filteredClusters = selectedCluster !== null && selectedCluster !== ""
+        ? [selectedCluster]  // only show this cluster
+        : [...new Set(chartData.clusters)];  // show all if none selected
+
+    const clusterTraces = filteredClusters.map(cluster => {
         const indices = chartData.clusters
-            .map((c, i) => (c == cluster ? i : null)) // for each element in the clusters array
-            .filter(i => i !== null); // keep the index if it matches the current cluster, otherwise return null and filter out the nulls
+            .map((c, i) => (String(c).trim() === String(cluster).trim() ? i : null))
+            .filter(i => i !== null);
 
-        const x = indices.map(i => chartData.x[i]); // extract the x coordinates for the selected indices 
-        const y = indices.map(i => chartData.y[i]); // extract the y coordinates for the selected indices
-
-
-        // Build a hover text string for each point using template literals:
+        const x = indices.map(i => chartData.x[i]);
+        const y = indices.map(i => chartData.y[i]);
         const hoverText = indices.map(i =>
             `Cluster ${cluster}<br>Participant: ${chartData.participant[i]}<br>FID: ${chartData.fid[i]}`
         );
