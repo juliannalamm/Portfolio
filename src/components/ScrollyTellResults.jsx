@@ -58,13 +58,13 @@ function ScrollamaResults() {
             .setup({
                 container: containerRef.current, // main scrolly container
                 text: textRef.current,          // the container with .step
-                step: ".step",                  // each step class
+                step: ".results-step",                  // each step class
                 offset: 0.5,                    // trigger in the middle of the viewport
                 debug: false,                    // show debug lines
             })
             .onStepEnter(handleStepEnter);
 
-            
+
         // run once on load
         handleResize();
         window.addEventListener("resize", handleResize);
@@ -148,10 +148,10 @@ function ScrollamaResults() {
 
     return (
         <section id="scroll" ref={containerRef}>
-            <div className="scroll-container">
+            <div className="scroll-results-container">
 
                 {/* LEFT: sticky graphic panel */}
-                <div className="scroll__graphic">
+                <div className="scroll-results__graphic">
 
                     <AnimatePresence mode="wait">
                         {shouldAnimate ? (
@@ -174,49 +174,49 @@ function ScrollamaResults() {
                 </div>
 
                 {/* RIGHT: scrolly text steps */}
-                <div className="scroll__text" ref={textRef}>
+                <div className="results-scroll__text" ref={textRef}>
                     {/* Step 0 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h1>Step 0: John’s Intro</h1>
                         
                     </div>
 
                     {/* Step 1 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 1: John Sad + Chart</h2>
                         
                     </div>
 
                     {/* Step 2 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 2: Motility!</h2>
                        
                     </div>
                     {/* Step 3 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 3: Count!</h2>
                       
                     </div>
 
                     {/* Step 4 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 4: TTP!</h2>
                        
                     </div>
                     {/* Step 5 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 5: wafflechart!</h2>
                         
                     </div>
 
                     {/* Step 6 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 6: tableau!</h2>
                        
                     </div>
                     {/* Step 7 */}
 
-                    <div className="step" ref={addToStepRefs}>
+                    <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 7: track video !</h2>
                        
                     </div>
