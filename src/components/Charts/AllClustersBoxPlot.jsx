@@ -26,7 +26,7 @@ const AllClustersBoxPlot = ({ chartData }) => {
         type: 'box',
         boxpoints: 'outliers',
         jitter: 0.3,
-        pointpos: -1.8,
+        pointpos:0,
         marker: { color: clusterColors[cluster] },
         fillcolor: clusterColors[cluster],
         legendgroup: `cluster-${cluster}`,
@@ -43,7 +43,7 @@ const AllClustersBoxPlot = ({ chartData }) => {
         title: {
           font: { size: 16 },
         },
-        margin: { t: 30, b: 60, l: 40, r: 20 },
+        margin: { t: 10, b: 10, l: 10, r: 5 },
         xaxis: {
           title: 'Metric',
           type: 'category',

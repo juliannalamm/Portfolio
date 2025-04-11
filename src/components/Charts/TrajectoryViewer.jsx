@@ -5,7 +5,7 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
   // Default view (before hover)
   if (!fid) {
     return (
-      <div className="w-[300px] h-[200px] relative rounded-lg overflow-hidden">
+      <div className="w-[300px] h-[300px] relative rounded-lg overflow-hidden">
         <video
           src="/videos/tracks/straightline.mp4"
           autoPlay
@@ -44,7 +44,7 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
   const y = rawY.map(val => val - centerY);
 
   return (
-    <div className="w-[300px] h-[200px] relative rounded-lg overflow-hidden bg-white">
+    <div className="w-[300px] h-[300px] relative rounded-lg overflow-hidden bg-white">
       <Plot
         data={[{
           x,

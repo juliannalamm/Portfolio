@@ -22,10 +22,10 @@ const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
         y: indices.map(i => chartData[metric][i]),
         name: metric,
         type: 'box',
-        boxpoints: 'all',
-        jitter: 0.3,
-        pointpos: -1.8,
-        fillcolor: 'rgba(200, 200, 200, 0.5)',
+        boxpoints: 'outliers',
+        jitter: -1,
+        pointpos: 0,
+        fillcolor: 'rgba(200, 200, 200)',
       });
     });
   } else {
@@ -41,9 +41,9 @@ const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
           name: `Cluster ${cluster} - ${metric}`,
           type: 'box',
           boxpoints: 'outliers',
-          jitter: 0.3,
-          pointpos: -1.8,
-          fillcolor: 'rgba(200, 200, 200, 0.5)',
+          jitter: 0,
+          pointpos: 0,
+          fillcolor: 'rgba(200, 200, 200)',
         });
       });
     });
@@ -54,10 +54,9 @@ const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
       data={traces}
       layout={{
         title: {
-          text: selectedCluster ? `Metric Distributions for Cluster ${selectedCluster}` : 'Overview of Metrics by Cluster',
           font: { size: 16 },
         },
-        margin: { t: 30, b: 60, l: 40, r: 20 },
+        margin: { t: 20, b: 10, l: 30, r: 10 },
         xaxis: {
           title: selectedCluster ? 'Metrics' : 'Cluster-Metric',
           tickangle: -45,
