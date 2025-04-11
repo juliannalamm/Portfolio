@@ -8,7 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../ScrollamastylesResults.css";
-import FertilityClusterChart from "./Charts/FertilityClusterChart";
+import FertilityClusterChart from "./Charts/FertilityClusterChart"; // change toggle to fertility cluster chart if issue with rendering 
+import FertilityChartToggle from './Charts/FertilityChartToggle';
+
 
 function ScrollamaResults() {
     const containerRef = useRef(null);
@@ -91,7 +93,7 @@ function ScrollamaResults() {
 
                 <div style={{ position: "relative" }}>
                     <div style={{ position: "relative", width: '100%', height: '100%' }}>
-                        <FertilityClusterChart />
+                        <FertilityChartToggle />
                     </div>
 
                 </div>
