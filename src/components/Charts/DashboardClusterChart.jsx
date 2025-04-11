@@ -121,15 +121,15 @@ const DashboardClusterChart = () => {
             />
 
             {/* MetricBoxPlot: always rendered when a cluster is selected */}
-            {selectedCluster !== null && (
-              <div className="h-[400px] max-h-[400px] overflow-hidden">
-                <MetricBoxPlot
-                  key={`metric-box-${selectedCluster}`}
-                  chartData={chartData}
-                  selectedCluster={selectedCluster}
-                />
-              </div>
-            )}
+            <div className="h-[400px] max-h-[400px] overflow-hidden">
+              <MetricBoxPlot
+                key={`metric-box-${selectedCluster ?? 'all'}`}
+                chartData={chartData}
+                selectedCluster={selectedCluster} // null means all clusters
+              />
+            </div>
+
+
           </div>
 
         </div>

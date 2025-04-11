@@ -1,72 +1,81 @@
-import React from 'react';
+import { memo } from 'react';
 import Plot from 'react-plotly.js';
 
-const MetricBoxPlot = ({ chartData, selectedCluster }) => {
-    if (!chartData) return <div>Loading metrics...</div>;
+const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
+  if (!chartData) return <div>Loading metrics...</div>;
 
-    const indices = selectedCluster
-        ? chartData.clusters
-            .map((c, i) => (String(c).trim() === String(selectedCluster).trim() ? i : null))
-            .filter(i => i !== null)
-        : chartData.clusters.map((_, i) => i);
+  const clusterLabels = [...new Set(chartData.clusters.map(c => String(c).trim()))];
 
-    const metrics = {
-        VCL: indices.map(i => chartData.VCL[i]),
-        VAP: indices.map(i => chartData.VAP[i]),
-        VSL: indices.map(i => chartData.VSL[i]),
-        LIN: indices.map(i => chartData.LIN[i]),
-        WOB: indices.map(i => chartData.WOB[i]),
-        STR: indices.map(i => chartData.STR[i]),
-        "ALH Max": indices.map(i => chartData["ALH Max"][i]),
-    };
+  const metricsKeys = ['VCL', 'VAP', 'VSL', 'LIN', 'WOB', 'STR', 'ALH Max'];
 
-    const traces = Object.keys(metrics).map(metricKey => ({
-        y: metrics[metricKey],
-        name: metricKey,
+  const traces = [];
+
+  if (selectedCluster !== null && selectedCluster !== "") {
+    // Filter for selected cluster
+    const indices = chartData.clusters
+      .map((c, i) => (String(c).trim() === String(selectedCluster).trim() ? i : null))
+      .filter(i => i !== null);
+
+    metricsKeys.forEach(metric => {
+      traces.push({
+        y: indices.map(i => chartData[metric][i]),
+        name: metric,
         type: 'box',
         boxpoints: 'all',
         jitter: 0.3,
         pointpos: -1.8,
         fillcolor: 'rgba(200, 200, 200, 0.5)',
-    }));
+      });
+    });
+  } else {
+    // All clusters: one trace per cluster per metric
+    clusterLabels.forEach(cluster => {
+      const indices = chartData.clusters
+        .map((c, i) => (String(c).trim() === cluster ? i : null))
+        .filter(i => i !== null);
 
-    return (
-        <Plot
-            data={traces}
-            layout={{
-                title: {
-                    text: `Metric Distributions${selectedCluster ? ` for Cluster ${selectedCluster}` : ''}`,
-                    font: { size: 16 },
-                },
-                margin: { t: 30, b: 40, l: 40, r: 20 },
-                xaxis: {
-                    title: 'Metrics',
-                    tickangle: -45,
-                    automargin: true,
-                },
-                yaxis: {
-                    title: 'Value',
-                    automargin: true,
-                },
-                boxmode: 'group',
-                paper_bgcolor: 'rgba(0,0,0,0)', // transparent outer container
-                plot_bgcolor: 'rgba(0,0,0,0)',  // transparent plotting area
-                showlegend: false,
-                transition: {
-                    duration: 500,
-                    easing: 'cubic-in-out',
-                },
-            }}
-            config={{ responsive: true }}
-            style={{ width: '100%', height: '100%' }}
-            useResizeHandler
-        />
-    );
-};
+      metricsKeys.forEach(metric => {
+        traces.push({
+          y: indices.map(i => chartData[metric][i]),
+          name: `Cluster ${cluster} - ${metric}`,
+          type: 'box',
+          boxpoints: 'outliers',
+          jitter: 0.3,
+          pointpos: -1.8,
+          fillcolor: 'rgba(200, 200, 200, 0.5)',
+        });
+      });
+    });
+  }
 
-// Custom memo comparison: only re-render when selectedCluster changes
-function areEqual(prevProps, nextProps) {
-    return prevProps.selectedCluster === nextProps.selectedCluster;
-}
+  return (
+    <Plot
+      data={traces}
+      layout={{
+        title: {
+          text: selectedCluster ? `Metric Distributions for Cluster ${selectedCluster}` : 'Overview of Metrics by Cluster',
+          font: { size: 16 },
+        },
+        margin: { t: 30, b: 60, l: 40, r: 20 },
+        xaxis: {
+          title: selectedCluster ? 'Metrics' : 'Cluster-Metric',
+          tickangle: -45,
+          automargin: true,
+        },
+        yaxis: {
+          title: 'Value',
+          automargin: true,
+        },
+        boxmode: 'group',
+        showlegend: false,
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+      }}
+      config={{ responsive: true }}
+      style={{ width: '100%', height: '100%' }}
+      useResizeHandler={true}
+    />
+  );
+});
 
-export default React.memo(MetricBoxPlot, areEqual);
+export default MetricBoxPlot;
