@@ -5,8 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 
+
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../ScrollamastylesResults.css";
+import FertilityClusterChart from "./Charts/FertilityClusterChart";
 
 function ScrollamaResults() {
     const containerRef = useRef(null);
@@ -23,9 +25,9 @@ function ScrollamaResults() {
 
     // active step index
     const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
-    
 
-   
+
+
 
 
     useEffect(() => {
@@ -39,7 +41,7 @@ function ScrollamaResults() {
             });
             scroller.resize();
         };
-       
+
 
         // On step enter, we set the active step
         const handleStepEnter = ({ index }) => {
@@ -88,46 +90,44 @@ function ScrollamaResults() {
             return (
 
                 <div style={{ position: "relative" }}>
-                   
+                    <div style={{ position: "relative", width: '100%', height: '100%' }}>
+                        <FertilityClusterChart />
+                    </div>
+
                 </div>
             );
         } else if (activeStep === 1) {
             // John Sad + Chart
             return (
                 <div style={{ position: "relative" }}>
-                   
-                    {/* Absolutely positioned chart overlay – ensure it's sized to fit */}
-                    <div
-                       
-                    >
-                    </div>
+
                 </div>
             );
         } else if (activeStep === 2) {
-       
+
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                 
+
                 </div>
             );
         } else if (activeStep === 3) {
-            
+
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                   
+
                 </div>
             );
         } else if (activeStep === 4) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                   
+
                 </div>
             );
 
         } else if (activeStep === 5) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                    
+
                 </div>
             );
         } else if (activeStep === 6) {
@@ -135,7 +135,7 @@ function ScrollamaResults() {
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
                     style={{ width: '90%', height: '1000px' }}>
-                
+
                 </div>
             );
         } else if (activeStep === 7) {
@@ -178,47 +178,47 @@ function ScrollamaResults() {
                     {/* Step 0 */}
                     <div className="results-step" ref={addToStepRefs}>
                         <h1>Step 0: John’s Intro</h1>
-                        
+
                     </div>
 
                     {/* Step 1 */}
                     <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 1: John Sad + Chart</h2>
-                        
+
                     </div>
 
                     {/* Step 2 */}
                     <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 2: Motility!</h2>
-                       
+
                     </div>
                     {/* Step 3 */}
                     <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 3: Count!</h2>
-                      
+
                     </div>
 
                     {/* Step 4 */}
                     <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 4: TTP!</h2>
-                       
+
                     </div>
                     {/* Step 5 */}
                     <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 5: wafflechart!</h2>
-                        
+
                     </div>
 
                     {/* Step 6 */}
                     <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 6: tableau!</h2>
-                       
+
                     </div>
                     {/* Step 7 */}
 
                     <div className="results-step" ref={addToStepRefs}>
                         <h2>Step 7: track video !</h2>
-                       
+
                     </div>
 
 
