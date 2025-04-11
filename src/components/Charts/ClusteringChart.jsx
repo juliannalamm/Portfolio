@@ -6,7 +6,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
 
     // Define a color for each cluster (adjust these colors as desired)
     const clusterColors = {
-        0: '#bfdaf7', // blue
+        0: '#4fa0f7', // blue
         1: '#481231', // red-orange
         2: '#fe4939'  // green
     };
@@ -85,7 +85,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
                     title: 'K-means Clustering with 2D PCA',
                     xaxis: { title: 'PCA Feature 1' },
                     yaxis: { title: 'PCA Feature 2' },
-                    margin: { t: 50, l: 30, r: 80, b: 50 },
+                    margin: { t: 50, l: 0, r: 80, b: 0 },
                     paper_bgcolor: 'rgba(0,0,0,0)',
                     plot_bgcolor: 'rgba(0,0,0,0)',
                 }}

@@ -3,7 +3,7 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 
 const clusterColors = {
-    0: '#bfdaf7', // blue
+    0: '#4fa0f7', // blue
     1: '#481231', // red-orange
     2: '#fe4939'  // green
 };
