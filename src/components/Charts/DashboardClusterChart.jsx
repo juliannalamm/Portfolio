@@ -114,7 +114,7 @@ const DashboardClusterChart = () => {
             />
           </div>
 
-          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col space-y-4">
+          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col items-center space-y-4">
             <TrajectoryViewer
               fid={hoveredFid}
               coordinateData={coordinateData}
@@ -124,6 +124,7 @@ const DashboardClusterChart = () => {
             {selectedCluster !== null && (
               <div className="h-[400px] max-h-[400px] overflow-hidden">
                 <MetricBoxPlot
+                  key={`metric-box-${selectedCluster}`}
                   chartData={chartData}
                   selectedCluster={selectedCluster}
                 />
