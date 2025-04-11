@@ -41,14 +41,12 @@ const DashboardClusterChart = () => {
         const WOB = pointsData.map(row => parseFloat(row.WOB));
         const STR = pointsData.map(row => parseFloat(row.STR));
         // For columns with spaces, store them exactly so that MetricBoxPlot can use bracket notation.
-        const ALH_Mean = pointsData.map(row => parseFloat(row["ALH Mean"]));
         const ALH_Max = pointsData.map(row => parseFloat(row["ALH Max"]));
-      
+
 
         setChartData({
           x, y, clusters, participant, fid,
           VCL, VSL, VAP, LIN, WOB, STR,
-          "ALH Mean": ALH_Mean,
           "ALH Max": ALH_Max
         });
       },
@@ -90,10 +88,13 @@ const DashboardClusterChart = () => {
         <select
           id="cluster-select"
           value={selectedCluster || ""}
-          onChange={(e) => setSelectedCluster(e.target.value.trim())}
+          onChange={(e) => {
+            const value = e.target.value;
+            setSelectedCluster(value === "ALL" ? null : value.trim());
+          }}
           className="p-2 border rounded"
         >
-          <option value="" disabled>Select a cluster</option>
+          <option value="ALL">All Clusters</option>
           {uniqueClusters.map(cluster => (
             <option key={cluster} value={cluster}>
               Cluster {cluster}
@@ -104,7 +105,7 @@ const DashboardClusterChart = () => {
       <div className="flex flex-col space-y-6">
         {/* Cluster chart and trajectory viewer */}
         <div className="flex flex-col lg:flex-row bg-transparent gap-6">
-          <div className="lg:w-2/3 w-full">
+          <div className="lg:w-1/2 w-full">
             <ClusteringChart
               chartData={chartData}
               onHoverFid={setHoveredFid}
@@ -113,19 +114,23 @@ const DashboardClusterChart = () => {
             />
           </div>
 
-          <div className="lg:w-1/3 w-full max-w-[300px] ml-4 flex flex-col space-y-4">
+          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col space-y-4">
             <TrajectoryViewer
               fid={hoveredFid}
               coordinateData={coordinateData}
             />
-            {/* MetricBoxPlot: now always rendered when a cluster is selected (or even all data if none selected) */}
+
+            {/* MetricBoxPlot: always rendered when a cluster is selected */}
             {selectedCluster !== null && (
-              <MetricBoxPlot
-                chartData={chartData}
-                selectedCluster={selectedCluster}
-              />
+              <div className="h-[400px] max-h-[400px] overflow-hidden">
+                <MetricBoxPlot
+                  chartData={chartData}
+                  selectedCluster={selectedCluster}
+                />
+              </div>
             )}
           </div>
+
         </div>
       </div>
     </div>

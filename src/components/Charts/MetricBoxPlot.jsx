@@ -21,7 +21,6 @@ const MetricBoxPlot = ({ chartData, selectedCluster }) => {
         LIN: indices.map(i => chartData.LIN[i]),
         WOB: indices.map(i => chartData.WOB[i]),
         STR: indices.map(i => chartData.STR[i]),
-        "ALH Mean": indices.map(i => chartData["ALH Mean"][i]),
         "ALH Max": indices.map(i => chartData["ALH Max"][i]),
     };
 
@@ -33,19 +32,40 @@ const MetricBoxPlot = ({ chartData, selectedCluster }) => {
         boxpoints: 'all',  // Show individual data points
         jitter: 0.3,
         pointpos: -1.8,
+        fillcolor: 'rgba(200, 200, 200, 0.5)',
     }));
 
     return (
         <Plot
             data={traces}
             layout={{
-                title: `Metric Distributions${selectedCluster ? ` for Cluster ${selectedCluster}` : ''}`,
-                xaxis: { title: 'Metrics' },
-                yaxis: { title: 'Value' },
+                title: {
+                    text: `Metric Distributions${selectedCluster ? ` for Cluster ${selectedCluster}` : ''}`,
+                    font: { size: 16 },
+                    pad: { b: 10 }
+                },
+                margin: {
+                    t: 30,  // top
+                    b: 40,  // bottom
+                    l: 40,  // left
+                    r: 20   // right
+                },
+                xaxis: {
+                    title: 'Metrics',
+                    tickangle: -45,
+                    automargin: true
+                },
+                yaxis: {
+                    title: 'Value',
+                    automargin: true
+                },
                 boxmode: 'group',
-                height: 400,
+                
             }}
+
             config={{ responsive: true }}
+            style={{ width: '100%', height: '100%' }}
+            useResizeHandler={true}
         />
     );
 };
