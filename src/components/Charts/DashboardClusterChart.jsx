@@ -1,8 +1,8 @@
 import React, { useState, useEffect, use } from 'react';
 import Papa from 'papaparse';
 import ClusteringChart from './ClusteringChart';
-import AverageBarChart from './AverageBarChart';
 import TrajectoryViewer from './TrajectoryViewer';
+import MetricBoxPlot from './MetricBoxPlot';
 
 
 const DashboardClusterChart = () => {
@@ -35,10 +35,18 @@ const DashboardClusterChart = () => {
         const participant = pointsData.map(row => row.participant);
         const fid = pointsData.map(row => row.fid);
         const VCL = pointsData.map(row => parseFloat(row.VCL));
+        const VSL = pointsData.map(row => parseFloat(row.VSL));
+        const VAP = pointsData.map(row => parseFloat(row.VAP));
+        const LIN = pointsData.map(row => parseFloat(row.LIN));
+        const WOB = pointsData.map(row => parseFloat(row.WOB));
+        const STR = pointsData.map(row => parseFloat(row.STR));
+        const ALH_Mean = pointsData.map(row => parseFloat(row["ALH Mean"]));
+        const ALH_Max = pointsData.map(row => parseFloat(row["ALH Max"]));
         const centX = centroidsData.map(row => parseFloat(row['PCA Feature 1']));
         const centY = centroidsData.map(row => parseFloat(row['PCA Feature 2']));
 
-        setChartData({ x, y, clusters, participant, fid, VCL, centX, centY });
+        setChartData({ x, y, clusters, participant, fid, centX, centY, VCL, VSL, VAP, LIN, WOB, STR,   "ALH Mean": ALH_Mean,
+        "ALH Max": ALH_Max });
       },
       error: (err) => console.error("Error parsing CSV:", err)
     });
@@ -46,7 +54,7 @@ const DashboardClusterChart = () => {
 
   //load coordintate data (trajectories)
   useEffect(() => {
-    Papa.parse('/data/initialcluster_w_bb.csv', {
+    Papa.parse('/data/subclustered_bb.csv', {
       download: true,
       header: true,
       skipEmptyLines: true,
@@ -106,33 +114,33 @@ const DashboardClusterChart = () => {
         </select>
       </div>
       <div className="flex flex-col space-y-6">
-  {/* Cluster chart + trajectory viewer side by side on large screens */}
-  <div className="flex flex-col lg:flex-row bg-transparent gap-6">
-    <div className="lg:w-2/3 w-full">
-      <ClusteringChart
-        chartData={chartData}
-        onHoverFid={setHoveredFid}
-        selectedCluster={selectedCluster}
-        coordinateData={coordinateData}
-      />
-    </div>
+        {/* Cluster chart + trajectory viewer side by side on large screens */}
+        <div className="flex flex-col lg:flex-row bg-transparent gap-6">
+          <div className="lg:w-2/3 w-full">
+            <ClusteringChart
+              chartData={chartData}
+              onHoverFid={setHoveredFid}
+              selectedCluster={selectedCluster}
+              coordinateData={coordinateData}
+            />
+          </div>
 
-  <div className="lg:w-1/3 w-full max-w-[300px] ml-4 flex flex-col space-y-4">
-      <TrajectoryViewer
-        fid={hoveredFid}
-        coordinateData={coordinateData}
-      />
-  {/* Average bar chart below both */}
-  {selectedCluster !== null && averageMetrics && (
-      <AverageBarChart
-        averageMetrics={averageMetrics}
-        selectedCluster={selectedCluster}
-      />
-    )}
+          <div className="lg:w-1/3 w-full max-w-[300px] ml-4 flex flex-col space-y-4">
+            <TrajectoryViewer
+              fid={hoveredFid}
+              coordinateData={coordinateData}
+            />
+            {/* Average bar chart below both */}
+            {selectedCluster !== null && averageMetrics && (
+              <MetricBoxPlot
+                chartData={chartData}
+                selectedCluster={selectedCluster} />
+
+            )}
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-</div>
-</div>
   );
 }
 
