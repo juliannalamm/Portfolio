@@ -4,16 +4,14 @@ import Plot from 'react-plotly.js';
 const MetricBoxPlot = ({ chartData, selectedCluster }) => {
   if (!chartData) return <div>Loading metrics...</div>;
   
-  // Determine which indices to include:
-  // If no cluster is selected, use all indices; otherwise, only the ones matching the selected cluster.
-  const indices = selectedCluster !== null && selectedCluster !== ""
+  // If a cluster is selected, filter indices; otherwise, use all indices.
+  const indices = (selectedCluster && selectedCluster !== "")
     ? chartData.clusters
-        .map((c, i) => (c === selectedCluster ? i : null))
+        .map((c, i) => (String(c).trim() === String(selectedCluster).trim() ? i : null))
         .filter(i => i !== null)
     : chartData.clusters.map((_, i) => i);
 
-  // For each metric, get only the values for the indices
-  // Make sure chartData includes these keys.
+  // Create a metrics object – note that keys "ALH Mean" and "ALH Max" match how you stored them.
   const metrics = {
     VCL: indices.map(i => chartData.VCL[i]),
     VAP: indices.map(i => chartData.VAP[i]),
@@ -30,7 +28,7 @@ const MetricBoxPlot = ({ chartData, selectedCluster }) => {
     y: metrics[metricKey],
     name: metricKey,
     type: 'box',
-    boxpoints: 'all',  // show all points within the box
+    boxpoints: 'all',  // Show individual data points
     jitter: 0.3,
     pointpos: -1.8,
   }));
@@ -39,10 +37,10 @@ const MetricBoxPlot = ({ chartData, selectedCluster }) => {
     <Plot
       data={traces}
       layout={{
-        title: `Metric Distributions ${selectedCluster ? `for Cluster ${selectedCluster}` : ''}`,
+        title: `Metric Distributions${selectedCluster ? ` for Cluster ${selectedCluster}` : ''}`,
         xaxis: { title: 'Metrics' },
         yaxis: { title: 'Value' },
-        boxmode: 'group',  // group boxes together
+        boxmode: 'group',
         height: 400,
       }}
       config={{ responsive: true }}
