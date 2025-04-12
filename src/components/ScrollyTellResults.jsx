@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../ScrollamastylesResults.css";
-import FertilityClusterChart from "./Charts/FertilityClusterChart"; // change toggle to fertility cluster chart if issue with rendering 
 import FertilityChartToggle from './Charts/FertilityChartToggle';
 
 
