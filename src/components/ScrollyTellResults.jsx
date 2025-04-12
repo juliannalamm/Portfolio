@@ -10,6 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import "../ScrollamastylesResults.css";
 import FertilityChartToggle from './Charts/FertilityChartToggle';
 import SpermWaffle from './Charts/SpermWaffle';
+import SyntheticClusterChartPanel from './Charts/SyntheticClusterChartPanel';
+
 
 
 
@@ -106,9 +108,9 @@ function ScrollamaResults() {
         } else if (activeStep === 2) {
 
             return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
+                <div style={{ width: '100%', minHeight: '600px' }}>
+                <SyntheticClusterChartPanel />
+              </div>
             );
         } else if (activeStep === 3) {
 
