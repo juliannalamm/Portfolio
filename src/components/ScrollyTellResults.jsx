@@ -9,6 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../ScrollamastylesResults.css";
 import FertilityChartToggle from './Charts/FertilityChartToggle';
+import SpermWaffle from './Charts/SpermWaffle';
+
 
 
 function ScrollamaResults() {
@@ -97,9 +99,9 @@ function ScrollamaResults() {
         } else if (activeStep === 1) {
             // John Sad + Chart
             return (
-                <div style={{ position: "relative" }}>
-
-                </div>
+                <div style={{ width: '100%', minHeight: '600px' }}>
+                <SpermWaffle />
+              </div>
             );
         } else if (activeStep === 2) {
 
