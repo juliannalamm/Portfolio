@@ -51,13 +51,12 @@ const FertilityChartToggle = () => {
 
   return (
 
-    <section className="w-full min-h-screen bg-lightblue flex flex-col items-center justify-center py-16">
+    <section className="w-full min-h-screen bg-lightblue flex flex-col items-center justify-center">
     <div className="w-full max-w-screen-xl mx-auto bg-transparent p-8">
   
       <div className="w-full mb-6">
-        <label className="font-medium text-lg block mb-2">Normalization:</label>
         <select
-          className="border p-2 rounded bg-white text-black w-full sm:w-64"
+          className="border p-2 rounded bg-transparent text-black w-full sm:w-64"
           value={normalization}
           onChange={(e) => setNormalization(e.target.value)}
         >

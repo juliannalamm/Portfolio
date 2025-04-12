@@ -94,7 +94,7 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
               automargin: true,
             },
             showlegend: true,
-            legend: { orientation: 'h', y: -0.3 },
+            legend: { y: 0.4 },
             paper_bgcolor: 'rgba(0,0,0,0)',
             plot_bgcolor: 'rgba(0,0,0,0)',
           }}
