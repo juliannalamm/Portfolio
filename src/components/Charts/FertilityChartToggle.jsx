@@ -4,7 +4,7 @@ import FertilityChart from './FertilityChart';
 
 const FertilityChartToggle = () => {
   const [chartData, setChartData] = useState(null);
-  const [normalization, setNormalization] = useState('zscore');
+  const [normalization, setNormalization] = useState('minmax');
 
   useEffect(() => {
     Papa.parse('/data/subkmeans_with_fertility_label.csv', {
@@ -60,8 +60,9 @@ const FertilityChartToggle = () => {
           value={normalization}
           onChange={(e) => setNormalization(e.target.value)}
         >
-          <option value="zscore">Z-Score</option>
           <option value="minmax">Min-Max</option>
+          <option value="zscore">Z-Score</option>
+          
         </select>
       </div>
   

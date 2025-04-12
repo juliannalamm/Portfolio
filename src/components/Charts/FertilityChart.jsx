@@ -79,7 +79,6 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
           layout={{
             barmode: 'group',
             title: {
-              text: `${normalization === 'zscore' ? 'Z-Score' : 'Min-Max'} Normalized Fertility Metrics by Cluster`,
               font: { size: 16 },
             },
             margin: { t: 30, b: 100, l: 40, r: 10 },
@@ -94,7 +93,7 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
               automargin: true,
             },
             showlegend: true,
-            legend: { y: 0.4 },
+            legend: { orientation: 'h', y: 1.1 },
             paper_bgcolor: 'rgba(0,0,0,0)',
             plot_bgcolor: 'rgba(0,0,0,0)',
           }}
