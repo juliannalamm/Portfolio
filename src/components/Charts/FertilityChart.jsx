@@ -1,6 +1,3 @@
-// shared component, takes chartdata and normalization as prop
-
-
 import React from 'react';
 import Plot from 'react-plotly.js';
 
@@ -29,12 +26,10 @@ const metrics = [
 
 const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
   const clusters = [...new Set(chartData.clusters.map((c) => String(c).trim()))];
-
   const traces = [];
 
-  // Compute global stats
+  // Global stats
   const metricStats = {};
-//   calculate min max and std for z score 
   metrics.forEach(metric => {
     const values = chartData[metric]?.filter(v => typeof v === 'number' && !isNaN(v));
     const mean = values.reduce((a, b) => a + b, 0) / values.length;
@@ -51,7 +46,6 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
 
     const processedValues = metrics.map(metric => {
       const { mean, std, min, max } = metricStats[metric];
-
       const values = indices.map(i => {
         const raw = chartData[metric][i];
         if (typeof raw !== 'number' || isNaN(raw)) return null;
@@ -60,12 +54,11 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
           return std !== 0 ? (raw - mean) / std : 0;
         } else if (normalization === 'minmax') {
           return (max - min) !== 0 ? (raw - min) / (max - min) : 0.5;
-        } else {
-          return raw;
         }
+        return raw;
       });
 
-      const valid = values.filter(v => typeof v === 'number' && !isNaN(v));
+      const valid = values.filter(v => typeof v === 'number');
       return valid.length > 0 ? valid.reduce((a, b) => a + b, 0) / valid.length : 0;
     });
 
@@ -79,34 +72,37 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
   });
 
   return (
-    <Plot
-      data={traces}
-      layout={{
-        barmode: 'group',
-        title: {
-          text: `${normalization === 'zscore' ? 'Z-Score' : 'Min-Max'} Normalized Fertility Metrics by Cluster`,
-          font: { size: 16 },
-        },
-        margin: { t: 30, b: 100, l: 40, r: 10 },
-        xaxis: {
-          title: 'Metric',
-          type: 'category',
-          tickangle: -45,
-          automargin: true,
-        },
-        yaxis: {
-          title: normalization === 'zscore' ? 'Average Z-Score' : 'Normalized Mean (0–1)',
-          automargin: true,
-        },
-        showlegend: true,
-        legend: { orientation: 'h', y: -0.3 },
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)',
-      }}
-      config={{ responsive: true }}
-      useResizeHandler={true}
-      style={{ width: '100%', height: '100%' }}
-    />
+
+      <div className="w-full h-full">
+        <Plot
+          data={traces}
+          layout={{
+            barmode: 'group',
+            title: {
+              text: `${normalization === 'zscore' ? 'Z-Score' : 'Min-Max'} Normalized Fertility Metrics by Cluster`,
+              font: { size: 16 },
+            },
+            margin: { t: 30, b: 100, l: 40, r: 10 },
+            xaxis: {
+              title: 'Metric',
+              type: 'category',
+              tickangle: -45,
+              automargin: true,
+            },
+            yaxis: {
+              title: normalization === 'zscore' ? 'Average Z-Score' : 'Normalized Mean (0–1)',
+              automargin: true,
+            },
+            showlegend: true,
+            legend: { orientation: 'h', y: -0.3 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+          }}
+          config={{ responsive: true }}
+          useResizeHandler={true}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </div>
   );
 };
 

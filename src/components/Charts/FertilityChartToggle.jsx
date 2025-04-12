@@ -50,12 +50,14 @@ const FertilityChartToggle = () => {
   if (!chartData) return <div>Loading...</div>;
 
   return (
+
     <section className="w-full min-h-screen bg-lightblue flex flex-col items-center justify-center py-16">
     <div className="w-full max-w-screen-xl mx-auto bg-transparent p-8">
-      <div className="mb-6 flex gap-4 items-center">
-        <label className="font-medium text-lg">Normalization:</label>
+  
+      <div className="w-full mb-6">
+        <label className="font-medium text-lg block mb-2">Normalization:</label>
         <select
-          className="border p-2 rounded bg-white text-black"
+          className="border p-2 rounded bg-white text-black w-full sm:w-64"
           value={normalization}
           onChange={(e) => setNormalization(e.target.value)}
         >
@@ -63,11 +65,16 @@ const FertilityChartToggle = () => {
           <option value="minmax">Min-Max</option>
         </select>
       </div>
-
-      <FertilityChart chartData={chartData} normalization={normalization} />
+  
+      {/* Provide fixed height only here */}
+      <div className="w-full h-[600px]">
+        <FertilityChart chartData={chartData} normalization={normalization} />
+      </div>
+  
     </div>
   </section>
-);
+  );
+
 };
 
 export default FertilityChartToggle;

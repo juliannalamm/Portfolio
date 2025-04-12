@@ -6,7 +6,7 @@ const clusterColors = {
   1: '#481231',
   2: '#fe4939',
   3: '#ffb347',
-
+ 
 };
 
 const AllClustersFertilityBarChartNormalized = ({ chartData }) => {

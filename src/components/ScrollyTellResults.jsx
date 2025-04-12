@@ -91,12 +91,9 @@ function ScrollamaResults() {
         if (activeStep === 0) {
             return (
 
-                <div style={{ position: "relative" }}>
-                    <div style={{ position: "relative", width: '100%', height: '100%' }}>
-                        <FertilityChartToggle />
-                    </div>
-
-                </div>
+                <div className="relative w-screen max-w-screen">
+                <FertilityChartToggle />
+              </div>
             );
         } else if (activeStep === 1) {
             // John Sad + Chart
