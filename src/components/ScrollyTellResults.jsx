@@ -11,6 +11,7 @@ import "../ScrollamastylesResults.css";
 import FertilityChartToggle from './Charts/FertilityChartToggle';
 import SpermWaffle from './Charts/SpermWaffle';
 import SyntheticClusterChartPanel from './Charts/SyntheticClusterChartPanel';
+import SteveClusterChartPanel from "./Charts/SteveClusterChartPanel";
 
 
 
@@ -102,22 +103,22 @@ function ScrollamaResults() {
             // John Sad + Chart
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
-                <SpermWaffle />
-              </div>
+                    <SpermWaffle />
+                </div>
             );
         } else if (activeStep === 2) {
-
+            // change the active chart in chart panel component for animation 
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
-                <SyntheticClusterChartPanel />
-              </div>
+                    <SyntheticClusterChartPanel activeStep={activeStep} />
+                </div>
             );
         } else if (activeStep === 3) {
 
             return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
+                <div style={{ width: '100%', minHeight: '600px' }}>
+                <SteveClusterChartPanel activeStep={activeStep} />
+            </div>
             );
         } else if (activeStep === 4) {
             return (

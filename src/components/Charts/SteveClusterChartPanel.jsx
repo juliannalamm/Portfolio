@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import Plot from 'react-plotly.js';
-import { motion } from 'framer-motion';
 
 const clusterColors = {
   0: '#4fa0f7',
@@ -10,9 +9,10 @@ const clusterColors = {
   2: '#fe4939'
 };
 
-const SyntheticClusterChartPanel = ({ activeStep }) => {
+const SteveClusterChartPanel = ({ activeStep }) => {
   const [realTraces, setRealTraces] = useState([]);
-  const [syntheticTrace, setSyntheticTrace] = useState(null);
+  const [JohnTrace, setJohnTrace] = useState(null);
+  const [SteveTrace, setSteveTrace] = useState(null);
   const [starSize, setStarSize] = useState(0);
 
   useEffect(() => {
@@ -34,17 +34,35 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
         const fid = points.map(row => row.fid);
 
         // Inject synthetic points
-        const syntheticPoints = [
-          { x: 0.15, y: -0.25, cluster: '0', fid: 'synthetic-0a' },
-          { x: 0.18, y: -0.2, cluster: '0', fid: 'synthetic-0b' },
-          { x: 0.28, y: 0.12, cluster: '2', fid: 'synthetic-2a' },
-          { x: 0.25, y: 0.15, cluster: '2', fid: 'synthetic-2b' },
-          { x: -0.05, y: 0.1, cluster: '1', fid: 'synthetic-1a' },
-          { x: -0.13, y: -0.35, cluster: '1', fid: 'synthetic-1b' },
-          { x: -0.05, y: -0.2, cluster: '1', fid: 'synthetic-1c' },
+        const JohnPoints = [
+          { x: 0.15, y: -0.25, cluster: '0', fid: 'John-0a' },
+          { x: 0.18, y: -0.2, cluster: '0', fid: 'John-0b' },
+          { x: 0.28, y: 0.12, cluster: '2', fid: 'John-2a' },
+          { x: 0.25, y: 0.15, cluster: '2', fid: 'John-2b' },
+          { x: -0.05, y: 0.1, cluster: '1', fid: 'John-1a' },
+          { x: -0.13, y: -0.35, cluster: '1', fid: 'John-1b' },
+          { x: -0.05, y: -0.2, cluster: '1', fid: 'John-1c' },
         ];
 
-        syntheticPoints.forEach(pt => {
+        const StevePoints = [
+          { x: 0.15, y: 0.25, cluster: '0', fid: 'Steve-0a' },
+          { x: 0.18, y: 0.4, cluster: '0', fid: 'Steve-0b' },
+          { x: 0.28, y: 0.3, cluster: '2', fid: 'Steve-2a' },
+          { x: 0.25, y: 0.15, cluster: '2', fid: 'Steve-2b' },
+          { x: -0.05, y: 0.1, cluster: '1', fid: 'Steve-1a' },
+          { x: -0.13, y: -0.35, cluster: '1', fid: 'Steve-1b' },
+          { x: -0.05, y: -0.2, cluster: '1', fid: 'Steve-1c' },
+        ];
+
+        JohnPoints.forEach(pt => {
+          x.push(pt.x);
+          y.push(pt.y);
+          clusters.push(pt.cluster);
+          participant.push('synthetic');
+          fid.push(pt.fid);
+        });
+
+        StevePoints.forEach(pt => {
           x.push(pt.x);
           y.push(pt.y);
           clusters.push(pt.cluster);
@@ -63,13 +81,13 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
           const traceY = indices.map(i => y[i]);
           const traceFids = indices.map(i => fid[i]);
 
-          const symbols = traceFids.map(fid => fid.startsWith('synthetic') ? 'star' : 'circle');
-          const sizes = traceFids.map(fid => fid.startsWith('synthetic') ? 20 : 10);
+          const symbols = traceFids.map(fid => fid.startsWith('John') || fid.startsWith('Steve') ? 'star' : 'circle');          
+          const sizes = traceFids.map(fid => fid.startsWith('John') || fid.startsWith('Steve') ? 20 : 10);
           const colors = traceFids.map(fid =>
-            fid.startsWith('synthetic') ? '#4ddb65' : clusterColors[cluster]
+            fid.startsWith('John') || fid.startsWith('Steve') ? '#4ddb65' : clusterColors[cluster]
           );
           const opacities = traceFids.map(fid =>
-            fid.startsWith('synthetic') ? 0 : 1
+            fid.startsWith('John') || fid.startsWith('Steve') ? 0 : 1
           );
 
           return {
@@ -85,37 +103,54 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
               opacity: opacities,
               line: { color: 'rgba(0,0,0,0)', width: 0 }
             },
-            text: traceFids.map(fid => fid.startsWith('synthetic') ? `Synthetic: ${fid}` : `FID: ${fid}`),
+            text: traceFids.map(fid => fid.startsWith('John') ? "John's data" : fid.startsWith('Steve') ? "Steve's data" : `FID: ${fid}`) ,         
             hovertemplate: '%{text}<extra></extra>',
           };
         });
 
         // Create synthetic star trace separately
-        const syntheticOnlyTrace = {
-          x: syntheticPoints.map(p => p.x),
-          y: syntheticPoints.map(p => p.y),
+        const JohnOnlyTrace = {
+          x: JohnPoints.map(p => p.x),
+          y: JohnPoints.map(p => p.y),
           type: 'scatter',
           mode: 'markers',
           name: `John's Data`,
           marker: {
-            size: starSize,
+            size: 20,
             symbol: 'star',
             color: '#4ddb65',
             opacity: starSize > 0 ? 1 : 0,
           },
-          text: syntheticPoints.map(() => "John's data"),
+          text: JohnPoints.map(() => "John's data"),
+          hovertemplate: '%{text}<extra></extra>'
+        };
+
+        const SteveOnlyTrace = {
+          x: StevePoints.map(p => p.x),
+          y: StevePoints.map(p => p.y),
+          type: 'scatter',
+          mode: 'markers',
+          name: `Steve's Data`,
+          marker: {
+            size: starSize,
+            symbol: 'star',
+            color: '#d234eb',
+            opacity: starSize > 0 ? 1 : 0,
+          },
+          text: StevePoints.map(() => "Steve's data"),
           hovertemplate: '%{text}<extra></extra>'
         };
 
         setRealTraces(realTraces);
-        setSyntheticTrace(syntheticOnlyTrace);
+        setJohnTrace(JohnOnlyTrace);
+        setSteveTrace(SteveOnlyTrace);
       },
       error: (err) => console.error("Error loading clustering data:", err)
     });
   }, [starSize]);
 
   useEffect(() => {
-    if (activeStep === 2) {
+    if (activeStep === 3) {
       let animationFrame;
       let start = performance.now();
 
@@ -142,7 +177,7 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
   return (
     <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative">
       <Plot
-        data={[...realTraces, syntheticTrace].filter(Boolean)}
+        data={[...realTraces, JohnTrace, SteveTrace].filter(Boolean)}
         layout={{
           title: 'Clusters with Synthetic Points',
           xaxis: { title: 'PCA Feature 1', showticklabels: false, showgrid: false, zeroline: false },
@@ -159,4 +194,4 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
   );
 };
 
-export default SyntheticClusterChartPanel;
+export default SteveClusterChartPanel;
