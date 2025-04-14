@@ -186,7 +186,7 @@ function ScrollamaIntro() {
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
                     ref={tableauWrapperRef}
-                    style={{ width: '90%', height: '1000px' }}>
+                    style={{ width: '80%', height: '1000px' }}>
                     <TableauReport
                         url={tableauUrl}
                         options={tableauOptions}
@@ -242,7 +242,7 @@ function ScrollamaIntro() {
 
                     {/* Step 1 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 1: John Sad + Chart</h2>
+                        <h2 className="text-center mt-10">Step 1: John Sad + Chart</h2>
                         <p>
                             We show the Sperm Motility Age chart overlay on JohnSad image.
                         </p>

@@ -130,14 +130,14 @@ const SteveClusterChartPanel = ({ activeStep }) => {
           y: StevePoints.map(p => p.y),
           type: 'scatter',
           mode: 'markers',
-          name: `Steve's Data`,
+          name: `Steve Data`,
           marker: {
             size: starSize,
             symbol: 'star',
             color: '#d234eb',
             opacity: starSize > 0 ? 1 : 0,
           },
-          text: StevePoints.map(() => "Steve's data"),
+          text: StevePoints.map(() => "Steve data"),
           hovertemplate: '%{text}<extra></extra>'
         };
 
