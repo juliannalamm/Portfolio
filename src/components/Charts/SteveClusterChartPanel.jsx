@@ -45,13 +45,13 @@ const SteveClusterChartPanel = ({ activeStep }) => {
         ];
 
         const StevePoints = [
-          { x: 0.15, y: 0.25, cluster: '0', fid: 'Steve-0a' },
+          { x: -0.3, y: 0.25, cluster: '0', fid: 'Steve-0a' },
           { x: 0.18, y: 0.4, cluster: '0', fid: 'Steve-0b' },
-          { x: 0.28, y: 0.3, cluster: '2', fid: 'Steve-2a' },
-          { x: 0.25, y: 0.15, cluster: '2', fid: 'Steve-2b' },
-          { x: -0.05, y: 0.1, cluster: '1', fid: 'Steve-1a' },
-          { x: -0.13, y: -0.35, cluster: '1', fid: 'Steve-1b' },
-          { x: -0.05, y: -0.2, cluster: '1', fid: 'Steve-1c' },
+          { x: 0.3, y: 0.2, cluster: '2', fid: 'Steve-2a' },
+          { x: 0.13, y: 0.15, cluster: '2', fid: 'Steve-2b' },
+          { x: -0.05, y: 0.2, cluster: '1', fid: 'Steve-1a' },
+          { x: -0.13, y: -0.1, cluster: '1', fid: 'Steve-1b' },
+          { x: -0.08, y: -0.2, cluster: '1', fid: 'Steve-1c' },
         ];
 
         JohnPoints.forEach(pt => {

@@ -86,7 +86,7 @@ function ScrollamaResults() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [2, 3].includes(activeStep);
+    const shouldAnimate = [2].includes(activeStep);
 
 
 
@@ -117,8 +117,8 @@ function ScrollamaResults() {
 
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
-                <SteveClusterChartPanel activeStep={activeStep} />
-            </div>
+                    <SteveClusterChartPanel activeStep={activeStep} />
+                </div>
             );
         } else if (activeStep === 4) {
             return (
@@ -155,9 +155,8 @@ function ScrollamaResults() {
 
                 {/* LEFT: sticky graphic panel */}
                 <div className="scroll-results__graphic">
-
-                    <AnimatePresence mode="wait">
-                        {shouldAnimate ? (
+                    {shouldAnimate ? (
+                        <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeStep}
                                 initial={{ opacity: 0, y: 20 }}
@@ -168,12 +167,12 @@ function ScrollamaResults() {
                             >
                                 {renderVisual()}
                             </motion.div>
-                        ) : (
-                            <div className="chart" key={activeStep}>
-                                {renderVisual()}
-                            </div>
-                        )}
-                    </AnimatePresence>
+                        </AnimatePresence>
+                    ) : (
+                        <div className="chart" key={activeStep}>
+                            {renderVisual()}
+                        </div>
+                    )}
                 </div>
 
                 {/* RIGHT: scrolly text steps */}
