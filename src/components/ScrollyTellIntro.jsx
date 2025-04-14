@@ -234,15 +234,25 @@ function ScrollamaIntro() {
                 <div className="scroll__text" ref={textRef}>
                     {/* Step 0 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h1>Step 0: John’s Intro</h1>
-                        <p>
-                            Scroll down to see the next step!
-                        </p>
+                        <div className="pt-10">
+                            <h2 className="text-center text-xl mb-10">Meet John!</h2>
+                        </div>
+                        <div className="mb-20">
+                        <p className="text-left pl-6"> This is John. John is a 35 year old male and has no known medical complications.</p>
+                        </div>
+                        <div className="mb-20">
+                        <p className="text-left pl-6"> Recently, John and his partner have begun planning for a family.</p>
+                        </div>
+                        <div className="mb-20">
+                        <p className="text-left pl-6"> However, they have been struggling to get get pregnant.</p>
+                        </div>
+
+                        
                     </div>
 
                     {/* Step 1 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2 className="text-center mt-10">Step 1: John Sad + Chart</h2>
+                        <h2 className="text-center">Step 1: John Sad + Chart</h2>
                         <p>
                             We show the Sperm Motility Age chart overlay on JohnSad image.
                         </p>
