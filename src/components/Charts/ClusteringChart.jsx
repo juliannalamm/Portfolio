@@ -7,7 +7,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
     // Define a color for each cluster (adjust these colors as desired)
     const clusterColors = {
         0: '#4fa0f7', // blue
-        1: 'white', // red-orange
+        1: '#E9A752', // red‑orange (beeswax)
         2: '#fe4939'  // green
     };
 
@@ -91,32 +91,36 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
                                 family: 'TiemposTextBold, sans-serif'
                             }
                         },
-                            showticklabels: false,
-                            
-                            ticks: '',
-                            showgrid: false,
-                            showgrid: false,
-                            zeroline: true, 
-                            zerolinecolor: 'white',
-                        },
-                        yaxis: {
-                            title: { text: 'PCA Feature 2',
+                        showticklabels: false,
+
+                        ticks: '',
+                        showgrid: false,
+                        showgrid: false,
+                        zeroline: true,
+                        zerolinecolor: 'white',
+                    },
+                    yaxis: {
+                        title: {
+                            text: 'PCA Feature 2',
                             font: {
                                 color: 'white',
                                 family: 'TiemposTextBold, sans-serif'
-                            }},
-                            showticklabels: false,
-                            ticks: '',
-                            showgrid: false,
-                            zeroline: true, 
-                            zerolinecolor: 'white',
-                           
+                            }
                         },
-                        margin: { t: 50, l: 30, r: 10, b: 90 },
-                        paper_bgcolor: 'rgba(0,0,0,0)',
-                        plot_bgcolor: 'rgba(0,0,0,0)',
+                        showticklabels: false,
+                        ticks: '',
+                        showgrid: false,
+                        zeroline: true,
+                        zerolinecolor: 'white',
+
+                    },
+                    margin: { t: 10, l: 10, r: 10, b: 10 },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)',
+                    legend: {
+                        font: { color: 'white' },
                     }
-                }
+                }}
                 config={{ displayModeBar: false }}
                 useResizeHandler={true}
                 style={{ width: "100%", height: "100%" }}

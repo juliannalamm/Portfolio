@@ -19,19 +19,13 @@ const DashboardClusterChart = () => {
       skipEmptyLines: true,
       complete: (results) => {
         const data = results.data;
-        // Separate point data from centroid data
         const pointsData = data.filter(row => {
           const val = row.Centroid ? row.Centroid.toString().trim().toLowerCase() : "";
           return val === "false" || val === "";
         });
-        const centroidsData = data.filter(row => {
-          const val = row.Centroid ? row.Centroid.toString().trim().toLowerCase() : "";
-          return val === "true";
-        });
 
         const x = pointsData.map(row => parseFloat(row['PCA Feature 1']));
         const y = pointsData.map(row => parseFloat(row['PCA Feature 2']));
-        // Note: the CSV column for cluster is "Subcluster" as a string.
         const clusters = pointsData.map(row => row.Subcluster ? row.Subcluster.trim() : "");
         const participant = pointsData.map(row => row.participant);
         const fid = pointsData.map(row => row.fid);
@@ -41,9 +35,7 @@ const DashboardClusterChart = () => {
         const LIN = pointsData.map(row => parseFloat(row.LIN));
         const WOB = pointsData.map(row => parseFloat(row.WOB));
         const STR = pointsData.map(row => parseFloat(row.STR));
-        // For columns with spaces, store them exactly so that MetricBoxPlot can use bracket notation.
         const ALH_Max = pointsData.map(row => parseFloat(row["ALH Max"]));
-
 
         setChartData({
           x, y, clusters, participant, fid,
@@ -76,14 +68,13 @@ const DashboardClusterChart = () => {
     return <div>Loading chart...</div>;
   }
 
-  // Create a normalized list of unique cluster values (trim them)
   const uniqueClusters = [...new Set(chartData.clusters.map(c => String(c).trim()))];
 
   return (
     <div>
       {/* Dropdown for selecting a cluster */}
-      <div className="mb-4">
-        <label htmlFor="cluster-select" className="mr-2 font-bold">
+      <div className=" mb-4">
+        <label htmlFor="cluster-select" className="mr-2 font-bold text-white">
           Select Cluster:
         </label>
         <select
@@ -93,7 +84,7 @@ const DashboardClusterChart = () => {
             const value = e.target.value;
             setSelectedCluster(value === "ALL" ? null : value.trim());
           }}
-          className="p-2 border rounded"
+          className=" p-2 border border-white bg-black bg-opacity-50 text-white rounded"
         >
           <option value="ALL">All Clusters</option>
           {uniqueClusters.map(cluster => (
@@ -103,12 +94,12 @@ const DashboardClusterChart = () => {
           ))}
         </select>
       </div>
+
       <div className="flex flex-col space-y-6">
         {/* Cluster chart and trajectory viewer */}
         <div className="flex flex-col lg:flex-row bg-transparent gap-6">
-          <div className="lg:w-1/2 w-full">
-            
-            {/* child component */}
+          
+          <div className=" mt-40 lg:w-1/2 w-full">
             <ClusteringChart
               chartData={chartData}
               onHoverFid={setHoveredFid}
@@ -117,14 +108,11 @@ const DashboardClusterChart = () => {
             />
           </div>
 
-          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col items-center space-y-4">
-            {/* child component */}
+          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col items-center space-y-20">
             <TrajectoryViewer
               fid={hoveredFid}
               coordinateData={coordinateData}
             />
-
-            {/* MetricBoxPlot: always rendered when a cluster is selected */}
             {selectedCluster !== null ? (
               <MetricBoxPlot
                 key={`metric-box-${selectedCluster}`}
@@ -134,9 +122,6 @@ const DashboardClusterChart = () => {
             ) : (
               <AllClustersBoxPlot chartData={chartData} />
             )}
-
-
-
           </div>
 
         </div>
