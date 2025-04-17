@@ -27,6 +27,7 @@ import TrackVideoGrid from "./Charts/TrackVideoGrid";
 
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../simplifiedScrollamaStyles.css";
+import SatiricalFundingChart from "./Charts/SatiricalFundingChart";
 
 function ScrollamaIntro() {
     const containerRef = useRef(null);
@@ -113,7 +114,7 @@ function ScrollamaIntro() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [2, 3,4].includes(activeStep);
+    const shouldAnimate = [2, 3, 4].includes(activeStep);
 
 
 
@@ -184,10 +185,17 @@ function ScrollamaIntro() {
         } else if (activeStep === 6) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
+                    <SatiricalFundingChart />
+                </div>
+            );
+
+        } else if (activeStep === 7) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
                     <FertilityWaffleChart />
                 </div>
             );
-        } else if (activeStep === 7) {
+        } else if (activeStep === 8) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -200,7 +208,7 @@ function ScrollamaIntro() {
                     />
                 </div>
             );
-        } else if (activeStep === 8) {
+        } else if (activeStep === 9) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
@@ -241,16 +249,16 @@ function ScrollamaIntro() {
                     {/* Step 0 */}
                     <div className="step" ref={addToStepRefs}>
                         <div className="pt-10">
-                            <h2 className="text-center text-xl mb-10">Meet John!</h2>
+                            <h2 className="text-center text-xl mb-10">An Introduction to Male Fertility: The Hidden Male Biological Clock </h2>
                         </div>
                         <div className="mb-20">
-                            <p className="text-left pl-6"> John is a 35 year old male and has no known medical complications.</p>
+                            <p className="text-left pl-6">&nbsp;</p>
                         </div>
                         <div className="mb-20">
-                            <p className="text-left pl-6"> Recently, John and his partner embarked on their journey to start a family.</p>
+                            <p className="text-left pl-6"> Meet John. John is a 35 year old male and has no known medical complications. Recently, John and his partner embarked on their journey to start a family.  However, they have been struggling to get pregnant.</p>
                         </div>
                         <div className="mb-20">
-                            <p className="text-left pl-6"> However, they have been struggling to get pregnant.</p>
+                            <p className="text-left pl-6"> &nbsp; </p>
                         </div>
 
 
@@ -259,27 +267,34 @@ function ScrollamaIntro() {
                     {/* Step 1 */}
                     <div className="step" ref={addToStepRefs}>
                         <div>
-                            <p className="text-left mb-20 pl-6"> As it turns out, John and his partner are not alone.</p>
+                            <p className="text-left mb-20 pl-6"> </p>
                         </div>
                         <div className="mb-20">
                             <p className="text-left pl-6">
-                                In fact, 17.5% of individuals of reproductive age are affected by infertility in their lifetime.
+                                As it turns out, John and his partner are not alone. In fact, 17.5% of individuals of reproductive age are affected by infertility in their lifetime. Around age 35, men's fertility begins to decline across many key metrics.
                                 <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility" className="text-blue-600 hover:underline"> [1]</a>
                             </p>
                         </div>
                         <div className="mb-20">
                             <p className="text-left pl-6">
-                                Around age 35, men's fertility begins to decline across many key metrics.
+                                &nbsp;
+
                             </p>
 
                         </div>
                         <div className="mb-20">
+                        <p className="text-center pl-6">
+                                
+                                In other words... 
+                                </p>
+    
+                            
                         </div>
 
                     </div>
                     {/* Step 2 */}
                     <div className="step" ref={addToStepRefs}>
-                    <h2 className="text-center text-xl mb-10">Men have a biological clock too.</h2>
+                        <h2 className="text-center text-xl mb-10">Men have a biological clock too.</h2>
                     </div>
 
                     {/* Step 3 */}
@@ -321,6 +336,7 @@ function ScrollamaIntro() {
                     </div>
                     {/* Step 5 */}
                     <div className="step" ref={addToStepRefs}>
+                        {/* div 1 */}
                         <div className="pt-10">
                             <p className="text-left mb-30 pl-6"> &nbsp;
                             </p>
@@ -334,28 +350,50 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 3 */}
                         <div className="mb-15">
-                            <p className="text-left pl-6">&nbsp;
-                            </p>
+                            <p className="text-left pl-6">&nbsp;</p>
                         </div>
                         {/* div 4 */}
                         <div className="mb-20">
-                            <p className="text-left pl-6"> The age effect of males on TTP remained unchanged after controlling for women’s age, coital frequency, and the other factors affecting both partners
-                            </p>
+                            <p className="text-left pl-6"> The age effect of males on TTP remained unchanged after controlling for women’s age, coital frequency, and the other factors affecting both partners</p>
                         </div>
 
                     </div>
-
+                    {/* step 6 */}
                     <div className="step" ref={addToStepRefs}>
-                    </div> 
+                        {/* div 1 */}
+                        <div className="pt-10">
+                            <p className="text-left mb-30 pl-6"> &nbsp;
+                            </p>
+                        </div>
+                        {/* div 2 */}
+                        <div className="mb-20">
+                            <p className="text-left mb-20 pl-6"> 
+                            This leads us to a misunderstood and often overlooked reality: men contribute to infertility in equal proportion and yet,
+                            historically, when a couple could not conceive, the woman has carried the stigma of infertility. 
+                            </p>
 
-                    {/* Step 6 */}
+                        </div>
+                        {/* div 3 */}
+                        <div className="mb-15">
+                            <p className="text-left pl-6">&nbsp;</p>
+                        </div>
+                        {/* div 4 */}
+                        <div className="mb-20">
+                            <p className="text-left pl-6"> The age effect of males on TTP remained unchanged after controlling for women’s age, coital frequency, and the other factors affecting both partners</p>
+                        </div>
+
+
+
+                    </div>
+
+                    {/* Step 7 */}
                     <div className="step" ref={addToStepRefs}>
                         <h2>Step 6: tableau!</h2>
                         <p>
                             Tableau will go here
                         </p>
                     </div>
-                    {/* Step 7 */}
+                    {/* Step 8 */}
 
                     <div className="step" ref={addToStepRefs}>
                         <h2>Step 7: track video !</h2>
