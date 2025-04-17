@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CASA Path Diagram</title>
+  <style>
+    body { background: #111; color: #fff; font-family: sans-serif; text-align: center; }
+    canvas { background: #000; display: block; margin: 20px auto; border: 1px solid #555; }
+    .control { margin: 10px 0; }
+    label { display: inline-block; width: 150px; text-align: right; margin-right: 10px; }
+    input[type=range] { width: 300px; }
+    span { display: inline-block; width: 50px; text-align: left; }
+  </style>
+</head>
+<body>
+<h2>CASA Path Components (Adjustable)</h2>
+<canvas id="diagram" width="600" height="400"></canvas>
+
+<div class="controls">
+  <div class="control">
+    <label for="vcl">VCL (Curviness):</label>
+    <input type="range" id="vcl" min="0" max="100" value="50">
+    <span id="vclVal">50</span>
+  </div>
+  <div class="control">
+    <label for="vap">VAP (Smoothness):</label>
+    <input type="range" id="vap" min="0" max="100" value="50">
+    <span id="vapVal">50</span>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('diagram');
+const ctx = canvas.getContext('2d');
+const vclSlider = document.getElementById('vcl');
+const vapSlider = document.getElementById('vap');
+const vclVal = document.getElementById('vclVal');
+const vapVal = document.getElementById('vapVal');
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const VCL = parseFloat(vclSlider.value);
+  const VAP = parseFloat(vapSlider.value);
+  vclVal.textContent = VCL;
+  vapVal.textContent = VAP;
+
+  const centroids = [];
+  let startX = 50;
+  let startY = 300;
+  for (let i = 0; i < 12; i++) {
+    const x = startX + i * 40;
+    const y = startY - Math.sin(i * 0.9) * (VCL * 0.5) + (i % 2 === 0 ? 10 : -10);
+    centroids.push([x, y]);
+  }
+
+  const averagePath = centroids.map(([x, y], i) => {
+    let prev = centroids[i - 1] || centroids[i];
+    let next = centroids[i + 1] || centroids[i];
+    return [x, (prev[1] + y + next[1]) / 3 * (1 - VAP / 100) + y * (VAP / 100)];
+  });
+
+  const [startX0, startY0] = centroids[0];
+  const [endX, endY] = centroids[centroids.length - 1];
+
+  ctx.strokeStyle = 'lime';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(centroids[0][0], centroids[0][1]);
+  centroids.forEach(([x, y]) => ctx.lineTo(x, y));
+  ctx.stroke();
+
+  ctx.strokeStyle = 'deepskyblue';
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  ctx.moveTo(averagePath[0][0], averagePath[0][1]);
+  averagePath.forEach(([x, y]) => ctx.lineTo(x, y));
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = 'red';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(startX0, startY0);
+  ctx.lineTo(endX, endY);
+  ctx.stroke();
+
+  centroids.forEach(([x, y]) => {
+    ctx.fillStyle = 'lime';
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, 2 * Math.PI);
+    ctx.fill();
+  });
+
+  ctx.fillStyle = 'white';
+  ctx.font = '14px sans-serif';
+  ctx.fillText('Curvilinear path', centroids[4][0] - 30, centroids[4][1] - 40);
+  ctx.fillText('Average path', averagePath[4][0] - 40, averagePath[4][1] + 20);
+  ctx.fillText('Straight-line path', endX - 150, endY + 20);
+  ctx.fillText('Centroids', centroids[0][0], centroids[0][1] - 20);
+  ctx.beginPath();
+  ctx.arc(centroids[5][0], centroids[5][1], 8, 0, 2 * Math.PI);
+  ctx.strokeStyle = 'white';
+  ctx.stroke();
+  ctx.fillText('Beat cross', centroids[5][0] + 10, centroids[5][1] - 10);
+
+  ctx.beginPath();
+  ctx.moveTo(centroids[6][0], centroids[6][1]);
+  ctx.lineTo(averagePath[6][0], averagePath[6][1]);
+  ctx.strokeStyle = 'yellow';
+  ctx.stroke();
+  ctx.fillText('ALH', averagePath[6][0] - 20, averagePath[6][1] - 10);
+}
+
+vclSlider.addEventListener('input', draw);
+vapSlider.addEventListener('input', draw);
+draw();
+</script>
+</body>
+</html>

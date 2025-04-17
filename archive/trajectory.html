@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sperm Motility Simulation</title>
+  <style>
+    body { background: #111; color: #fff; font-family: sans-serif; text-align: center; }
+    canvas { background: #000; margin: 20px auto; display: block; border: 1px solid #555; }
+    .control { margin: 10px 0; }
+    label { display: inline-block; width: 150px; text-align: right; margin-right: 10px; }
+    input[type=range] { width: 300px; }
+    span { display: inline-block; width: 50px; text-align: left; }
+  </style>
+</head>
+<body>
+
+<h2>Sperm Motility Visualizer (VCL / VAP / VSL / LIN)</h2>
+<canvas id="canvas" width="700" height="400"></canvas>
+
+<div class="controls">
+  <div class="control">
+    <label for="vcl">VCL (Curviness):</label>
+    <input type="range" id="vcl" min="0" max="100" value="50">
+    <span id="vclVal">50</span>
+  </div>
+  <div class="control">
+    <label for="vap">VAP (Smooth Arc):</label>
+    <input type="range" id="vap" min="0" max="100" value="50">
+    <span id="vapVal">50</span>
+  </div>
+  <div class="control">
+    <label for="vsl">VSL (Straightness):</label>
+    <input type="range" id="vsl" min="0" max="100" value="50">
+    <span id="vslVal">50</span>
+  </div>
+  <div class="control">
+    <label for="lin">LIN (Linearity):</label>
+    <input type="range" id="lin" min="0" max="100" value="30">
+    <span id="linVal">30</span>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+const sliders = {
+  vcl: document.getElementById('vcl'),
+  vap: document.getElementById('vap'),
+  vsl: document.getElementById('vsl'),
+  lin: document.getElementById('lin')
+};
+
+const labels = {
+  vcl: document.getElementById('vclVal'),
+  vap: document.getElementById('vapVal'),
+  vsl: document.getElementById('vslVal'),
+  lin: document.getElementById('linVal')
+};
+
+function draw() {
+  const VCL = parseFloat(sliders.vcl.value);
+  const VAP = parseFloat(sliders.vap.value);
+  const VSL = parseFloat(sliders.vsl.value);
+  const LIN = parseFloat(sliders.lin.value);
+
+  labels.vcl.textContent = VCL;
+  labels.vap.textContent = VAP;
+  labels.vsl.textContent = VSL;
+  labels.lin.textContent = LIN;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const startX = 30;
+  const startY = canvas.height / 2;
+  const steps = 300;
+  const dx = 2;
+  const freq = 0.05 + VCL / 200;
+  const amp = VCL * 0.6;
+  const arcBias = VAP / 100;
+  const straightPull = VSL / 100;
+  const curvePull = 1 - LIN / 100;
+
+  let x = startX;
+  let t = 0;
+  const points = [];
+
+  for (let i = 0; i < steps; i++) {
+    const arcY = startY + (x - startX - 150) ** 2 * (curvePull * 0.0025) - 20 * curvePull;
+    const wiggle = amp * Math.sin(freq * t);
+    const rawY = arcY + wiggle * (1 - arcBias);
+    const finalY = rawY * (1 - straightPull) + startY * straightPull;
+    points.push([x, finalY]);
+    x += dx;
+    t += 1;
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(points[0][0], points[0][1]);
+  ctx.strokeStyle = "#00ffff";
+  ctx.lineWidth = 2.5;
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i][0], points[i][1]);
+  }
+  ctx.stroke();
+}
+
+Object.values(sliders).forEach(slider => slider.addEventListener('input', draw));
+draw();
+</script>
+
+</body>
+</html>

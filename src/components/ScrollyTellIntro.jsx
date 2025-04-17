@@ -47,12 +47,11 @@ function ScrollamaIntro() {
     const [tableauWidth, setTableauWidth] = useState(900);
 
     const tableauUrl =
-        "https://public.tableau.com/views/Tracks_17439916171590/Dashboard1?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link";
-
+    "https://public.tableau.com/views/Tracks2_17448553603710/Dashboard13?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"    
     const tableauOptions = {
-        height: 800,
+        height: 900,
         width: tableauWidth,
-        hideTabs: false,
+        hideTabs: true,
     };
 
 
@@ -186,7 +185,7 @@ function ScrollamaIntro() {
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
                     ref={tableauWrapperRef}
-                    style={{ width: '80%', height: '1000px' }}>
+                    style={{ width: '90%', height: '800px' }}>
                     <TableauReport
                         url={tableauUrl}
                         options={tableauOptions}

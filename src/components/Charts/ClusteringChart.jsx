@@ -7,7 +7,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
     // Define a color for each cluster (adjust these colors as desired)
     const clusterColors = {
         0: '#4fa0f7', // blue
-        1: '#481231', // red-orange
+        1: 'white', // red-orange
         2: '#fe4939'  // green
     };
 
@@ -77,28 +77,46 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
     const dataTraces = [...clusterTraces, centroidsTrace];
 
     return (
-        <div className="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] bg-transparent">
+        <div className="w-full min-h-screen  bg-transparent">
             <Plot
                 data={dataTraces}
                 layout={{
                     autosize: true,
                     title: 'K-means Clustering with 2D PCA',
                     xaxis: {
-                        title: { text: 'PCA Feature 1' },
-                        showticklabels: false,
-                        ticks: '',
-                        showgrid: false
-                    },
-                    yaxis: {
-                        title: { text: 'PCA Feature 2' },
-                        showticklabels: false,
-                        ticks: '',
-                        showgrid: false
-                    },
-                    margin: { t: 50, l: 30, r: 10, b: 90 },
-                    paper_bgcolor: 'rgba(0,0,0,0)',
-                    plot_bgcolor: 'rgba(0,0,0,0)',
-                }}
+                        title: {
+                            text: 'PCA Feature 1',
+                            font: {
+                                color: 'white',
+                                family: 'TiemposTextBold, sans-serif'
+                            }
+                        },
+                            showticklabels: false,
+                            
+                            ticks: '',
+                            showgrid: false,
+                            showgrid: false,
+                            zeroline: true, 
+                            zerolinecolor: 'white',
+                        },
+                        yaxis: {
+                            title: { text: 'PCA Feature 2',
+                            font: {
+                                color: 'white',
+                                family: 'TiemposTextBold, sans-serif'
+                            }},
+                            showticklabels: false,
+                            ticks: '',
+                            showgrid: false,
+                            zeroline: true, 
+                            zerolinecolor: 'white',
+                           
+                        },
+                        margin: { t: 50, l: 30, r: 10, b: 90 },
+                        paper_bgcolor: 'rgba(0,0,0,0)',
+                        plot_bgcolor: 'rgba(0,0,0,0)',
+                    }
+                }
                 config={{ displayModeBar: false }}
                 useResizeHandler={true}
                 style={{ width: "100%", height: "100%" }}
