@@ -47,7 +47,7 @@ function ScrollamaIntro() {
     const [tableauWidth, setTableauWidth] = useState(900);
 
     const tableauUrl =
-    "https://public.tableau.com/views/Tracks2_17448553603710/Dashboard13?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"    
+        "https://public.tableau.com/views/Tracks2_17448553603710/Dashboard13?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
     const tableauOptions = {
         height: 900,
         width: tableauWidth,
@@ -113,7 +113,7 @@ function ScrollamaIntro() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [2, 3].includes(activeStep);
+    const shouldAnimate = [2, 3,4].includes(activeStep);
 
 
 
@@ -157,30 +157,37 @@ function ScrollamaIntro() {
             // John Sad + Chart
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                    <MotilityOnly />
+                    <SpermMotilityAge />
                 </div>
             );
         } else if (activeStep === 3) {
             // John Sad + Chart
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                    <CountOnly />
+                    <MotilityOnly />
                 </div>
             );
         } else if (activeStep === 4) {
+            // John Sad + Chart
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
+                    <CountOnly />
+                </div>
+            );
+        } else if (activeStep === 5) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TTPOnly />
                 </div>
             );
 
-        } else if (activeStep === 5) {
+        } else if (activeStep === 6) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <FertilityWaffleChart />
                 </div>
             );
-        } else if (activeStep === 6) {
+        } else if (activeStep === 7) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -193,7 +200,7 @@ function ScrollamaIntro() {
                     />
                 </div>
             );
-        } else if (activeStep === 7) {
+        } else if (activeStep === 8) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
@@ -237,55 +244,109 @@ function ScrollamaIntro() {
                             <h2 className="text-center text-xl mb-10">Meet John!</h2>
                         </div>
                         <div className="mb-20">
-                        <p className="text-left pl-6"> This is John. John is a 35 year old male and has no known medical complications.</p>
+                            <p className="text-left pl-6"> John is a 35 year old male and has no known medical complications.</p>
                         </div>
                         <div className="mb-20">
-                        <p className="text-left pl-6"> Recently, John and his partner have begun planning for a family.</p>
+                            <p className="text-left pl-6"> Recently, John and his partner embarked on their journey to start a family.</p>
                         </div>
                         <div className="mb-20">
-                        <p className="text-left pl-6"> However, they have been struggling to get get pregnant.</p>
+                            <p className="text-left pl-6"> However, they have been struggling to get pregnant.</p>
                         </div>
 
-                        
+
                     </div>
 
                     {/* Step 1 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2 className="text-center">Step 1: John Sad + Chart</h2>
-                        <p>
-                            We show the Sperm Motility Age chart overlay on JohnSad image.
-                        </p>
-                    </div>
+                        <div>
+                            <p className="text-left mb-20 pl-6"> As it turns out, John and his partner are not alone.</p>
+                        </div>
+                        <div className="mb-20">
+                            <p className="text-left pl-6">
+                                In fact, 17.5% of individuals of reproductive age are affected by infertility in their lifetime.
+                                <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility" className="text-blue-600 hover:underline"> [1]</a>
+                            </p>
+                        </div>
+                        <div className="mb-20">
+                            <p className="text-left pl-6">
+                                Around age 35, men's fertility begins to decline across many key metrics.
+                            </p>
 
+                        </div>
+                        <div className="mb-20">
+                        </div>
+
+                    </div>
                     {/* Step 2 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 2: Motility!</h2>
-                        <p>
-                            Motility
-                        </p>
+                    <h2 className="text-center text-xl mb-10">Men have a biological clock too.</h2>
                     </div>
+
                     {/* Step 3 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 3: Count!</h2>
-                        <p>
-                            Count
-                        </p>
+                        <div className="pt-10"> </div>
+                        <div className="mb-20">
+                            <p className="text-left pl-6"></p>
+                        </div>
+                        <div className="mb-20">
+                            <p className="text-left mb-20 pl-6"> Average Sperm motility peaks at age 35 and
+                                declines at a rate of 2.9% thereafter
+                                <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                                    className="text-blue-600 hover:underline"> [2]</a>.
+                            </p>
+                        </div>
+                        <div className="mb-20">
+                        </div>
+
                     </div>
 
                     {/* Step 4 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 4: TTP!</h2>
-                        <p>
-                            TTP
-                        </p>
+                        {/* div 1 */}
+                        <div className="pt-10">
+                            <p className="text-left mb-20 pl-6"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
+                                <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                                    className="text-blue-600 hover:underline"> [2]</a>.
+                            </p>
+                        </div>
+                        {/* div 2 */}
+                        <div className="mb-20">&nbsp; </div>
+                        {/* div 3 */}
+                        <div className="mb-15">&nbsp; </div>
+                        {/* div 4 */}
+                        <div className="mb-20">
+                            <p className="text-left pl-6"> The rate of decline increases sharply after age 35.</p>
+                        </div>
+
                     </div>
                     {/* Step 5 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 5: wafflechart!</h2>
-                        <p>
-                            TTP
-                        </p>
+                        <div className="pt-10">
+                            <p className="text-left mb-30 pl-6"> &nbsp;
+                            </p>
+                        </div>
+                        {/* div 2 */}
+                        <div className="mb-20">
+                            <p className="text-left mb-20 pl-6"> A study on 1,976 couples reported that the amount of time it takes to achieve pregnancy (TTP), became accelerated when the men’s age was 45 years or older. Normalized data relative to age 20 is shown in the chart to the left.  <a href="https://www.sciencedirect.com/science/article/pii/S0015028203003662"
+                                className="text-blue-600 hover:underline"> [3]</a>.
+                            </p>
+
+                        </div>
+                        {/* div 3 */}
+                        <div className="mb-15">
+                            <p className="text-left pl-6">&nbsp;
+                            </p>
+                        </div>
+                        {/* div 4 */}
+                        <div className="mb-20">
+                            <p className="text-left pl-6"> The age effect of males on TTP remained unchanged after controlling for women’s age, coital frequency, and the other factors affecting both partners
+                            </p>
+                        </div>
+
                     </div>
+
+                    <div className="step" ref={addToStepRefs}>
+                    </div> 
 
                     {/* Step 6 */}
                     <div className="step" ref={addToStepRefs}>

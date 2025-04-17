@@ -108,7 +108,7 @@ const DashboardClusterChart = () => {
             />
           </div>
 
-          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col items-center space-y-20">
+          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col items-center space-y-10">
             <TrajectoryViewer
               fid={hoveredFid}
               coordinateData={coordinateData}

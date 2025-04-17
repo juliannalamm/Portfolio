@@ -50,7 +50,7 @@
   transition: opacity 0.8s;
 }
 
-/* highlight active step */
+/* highlight active step
 .step.is-active {
   background: #ddeafc;
-}
+} */
