@@ -368,8 +368,7 @@ function ScrollamaIntro() {
                         {/* div 2 */}
                         <div className="mb-20">
                             <p className="text-left mb-20 pl-6"> 
-                            This leads us to a misunderstood and often overlooked reality: men contribute to infertility in equal proportion and yet,
-                            historically, when a couple could not conceive, the woman has carried the stigma of infertility. 
+                            This leads us to a misunderstood and often overlooked reality: men contribute to infertility in equal proportion—but receive a fraction of the funding and carry none of the clinical burden.
                             </p>
 
                         </div>
