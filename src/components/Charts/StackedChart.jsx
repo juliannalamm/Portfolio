@@ -5,8 +5,8 @@ import pregnancyIcon from "../../assets/pregnancy_stick.png";
 const StackedChart = () => {
   const total = 360;
   const segments = [
-    { label: "Male Factor", color: "#f472b6", angle: 120 },
-    { label: "Female Factor", color: "#60a5fa", angle: 120 },
+    { label: "Male Factor", color: "#60a5fa", angle: 120 },
+    { label: "Female Factor", color: "#f472b6", angle: 120 },
     { label: "Both / Unknown", color: "#9ca3af", angle: 120 },
   ];
 
@@ -39,7 +39,7 @@ const StackedChart = () => {
   let start = 0;
 
   return (
-    <div className="w-full max-w-md mx-auto mt-20 px-6">
+    <div className="w-full max-w-md mx-auto mt-10 px-6">
       <h2 className="text-2xl font-bold text-burgundy mb-8 text-center">
         Causes of Infertility in Couples
       </h2>
@@ -60,15 +60,11 @@ const StackedChart = () => {
       </div>
 
       <div className="mt-4 space-y-2 text-sm text-center">
-        <p className="text-pink-400 font-medium">Male Factor ~33%</p>
-        <p className="text-blue-400 font-medium">Female Factor ~33%</p>
-        <p className="text-gray-400 font-medium">Both / Unknown ~33%</p>
+        <p className="text-blue-400 font-medium">Male Factor ~33%</p>
+        <p className="text-pink-400 font-medium">Female Factor ~33%</p>
+        <p className="text-gray-500 font-medium">Both / Unknown ~33%</p>
       </div>
 
-      <p className="mt-6 text-center text-sm text-gray-600 italic max-w-xl mx-auto">
-        Overall, one-third of infertility cases are caused by male reproductive issues, one-third by female reproductive issues,
-        and one-third by both or by unknown factors.
-      </p>
     </div>
   );
 };

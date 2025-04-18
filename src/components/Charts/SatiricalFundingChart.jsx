@@ -21,34 +21,18 @@ const SatiricalFundingChart = () => {
         NIH Funding Disparities in Reproductive Health
       </h2>
 
-      {/* Combined Chart */}
+      {/* Departmental Funding Chart */}
+      <h3 className="text-lg font-semibold mb-4 text-center">By Department</h3>
       <div className="space-y-6 text-burgundy">
         <div>
-
           <div className="flex items-center mb-2">
             <span className="w-40 text-sm font-medium text-right mr-4">OB/GYN</span>
             {animatedBar("95%", "bg-burgundy", "$436.6M")}
           </div>
-
           <div className="flex items-center mb-2">
             <span className="w-40 text-sm font-medium text-right mr-4">Urology</span>
             {animatedBar("5%", "bg-orangebright", "$22M")}
           </div>
-
-        
-
-          <p className="mt-2 text-xs text-gray-500 text-center italic">
-          NIH funding for infertility research in 2023—filtered by the term 'Infertility'—shows a stark disparity between departments: Urology (typically addressing male infertility) 
-          received just 5% of the total infertility funding, while OB/GYN departments (typically addressing female infertility) accounted for the vast majority.          
-          <a
-          href="https://www.fertstert.org/article/S0015-0282(23)01554-6/fulltext"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline text-blue-400 hover:text-blue-300"
-        >
-          Source
-        </a>
-          </p>
         </div>
       </div>
     </div>

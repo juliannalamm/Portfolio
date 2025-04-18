@@ -29,6 +29,7 @@ import TrackVideoGrid from "./Charts/TrackVideoGrid";
 import "../simplifiedScrollamaStyles.css";
 import SatiricalFundingChart from "./Charts/SatiricalFundingChart";
 import StackedChart from "./Charts/StackedChart";
+import InfertilityFundingChart from "./Charts/InfertilityFunding";
 
 function ScrollamaIntro() {
     const containerRef = useRef(null);
@@ -115,7 +116,7 @@ function ScrollamaIntro() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [2, 3, 4].includes(activeStep);
+    const shouldAnimate = [2, 3, 4, 5, 6].includes(activeStep);
 
 
 
@@ -199,10 +200,17 @@ function ScrollamaIntro() {
         } else if (activeStep === 8) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
+                    <InfertilityFundingChart />
+                </div>
+            );
+
+        } else if (activeStep === 9) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
                     <FertilityWaffleChart />
                 </div>
             );
-        } else if (activeStep === 9) {
+        } else if (activeStep === 10) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -215,7 +223,7 @@ function ScrollamaIntro() {
                     />
                 </div>
             );
-        } else if (activeStep === 10) {
+        } else if (activeStep === 11) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
@@ -279,7 +287,10 @@ function ScrollamaIntro() {
                         <div className="mb-20">
                             <p className="text-left pl-6">
                                 As it turns out, John and his partner are not alone. In fact, 17.5% of individuals of reproductive age are affected by infertility in their lifetime. Around age 35, men's fertility begins to decline across many key metrics.
-                                <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility" className="text-blue-600 hover:underline"> [1]</a>
+                                <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"> [1]</a>
                             </p>
                         </div>
                         <div className="mb-20">
@@ -290,12 +301,12 @@ function ScrollamaIntro() {
 
                         </div>
                         <div className="mb-20">
-                        <p className="text-center pl-6">
-                                
-                                In other words... 
-                                </p>
-    
-                            
+                            <p className="text-center pl-6">
+
+                                In other words...
+                            </p>
+
+
                         </div>
 
                     </div>
@@ -314,6 +325,8 @@ function ScrollamaIntro() {
                             <p className="text-left mb-20 pl-6"> Average Sperm motility peaks at age 35 and
                                 declines at a rate of 2.9% thereafter
                                 <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="text-blue-600 hover:underline"> [2]</a>.
                             </p>
                         </div>
@@ -328,6 +341,8 @@ function ScrollamaIntro() {
                         <div className="pt-10">
                             <p className="text-left mb-20 pl-6"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
                                 <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                                    target = "_blank"
+                                    rel="noopener noreferrer"
                                     className="text-blue-600 hover:underline"> [2]</a>.
                             </p>
                         </div>
@@ -361,14 +376,14 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 4 */}
                         <div className="mb-20">
-                            <p className="text-left pl-6">    The effect of male age on how long it takes to get pregnant remained significant even after accounting for factors like the woman’s age and how often the couple had sex. 
-                            This means that as men get older, it can become harder for their partner to conceive regardless of their partners' age.</p>
+                            <p className="text-left pl-6">    The effect of male age on how long it takes to get pregnant remained significant even after accounting for factors like the woman’s age and how often the couple had sex.
+                                This means that as men get older, it can become harder for their partner to conceive regardless of their partners' age.</p>
                         </div>
 
                     </div>
-                     
-                     {/* Step 6 */}
-                     <div className="step" ref={addToStepRefs}>
+
+                    {/* Step 6 */}
+                    <div className="step" ref={addToStepRefs}>
                         {/* div 1 */}
                         <div className="pt-10">
                             <p className="text-left mb-30 pl-6"> &nbsp;
@@ -376,7 +391,13 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 2 */}
                         <div className="mb-20">
-                            <p className="text-left mb-20 pl-6"> 
+                            <p className="text-left mb-20 pl-6">
+                                Overall, one-third of infertility cases are caused by male reproductive issues, one-third by female reproductive issues,
+                                and one-third by both or by unknown factors 
+                                <a href="https://www.nichd.nih.gov/health/topics/menshealth/conditioninfo/infertility#f4" 
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                className="text-blue-600 hover:underline"> [4]</a>.
                             </p>
 
                         </div>
@@ -394,15 +415,16 @@ function ScrollamaIntro() {
                     <div className="step" ref={addToStepRefs}>
                         {/* div 1 */}
                         <div className="pt-10">
-                            <p className="text-left mb-30 pl-6"> &nbsp;
+                            <p className="text-left mb-30 pl-6">
+                                Despite this equal contribution, an overlooked reality persists:
+                                men receive a fraction of the research funding—and carry none of the clinical burden.
                             </p>
                         </div>
                         {/* div 2 */}
                         <div className="mb-20">
-                            <p className="text-left mb-20 pl-6"> 
-                            This leads us to a misunderstood and often overlooked reality: men contribute to infertility in equal proportion—but receive a fraction of the funding and carry none of the clinical burden.
+                            <p className="text-left mb-20 pl-6">
+                                &nbsp;
                             </p>
-
                         </div>
                         {/* div 3 */}
                         <div className="mb-15">
@@ -410,30 +432,63 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 4 */}
                         <div className="mb-20">
-                            <p className="text-left pl-6"> 
-                            The effect of male age on how long it takes to get pregnant remained significant even after accounting for factors like the woman’s age and how often the couple had sex. 
-                            This means that as men get older, it can become harder for their partner to conceive regardless of their partners' age.
-                             </p>
+                            <p className="text-left pl-6">
+                            Between 2004 and 2022, when looking at NIH grants that included the term “infertility,” funding was overwhelmingly directed toward OB/GYN departments, which typically focus on female infertility. 
+                            In contrast, Urology departments—usually associated with male infertility—received just 5% of the total 
+                                <a
+                                    href="https://www.fertstert.org/article/S0015-0282(23)01554-6/fulltext"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    className="text-blue-600 hover:underline"> [4]</a>.
+                            </p>
                         </div>
                     </div>
 
                     {/* Step 8 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 6: tableau!</h2>
+                        {/* div 1 */}
+                        <div className="pt-10">
+                            <p className="text-left mb-30 pl-6">
+                                
+                            </p>
+                        </div>
+                        {/* div 2 */}
+                        <div className="mb-20">
+                            <p className="text-left mb-20 pl-6">
+                                &nbsp;
+                            </p>
+                        </div>
+                        {/* div 3 */}
+                        <div className="mb-15">
+                            <p className="text-left pl-6">&nbsp;</p>
+                        </div>
+                        {/* div 4 */}
+                        <div className="mb-20">
+                            <p className="text-left pl-6">
+         
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Step 9 */}
+                    <div className="step" ref={addToStepRefs}>
+                        <h2>Step 9: tableau!</h2>
                         <p>
                             Tableau will go here
                         </p>
                     </div>
-                    
-                    {/* Step 9 */}
+
+                    {/* Step 10 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 7: track video !</h2>
+                        <h2>Step 10: track video !</h2>
                         <p>
                             track video
                         </p>
                     </div>
+
+                    {/* Step 11 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 10: track video !</h2>
+                        <h2>Step 11: track video !</h2>
                         <p>
                             track video
                         </p>
@@ -444,7 +499,7 @@ function ScrollamaIntro() {
                     <div style={{ height: "0vh" }} />
                 </div>
             </div>
-        </section>
+        </section >
     );
 }
 
