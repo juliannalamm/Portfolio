@@ -28,6 +28,7 @@ import TrackVideoGrid from "./Charts/TrackVideoGrid";
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../simplifiedScrollamaStyles.css";
 import SatiricalFundingChart from "./Charts/SatiricalFundingChart";
+import StackedChart from "./Charts/StackedChart";
 
 function ScrollamaIntro() {
     const containerRef = useRef(null);
@@ -181,21 +182,27 @@ function ScrollamaIntro() {
                     <TTPOnly />
                 </div>
             );
-
         } else if (activeStep === 6) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                    <SatiricalFundingChart />
+                    <StackedChart />
                 </div>
             );
 
         } else if (activeStep === 7) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
+                    <SatiricalFundingChart />
+                </div>
+            );
+
+        } else if (activeStep === 8) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
                     <FertilityWaffleChart />
                 </div>
             );
-        } else if (activeStep === 8) {
+        } else if (activeStep === 9) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -208,7 +215,7 @@ function ScrollamaIntro() {
                     />
                 </div>
             );
-        } else if (activeStep === 9) {
+        } else if (activeStep === 10) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
@@ -343,7 +350,7 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 2 */}
                         <div className="mb-20">
-                            <p className="text-left mb-20 pl-6"> A study on 1,976 couples reported that the amount of time it takes to achieve pregnancy (TTP), became accelerated when the men’s age was 45 years or older. Normalized data relative to age 20 is shown in the chart to the left.  <a href="https://www.sciencedirect.com/science/article/pii/S0015028203003662"
+                            <p className="text-left mb-20 pl-6"> A study on 1,976 couples reported that the amount of time it takes to achieve pregnancy (TTP), became accelerated when the men’s age was 45 years or older. Normalized data relative to age 20 is shown in the chart to the left  <a href="https://www.sciencedirect.com/science/article/pii/S0015028203003662"
                                 className="text-blue-600 hover:underline"> [3]</a>.
                             </p>
 
@@ -354,11 +361,36 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 4 */}
                         <div className="mb-20">
-                            <p className="text-left pl-6"> The age effect of males on TTP remained unchanged after controlling for women’s age, coital frequency, and the other factors affecting both partners</p>
+                            <p className="text-left pl-6">    The effect of male age on how long it takes to get pregnant remained significant even after accounting for factors like the woman’s age and how often the couple had sex. 
+                            This means that as men get older, it can become harder for their partner to conceive regardless of their partners' age.</p>
                         </div>
 
                     </div>
-                    {/* step 6 */}
+                     
+                     {/* Step 6 */}
+                     <div className="step" ref={addToStepRefs}>
+                        {/* div 1 */}
+                        <div className="pt-10">
+                            <p className="text-left mb-30 pl-6"> &nbsp;
+                            </p>
+                        </div>
+                        {/* div 2 */}
+                        <div className="mb-20">
+                            <p className="text-left mb-20 pl-6"> 
+                            </p>
+
+                        </div>
+                        {/* div 3 */}
+                        <div className="mb-15">
+                            <p className="text-left pl-6">&nbsp;</p>
+                        </div>
+                        {/* div 4 */}
+                        <div className="mb-20">
+                            <p className="text-left pl-6">  </p>
+                        </div>
+
+                    </div>
+                    {/* step 7 */}
                     <div className="step" ref={addToStepRefs}>
                         {/* div 1 */}
                         <div className="pt-10">
@@ -378,24 +410,30 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 4 */}
                         <div className="mb-20">
-                            <p className="text-left pl-6"> The age effect of males on TTP remained unchanged after controlling for women’s age, coital frequency, and the other factors affecting both partners</p>
+                            <p className="text-left pl-6"> 
+                            The effect of male age on how long it takes to get pregnant remained significant even after accounting for factors like the woman’s age and how often the couple had sex. 
+                            This means that as men get older, it can become harder for their partner to conceive regardless of their partners' age.
+                             </p>
                         </div>
-
-
-
                     </div>
 
-                    {/* Step 7 */}
+                    {/* Step 8 */}
                     <div className="step" ref={addToStepRefs}>
                         <h2>Step 6: tableau!</h2>
                         <p>
                             Tableau will go here
                         </p>
                     </div>
-                    {/* Step 8 */}
-
+                    
+                    {/* Step 9 */}
                     <div className="step" ref={addToStepRefs}>
                         <h2>Step 7: track video !</h2>
+                        <p>
+                            track video
+                        </p>
+                    </div>
+                    <div className="step" ref={addToStepRefs}>
+                        <h2>Step 10: track video !</h2>
                         <p>
                             track video
                         </p>
