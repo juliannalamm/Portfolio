@@ -280,10 +280,10 @@ function ScrollamaIntro() {
                         <div className="mb-20">
                             <p className="text-left pl-6">
                                 As it turns out, John and his partner are not alone. In fact, 17.5% of individuals of reproductive age are affected by infertility in their lifetime. Around age 35, men's fertility begins to decline across many key metrics.
-                                <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility" 
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 hover:underline"> [1]</a>
+                                <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"> [1]</a>
                             </p>
                         </div>
                         <div className="mb-20">
@@ -334,7 +334,7 @@ function ScrollamaIntro() {
                         <div className="pt-10">
                             <p className="text-left mb-20 pl-6"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
                                 <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
-                                    target = "_blank"
+                                    target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-blue-600 hover:underline"> [2]</a>.
                             </p>
@@ -386,11 +386,11 @@ function ScrollamaIntro() {
                         <div className="mb-20">
                             <p className="text-left mb-20 pl-6">
                                 Overall, one-third of infertility cases are caused by male reproductive issues, one-third by female reproductive issues,
-                                and one-third by both or by unknown factors 
-                                <a href="https://www.nichd.nih.gov/health/topics/menshealth/conditioninfo/infertility#f4" 
-                                rel="noopener noreferrer"
-                                target="_blank"
-                                className="text-blue-600 hover:underline"> [4]</a>.
+                                and one-third by both or by unknown factors
+                                <a href="https://www.nichd.nih.gov/health/topics/menshealth/conditioninfo/infertility#f4"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                    className="text-blue-600 hover:underline"> [4]</a>.
                             </p>
 
                         </div>
@@ -408,25 +408,32 @@ function ScrollamaIntro() {
                     <div className="step" ref={addToStepRefs}>
                         {/* div 1 */}
                         <div className="pt-10">
-                            <p className="text-left mb-30 pl-6">
-                                Despite this equal contribution, an overlooked reality persists:
-                                men receive a fraction of the research funding in fertility—and carry none of the clinical burden.
+                            <p className="text-left mb-20 pl-6">
+                                Despite contributing to nearly half of all infertility cases with known cause,
+                                male fertility research receives just $15.5M in NIH funding — a fraction of what we spend on almost any other gendered health issue.
                             </p>
                         </div>
                         {/* div 2 */}
                         <div className="mb-20">
                             <p className="text-left mb-20 pl-6">
-                                &nbsp;
+                                When it comes to women's health, it’s about making babies. When it comes to men’s health, we fund survival.
+                                Prostate cancer receives $305M, while ovarian cancer receives only $171M — over 2x less, despite both being deadly, gender-specific cancers.
                             </p>
                         </div>
                         {/* div 3 */}
-                        <div className="mb-15">
-                            <p className="text-left pl-6">&nbsp;</p>
+                        <div className="mb-20">
+                            <p className="text-left pl-6">
+                                Endometriosis, a painful chronic condition affecting ~10% of reproductive-age women, receives only $29M — nearly 7x less than funding for female fertility and IVF-related research ($200.3M)
+                            </p>
                         </div>
                         {/* div 4 */}
                         <div className="mb-20">
                             <p className="text-left pl-6">
-                          </p>
+                                This isn't just a funding gap. It's a systemic blind spot.
+
+                                We have normalized the idea that infertility is a woman’s burden to diagnose, treat, and carry.
+                                But if half the issue is male, why is less than 8% of infertility funding dedicated to understanding it?
+                            </p>
                         </div>
                     </div>
 
@@ -435,7 +442,7 @@ function ScrollamaIntro() {
                         {/* div 1 */}
                         <div className="pt-10">
                             <p className="text-left mb-30 pl-6">
-                                
+                            Male fertility deserves research. Not workaround. Not silence. Real science.
                             </p>
                         </div>
                         {/* div 2 */}
@@ -451,7 +458,7 @@ function ScrollamaIntro() {
                         {/* div 4 */}
                         <div className="mb-20">
                             <p className="text-left pl-6">
-         
+
                             </p>
                         </div>
                     </div>
