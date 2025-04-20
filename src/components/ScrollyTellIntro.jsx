@@ -193,24 +193,17 @@ function ScrollamaIntro() {
         } else if (activeStep === 7) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                    <SatiricalFundingChart />
+                    <InfertilityFundingChart />
                 </div>
             );
 
         } else if (activeStep === 8) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
-                    <InfertilityFundingChart />
-                </div>
-            );
-
-        } else if (activeStep === 9) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
                     <FertilityWaffleChart />
                 </div>
             );
-        } else if (activeStep === 10) {
+        } else if (activeStep === 9) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -223,7 +216,7 @@ function ScrollamaIntro() {
                     />
                 </div>
             );
-        } else if (activeStep === 11) {
+        } else if (activeStep === 10) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
@@ -417,7 +410,7 @@ function ScrollamaIntro() {
                         <div className="pt-10">
                             <p className="text-left mb-30 pl-6">
                                 Despite this equal contribution, an overlooked reality persists:
-                                men receive a fraction of the research funding—and carry none of the clinical burden.
+                                men receive a fraction of the research funding in fertility—and carry none of the clinical burden.
                             </p>
                         </div>
                         {/* div 2 */}
@@ -433,14 +426,7 @@ function ScrollamaIntro() {
                         {/* div 4 */}
                         <div className="mb-20">
                             <p className="text-left pl-6">
-                            Between 2004 and 2022, when looking at NIH grants that included the term “infertility,” funding was overwhelmingly directed toward OB/GYN departments, which typically focus on female infertility. 
-                            In contrast, Urology departments—usually associated with male infertility—received just 5% of the total 
-                                <a
-                                    href="https://www.fertstert.org/article/S0015-0282(23)01554-6/fulltext"
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                    className="text-blue-600 hover:underline"> [4]</a>.
-                            </p>
+                          </p>
                         </div>
                     </div>
 

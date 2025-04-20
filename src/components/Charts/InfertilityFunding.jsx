@@ -19,7 +19,7 @@ const InfertilityFundingChart = () => {
   return (
     <div className="w-full max-w-2xl mx-auto mt-10 px-6">
       <h2 className="text-2xl font-bold text-burgundy mb-8 text-center">
-        NIH Funding Disparities in Selected NIH Research Areas
+        NIH Funding Disparities in Selected Research Areas
       </h2>
 
       {/* Combined Funding Chart */}
@@ -33,22 +33,38 @@ const InfertilityFundingChart = () => {
         <div className="flex items-center">
           <span className="w-40 text-sm font-medium text-right mr-4">Female-fertility</span>
           <div className="flex-1">
-            {animatedBar("66%", "bg-burgundy", "$200.3M", "$200.3M")}
+            {animatedBar("72%", "bg-burgundy", "$200.3M", "$200.3M")}
+          </div>
+        </div>
+        <div className="flex items-center">
+          <span className="w-40 text-sm font-medium text-right mr-4">Ovarian Cancer</span>
+          <div className="flex-1">
+            {animatedBar("65%", "bg-orangebright", "$171M", "$171M")}
           </div>
         </div>
         <div className="flex items-center">
           <span className="w-40 text-sm font-medium text-right mr-4">Endometriosis</span>
           <div className="flex-1">
-            {animatedBar("10%", "bg-burgundy", "$29M", "$29M")}
+            {animatedBar("20%", "bg-burgundy", "$29M", "$29M")}
           </div>
         </div>
         <div className="flex items-center">
           <span className="w-40 text-sm font-medium text-right mr-4">Male-fertility</span>
           <div className="flex-1">
-            {animatedBar("5%", "bg-orangebright", "$15.5M", "$15.5M")}
+            {animatedBar("12%", "bg-orangebright", "$15.5M", "$15.5M")}
           </div>
         </div>
       </div>
+        {/* Caption */}
+        <p className="mt-8 text-xs text-gray-600 text-center italic max-w-xl mx-auto">
+        Funding totals were compiled using the NIH estimates of Funding for Various Research, Condition, and Disease Categories 
+        <a href = "https://report.nih.gov/funding/categorical-spending#/" 
+         target="_blank"
+         rel="noopener noreferrer"
+         className= "text-blue-500 underline"> (RCDC) tools </a> 
+        Infertility funding represents all projects labeled under "infertility" in 2023. Male fertility-specific funding was 
+        isolated by filtering project titles using the keywords “sperm”, “andrology”, or “paternal”. 
+      </p>
     </div>
   );
 };
