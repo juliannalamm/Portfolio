@@ -14,6 +14,9 @@ import { motion, AnimatePresence } from "framer-motion";
 // images
 import JohnImage from "../assets/John.svg";
 import JohnSad from "../assets/JohnSad.svg";
+import LegacyReport from "/images/legacy_report.png";
+import StandardReport from "/images/standard_report.png";
+
 // chart
 import SpermMotilityAge from "./Charts/SpermMotilityChart";
 import MotilityOnly from "./Charts/MotilityOnly";
@@ -27,7 +30,6 @@ import TrackVideoGrid from "./Charts/TrackVideoGrid";
 
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../simplifiedScrollamaStyles.css";
-import SatiricalFundingChart from "./Charts/SatiricalFundingChart";
 import StackedChart from "./Charts/StackedChart";
 import InfertilityFundingChart from "./Charts/InfertilityFunding";
 
@@ -48,6 +50,7 @@ function ScrollamaIntro() {
     const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
     const tableauWrapperRef = useRef(null); //access tableau element, once the component renders we will point to the element its attached to 
     const [tableauWidth, setTableauWidth] = useState(900);
+
 
     const tableauUrl =
         "https://public.tableau.com/views/Tracks2_17448553603710/Dashboard13?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
@@ -192,18 +195,40 @@ function ScrollamaIntro() {
 
         } else if (activeStep === 7) {
             return (
-                <div style={{ width: '80%', height: '400px' }}>
-                    <InfertilityFundingChart />
-                </div>
+              <div style={{ width: '80%', height: '400px' }}>
+                <InfertilityFundingChart disableAnimation={false} />
+              </div>
             );
-
         } else if (activeStep === 8) {
+            return (
+              <div style={{ width: '80%', height: '400px' }}>
+                <InfertilityFundingChart disableAnimation={true} />
+              </div>
+            );
+        } else if (activeStep === 9) {
+            return (
+                <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <img
+                  src={LegacyReport}
+                  alt="Left"
+                  style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
+                />
+                <img
+                  src={StandardReport}
+                  alt="Right"
+                  style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
+                />
+              </div>
+            );
+            
+
+        } else if (activeStep === 10) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <FertilityWaffleChart />
                 </div>
             );
-        } else if (activeStep === 9) {
+        } else if (activeStep === 11) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -216,7 +241,7 @@ function ScrollamaIntro() {
                     />
                 </div>
             );
-        } else if (activeStep === 10) {
+        } else if (activeStep === 12) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
@@ -430,7 +455,6 @@ function ScrollamaIntro() {
                         <div className="mb-20">
                             <p className="text-left pl-6">
                                 This isn't just a funding gap. It's a systemic blind spot.
-
                                 We have normalized the idea that infertility is a woman’s burden to diagnose, treat, and carry.
                                 But if half the issue is male, why is less than 8% of infertility funding dedicated to understanding it?
                             </p>
@@ -441,8 +465,8 @@ function ScrollamaIntro() {
                     <div className="step" ref={addToStepRefs}>
                         {/* div 1 */}
                         <div className="pt-10">
+                            &nbsp;
                             <p className="text-left mb-30 pl-6">
-                            Male fertility deserves research. Not workaround. Not silence. Real science.
                             </p>
                         </div>
                         {/* div 2 */}
@@ -453,7 +477,8 @@ function ScrollamaIntro() {
                         </div>
                         {/* div 3 */}
                         <div className="mb-15">
-                            <p className="text-left pl-6">&nbsp;</p>
+                            <p className="text-left pl-6"> Male fertility deserves research and real science. So what can John do if he wants to take control of his fertility?
+                            </p>
                         </div>
                         {/* div 4 */}
                         <div className="mb-20">
@@ -465,7 +490,7 @@ function ScrollamaIntro() {
 
                     {/* Step 9 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 9: tableau!</h2>
+                        <h2> </h2>
                         <p>
                             Tableau will go here
                         </p>
@@ -473,14 +498,22 @@ function ScrollamaIntro() {
 
                     {/* Step 10 */}
                     <div className="step" ref={addToStepRefs}>
+                        <h2>Step 9: tableau</h2>
+                        <p>
+                        Tableau will go here
+                        </p>
+                    </div>
+
+                    {/* Step 11 */}
+                    <div className="step" ref={addToStepRefs}>
                         <h2>Step 10: track video !</h2>
                         <p>
                             track video
                         </p>
                     </div>
 
-                    {/* Step 11 */}
-                    <div className="step" ref={addToStepRefs}>
+                     {/* Step 12 */}
+                     <div className="step" ref={addToStepRefs}>
                         <h2>Step 11: track video !</h2>
                         <p>
                             track video

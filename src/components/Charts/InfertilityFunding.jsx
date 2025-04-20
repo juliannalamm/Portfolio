@@ -1,11 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const InfertilityFundingChart = () => {
+const InfertilityFundingChart = ({ disableAnimation = false }) => {
   const animatedBar = (widthPercent, color, tooltip, label) => (
     <motion.div
       className={`h-6 rounded-xl ${color} relative group w-full flex items-center pl-2 text-white text-xs font-medium`}
-      initial={{ width: 0, opacity: 0 }}
+      initial={disableAnimation ? false : { width: 0, opacity: 0 }}
       animate={{ width: widthPercent, opacity: 1 }}
       transition={{ duration: 1 }}
     >
