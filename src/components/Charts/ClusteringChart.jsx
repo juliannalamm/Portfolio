@@ -95,7 +95,6 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
 
                         ticks: '',
                         showgrid: false,
-                        showgrid: false,
                         zeroline: true,
                         zerolinecolor: 'white',
                     },

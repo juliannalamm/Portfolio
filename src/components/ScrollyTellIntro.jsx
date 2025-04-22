@@ -82,7 +82,7 @@ function ScrollamaIntro() {
 
         // On step enter, we set the active step
         const handleStepEnter = ({ index }) => {
-            // console.log("Entering step index:", index); // debug
+            console.log("Entering step index:", index); // debug
             setActiveStep(index);
             // highlight the active step visually
             stepRefs.current.forEach((step, i) => {
@@ -222,32 +222,7 @@ function ScrollamaIntro() {
             );
 
 
-        } else if (activeStep === 11) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-                    <FertilityWaffleChart />
-                </div>
-            );
-        } else if (activeStep === 12) {
-            return (
-                // attach ref to the wrapper div so that we can measure the width 
-                <div
-                    ref={tableauWrapperRef}
-                    style={{ width: '90%', height: '800px' }}>
-                    <TableauReport
-                        url={tableauUrl}
-                        options={tableauOptions}
-                        query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
-                    />
-                </div>
-            );
-        } else if (activeStep === 13) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-                    <TrackVideoGrid />
-                </div>
-            );
-        }
+        } 
     };
 
     return (
