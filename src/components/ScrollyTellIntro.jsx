@@ -207,11 +207,11 @@ function ScrollamaIntro() {
             );
         } else if (activeStep === 9) {
             return (
-                <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2%' }}>
                 <img
                   src={LegacyReport}
                   alt="Left"
-                  style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
+                  style={{ width: '55%', height: 'auto', objectFit: 'contain' }}
                 />
                 <img
                   src={StandardReport}
