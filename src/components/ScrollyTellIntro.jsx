@@ -195,40 +195,40 @@ function ScrollamaIntro() {
 
         } else if (activeStep === 7) {
             return (
-              <div style={{ width: '80%', height: '400px' }}>
-                <InfertilityFundingChart disableAnimation={false} />
-              </div>
+                <div style={{ width: '80%', height: '400px' }}>
+                    <InfertilityFundingChart disableAnimation={false} />
+                </div>
             );
         } else if (activeStep === 8) {
             return (
-              <div style={{ width: '80%', height: '400px' }}>
-                <InfertilityFundingChart disableAnimation={true} />
-              </div>
+                <div style={{ width: '80%', height: '400px' }}>
+                    <InfertilityFundingChart disableAnimation={true} />
+                </div>
             );
-        } else if (activeStep === 9) {
+        } else if (activeStep === 9 || activeStep === 10) {
             return (
                 <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2%' }}>
-                <img
-                  src={LegacyReport}
-                  alt="Left"
-                  style={{ width: '55%', height: 'auto', objectFit: 'contain' }}
-                />
-                <img
-                  src={StandardReport}
-                  alt="Right"
-                  style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
-                />
-              </div>
+                    <img
+                        src={LegacyReport}
+                        alt="Left"
+                        style={{ width: '55%', height: 'auto', objectFit: 'contain' }}
+                    />
+                    <img
+                        src={StandardReport}
+                        alt="Right"
+                        style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
+                    />
+                </div>
             );
-            
 
-        } else if (activeStep === 10) {
+
+        } else if (activeStep === 11) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <FertilityWaffleChart />
                 </div>
             );
-        } else if (activeStep === 11) {
+        } else if (activeStep === 12) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -241,7 +241,7 @@ function ScrollamaIntro() {
                     />
                 </div>
             );
-        } else if (activeStep === 12) {
+        } else if (activeStep === 13) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
@@ -490,31 +490,105 @@ function ScrollamaIntro() {
 
                     {/* Step 9 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2> </h2>
-                        <p>
-                            Tableau will go here
-                        </p>
+                        {/* div 1 */}
+                        <div className="pt-10">
+                            <p className="text-left mb-10 pl-6">
+                                John can decide to go to the doctor, typically an andrologist or a fertility clinic, where he will be given a standard semen analysis report. Key parameters returned typically include:
+                            </p>
+                            <ul className="text-left mb-10 pl-30 list-disc space-y-2 text-sm ">
+                                <li>Volume: Total amount of semen ejaculated</li>
+                                <li>Concentration: Number of sperm per milliliter</li>
+                                <li>Total sperm count: Total number of sperm in the sample</li>
+                                <li>Motility: Percentage of sperm that are moving</li>
+                                <li>Progressive motility: Sperm moving forward in a straight line</li>
+                                <li>Vitality: Percentage of live sperm (if motility is low)</li>
+                                <li>Morphology: Percentage of sperm with normal shape</li>
+                                <li> among others...</li>
+                            </ul>
+                        </div>
+                        {/* div 2 */}
+                        <div className="mb-20">
+                            <p className="text-left mb-20 pl-6">
+                                These types of analyses are helpful in providing a general snapshot of sperm health, but they examine only general properties and it is widely
+                                accepted that the use of these parameters cannot precisely and accurately predict the fertility of a man presenting to a clinician 
+                                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4254491/#R34"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"> [5]</a>.
+                            </p>
+
+                        </div>
+                        {/* div 3 */}
+                        <div className="mb-15">
+                            <p className="text-left pl-6">
+                                &nbsp;
+                            </p>
+                        </div>
+                        {/* div 4 */}
+                        <div className="mb-20">
+                            <p className="text-left pl-6">
+                                &nbsp;
+
+                            </p>
+                        </div>
                     </div>
 
                     {/* Step 10 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 9: tableau</h2>
-                        <p>
-                        Tableau will go here
+                    <div className="pt-10">
+                        
+                        </div>
+                        <div className="mb-15">
+                        <p className = "text-left mb-30 pl-6">
+                        Multiple studies dating back to 1988 have found that relying just on the defined normal values of isolated parameters such as sperm density and motility as defined by the WHO were not very predictive of that couple’s chances of naturally establishing a pregnancy
+                        <a href = "https://www.maleinfertilityguide.com/density-motility-and-total-motile-count" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline"> [6]</a>.
                         </p>
+                        </div>
+                        <div className="mb-20">
+                            <p className="text-left pl-6">
+                                &nbsp;
+                            </p>
+                        </div>
+                        
+                        
+                        
+                        <div className="mb-20">
+                            <h2 className="text-left pl-6 mb-10"
+                              style={{ fontFamily: 'TiemposTextBold, serif' }}
+                              >
+                            What if there was a more descriptive way of analyzing sperm motility that 
+                            picks up nuances otherwise obscured by existing analyses? 
+                            We will attempt to show a novel method for analyzing the motility of analyzing and classifying the motility of 
+                             sperm that leads to a more accurate prediction of fertility.
+                            </h2>
+
+                        </div>
+
+
                     </div>
 
                     {/* Step 11 */}
                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 10: track video !</h2>
+                        <h2>Step 11: track video !</h2>
                         <p>
                             track video
                         </p>
                     </div>
 
-                     {/* Step 12 */}
-                     <div className="step" ref={addToStepRefs}>
-                        <h2>Step 11: track video !</h2>
+                    {/* Step 12 */}
+                    <div className="step" ref={addToStepRefs}>
+                        <h2>Step 12: track video !</h2>
+                        <p>
+                            track video
+                        </p>
+                    </div>
+
+                    {/* Step 13 */}
+                    <div className="step" ref={addToStepRefs}>
+                        <h2>Step 13: track video !</h2>
                         <p>
                             track video
                         </p>
