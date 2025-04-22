@@ -6,7 +6,6 @@ DAMN PAGE
 
 import React, { useEffect, useRef, useState } from "react";
 import scrollama from "scrollama";
-import TableauReport from "tableau-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 
@@ -22,8 +21,6 @@ import SpermMotilityAge from "./Charts/SpermMotilityChart";
 import MotilityOnly from "./Charts/MotilityOnly";
 import CountOnly from "./Charts/CountOnly";
 import TTPOnly from "./Charts/TTPOnly";
-import FertilityWaffleChart from "./Charts/FertilityWaffleChart";
-import TrackVideoGrid from "./Charts/TrackVideoGrid";
 
 
 
@@ -222,7 +219,7 @@ function ScrollamaIntro() {
             );
 
 
-        } 
+        }
     };
 
     return (
@@ -485,7 +482,7 @@ function ScrollamaIntro() {
                         <div className="mb-20">
                             <p className="text-left mb-20 pl-6">
                                 These types of analyses are helpful in providing a general snapshot of sperm health, but they examine only general properties and it is widely
-                                accepted that the use of these parameters cannot precisely and accurately predict the fertility of a man presenting to a clinician 
+                                accepted that the use of these parameters cannot precisely and accurately predict the fertility of a man presenting to a clinician
                                 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4254491/#R34"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -510,34 +507,34 @@ function ScrollamaIntro() {
 
                     {/* Step 10 */}
                     <div className="step" ref={addToStepRefs}>
-                    <div className="pt-10">
-                        
+                        <div className="pt-10">
+
                         </div>
                         <div className="mb-15">
-                        <p className = "text-left mb-30 pl-6">
-                        Multiple studies dating back to 1988 have found that relying just on the defined normal values of isolated parameters such as sperm density and motility as defined by the WHO were not very predictive of that couple’s chances of naturally establishing a pregnancy
-                        <a href = "https://www.maleinfertilityguide.com/density-motility-and-total-motile-count" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"> [6]</a>.
-                        </p>
+                            <p className="text-left mb-30 pl-6">
+                                Multiple studies dating back to 1988 have found that relying just on the defined normal values of isolated parameters such as sperm density and motility as defined by the WHO were not very predictive of that couple’s chances of naturally establishing a pregnancy
+                                <a href="https://www.maleinfertilityguide.com/density-motility-and-total-motile-count"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"> [6]</a>.
+                            </p>
                         </div>
                         <div className="mb-20">
                             <p className="text-left pl-6">
                                 &nbsp;
                             </p>
                         </div>
-                        
-                        
-                        
+
+
+
                         <div className="mb-20">
-                            <h2 className="text-left pl-6 mb-10"
-                              style={{ fontFamily: 'TiemposTextBold, serif' }}
-                              >
-                            What if there was a more descriptive way of analyzing sperm motility that 
-                            picks up nuances otherwise obscured by existing analyses? 
-                            We will attempt to show a novel method for analyzing the motility of analyzing and classifying the motility of 
-                             sperm that leads to a more accurate prediction of fertility.
+                            <h2 className="text-left pl-6"
+                                style={{ fontFamily: 'TiemposTextBold, serif' }}
+                            >
+                                What if there was a more descriptive way of analyzing sperm motility that
+                                picks up nuances otherwise obscured by existing analyses?
+                                We will attempt to show a novel method for analyzing the motility of analyzing and classifying the motility of
+                                sperm that leads to a more accurate prediction of fertility.
                             </h2>
 
                         </div>
@@ -545,33 +542,7 @@ function ScrollamaIntro() {
 
                     </div>
 
-                    {/* Step 11 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <h2>Step 11: track video !</h2>
-                        <p>
-                            track video
-                        </p>
-                    </div>
-
-                    {/* Step 12 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <h2>Step 12: track video !</h2>
-                        <p>
-                            track video
-                        </p>
-                    </div>
-
-                    {/* Step 13 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <h2>Step 13: track video !</h2>
-                        <p>
-                            track video
-                        </p>
-                    </div>
-
-
-                    {/* Extra space so Step 2 can actually become active */}
-                    <div style={{ height: "0vh" }} />
+                
                 </div>
             </div>
         </section >

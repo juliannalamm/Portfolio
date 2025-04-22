@@ -9,6 +9,7 @@ import { Scroll } from "lucide-react";
 import ScrollamaIntro from "../components/ScrollyTellIntro";
 import ScrollamaResults from "../components/ScrollyTellResults";
 import ScrollamaMethods from "../components/ScrollyTellMethods";
+import MethodsHero from "../components/MethodsHero";
 
 
 
@@ -36,6 +37,7 @@ const SpermTrackClassification = () => {
 
 
       <ScrollamaIntro />
+      <MethodsHero />
       <ScrollamaMethods />
       <Dashboard />
       <ScrollamaResults />

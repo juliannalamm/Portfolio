@@ -191,7 +191,7 @@ function ScrollamaMethods() {
                 <div className="methods-scroll__text" ref={textRef}>
                     {/* Step 0 */}
                     <div className="methods-step" ref={addToStepRefs}>
-                        <div className="pt-10">
+                        <div>
                             <h2 className="text-center text-xl mb-10"> </h2>
                         </div>
                         <div className="mb-20">
