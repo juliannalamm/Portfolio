@@ -17,11 +17,10 @@ import labeledSperm from "/images/detectionresults/YOLOv8s/labels.jpg"
 import predictedSperm from "/images/detectionresults/YOLOv8s/prediction.jpg"
 import flowChart from "/images/EntireFrame.png"
 import trackingResults from "/videos/12custom_botsort_compressed.mp4"
-
+import SpermTrajectories from "/videos/SpermTrajectories.mp4"
 // chart
 import FertilityWaffleChart from "./Charts/FertilityWaffleChart";
 import TrackVideoGrid from "./Charts/TrackVideoGrid";
-import MetricViewer from "../components/FeatureEngineering";
 import KinematicMetricsDef from "./KinematicMetricsDef";
 
 
@@ -162,6 +161,7 @@ function ScrollamaMethods() {
                 </div>
 
             );
+
         } else if (activeStep === 2) {
             return (
                 <div className={{ width: '80%', height: '400px' }}>
@@ -181,6 +181,23 @@ function ScrollamaMethods() {
             );
         } else if (activeStep === 3) {
             return (
+                <div style={{ width: '80%', height: '500px' }}>
+                    <video
+                        className="object-contain"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                    >
+                        <source src={SpermTrajectories} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+            );
+        } else if (activeStep === 4) {
+            return (
                 <div style={{ width: '80%', height: '800px' }}>
                     <KinematicMetricsDef />
                 </div>
@@ -189,7 +206,7 @@ function ScrollamaMethods() {
 
 
 
-        } else if (activeStep === 4) {
+        } else if (activeStep === 5) {
             return (
                 <div
                     ref={tableauWrapperRef}
@@ -201,20 +218,20 @@ function ScrollamaMethods() {
                     />
                 </div>
             );
-        } else if (activeStep === 5) {
+        } else if (activeStep === 6) {
 
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
                 </div>
             );
-        } else if (activeStep === 6) {
+        } else if (activeStep === 7) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
 
                 </div>
             );
-        } else if (activeStep === 7) {
+        } else if (activeStep === 8) {
 
             return (
                 <div style={{ width: '80%', height: '400px' }}>
@@ -305,12 +322,12 @@ function ScrollamaMethods() {
                     {/* Step 2 */}
                     <div className="methods-step" ref={addToStepRefs}>
                         <div>
-                            <p className="text-left mb-20 pl-6"> After object-detection training, each frame was passed through 
-                            a Kalman-filter based tracking model called BoT-SORT</p>
+                            <p className="text-left mb-20 pl-6"> After object-detection training, each frame was passed through
+                                a Kalman-filter based tracking model called BoT-SORT</p>
                         </div>
                         <div className="mb-20">
                             <p className="text-left pl-6">
-                            Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
+                                Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
                             </p>
                         </div>
                         <div className="mb-20">
