@@ -86,19 +86,19 @@ export default function KinematicMetricsDef() {
   const [selectedMetric, setSelectedMetric] = useState(metrics[0]);
 
   return (
-    <section className="flex justify-center px-4 md:px-6 lg:px-8 mt-10">
-    <div className="w-full max-w-3xl bg-skyblue rounded-sm overflow-hidden p-4 md:p-8">
+    <section className="flex justify-center px-2 md:px-6 lg:px-8 mt-10">
+    <div className="w-full bg-skyblue rounded-sm overflow-hidden p-4 md:p-5">
       <h2 className="text-2xl md:text-3xl font-bold text-burgundy text-center leading-tight">
         CASA Kinematic Metrics
       </h2>
       <div className="border-b border-burgundy my-4 md:my-3"></div>
 
-      <div className="flex flex-wrap gap-2 md:gap-2 justify-center mb-4 md:mb-3">
+      <div className="flex flex-wrap gap-2 md:gap-2 justify-center mb-1 md:mb-2">
         {metrics.map((metric) => (
           <button
             key={metric.name}
             onClick={() => setSelectedMetric(metric)}
-            className={`px-4 md:px-4 py-1.5 rounded-full text-sm font-semibold transition ${
+            className={`px-4 md:px-2 py-1.5 rounded-full text-sm font-semibold transition ${
               selectedMetric.name === metric.name
                 ? "bg-orangebright text-white"
                 : "bg-burgundy text-white hover:bg-orangebright"
@@ -109,8 +109,8 @@ export default function KinematicMetricsDef() {
         ))}
       </div>
 
-      <div className="bg-lightblue p-4 md:p-5 rounded-lg text-burgundy text-sm">
-        <h3 className="text-base font-semibold">{selectedMetric.name}</h3>
+      <div className="bg-lightblue p-4 md:p-4 rounded-lg text-burgundy text-sm">
+        <h3 className="text-base text-center mb-2 font-semibold">{selectedMetric.name}</h3>
         <p className="mt-1">{selectedMetric.definition}</p>
         <div className="mt-2 font-mono font-semibold">
           <BlockMath math={selectedMetric.equation} />
