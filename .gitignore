@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 
-public/data/*.csv
+public/data/initialcluster_w_bb.csv
