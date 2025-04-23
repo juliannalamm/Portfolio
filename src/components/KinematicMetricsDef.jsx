@@ -86,9 +86,9 @@ export default function KinematicMetricsDef() {
   const [selectedMetric, setSelectedMetric] = useState(metrics[0]);
 
   return (
-    <section className="flex justify-center px-2 md:px-6 lg:px-8 mt-10">
+    <section className="flex justify-center px-2 md:px-6 lg:px-8">
     <div className="w-full bg-skyblue rounded-sm overflow-hidden p-4 md:p-5">
-      <h2 className="text-2xl md:text-3xl font-bold text-burgundy text-center leading-tight">
+      <h2 className="text-2xl md:text-2xl font-bold text-burgundy text-center leading-tight">
         CASA Kinematic Metrics
       </h2>
       <div className="border-b border-burgundy my-4 md:my-3"></div>
