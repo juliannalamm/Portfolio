@@ -107,7 +107,7 @@ function ScrollamaIntro() {
             return (
               <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
                 <img
-                  src={JohnImage}
+                  src={JohnSad}
                   alt="John sad"
                   style={{ width: "80%", height: "auto", objectFit: "contain" }}
                 />
