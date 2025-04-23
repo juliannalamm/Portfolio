@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 // Our custom CSS with the .scroll__graphic, .scroll-container, etc.
-import "../ScrollamastylesResults.css";
+import "../ScrollamaStylesResults.css";
 import FertilityChartToggle from './Charts/FertilityChartToggle';
 import SpermWaffle from './Charts/SpermWaffle';
 import SyntheticClusterChartPanel from './Charts/SyntheticClusterChartPanel';

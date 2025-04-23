@@ -7,7 +7,6 @@ DAMN PAGE
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from 'react-router-dom';
 import scrollama from "scrollama";
-import TableauReport from "tableau-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 
@@ -44,17 +43,9 @@ function ScrollamaMethods() {
 
     // active step index
     const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
-    const tableauWrapperRef = useRef(null); //access tableau element, once the component renders we will point to the element its attached to 
-    const [tableauWidth, setTableauWidth] = useState(900);
 
 
-    const tableauUrl =
-        "https://public.tableau.com/views/Tracks2_17448553603710/Dashboard13?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
-    const tableauOptions = {
-        height: 900,
-        width: tableauWidth,
-        hideTabs: true,
-    };
+    
 
 
     useEffect(() => {
@@ -69,12 +60,7 @@ function ScrollamaMethods() {
             scroller.resize();
         };
         // checks if the ref is pointing to the actual element, gets width of the element (offsetWidth) stores the width in the state variable
-        const updateTableauWidth = () => {
-            if (tableauWrapperRef.current) {
-                const containerWidth = tableauWrapperRef.current.offsetWidth;
-                setTableauWidth(containerWidth);
-            }
-        };
+    
 
         // On step enter, we set the active step
         const handleStepEnter = ({ index }) => {
@@ -101,15 +87,12 @@ function ScrollamaMethods() {
 
         // run once on load
         handleResize();
-        updateTableauWidth()
         window.addEventListener("resize", handleResize);
-        window.addEventListener("resize", updateTableauWidth); // Update on resize
 
 
         // cleanup on unmount
         return () => {
             window.removeEventListener("resize", handleResize);
-            window.removeEventListener("resize", updateTableauWidth); // Update on resize
             scroller.destroy();
         };
     }, []);
@@ -208,14 +191,7 @@ function ScrollamaMethods() {
 
         } else if (activeStep === 5) {
             return (
-                <div
-                    ref={tableauWrapperRef}
-                    style={{ width: '90%', height: '800px' }}>
-                    <TableauReport
-                        url={tableauUrl}
-                        options={tableauOptions}
-                        query="?:embed=yes&:comments=no&:toolbar=yes&:refresh=yes"
-                    />
+                <div>
                 </div>
             );
         } else if (activeStep === 6) {
