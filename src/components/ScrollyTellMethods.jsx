@@ -22,7 +22,7 @@ import trackingResults from "/videos/12custom_botsort_compressed.mp4"
 import FertilityWaffleChart from "./Charts/FertilityWaffleChart";
 import TrackVideoGrid from "./Charts/TrackVideoGrid";
 import MetricViewer from "../components/FeatureEngineering";
-
+import KinematicMetricsDef from "./KinematicMetricsDef";
 
 
 
@@ -182,7 +182,7 @@ function ScrollamaMethods() {
         } else if (activeStep === 3) {
             return (
                 <div style={{ width: '80%', height: '800px' }}>
-                    <MetricViewer />
+                    <KinematicMetricsDef />
                 </div>
 
             );
