@@ -45,18 +45,8 @@ function ScrollamaIntro() {
 
     // active step index
     const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
-    const tableauWrapperRef = useRef(null); //access tableau element, once the component renders we will point to the element its attached to 
-    const [tableauWidth, setTableauWidth] = useState(900);
-
-
-    const tableauUrl =
-        "https://public.tableau.com/views/Tracks2_17448553603710/Dashboard13?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
-    const tableauOptions = {
-        height: 900,
-        width: tableauWidth,
-        hideTabs: true,
-    };
-
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const johnSadRef = useRef(null);
 
     useEffect(() => {
         const scroller = scrollama();
@@ -69,13 +59,7 @@ function ScrollamaIntro() {
             });
             scroller.resize();
         };
-        // checks if the ref is pointing to the actual element, gets width of the element (offsetWidth) stores the width in the state variable
-        const updateTableauWidth = () => {
-            if (tableauWrapperRef.current) {
-                const containerWidth = tableauWrapperRef.current.offsetWidth;
-                setTableauWidth(containerWidth);
-            }
-        };
+
 
         // On step enter, we set the active step
         const handleStepEnter = ({ index }) => {
@@ -102,15 +86,12 @@ function ScrollamaIntro() {
 
         // run once on load
         handleResize();
-        updateTableauWidth()
         window.addEventListener("resize", handleResize);
-        window.addEventListener("resize", updateTableauWidth); // Update on resize
 
 
         // cleanup on unmount
         return () => {
             window.removeEventListener("resize", handleResize);
-            window.removeEventListener("resize", updateTableauWidth); // Update on resize
             scroller.destroy();
         };
     }, []);
@@ -138,9 +119,11 @@ function ScrollamaIntro() {
             return (
                 <div style={{ position: "relative" }}>
                     <img
+                        ref={johnSadRef}
                         src={JohnSad}
                         alt="John sad"
                         style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                        onLoad={() => setImageLoaded(true)}
                     />
                     {/* Absolutely positioned chart overlay – ensure it's sized to fit */}
                     <div
@@ -542,7 +525,7 @@ function ScrollamaIntro() {
 
                     </div>
 
-                
+
                 </div>
             </div>
         </section >
