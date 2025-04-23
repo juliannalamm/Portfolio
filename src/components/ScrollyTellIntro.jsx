@@ -103,41 +103,28 @@ function ScrollamaIntro() {
 
 
     const renderVisual = () => {
-        if (activeStep === 0) {
+        if (activeStep === 0 || activeStep === 1) {
             return (
-
-                <div style={{ position: "relative" }}>
-                    <img
-                        src={JohnImage}
-                        alt="John sad"
-                        style={{ width: "80%", height: "auto", objectFit: "contain" }}
-                    />
-                </div>
-            );
-        } else if (activeStep === 1) {
-            // John Sad + Chart
-            return (
-                <div style={{ position: "relative" }}>
-                    <img
-                        ref={johnSadRef}
-                        src={JohnSad}
-                        alt="John sad"
-                        style={{ width: "80%", height: "auto", objectFit: "contain" }}
-                        onLoad={() => setImageLoaded(true)}
-                    />
-                    {/* Absolutely positioned chart overlay – ensure it's sized to fit */}
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: "-40%",
-                            left: "30%",
-                            width: "70%", // a fraction of the parent's width
-                            height: "90%",
-                        }}
-                    >
-                        <SpermMotilityAge />
-                    </div>
-                </div>
+              <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
+                <img
+                  src={JohnImage}
+                  alt="John sad"
+                  style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                />
+                {activeStep === 1 && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-40%",
+                      left: "30%",
+                      width: "70%", // a fraction of the parent's width
+                      height: "90%",
+                    }}
+                  >
+                    <SpermMotilityAge />
+                  </div>
+                )}
+              </div>
             );
         } else if (activeStep === 2) {
             // John Sad + Chart
