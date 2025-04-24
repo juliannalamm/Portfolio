@@ -105,26 +105,26 @@ function ScrollamaIntro() {
     const renderVisual = () => {
         if (activeStep === 0 || activeStep === 1) {
             return (
-              <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
-                <img
-                  src={JohnSad}
-                  alt="John sad"
-                  style={{ width: "80%", height: "auto", objectFit: "contain" }}
-                />
-                {activeStep === 1 && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "-40%",
-                      left: "30%",
-                      width: "70%", // a fraction of the parent's width
-                      height: "90%",
-                    }}
-                  >
-                    <SpermMotilityAge />
-                  </div>
-                )}
-              </div>
+                <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
+                    <img
+                        src={JohnSad}
+                        alt="John sad"
+                        style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                    />
+                    {activeStep === 1 && (
+                        <div
+                            style={{
+                                position: "absolute",
+                                top: "-40%",
+                                left: "30%",
+                                width: "70%", // a fraction of the parent's width
+                                height: "90%",
+                            }}
+                        >
+                            <SpermMotilityAge />
+                        </div>
+                    )}
+                </div>
             );
         } else if (activeStep === 2) {
             // John Sad + Chart
@@ -222,22 +222,31 @@ function ScrollamaIntro() {
                 {/* RIGHT: scrolly text steps */}
                 <div className="scroll__text" ref={textRef}>
                     {/* Step 0 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <div className="pt-10">
-                            <h2 className="text-center text-xl mb-10">An Introduction to Male Fertility: The Hidden Male Biological Clock </h2>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">&nbsp;</p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6"> Meet John. John is a 35 year old male and has no known medical complications. Recently, John and his partner embarked on their journey to start a family.  However, they have been struggling to get pregnant.</p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6"> &nbsp; </p>
+                    <div
+                        className="step flex flex-col h-full items-center text-left px-6"
+                        ref={addToStepRefs}
+                    >
+                        {/* Header stays near top */}
+                        <div className="w-full mb-6">
+                            <h2 className="text-xl font-semibold text-center">
+                                An Introduction to Male Fertility: The Hidden Male Biological Clock
+                            </h2>
                         </div>
 
-
+                        {/* Remaining content spaced vertically and centered horizontally */}
+                        <div className="flex-grow flex flex-col justify-evenly items-start w-full max-w-2xl">
+                        <p className="max-w-2xl">
+                                Meet John. John is a 35-year-old male and has no known medical complications.
+                            </p>
+                            <p className="max-w-2xl">
+                                Recently, John and his partner embarked on their journey to start a family.
+                            </p>
+                            <p className="max-w-2xl">
+                                However, they have been struggling to get pregnant.
+                            </p>
+                        </div>
                     </div>
+
 
                     {/* Step 1 */}
                     <div className="step" ref={addToStepRefs}>

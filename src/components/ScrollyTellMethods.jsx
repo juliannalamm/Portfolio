@@ -281,7 +281,7 @@ function ScrollamaMethods() {
 
                 {/* Step 1 */}
                 <div
-                    className="methods-step flex flex-col justify-evenly items-center text-left pl-6 h-full"
+                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
                     ref={addToStepRefs}
                 >
                     <p className="max-w-2xl">
@@ -295,7 +295,7 @@ function ScrollamaMethods() {
                 </div>
                 {/* Step 2 */}
                 <div
-                    className="methods-step flex flex-col justify-evenly items-center text-left pl-6 h-full"
+                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
                     ref={addToStepRefs}
                 >
                     <p className="max-w-2xl">
@@ -306,33 +306,24 @@ function ScrollamaMethods() {
                         Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
                     </p>
                     <p className="max-w-2xl">
-                        Results from the tracking algorithm can then be used to get the coordinates of each individual sperm across video frames!
+                       The bounding box coordinates identifying individual sperm across frames from the tracking algorithm can then be used to visualize trajectories!
                     </p>
                 </div>
 
                 {/* Step 3 */}
-                <div className="methods-step" ref={addToStepRefs}>
-                    <div>
-                        <p className="text-left mb-20 pl-6"> </p>
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-
-                        </p>
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-                            &nbsp;
-                        </p>
-
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-                            &nbsp;
-                        </p>
-
-                    </div>
-
+                <div
+                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                    ref={addToStepRefs}
+                >
+                    <p className="max-w-2xl">
+                        The coordinates for a portion of the sperm identified are plotted and animated. 
+                    </p>
+                    <p className="max-w-2xl">
+                        Each line is colored by the type of sperm movement the sperm exhibits. Note the straight movement of the red lines, erratic movement of the yellow, and jagged movement of the blue. 
+                    </p>
+                    <p className="max-w-2xl">
+                        Wait, but how did we classify these sperm movements?
+                    </p>
                 </div>
 
                 {/* Step 4 */}
