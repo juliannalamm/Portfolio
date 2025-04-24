@@ -77,7 +77,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
     const dataTraces = [...clusterTraces, centroidsTrace];
 
     return (
-        <div className="w-full min-h-screen  bg-transparent">
+        <div className="w-full h-full bg-transparent">
             <Plot
                 data={dataTraces}
                 layout={{
