@@ -28,7 +28,7 @@ const HeroCloud = () => {
 
       <div className="absolute top-1/3 w-full text-center text-white pointer-events-none">
         <h1 className="text-4xl font-bold">
-          Visualizing Sperm Movement Patterns
+          Kmeans Clustering of CASA Data
         </h1>
       </div>
     </div>
