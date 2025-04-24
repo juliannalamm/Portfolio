@@ -24,23 +24,19 @@ const DashboardClusterChart = () => {
           return val === "false" || val === "";
         });
 
-        const x = pointsData.map(row => parseFloat(row['PCA Feature 1']));
-        const y = pointsData.map(row => parseFloat(row['PCA Feature 2']));
-        const clusters = pointsData.map(row => row.Subcluster ? row.Subcluster.trim() : "");
-        const participant = pointsData.map(row => row.participant);
-        const fid = pointsData.map(row => row.fid);
-        const VCL = pointsData.map(row => parseFloat(row.VCL));
-        const VSL = pointsData.map(row => parseFloat(row.VSL));
-        const VAP = pointsData.map(row => parseFloat(row.VAP));
-        const LIN = pointsData.map(row => parseFloat(row.LIN));
-        const WOB = pointsData.map(row => parseFloat(row.WOB));
-        const STR = pointsData.map(row => parseFloat(row.STR));
-        const ALH_Max = pointsData.map(row => parseFloat(row["ALH Max"]));
-
         setChartData({
-          x, y, clusters, participant, fid,
-          VCL, VSL, VAP, LIN, WOB, STR,
-          "ALH Max": ALH_Max
+          x:    pointsData.map(r => parseFloat(r['PCA Feature 1'])),
+          y:    pointsData.map(r => parseFloat(r['PCA Feature 2'])),
+          clusters:    pointsData.map(r => r.Subcluster?.trim() || ""),
+          participant: pointsData.map(r => r.participant),
+          fid:         pointsData.map(r => r.fid),
+          VCL:  pointsData.map(r => parseFloat(r.VCL)),
+          VSL:  pointsData.map(r => parseFloat(r.VSL)),
+          VAP:  pointsData.map(r => parseFloat(r.VAP)),
+          LIN:  pointsData.map(r => parseFloat(r.LIN)),
+          WOB:  pointsData.map(r => parseFloat(r.WOB)),
+          STR:  pointsData.map(r => parseFloat(r.STR)),
+          "ALH Max": pointsData.map(r => parseFloat(r["ALH Max"]))
         });
       },
       error: (err) => console.error("Error parsing CSV:", err)
@@ -55,25 +51,26 @@ const DashboardClusterChart = () => {
       skipEmptyLines: true,
       complete: (results) => {
         const data = results.data;
-        const fid = data.map(row => row.fid);
-        const bb0 = data.map(row => parseFloat(row.bb0));
-        const bb1 = data.map(row => parseFloat(row.bb1));
-        setCoordinateData({ fid, bb0, bb1 });
+        setCoordinateData({
+          fid: data.map(r => r.fid),
+          bb0: data.map(r => parseFloat(r.bb0)),
+          bb1: data.map(r => parseFloat(r.bb1))
+        });
       },
       error: (err) => console.error("Error parsing coordinated data:", err)
     });
   }, []);
 
   if (!chartData || !coordinateData) {
-    return <div>Loading chart...</div>;
+    return <div className="text-white">Loading chart...</div>;
   }
 
   const uniqueClusters = [...new Set(chartData.clusters.map(c => String(c).trim()))];
 
   return (
-    <div>
-      {/* Dropdown for selecting a cluster */}
-      <div className=" mb-4">
+    <div className="flex flex-col space-y-8">
+      {/* Cluster selector */}
+      <div>
         <label htmlFor="cluster-select" className="mr-2 font-bold text-white">
           Select Cluster:
         </label>
@@ -81,50 +78,51 @@ const DashboardClusterChart = () => {
           id="cluster-select"
           value={selectedCluster || ""}
           onChange={(e) => {
-            const value = e.target.value;
-            setSelectedCluster(value === "ALL" ? null : value.trim());
+            const v = e.target.value;
+            setSelectedCluster(v === "ALL" ? null : v);
           }}
-          className=" p-2 border border-white bg-black bg-opacity-50 text-white rounded"
+          className="p-2 border border-white bg-black bg-opacity-50 text-white rounded"
         >
           <option value="ALL">All Clusters</option>
-          {uniqueClusters.map(cluster => (
-            <option key={cluster} value={cluster}>
-              Cluster {cluster}
+          {uniqueClusters.map(c => (
+            <option key={c} value={c}>
+              Cluster {c}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="flex flex-col space-y-6">
-        {/* Cluster chart and trajectory viewer */}
-        <div className="flex flex-col lg:flex-row bg-transparent gap-6">
-          
-          <div className=" mt-40 lg:w-1/2 w-full">
-            <ClusteringChart
-              chartData={chartData}
-              onHoverFid={setHoveredFid}
-              selectedCluster={selectedCluster}
-              coordinateData={coordinateData}
-            />
-          </div>
-
-          <div className="lg:w-1/2 w-full max-w-[600px] ml-4 flex flex-col items-center space-y-10">
-            <TrajectoryViewer
-              fid={hoveredFid}
-              coordinateData={coordinateData}
-            />
-            {selectedCluster !== null ? (
-              <MetricBoxPlot
-                key={`metric-box-${selectedCluster}`}
-                chartData={chartData}
-                selectedCluster={selectedCluster}
-              />
-            ) : (
-              <AllClustersBoxPlot chartData={chartData} />
-            )}
-          </div>
-
+      {/* Top row: scatter + trajectory */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        <div className="w-full lg:w-1/2 h-[400px]">
+          <ClusteringChart
+            chartData={chartData}
+            onHoverFid={setHoveredFid}
+            selectedCluster={selectedCluster}
+          />
         </div>
+        <div className="w-full lg:w-1/2 h-[400px] flex justify-center">
+          <TrajectoryViewer
+            fid={hoveredFid}
+            coordinateData={coordinateData}
+          />
+        </div>
+      </div>
+
+      {/* Bottom row: metrics */}
+      <div className="w-full h-[500px]">
+        {selectedCluster != null
+          ? (
+            <MetricBoxPlot
+              key={`metric-box-${selectedCluster}`}
+              chartData={chartData}
+              selectedCluster={selectedCluster}
+            />
+          )
+          : (
+            <AllClustersBoxPlot chartData={chartData} />
+          )
+        }
       </div>
     </div>
   );

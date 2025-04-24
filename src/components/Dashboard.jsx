@@ -3,13 +3,10 @@ import DashboardClusterChart from './Charts/DashboardClusterChart';
 
 const Dashboard = () => {
   return (
-    <section 
-      className="w-full min-h-screen bg-black flex flex-col items-center justify-center py-16"
-    >
-  
-      <div className="w-full max-w-screen-xl mx-auto bg-transparent p-8">
+    <section className="w-full min-h-screen bg-black py-16">
+      {/* allow full-width children */}
+      <div className="w-full bg-transparent px-4">
         <DashboardClusterChart />
-        
       </div>
     </section>
   );

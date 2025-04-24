@@ -44,7 +44,7 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
   const y = rawY.map(val => val - centerY);
 
   return (
-    <div className="w-[300px] h-[300px] relative rounded-lg overflow-hidden bg-white">
+    <div className="w-[300px] h-[300px] relative rounded-lg overflow-hidden bg-black">
       <Plot
         data={[{
           x,
