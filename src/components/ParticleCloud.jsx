@@ -10,9 +10,9 @@ export default function ParticleCloud() {
   const ref = useRef();
 
   const clusterCenters = useMemo(() => [
-    new THREE.Vector3(-1.5, 0, 0),
-    new THREE.Vector3( 1.5, 0, 0),
-    new THREE.Vector3( 0,   0, 1.5),
+    new THREE.Vector3(-1, 0, 0),
+    new THREE.Vector3( 1, 0, 0),
+    new THREE.Vector3( 0, 0, 1),
   ], []);
 
   // ▶ Build both positions *and* colors in one go:
@@ -55,7 +55,7 @@ export default function ParticleCloud() {
   });
 
   return (
-    <group ref={ref} scale={1.9}>
+    <group ref={ref} scale={0.6}>
       {/* ▶ PASS `colors` alongside `positions` */}
       <Points positions={positions} colors={colors}>
         <PointMaterial
