@@ -45,7 +45,7 @@ function ScrollamaMethods() {
     const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
 
 
-    
+
 
 
     useEffect(() => {
@@ -60,7 +60,7 @@ function ScrollamaMethods() {
             scroller.resize();
         };
         // checks if the ref is pointing to the actual element, gets width of the element (offsetWidth) stores the width in the state variable
-    
+
 
         // On step enter, we set the active step
         const handleStepEnter = ({ index }) => {
@@ -248,159 +248,148 @@ function ScrollamaMethods() {
                 {/* RIGHT: scrolly text steps */}
                 <div className="methods-scroll__text" ref={textRef}>
                     {/* Step 0 */}
-                    <div className="methods-step" ref={addToStepRefs}>
-                        <div className="pt-20" >
-                            <h2 className="text-center text-xl"> Dataset and Methods </h2>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6"> &nbsp;  </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">  This project leverages the
-                                <a href="https://zenodo.org/records/7293726"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline"> VISEM-Tracking dataset </a>, containing manually annotated sperm tracking data including video recordings of 30 seconds, comprising 29,196 frames from 20 participants. </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6"> These videos were used to train a deep learning model capable of detecting and tracking individual sperm cells across frames. Learn more
-                                <Link to="/sperm-track" className="text-blue-600 hover:underline"> here</Link>.</p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6"> Using the resulting trajectories, we classified distinct patterns of sperm movement, enabling a more nuanced understanding of motility beyond traditional CASA metrics.  </p>
-                        </div>
+                    <div
+                        className="methods-step flex flex-col justify-evenly items-center text-left pl-6 h-full"
+                        ref={addToStepRefs}
+                    >
+                        <h2 className="text-xl font-semibold">Dataset and Methods</h2>
 
+                        <p className="max-w-2xl">
+                            This project leverages the
+                            <a
+                                href="https://zenodo.org/records/7293726"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"
+                            >
+                                {" "}VISEM-Tracking dataset
+                            </a>, containing manually annotated sperm tracking data including video recordings of 30 seconds, comprising 29,196 frames from 20 participants.
+                        </p>
 
-                    </div>
+                        <p className="max-w-2xl">
+                            These videos were used to train a deep learning model capable of detecting and tracking individual sperm cells across frames. Learn more
+                            <Link to="/sperm-track" className="text-blue-600 hover:underline"> here</Link>.
+                        </p>
 
-                    {/* Step 1 */}
-                    <div className="methods-step" ref={addToStepRefs}>
-                        <div>
-                            <p className="text-left mb-20 pl-6"> The images to the left display the model’s detection results.</p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                As shown, the model successfully identifies and localizes individual sperm cells with high accuracy.                            </p>
-
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-                        </div>
-
-                    </div>
-                    {/* Step 2 */}
-                    <div className="methods-step" ref={addToStepRefs}>
-                        <div>
-                            <p className="text-left mb-20 pl-6"> After object-detection training, each frame was passed through
-                                a Kalman-filter based tracking model called BoT-SORT</p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    {/* Step 3 */}
-                    <div className="methods-step" ref={addToStepRefs}>
-                        <div>
-                            <p className="text-left mb-20 pl-6"> </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                    {/* Step 4 */}
-                    <div className="methods-step" ref={addToStepRefs}>
-                        <div>
-                            <p className="text-left mb-20 pl-6"> </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-
-                    </div>
-                    {/* Step 5 */}
-                    <div className="methods-step" ref={addToStepRefs}>
-                        <div>
-                            <p className="text-left mb-20 pl-6"> </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-
-                        </div>
-
+                        <p className="max-w-2xl">
+                            Using the resulting trajectories, we classified distinct patterns of sperm movement, enabling a more nuanced understanding of motility beyond traditional CASA metrics.
+                        </p>
                     </div>
 
 
 
-                    {/* Extra space so Step 2 can actually become active */}
-                    <div style={{ height: "0vh" }} />
+
+                {/* Step 1 */}
+                <div
+                    className="methods-step flex flex-col justify-evenly items-center text-left pl-6 h-full"
+                    ref={addToStepRefs}
+                >
+                    <p className="max-w-2xl">
+                        Results from model detection training are shown to the left. The blue boxes are known as "bounding boxes" and identify the positions of
+                        sperm objects in the image.
+                    </p>
+                    <p className="max-w-2xl">
+                        The model successfully identifies and localizes individual sperm cells with high accuracy.
+
+                    </p>
                 </div>
+                {/* Step 2 */}
+                <div
+                    className="methods-step flex flex-col justify-evenly items-center text-left pl-6 h-full"
+                    ref={addToStepRefs}
+                >
+                    <p className="max-w-2xl">
+                        After object-detection training, each frame was passed through
+                        a Kalman-filter based tracking model called BoT-SORT.
+                    </p>
+                    <p className="max-w-2xl">
+                        Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
+                    </p>
+                    <p className="max-w-2xl">
+                        Results from the tracking algorithm can then be used to get the coordinates of each individual sperm across video frames!
+                    </p>
+                </div>
+
+                {/* Step 3 */}
+                <div className="methods-step" ref={addToStepRefs}>
+                    <div>
+                        <p className="text-left mb-20 pl-6"> </p>
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+
+                        </p>
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+                            &nbsp;
+                        </p>
+
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+                            &nbsp;
+                        </p>
+
+                    </div>
+
+                </div>
+
+                {/* Step 4 */}
+                <div className="methods-step" ref={addToStepRefs}>
+                    <div>
+                        <p className="text-left mb-20 pl-6"> </p>
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+
+                        </p>
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+                            &nbsp;
+                        </p>
+
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+                            &nbsp;
+                        </p>
+
+                    </div>
+
+                </div>
+                {/* Step 5 */}
+                <div className="methods-step" ref={addToStepRefs}>
+                    <div>
+                        <p className="text-left mb-20 pl-6"> </p>
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+
+                        </p>
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+                            &nbsp;
+                        </p>
+
+                    </div>
+                    <div className="mb-20">
+                        <p className="text-left pl-6">
+                            &nbsp;
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                {/* Extra space so Step 2 can actually become active */}
+                <div style={{ height: "0vh" }} />
             </div>
+        </div>
         </section >
     );
 }
