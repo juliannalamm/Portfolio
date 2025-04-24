@@ -10,9 +10,9 @@ export default function ParticleCloud() {
   const ref = useRef();
 
   const clusterCenters = useMemo(() => [
-    new THREE.Vector3(-1, 0, 0),
-    new THREE.Vector3( 1, 0, 0),
-    new THREE.Vector3( 0, 0, 1),
+    new THREE.Vector3(-2, 0, 0),
+    new THREE.Vector3( 2, 0, 0),
+    new THREE.Vector3( 0, 0, 2),
   ], []);
 
   // ▶ Build both positions *and* colors in one go:
@@ -31,7 +31,7 @@ export default function ParticleCloud() {
       for (let i = 0; i < PARTICLES_PER_CLUSTER; i++) {
         // your gaussian code …
         const gaussian = () => Math.sqrt(-2 * Math.log(Math.random())) * Math.cos(2 * Math.PI * Math.random());
-        const variance = [{x:0.6,y:0.4,z:0.2},{x:0.5,y:0.5,z:0.3},{x:0.4,y:0.6,z:0.2}][ci];
+        const variance = [{x:0.6,y:0.4,z:0.4},{x:0.5,y:0.5,z:0.4},{x:0.4,y:0.6,z:0.4}][ci];
         const x = center.x + gaussian() * variance.x;
         const y = center.y + gaussian() * variance.y;
         const z = center.z + gaussian() * variance.z;
@@ -55,12 +55,12 @@ export default function ParticleCloud() {
   });
 
   return (
-    <group ref={ref} scale={0.6}>
+    <group ref={ref} scale={2}>
       {/* ▶ PASS `colors` alongside `positions` */}
       <Points positions={positions} colors={colors}>
         <PointMaterial
           vertexColors      // ▶ TELL IT TO USE YOUR COLOR BUFFER
-          size={0.018}
+          size={0.03}
           sizeAttenuation
           transparent
           depthWrite={false}
