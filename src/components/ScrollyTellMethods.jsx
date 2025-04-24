@@ -191,7 +191,8 @@ function ScrollamaMethods() {
 
         } else if (activeStep === 5) {
             return (
-                <div>
+                <div style={{ width: '80%', height: '400px' }}>
+                    <TrackVideoGrid />
                 </div>
             );
         } else if (activeStep === 6) {
@@ -249,7 +250,7 @@ function ScrollamaMethods() {
                 <div className="methods-scroll__text" ref={textRef}>
                     {/* Step 0 */}
                     <div
-                        className="methods-step flex flex-col justify-evenly items-center text-left pl-6 h-full"
+                        className="methods-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}
                     >
                         <h2 className="text-xl font-semibold">Dataset and Methods</h2>
@@ -316,63 +317,53 @@ function ScrollamaMethods() {
                     ref={addToStepRefs}
                 >
                     <p className="max-w-2xl">
-                        The coordinates for a portion of the sperm identified are plotted and animated. 
+                    Here, we visualize the trajectories of individual sperm by plotting their coordinates over time. Each path is animated to reflect the motion captured in the original video.
                     </p>
                     <p className="max-w-2xl">
-                        Each line is colored by the type of sperm movement the sperm exhibits. Note the straight movement of the red lines, erratic movement of the yellow, and jagged movement of the blue. 
+                    The lines are color-coded based on the type of movement each sperm exhibits: red indicates fast and straight progression, yellow reflects highly erratic or zigzag motion, and blue represents slower, jagged paths.
                     </p>
                     <p className="max-w-2xl">
-                        Wait, but how did we classify these sperm movements?
+                    But how do we know which sperm moves in which way? Let’s unpack how we classified these motion patterns.
                     </p>
                 </div>
 
                 {/* Step 4 */}
-                <div className="methods-step" ref={addToStepRefs}>
-                    <div>
-                        <p className="text-left mb-20 pl-6"> </p>
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-
-                        </p>
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-                            &nbsp;
-                        </p>
-
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-                            &nbsp;
-                        </p>
-
-                    </div>
-
+                <div
+                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                    ref={addToStepRefs}
+                >
+                    <p className="max-w-2xl">
+                    In traditional clinical settings, sperm motility is typically assessed using kinematic metrics calculated by Computer-Assisted Sperm Analysis (CASA).
+                    </p>
+                    <p className="max-w-2xl">
+                    These metrics are extracted from each sperm’s trajectory and quantify characteristics such as velocity, linearity, and the curvature of its path.
+                    </p>
+                    <p className="max-w-2xl">
+                    Use the panel on the left to explore definitions of these terms and see how clinicians interpret sperm movement in practice.
+                    </p>
+                         
                 </div>
+
                 {/* Step 5 */}
-                <div className="methods-step" ref={addToStepRefs}>
-                    <div>
-                        <p className="text-left mb-20 pl-6"> </p>
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-
-                        </p>
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-                            &nbsp;
-                        </p>
-
-                    </div>
-                    <div className="mb-20">
-                        <p className="text-left pl-6">
-                            &nbsp;
-                        </p>
-
-                    </div>
-
+                <div
+                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                    ref={addToStepRefs}
+                >
+                    <p className="max-w-2xl">
+                        As it turns out, we can feed each of these metrics: VSL, VCL, VAP, LIN, WOB,STR, and ALH into an unsupervised machine learning algorithm called K-means clustering. 
+                    </p>
+                    <p className="max-w-2xl">
+                        This algorithm allows us to automatically detect three distinct types of sperm movement that might otherwise just be described as "moving" but, in reality, have different 
+                        impacts on fertility. 
+                    </p>
+                    <p className="max-w-2xl">
+                        Hover over each of the videos to learn more about the types of movement and how they relate to fertility.
+                    </p>
+                    <p className="max-w-2xl">
+                        Next, we will explore the outcome of this clustering process and evaluate the ability for the model to automatically classify different types of movement and the clinical implications for evaluating John's sample! 
+                    </p>
+                   
+                         
                 </div>
 
 
