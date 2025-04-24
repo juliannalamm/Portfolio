@@ -10,6 +10,7 @@ import ScrollamaIntro from "../components/ScrollyTellIntro";
 import ScrollamaResults from "../components/ScrollyTellResults";
 import ScrollamaMethods from "../components/ScrollyTellMethods";
 import MethodsHero from "../components/MethodsHero";
+import HeroCloud from "../components/HeroCloud";
 
 
 
@@ -39,6 +40,7 @@ const SpermTrackClassification = () => {
       <ScrollamaIntro />
       <MethodsHero />
       <ScrollamaMethods />
+      <HeroCloud/>
       <Dashboard />
       <ScrollamaResults />
       {/* <ScrollamaDemo /> */}
