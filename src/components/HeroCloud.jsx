@@ -15,4 +15,4 @@ const HeroCloud = () => {
   );
 };
 
-export default HeroCloud;
+export default Hero;
