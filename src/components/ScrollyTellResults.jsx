@@ -14,7 +14,7 @@ import FertilityChartToggle from './Charts/FertilityChartToggle';
 import SpermWaffle from './Charts/SpermWaffle';
 import CASAComparisonTable from "./Charts/CASAComparisonTable";
 import SyntheticClusterChartPanel from './Charts/SyntheticClusterChartPanel';
-import SteveClusterChartPanel from "./Charts/SteveClusterChartPanel";
+import JitterPlot from "./Charts/Sankey";
 
 //images
 import cluster0 from "/images/cluster_bbs/cluster_0.png";
@@ -193,7 +193,8 @@ function ScrollamaResults() {
     
         } else if (activeStep === 6) {
             return (
-                <div style={{ width: '80%', height: '400px' }}>
+                <div style={{ width: '80%', height: '500px' }}>
+                    <JitterPlot/>
 
                 </div>
             );
