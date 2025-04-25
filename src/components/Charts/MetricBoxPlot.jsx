@@ -1,18 +1,20 @@
 import { memo } from 'react';
 import Plot from 'react-plotly.js';
 
+const clusterColors = {
+  0: '#4fa0f7', // blue
+  1: '#E9a752', // red‑orange
+  2: '#fe4939'  // green
+};
 
 const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
   if (!chartData) return <div>Loading metrics...</div>;
 
   const clusterLabels = [...new Set(chartData.clusters.map(c => String(c).trim()))];
-
   const metricsKeys = ['VCL', 'VAP', 'VSL', 'LIN', 'WOB', 'STR', 'ALH Max'];
-
   const traces = [];
 
   if (selectedCluster !== null && selectedCluster !== "") {
-    // Filter for selected cluster
     const indices = chartData.clusters
       .map((c, i) => (String(c).trim() === String(selectedCluster).trim() ? i : null))
       .filter(i => i !== null);
@@ -20,16 +22,20 @@ const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
     metricsKeys.forEach(metric => {
       traces.push({
         y: indices.map(i => chartData[metric][i]),
-        name: metric,
+        x: Array(indices.length).fill(metric),
+        name: `Cluster ${selectedCluster}`,
         type: 'box',
         boxpoints: 'outliers',
-        jitter: -1,
+        jitter: 0.3,
         pointpos: 0,
-        fillcolor: 'rgba(200, 200, 200)',
+        marker: { color: clusterColors[selectedCluster] },
+        fillcolor: clusterColors[selectedCluster],
+        legendgroup: `cluster-${selectedCluster}`,
+        showlegend: metric === metricsKeys[0],
+        offsetgroup: selectedCluster,
       });
     });
   } else {
-    // All clusters: one trace per cluster per metric
     clusterLabels.forEach(cluster => {
       const indices = chartData.clusters
         .map((c, i) => (String(c).trim() === cluster ? i : null))
@@ -38,12 +44,17 @@ const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
       metricsKeys.forEach(metric => {
         traces.push({
           y: indices.map(i => chartData[metric][i]),
-          name: `Cluster ${cluster} - ${metric}`,
+          x: Array(indices.length).fill(metric),
+          name: `Cluster ${cluster}`,
           type: 'box',
           boxpoints: 'outliers',
-          jitter: 0,
+          jitter: 0.3,
           pointpos: 0,
-          fillcolor: 'rgba(200, 200, 200)',
+          marker: { color: clusterColors[cluster] },
+          fillcolor: clusterColors[cluster],
+          legendgroup: `cluster-${cluster}`,
+          showlegend: metric === metricsKeys[0],
+          offsetgroup: cluster,
         });
       });
     });
@@ -53,27 +64,59 @@ const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
     <Plot
       data={traces}
       layout={{
-        title: {
-          font: { size: 16 },
+        font: {
+          family: 'TiemposTextBold, sans-serif',
+          color: 'white',
         },
-        margin: { t: 20, b: 10, l: 30, r: 10 },
+        title: {
+          text: selectedCluster ? `Cluster ${selectedCluster}: Metric Distributions` : 'All Clusters: Metric Distributions',
+          font: { size: 18, color: 'white' },
+        },
+        margin: { t: 40, b: 80, l: 50, r: 20 },
         xaxis: {
-          title: selectedCluster ? 'Metrics' : 'Cluster-Metric',
-          tickangle: -45,
+          title: {
+            text: 'Kinematic Metric',
+            font: {
+              color: 'white',
+              family: 'TiemposTextBold, sans-serif',
+            },
+          },
+          type: 'category',
           automargin: true,
+          tickangle: -45,
+          tickfont: { color: 'white' },
+          showgrid: false,
+          showline: true,
+          linecolor: 'white',
         },
         yaxis: {
-          title: 'Value',
+          title: {
+            text: 'Value',
+            font: {
+              color: 'white',
+              family: 'TiemposTextBold, sans-serif',
+            },
+          },
           automargin: true,
+          tickfont: { color: 'white' },
+          showgrid: false,
+          showline: true,
+          linecolor: 'white',
         },
         boxmode: 'group',
-        showlegend: false,
+        showlegend: true,
+        legend: {
+          orientation: 'h',
+          y: 0.9,
+          x: 0.4,
+          font: { color: 'white' },
+        },
         paper_bgcolor: 'rgba(0,0,0,0)',
         plot_bgcolor: 'rgba(0,0,0,0)',
       }}
-      config={{ responsive: true }}
+      config={{ responsive: true, displayModeBar: false }}
+      useResizeHandler
       style={{ width: '100%', height: '100%' }}
-      useResizeHandler={true}
     />
   );
 });

@@ -76,14 +76,14 @@ const DashboardClusterChart = () => {
 
       {/* Top row: scatter + trajectory */}
       <div className="flex flex-col lg:flex-row gap-6 mb-8 justify-center items-center">
-      <div className="w-full lg:w-1/2 h-[300px]">
+      <div className="w-full lg:w-1/2 h-[400px]">
           <ClusteringChart
             chartData={chartData}
             onHoverFid={setHoveredFid}
             selectedCluster={selectedCluster}
           />
         </div>
-        <div className="w-full lg:w-1/3 h-[300px] flex justify-center items-center">
+        <div className="w-full lg:w-1/3 h-[400px] flex justify-center items-center">
           <TrajectoryViewer
             fid={hoveredFid}
             coordinateData={coordinateData}

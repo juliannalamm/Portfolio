@@ -53,7 +53,7 @@ const AllClustersBoxPlot = ({ chartData }) => {
         margin: { t: 40, b: 80, l: 50, r: 20 },
         xaxis: {
           title: {
-            text: 'Metric',
+            text: 'Kinematic Metric',
             font: {
               color: 'white',
               family: 'TiemposTextBold, sans-serif',

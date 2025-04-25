@@ -82,7 +82,16 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
                 data={dataTraces}
                 layout={{
                     autosize: true,
-                    title: 'K-means Clustering with 2D PCA',
+                    title: {
+                         text: 'K-means Clustering with 2D PCA',
+                        font: {
+                        size: 18,
+                        color: 'white',
+                        family: 'TiemposTextBold, sans-serif'
+                        },
+                        x: 0.4,         // center horizontally
+                         xanchor: 'center'
+                        },
                     xaxis: {
                         title: {
                             text: 'PCA Feature 1',
@@ -113,7 +122,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
                         zerolinecolor: 'white',
 
                     },
-                    margin: { t: 10, l: 10, r: 10, b: 10 },
+                      margin: { t: 60, l: 30, r: 30, b: 30 },
                     paper_bgcolor: 'rgba(0,0,0,0)',
                     plot_bgcolor: 'rgba(0,0,0,0)',
                     legend: {
