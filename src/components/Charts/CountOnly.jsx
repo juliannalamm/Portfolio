@@ -41,7 +41,7 @@ const CountOnly = () => {
             connectgaps: true,
             hovertemplate: `Age: %{x}<br>${metric}: %{y:.2f}%<extra></extra>`,
             text: filtered.map(d => `${d.value.toFixed(1)}%`), // Value shown on each point
-            textposition: 'bottom center', // Or try 'bottom center', 'top right', etc.
+            textposition: 'bottom center', 
             textfont: {
                 size: 11,
                 color: '#333'

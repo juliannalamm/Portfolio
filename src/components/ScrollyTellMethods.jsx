@@ -18,7 +18,6 @@ import flowChart from "/images/EntireFrame.png"
 import trackingResults from "/videos/12custom_botsort_compressed.mp4"
 import SpermTrajectories from "/videos/SpermTrajectories.mp4"
 // chart
-import FertilityWaffleChart from "./Charts/FertilityWaffleChart";
 import TrackVideoGrid from "./Charts/TrackVideoGrid";
 import KinematicMetricsDef from "./KinematicMetricsDef";
 
@@ -121,6 +120,7 @@ function ScrollamaMethods() {
             return (
 
                 <div className="w-4/5 flex justify-between items-start gap-2">
+                    
                     <div className="w-[48%] text-center">
                         <img
                             src={labeledSperm}

@@ -10,7 +10,7 @@ const MotilityOnly = () => {
       .then((csv) => {
         const rows = csv.split('\n').filter((r) => r.trim().length > 0);
 
-        // Skip the header row; parse subsequent rows
+        // Skip the header row
         const parsed = rows.slice(1).map((row) => {
           const [age, metric, value] = row.split(',');
           return {
@@ -27,7 +27,6 @@ const MotilityOnly = () => {
   // Filter data for 'Motility' metric only
   const motilityData = data.filter((d) => d.metric === 'Motility');
 
-  // If no data yet, or 'Motility' not found, bail out
   if (!motilityData.length) {
     return <p>Loading Motility chart...</p>;
   }

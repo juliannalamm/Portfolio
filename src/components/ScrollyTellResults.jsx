@@ -102,42 +102,47 @@ function ScrollamaResults() {
 
         if (activeStep === 0) {
             return (
+                <div className="w-full px-4">
+                    <h2 className="text-xl font-semibold text-center text-burgundy mb-6">
+                        All Sperm Trajectories by Cluster
+                    </h2>
+                    <div className="w-full flex justify-between items-start gap-2 px-4">
 
-                <div className="w-full flex justify-between items-start gap-2 px-4">
-                    {/* Cluster 0 */}
-                    <div className="w-[32%] text-center">
-                        <img
-                            src={cluster0}
-                            alt="Cluster 0"
-                            className="w-full h-auto object-contain"
-                        />
-                        <p className="mt-2 text-sm text-burgundy">
-                            Cluster 0 - Intermediate Motility
-                        </p>
-                    </div>
+                        {/* Cluster 0 */}
+                        <div className="w-[32%] text-center">
+                            <img
+                                src={cluster0}
+                                alt="Cluster 0"
+                                className="w-full h-auto object-contain"
+                            />
+                            <p className="mt-2 text-sm text-burgundy">
+                                Cluster 0 - Intermediate Motility
+                            </p>
+                        </div>
 
-                    {/* Cluster 1 */}
-                    <div className="w-[32%] text-center">
-                        <img
-                            src={cluster1}
-                            alt="Cluster 1"
-                            className="w-full h-auto object-contain"
-                        />
-                        <p className="mt-2 text-sm text-burgundy">
-                            Cluster 1 - Hyperactivated Motility
-                        </p>
-                    </div>
+                        {/* Cluster 1 */}
+                        <div className="w-[32%] text-center">
+                            <img
+                                src={cluster1}
+                                alt="Cluster 1"
+                                className="w-full h-auto object-contain"
+                            />
+                            <p className="mt-2 text-sm text-burgundy">
+                                Cluster 1 - Hyperactivated Motility
+                            </p>
+                        </div>
 
-                    {/* Cluster 2 */}
-                    <div className="w-[32%] text-center">
-                        <img
-                            src={cluster2}
-                            alt="Cluster 2"
-                            className="w-full h-auto object-contain"
-                        />
-                        <p className="mt-2 text-sm text-burgundy">
-                            Cluster 2 - Straight Line Progressive Motility
-                        </p>
+                        {/* Cluster 2 */}
+                        <div className="w-[32%] text-center">
+                            <img
+                                src={cluster2}
+                                alt="Cluster 2"
+                                className="w-full h-auto object-contain"
+                            />
+                            <p className="mt-2 text-sm text-burgundy">
+                                Cluster 2 - Straight Line Progressive Motility
+                            </p>
+                        </div>
                     </div>
                 </div>
             );
@@ -229,14 +234,42 @@ function ScrollamaResults() {
                 {/* RIGHT: scrolly text steps */}
                 <div className="results-scroll__text" ref={textRef}>
                     {/* Step 0 */}
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h1>Step 0: John’s Intro</h1>
+                    <div
+                        className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <h2 className="text-xl font-semibold">Results and Discussion</h2>
+
+                        <p className="max-w-2xl">
+                            When visualizing the trajectories of the three clusters, we observe distinct movement patterns that align with the motility types identified earlier:
+                        </p>
+
+                        <p className="max-w-2xl">
+                            Straight-Line Progressive, Intermediate, and Hyperactivated movement.
+                        </p>
+
+                        <p className="max-w-2xl">
+                            While Clusters 0 and 1 may appear visually similar in static plots, our previously computed kinematic metrics reveal important differences—Cluster 0 exhibits slower, sometimes circular motion, whereas Cluster 1 shows more erratic, high-energy movement characteristic of hyperactivation. 
+                        </p>
+
 
                     </div>
 
+
                     {/* Step 1 */}
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h2>Step 1: John Sad + Chart</h2>
+                    <div
+                        className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl">
+                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                        </p>
+                        <p className="max-w-2xl">
+                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                        </p>
 
                     </div>
 
