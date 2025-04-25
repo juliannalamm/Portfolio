@@ -75,7 +75,7 @@ const SpermHero = () => {
       {/* Hero Content (Lowered for Visibility) */}
       <div className="absolute bottom-12 left-8 text-left text-white z-10 max-w-3xl">
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight drop-shadow-md">
-          Automated Sperm Motility Classification <br /> 
+          The Hidden Male Biological Clock: A Data-Driven Story <br /> 
         </h1>
         <p className="mt-6 text-lg md:text-xl text-gray-300">
           Unsupervised Learning and classification transforms 

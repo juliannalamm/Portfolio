@@ -223,301 +223,217 @@ function ScrollamaIntro() {
                 <div className="scroll__text" ref={textRef}>
                     {/* Step 0 */}
                     <div
-                        className="step flex flex-col h-full items-center text-left px-6"
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
                         ref={addToStepRefs}
                     >
                         {/* Header stays near top */}
-                        <div className="w-full mb-6">
-                            <h2 className="text-xl font-semibold text-center">
-                                An Introduction to Male Fertility: The Hidden Male Biological Clock
-                            </h2>
-                        </div>
+                        <h2 className="text-xl text-center  font-semibold">
+                            An Introduction to Male Fertility: The Hidden Male Biological Clock
+                        </h2>
+
 
                         {/* Remaining content spaced vertically and centered horizontally */}
-                        <div className="flex-grow flex flex-col justify-evenly items-start w-full max-w-2xl">
                         <p className="max-w-2xl">
-                                Meet John. John is a 35-year-old male and has no known medical complications.
-                            </p>
-                            <p className="max-w-2xl">
-                                Recently, John and his partner embarked on their journey to start a family.
-                            </p>
-                            <p className="max-w-2xl">
-                                However, they have been struggling to get pregnant.
-                            </p>
-                        </div>
+                            Meet John. John is a 35-year-old male and has no known medical complications.
+                        </p>
+                        <p className="max-w-2xl">
+                            Recently, John and his partner embarked on their journey to start a family.
+                        </p>
+                        <p className="max-w-2xl">
+                            However, they have been struggling to get pregnant.
+                        </p>
                     </div>
 
 
                     {/* Step 1 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <div>
-                            <p className="text-left mb-20 pl-6"> </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                As it turns out, John and his partner are not alone. In fact, 17.5% of individuals of reproductive age are affected by infertility in their lifetime. Around age 35, men's fertility begins to decline across many key metrics.
-                                <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline"> [1]</a>
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
 
-                            </p>
+                        <p className="max-w-2xl">
+                            As it turns out, John and his partner are not alone. In fact, 17.5% of individuals of reproductive age are affected by infertility in their lifetime. Around age 35, men's fertility begins to decline across many key metrics.
+                            <a href="https://www.who.int/news/item/04-04-2023-1-in-6-people-globally-affected-by-infertility"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"> [1]</a>
+                        </p>
 
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-center pl-6">
+                        <p className="max-w-2xl">
 
-                                In other words...
-                            </p>
+                            In other words...
+                        </p>
 
-
-                        </div>
 
                     </div>
+
+
                     {/* Step 2 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
                         <h2 className="text-center text-xl mb-10">Men have a biological clock too.</h2>
                     </div>
 
                     {/* Step 3 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <div className="pt-10"> </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6"></p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left mb-20 pl-6"> Average Sperm motility peaks at age 35 and
-                                declines at a rate of 2.9% thereafter
-                                <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline"> [2]</a>.
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                        </div>
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
+
+                        <p className="max-w-2xl"> Average Sperm motility peaks at age 35 and
+                            declines at a rate of 2.9% thereafter
+                            <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"> [2]</a>.
+                        </p>
 
                     </div>
 
                     {/* Step 4 */}
-                    <div className="step" ref={addToStepRefs}>
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
                         {/* div 1 */}
-                        <div className="pt-10">
-                            <p className="text-left mb-20 pl-6"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
-                                <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline"> [2]</a>.
-                            </p>
-                        </div>
-                        {/* div 2 */}
-                        <div className="mb-20">&nbsp; </div>
-                        {/* div 3 */}
-                        <div className="mb-15">&nbsp; </div>
-                        {/* div 4 */}
-                        <div className="mb-20">
-                            <p className="text-left pl-6"> The rate of decline increases sharply after age 35.</p>
-                        </div>
+
+                        <p className="text-left mb-20 pl-6"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
+                            <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"> [2]</a>.
+                        </p>
+
+                        <p className="max-w-2xl"> The rate of decline increases sharply after age 35.</p>
 
                     </div>
                     {/* Step 5 */}
-                    <div className="step" ref={addToStepRefs}>
-                        {/* div 1 */}
-                        <div className="pt-10">
-                            <p className="text-left mb-30 pl-6"> &nbsp;
-                            </p>
-                        </div>
-                        {/* div 2 */}
-                        <div className="mb-20">
-                            <p className="text-left mb-20 pl-6"> A study on 1,976 couples reported that the amount of time it takes to achieve pregnancy (TTP), became accelerated when the men’s age was 45 years or older. Normalized data relative to age 20 is shown in the chart to the left  <a href="https://www.sciencedirect.com/science/article/pii/S0015028203003662"
-                                className="text-blue-600 hover:underline"> [3]</a>.
-                            </p>
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl"> A study on 1,976 couples reported that the amount of time it takes to achieve pregnancy (TTP), became accelerated when the men’s age was 45 years or older. Normalized data relative to age 20 is shown in the chart to the left  <a href="https://www.sciencedirect.com/science/article/pii/S0015028203003662"
+                            className="text-blue-600 hover:underline"> [3]</a>.
+                        </p>
 
-                        </div>
-                        {/* div 3 */}
-                        <div className="mb-15">
-                            <p className="text-left pl-6">&nbsp;</p>
-                        </div>
-                        {/* div 4 */}
-                        <div className="mb-20">
-                            <p className="text-left pl-6">    The effect of male age on how long it takes to get pregnant remained significant even after accounting for factors like the woman’s age and how often the couple had sex.
-                                This means that as men get older, it can become harder for their partner to conceive regardless of their partners' age.</p>
-                        </div>
+                        <p className="max-w-2xl">    The effect of male age on how long it takes to get pregnant remained significant even after accounting for factors like the woman’s age and how often the couple had sex.
+                            This means that as men get older, it can become harder for their partner to conceive regardless of their partners' age.</p>
 
                     </div>
 
                     {/* Step 6 */}
-                    <div className="step" ref={addToStepRefs}>
-                        {/* div 1 */}
-                        <div className="pt-10">
-                            <p className="text-left mb-30 pl-6"> &nbsp;
-                            </p>
-                        </div>
-                        {/* div 2 */}
-                        <div className="mb-20">
-                            <p className="text-left mb-20 pl-6">
-                                Overall, one-third of infertility cases are caused by male reproductive issues, one-third by female reproductive issues,
-                                and one-third by both or by unknown factors
-                                <a href="https://www.nichd.nih.gov/health/topics/menshealth/conditioninfo/infertility#f4"
-                                    rel="noopener noreferrer"
-                                    target="_blank"
-                                    className="text-blue-600 hover:underline"> [4]</a>.
-                            </p>
-
-                        </div>
-                        {/* div 3 */}
-                        <div className="mb-15">
-                            <p className="text-left pl-6">&nbsp;</p>
-                        </div>
-                        {/* div 4 */}
-                        <div className="mb-20">
-                            <p className="text-left pl-6">  </p>
-                        </div>
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl">
+                            Overall, one-third of infertility cases are caused by male reproductive issues, one-third by female reproductive issues,
+                            and one-third by both or by unknown factors
+                            <a href="https://www.nichd.nih.gov/health/topics/menshealth/conditioninfo/infertility#f4"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                                className="text-blue-600 hover:underline"> [4]</a>.
+                        </p>
 
                     </div>
                     {/* step 7 */}
-                    <div className="step" ref={addToStepRefs}>
-                        {/* div 1 */}
-                        <div className="pt-10">
-                            <p className="text-left mb-20 pl-6">
-                                Despite contributing to nearly half of all infertility cases with known cause,
-                                male fertility research receives just $15.5M in NIH funding — a fraction of what we spend on almost any other gendered health issue.
-                            </p>
-                        </div>
-                        {/* div 2 */}
-                        <div className="mb-20">
-                            <p className="text-left mb-20 pl-6">
-                                When it comes to women's health, it’s about making babies. When it comes to men’s health, we fund survival.
-                                Prostate cancer receives $305M, while ovarian cancer receives only $171M — over 2x less, despite both being deadly, gender-specific cancers.
-                            </p>
-                        </div>
-                        {/* div 3 */}
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                Endometriosis, a painful chronic condition affecting ~10% of reproductive-age women, receives only $29M — nearly 7x less than funding for female fertility and IVF-related research ($200.3M)
-                            </p>
-                        </div>
-                        {/* div 4 */}
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                This isn't just a funding gap. It's a systemic blind spot.
-                                We have normalized the idea that infertility is a woman’s burden to diagnose, treat, and carry.
-                                But if half the issue is male, why is less than 8% of infertility funding dedicated to understanding it?
-                            </p>
-                        </div>
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
+
+                        <p className="max-w-2xl">
+                            Despite contributing to nearly half of all infertility cases with known cause,
+                            male fertility research receives just $15.5M in NIH funding — a fraction of what we spend on almost any other gendered health issue.
+                        </p>
+
+                        <p className="max-w-2xl">
+                            When it comes to women's health, it’s about making babies. When it comes to men’s health, we fund survival.
+                            Prostate cancer receives $305M, while ovarian cancer receives only $171M — over 2x less, despite both being deadly, gender-specific cancers.
+                        </p>
+
+                        <p className="max-w-2xl">
+                            Endometriosis, a painful chronic condition affecting ~10% of reproductive-age women, receives only $29M — nearly 7x less than funding for female fertility and IVF-related research ($200.3M)
+                        </p>
+
+
+
                     </div>
 
                     {/* Step 8 */}
-                    <div className="step" ref={addToStepRefs}>
-                        {/* div 1 */}
-                        <div className="pt-10">
-                            &nbsp;
-                            <p className="text-left mb-30 pl-6">
-                            </p>
-                        </div>
-                        {/* div 2 */}
-                        <div className="mb-20">
-                            <p className="text-left mb-20 pl-6">
-                                &nbsp;
-                            </p>
-                        </div>
-                        {/* div 3 */}
-                        <div className="mb-15">
-                            <p className="text-left pl-6"> Male fertility deserves research and real science. So what can John do if he wants to take control of his fertility?
-                            </p>
-                        </div>
-                        {/* div 4 */}
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
 
-                            </p>
-                        </div>
+                        <p className="max-w-2xl">
+                            This isn't just a funding gap. It's a systemic blind spot.
+                            We have normalized the idea that infertility is a woman’s burden to diagnose, treat, and carry.
+                            But if half the issue is male, why is less than 8% of infertility funding dedicated to understanding it?
+                        </p>
+
+                        <p className="max-w-2xl"> Male fertility deserves research and real science. So what can John do if he wants to take control of his fertility?
+                        </p>
+
+
                     </div>
 
                     {/* Step 9 */}
-                    <div className="step" ref={addToStepRefs}>
-                        {/* div 1 */}
-                        <div className="pt-10">
-                            <p className="text-left mb-10 pl-6">
-                                John can decide to go to the doctor, typically an andrologist or a fertility clinic, where he will be given a standard semen analysis report. Key parameters returned typically include:
-                            </p>
-                            <ul className="text-left mb-10 pl-30 list-disc space-y-2 text-sm ">
-                                <li>Volume: Total amount of semen ejaculated</li>
-                                <li>Concentration: Number of sperm per milliliter</li>
-                                <li>Total sperm count: Total number of sperm in the sample</li>
-                                <li>Motility: Percentage of sperm that are moving</li>
-                                <li>Progressive motility: Sperm moving forward in a straight line</li>
-                                <li>Vitality: Percentage of live sperm (if motility is low)</li>
-                                <li>Morphology: Percentage of sperm with normal shape</li>
-                                <li> among others...</li>
-                            </ul>
-                        </div>
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
+
+                        <p className="max-w-2xl">
+                            John can decide to go to the doctor, typically an andrologist or a fertility clinic, where he will be given a standard semen analysis report. Key parameters returned typically include:
+                        </p>
+                        <ul className="text-left mb-10 pl-30 list-disc space-y-2 text-sm ">
+                            <li>Volume: Total amount of semen ejaculated</li>
+                            <li>Concentration: Number of sperm per milliliter</li>
+                            <li>Total sperm count: Total number of sperm in the sample</li>
+                            <li>Motility: Percentage of sperm that are moving</li>
+                            <li>Progressive motility: Sperm moving forward in a straight line</li>
+                            <li>Vitality: Percentage of live sperm (if motility is low)</li>
+                            <li>Morphology: Percentage of sperm with normal shape</li>
+                            <li> among others...</li>
+                        </ul>
+
                         {/* div 2 */}
-                        <div className="mb-20">
-                            <p className="text-left mb-20 pl-6">
-                                These types of analyses are helpful in providing a general snapshot of sperm health, but they examine only general properties and it is widely
-                                accepted that the use of these parameters cannot precisely and accurately predict the fertility of a man presenting to a clinician
-                                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4254491/#R34"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline"> [5]</a>.
-                            </p>
 
-                        </div>
-                        {/* div 3 */}
-                        <div className="mb-15">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-                        </div>
-                        {/* div 4 */}
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-
-                            </p>
-                        </div>
+                        <p className="max-w-2xl">
+                            These types of analyses are helpful in providing a general snapshot of sperm health, but they examine only general properties and it is widely
+                            accepted that the use of these parameters cannot precisely and accurately predict the fertility of a man presenting to a clinician
+                            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4254491/#R34"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"> [5]</a>.
+                        </p>
                     </div>
 
                     {/* Step 10 */}
-                    <div className="step" ref={addToStepRefs}>
-                        <div className="pt-10">
+                    <div
+                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        ref={addToStepRefs}
+                    >
 
-                        </div>
-                        <div className="mb-15">
-                            <p className="text-left mb-30 pl-6">
-                                Multiple studies dating back to 1988 have found that relying just on the defined normal values of isolated parameters such as sperm density and motility as defined by the WHO were not very predictive of that couple’s chances of naturally establishing a pregnancy
-                                <a href="https://www.maleinfertilityguide.com/density-motility-and-total-motile-count"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 hover:underline"> [6]</a>.
-                            </p>
-                        </div>
-                        <div className="mb-20">
-                            <p className="text-left pl-6">
-                                &nbsp;
-                            </p>
-                        </div>
+                        <p className="max-w-2xl">
+                            Multiple studies dating back to 1988 have found that relying just on the defined normal values of isolated parameters such as sperm density and motility as defined by the WHO were not very predictive of that couple’s chances of naturally establishing a pregnancy
+                            <a href="https://www.maleinfertilityguide.com/density-motility-and-total-motile-count"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"> [6]</a>.
+                        </p>
 
-
-
-                        <div className="mb-20">
-                            <h2 className="text-left pl-6"
-                                style={{ fontFamily: 'TiemposTextBold, serif' }}
-                            >
-                                What if there was a more descriptive way of analyzing sperm motility that
-                                picks up nuances otherwise obscured by existing analyses?
-                                We will attempt to show a novel method for analyzing the motility of analyzing and classifying the motility of
-                                sperm that leads to a more accurate prediction of fertility.
-                            </h2>
-
-                        </div>
-
+                        <h2 className="max-w-2xl"
+                            style={{ fontFamily: 'TiemposTextBold, serif' }}
+                        >
+                            What if there was a more descriptive way of analyzing sperm motility that
+                            picks up nuances otherwise obscured by existing analyses?
+                            We will attempt to show a novel method for analyzing the motility of analyzing and classifying the motility of
+                            sperm that leads to a more accurate prediction of fertility.
+                        </h2>
 
                     </div>
 

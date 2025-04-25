@@ -232,7 +232,7 @@ function ScrollamaResults() {
                 </div>
 
                 {/* RIGHT: scrolly text steps */}
-                <div className="results-scroll__text" ref={textRef}>
+                <div className="results-scroll__text text-burgundy" ref={textRef}>
                     {/* Step 0 */}
                     <div
                         className="results-step flex flex-col justify-evenly items-center text-left h-full"
@@ -249,7 +249,7 @@ function ScrollamaResults() {
                         </p>
 
                         <p className="max-w-2xl">
-                            While Clusters 0 and 1 may appear visually similar in static plots, our previously computed kinematic metrics reveal important differences—Cluster 0 exhibits slower, sometimes circular motion, whereas Cluster 1 shows more erratic, high-energy movement characteristic of hyperactivation. 
+                            While Clusters 0 and 1 may appear visually similar in static plots, our previously computed kinematic metrics reveal important differences—Cluster 0 exhibits slower, sometimes circular motion, whereas Cluster 1 shows more erratic, high-energy movement characteristic of hyperactivation.
                         </p>
 
 
@@ -274,36 +274,89 @@ function ScrollamaResults() {
                     </div>
 
                     {/* Step 2 */}
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h2>Step 2: Motility!</h2>
+                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}>
+                        <p className="max-w-2xl">
+                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                        </p>
+                        <p className="max-w-2xl">
+                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                        </p>
 
                     </div>
                     {/* Step 3 */}
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h2>Step 3: Count!</h2>
-
+                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}>
+                        <p className="max-w-2xl">
+                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                        </p>
+                        <p className="max-w-2xl">
+                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                        </p>
                     </div>
 
                     {/* Step 4 */}
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h2>Step 4: TTP!</h2>
+                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}>
+                          <p className="max-w-2xl">
+                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                        </p>
+                        <p className="max-w-2xl">
+                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                        </p>
 
                     </div>
                     {/* Step 5 */}
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h2>Step 5: wafflechart!</h2>
+                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}>
+                        <p className="max-w-2xl">
+                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                        </p>
+                        <p className="max-w-2xl">
+                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                        </p>
 
                     </div>
 
                     {/* Step 6 */}
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h2>Step 6: tableau!</h2>
+                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}>
+                         <p className="max-w-2xl">
+                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                        </p>
+                        <p className="max-w-2xl">
+                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                        </p>
 
                     </div>
                     {/* Step 7 */}
 
-                    <div className="results-step" ref={addToStepRefs}>
-                        <h2>Step 7: track video !</h2>
+                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        ref={addToStepRefs}>
+                          <p className="max-w-2xl">
+                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                        </p>
+                        <p className="max-w-2xl">
+                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                        </p>
 
                     </div>
 

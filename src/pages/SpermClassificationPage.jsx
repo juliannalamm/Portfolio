@@ -22,8 +22,8 @@ const SpermTrackClassification = () => {
       <SpermHero />
 
       {/* Main Content Section - Now Has Padding */}
-      <section className="flex flex-col items-center justify-center min-h-screen bg-lightblue px-6 py-16">
-        {/* Key Highlights Section */}
+      {/* <section className="flex flex-col items-center justify-center min-h-screen bg-lightblue px-6 py-16"> */}
+        {/* Key Highlights Section
         <KeyHighlights />
 
         <div className="mt-10 w-full max-w-8xl">
@@ -33,8 +33,8 @@ const SpermTrackClassification = () => {
           <Clustering />
 
           <FlowChart />
-        </div>
-      </section>
+        </div> */}
+      {/* </section> */}
 
 
       <ScrollamaIntro />

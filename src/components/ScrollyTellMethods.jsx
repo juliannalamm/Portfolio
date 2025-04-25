@@ -247,7 +247,7 @@ function ScrollamaMethods() {
                 </div>
 
                 {/* RIGHT: scrolly text steps */}
-                <div className="methods-scroll__text" ref={textRef}>
+                <div className="methods-scroll__text text-burgundy" ref={textRef}>
                     {/* Step 0 */}
                     <div
                         className="methods-step flex flex-col justify-evenly items-center text-left h-full"

@@ -4,7 +4,7 @@ import Plot from 'react-plotly.js';
 // PLOTLY RENDERING COMPONENT 
 const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
 
-    // Define a color for each cluster (adjust these colors as desired)
+    // Define a color for each cluster 
     const clusterColors = {
         0: '#4fa0f7', // blue
         1: '#E9A752', // red‑orange (beeswax)

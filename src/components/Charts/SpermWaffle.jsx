@@ -31,8 +31,8 @@ const SpermWaffle = () => {
         const counts = {};
 
         data.forEach(row => {
-          const cluster = row.Subcluster?.trim();
-          const status = row['Fertility Status']?.trim();
+          const cluster = row.Subcluster
+          const status = row['Fertility Status']
 
           if (!counts[cluster]) {
             counts[cluster] = { Fertile: 0, Subfertile: 0 };
