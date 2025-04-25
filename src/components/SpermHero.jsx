@@ -75,7 +75,7 @@ const SpermHero = () => {
       {/* Hero Content (Lowered for Visibility) */}
       <div className="absolute bottom-12 left-8 text-left text-white z-10 max-w-3xl">
         <h1 className="text-5xl md:text-5xl font-extrabold leading-tight drop-shadow-md">
-        The Missing Half: A Story of Fertility, Sperm, and the Data Behind the Crisis <br /> 
+        The Missing Half: A Story of Fertility, Sperm, and the Data Behind Fertility Evaluation <br /> 
         </h1>
         <p className="mt-6 text-lg md:text-xl text-gray-300">
         The fertility crisis involves men too — and through unsupervised learning and classification, we transform raw motion data into insights for clinical diagnostics and assisted reproduction.
