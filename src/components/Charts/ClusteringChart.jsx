@@ -87,7 +87,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
                         font: {
                         size: 18,
                         color: 'white',
-                        family: 'TiemposTextBold, sans-serif'
+                        family: 'AtlasBold, sans-serif'
                         },
                         x: 0.4,         // center horizontally
                          xanchor: 'center'
@@ -97,7 +97,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
                             text: 'PCA Feature 1',
                             font: {
                                 color: 'white',
-                                family: 'TiemposTextBold, sans-serif'
+                                family: 'AtlasBold, sans-serif'
                             }
                         },
                         showticklabels: false,
@@ -112,7 +112,7 @@ const ClusteringChart = ({ chartData, onHoverFid, selectedCluster }) => {
                             text: 'PCA Feature 2',
                             font: {
                                 color: 'white',
-                                family: 'TiemposTextBold, sans-serif'
+                                family: 'AtlasBold, sans-serif'
                             }
                         },
                         showticklabels: false,

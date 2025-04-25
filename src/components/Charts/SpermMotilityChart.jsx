@@ -52,7 +52,7 @@ const SpermMotilityChart = () => {
                 autosize: true,
                 aspectratio: { x: 1, y: 0.7 },
                 font: {
-                    family: 'TiemposTextRegular, serif',
+                    family: 'AtlasBold, serif',
                     size: 10,
                     color: '#333'
                 },
@@ -66,7 +66,7 @@ const SpermMotilityChart = () => {
                 xaxis: {
                     title: {
                         text: 'Paternal Age (years)',
-                        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
+                        font: { family: 'AtlasBold, serif', size: 12, color: '#333' }
                     },
                     range: [18, 56],
                     tickmode: 'linear',
@@ -77,7 +77,7 @@ const SpermMotilityChart = () => {
                 yaxis: {
                     title: {
                         text: '% Change in Motility / Total Sperm',
-                        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
+                        font: { family: 'AtlasBold, serif', size: 12, color: '#333' }
                     },
                     range: [-40, 10],
                     zeroline: false,
@@ -86,7 +86,7 @@ const SpermMotilityChart = () => {
                 yaxis2: {
                     title: {
                         text: '% Change in Time to Pregnancy (TTP)',
-                        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
+                        font: { family: 'AtlasBold, serif', size: 12, color: '#333' }
                     },
                     overlaying: 'y',
                     side: 'right',

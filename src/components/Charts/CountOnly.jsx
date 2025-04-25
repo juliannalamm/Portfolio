@@ -58,7 +58,7 @@ const CountOnly = () => {
                 autosize: true,
                 aspectratio: { x: 1, y: 0.7 },
                 font: {
-                    family: 'TiemposTextRegular, serif',
+                    family: 'AtlasBold, serif',
                     size: 10,
                     color: '#333'
                 },
@@ -72,7 +72,7 @@ const CountOnly = () => {
                 xaxis: {
                     title: {
                         text: 'Paternal Age (years)',
-                        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
+                        font: { family: 'AtlasBold, serif', size: 12, color: '#333' }
                     },
                     range: [18, 56],
                     tickmode: 'linear',
@@ -87,7 +87,7 @@ const CountOnly = () => {
                 yaxis: {
                     title: {
                         text: '% Change in Total Sperm Count',
-                        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' }
+                        font: { family: 'AtlasBold, serif', size: 12, color: '#333' }
                     },
                     range: [-40, 10],
                     showgrid: false,

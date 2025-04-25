@@ -2,17 +2,17 @@ import React from 'react';
 
 const CASAComparisonTable = () => {
   return (
-    <div className="max-w-3xl w-full rounded-sm overflow-hidden">
+    <div className="max-w-3xl w-full rounded-sm overflow-hidden" style={{ fontFamily: 'TiemposTextRegular, serif' }}>
       <div className="bg-skyblue p-6 md:p-4 flex flex-col">
-        <h2 className="text-xl font-bold text-burgundy leading-tight text-center">
+        <h2 className="text-xl font-bold text-burgundy leading-tight text-center" style={{ fontFamily: 'TiemposTextBold, serif' }}>
           CASA Results: John vs. Steve
         </h2>
         <p className="text-sm leading-relaxed text-burgundy mt-2 text-center">
-          Comparison of sperm parameters between two individuals.
+          Comparison of sperm parameters between two individuals (hypothetical)
         </p>
 
         <div className="overflow-x-auto mt-4">
-          <table className="w-full bg-lightblue text-left rounded-lg text-sm">
+          <table className="w-full bg-lightblue text-left text-burgundy rounded-lg text-sm">
             <thead className="bg-lightblue text-burgundy">
               <tr>
                 <th className="p-2">Parameter</th>

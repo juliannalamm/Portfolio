@@ -65,12 +65,12 @@ const SpermWaffle = () => {
   return (
     <section className="text-center px-4 py-8">
       {/* Chart Title */}
-      <h2 className="text-xl font-bold text-burgundy mb-4">
+      <h2 className="text-xl font-bold text-burgundy mb-4" style={{ fontFamily: 'TiemposTextBold, serif' }}>
         Number of Fertile Sperm by Cluster
       </h2>
   
       {/* Legend */}
-      <div className="flex justify-center items-center gap-6 mb-6 text-sm text-burgundy">
+      <div className="flex justify-center items-center gap-6 mb-6 text-sm text-burgundy"  style={{ fontFamily: 'TiemposTextBold, serif' }}>
         <div className="flex items-center gap-2">
         <SpermIcon className="w-6 h-6 text-blue-500" />
           <span>Fertile</span>
@@ -100,7 +100,7 @@ const SpermWaffle = () => {
               ))}
             </div>
             <p className="text-sm mt-2">
-              <span className="font-bold text-lg">{fertile}</span><br />
+              <span className="font-bold text-lg" >{fertile}</span><br />
               in 100 spermatozoa are fertile
             </p>
           </div>

@@ -56,7 +56,7 @@ const MotilityOnly = () => {
   const layout = {
     autosize: true,
     font: {
-      family: 'TiemposTextRegular, serif',
+      family: 'AtlasBold, serif',
       size: 10,
       color: '#333',
     },
@@ -70,7 +70,7 @@ const MotilityOnly = () => {
     xaxis: {
       title: {
         text: 'Paternal Age (years)',
-        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' },
+        font: { family: 'AtlasBold, serif', size: 12, color: '#333' },
       },
       range: [18, 56],
       tickmode: 'linear',
@@ -85,7 +85,7 @@ const MotilityOnly = () => {
     yaxis: {
       title: {
         text: '% Change in Motility',
-        font: { family: 'TiemposTextRegular, serif', size: 12, color: '#333' },
+        font: { family: 'AtlasBold, serif', size: 12, color: '#333' },
       },
       range: [-40, 10],
       showgrid: false,

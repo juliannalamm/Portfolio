@@ -66,7 +66,7 @@ const AllClustersBoxPlot = ({ chartData }) => {
           font: { size: 18, color: 'white' }
         },
         font: {
-          family: 'TiemposTextBold, sans-serif',
+          family: 'AtlasBold, sans-serif',
           color: 'white'
         },
         margin: { t: 40, b: 80, l: 50, r: 20 },

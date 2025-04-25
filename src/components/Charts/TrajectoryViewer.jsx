@@ -58,8 +58,8 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
     <div className="w-[300px] bg-black/50 backdrop-blur-md rounded-xl border border-orangebright/100 shadow-xl overflow-hidden">
       {/* Title bar */}
       <div className="px-4 py-2 bg-black/70 border-b border-white/10">
-        <h3 className="text-center text-white font-TiemposTextBold font-semibold
-        "   style={{ fontFamily: 'TiemposTextBold' }}
+        <h3 className="text-center text-white
+        "   style={{ fontFamily: 'AtlasBold' }}
         >Trajectory</h3>
       </div>
 

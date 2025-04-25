@@ -90,7 +90,7 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
         layout={{
           barmode: 'group',
           font: {
-            family: 'TiemposTextBold, sans-serif',
+            family: 'AtlasBold, sans-serif',
             color: '#481231',
           },
           title: {
