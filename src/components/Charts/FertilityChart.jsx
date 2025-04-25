@@ -36,8 +36,8 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
     const values = chartData[metric]?.filter(v => typeof v === 'number' && !isNaN(v));
     const mean = values.reduce((a, b) => a + b, 0) / values.length;
     const std = Math.sqrt(values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length);
-    const min = Math.min(...values);
-    const max = Math.max(...values);
+    const min = values.reduce((a, b) => Math.min(a, b), Infinity); // need to start from positive because any min value will be less than this
+    const max = values.reduce((a, b) => Math.max(a, b), -Infinity); // need to start from negative because any max value will be greater than this
     metricStats[metric] = { mean, std, min, max };
   });
 
@@ -45,13 +45,13 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
   clusters.forEach(cluster => {
     const indices = chartData.clusters
       .map((c, i) => (String(c).trim() === cluster ? i : null))
-      .filter(i => i !== null);
+    
 
     const processedValues = metrics.map(metric => {
       const { mean, std, min, max } = metricStats[metric];
       const values = indices.map(i => {
         const raw = chartData[metric][i];
-        if (typeof raw !== 'number' || isNaN(raw)) return null;
+        if (typeof raw !== 'number' || isNaN(raw)) return null; //if null value for metric return null 
 
         if (normalization === 'zscore') {
           return std !== 0 ? (raw - mean) / std : 0;
