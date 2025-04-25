@@ -26,10 +26,10 @@ const Sankey = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, []);
 
-  // Full final values
+  // intermediate, hyperactivated, progressive
   const fullLinkValues = [
-    12, 6, 12,   // John's distribution
-    9, 13, 8     // Steve's distribution
+    4, 1, 3,   // John's distribution
+    2, 1, 1     // Steve's distribution
   ];
 
   return (
