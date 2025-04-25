@@ -27,7 +27,7 @@ const Sankey = () => {
       Steve: [0.5, 0.8, 1.0], // 50% Intermediate, 30% Hyperactivated, 20% Progressive
     };
 
-    // 4) SPAWN HELPER
+    // 4) SPAWN HELPERx
     let nextId = 0;
     function generatePerson(elapsed) {
       nextId++;
@@ -77,10 +77,10 @@ const Sankey = () => {
       .attr('viewBox', [0, 0, width, height]);
 
     const g = svg.append('g')
-    .attr('transform', `translate(${margin.left + 100},${margin.top})`);
+      .attr('transform', `translate(${margin.left + 60},${margin.top})`);
 
     svg.append('text')
-      .attr('x', width / 2)
+      .attr('x', width / 2 - 40)
       .attr('y', 30) // vertical position
       .attr('text-anchor', 'middle')
       .attr('font-size', 24)
@@ -121,6 +121,31 @@ const Sankey = () => {
     //   .attr('font-weight', 600)
     //   .attr('text-anchor', 'start')
     //   .attr('fill', 'currentColor');
+
+
+    // 11) STARTING BARS for John and Steve
+    const startBarGroup = g.append('g')
+      .attr('transform', `translate(-10, 0)`); // move them a bit left of the starting point
+
+    const startBars = startBarGroup.selectAll('g')
+      .data(personIds)
+      .join('g')
+      .attr('transform', d => `translate(0, ${yStart(d) - pathH / 2})`);
+
+    startBars.append('rect')
+      .attr('width', 10)
+      .attr('height', pathH)
+      .attr('fill', d => d === 0 ? '#D44720' : '#E9a752');
+
+    startBars.append('text')
+      .attr('x', -8)
+      .attr('y', pathH / 2)
+      .attr('text-anchor', 'end')
+      .attr('dominant-baseline', 'middle')
+      .attr('font-size', 12)
+      .text(d => d === 0 ? 'John' : 'Steve')
+      .attr('fill', 'currentColor');
+
 
     // 12) LEGEND (John & Steve)
     const legend = g.append('g')

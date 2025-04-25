@@ -18,7 +18,6 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
   const [realTraces, setRealTraces] = useState([]);
   const [johnTrace, setJohnTrace] = useState(null);
   const [steveTrace, setSteveTrace] = useState(null);
-  const [starSize, setStarSize] = useState(0);
 
   useEffect(() => {
     Papa.parse('/data/subkmeans_with_fertility_label.csv', {
@@ -70,7 +69,7 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
             y: traceY,
             mode: 'markers',
             type: 'scatter',
-            name: clusterTitles[cluster] || `Cluster ${cluster}`,   // <<< this line
+            name: clusterTitles[cluster] || `Cluster ${cluster}`,
             marker: {
               size: 10,
               symbol: 'circle',
@@ -83,7 +82,7 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
           };
         });
 
-        // Create John's trace separately
+        // Create John's trace
         const johnTrace = {
           x: johnPoints.map(p => p.x),
           y: johnPoints.map(p => p.y),
@@ -91,17 +90,17 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
           type: 'scatter',
           name: "John's Data",
           marker: {
-            size: starSize,
+            size: 20,
             symbol: 'diamond',
             color: '#f5d11d',
-            opacity: starSize > 0 ? 1 : 0,
+            opacity: 1,
             line: { color: 'rgba(0,0,0,0)', width: 0 }
           },
           text: johnPoints.map(() => "John's data"),
           hovertemplate: '%{text}<extra></extra>'
         };
 
-        // Create Steve's trace separately
+        // Create Steve's trace
         const steveTrace = {
           x: stevePoints.map(p => p.x),
           y: stevePoints.map(p => p.y),
@@ -109,10 +108,10 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
           type: 'scatter',
           name: "Steve's Data",
           marker: {
-            size: starSize,
+            size: 20,
             symbol: 'diamond',
             color: '#22d469',
-            opacity: starSize > 0 ? 1 : 0,
+            opacity: 1,
             line: { color: 'rgba(0,0,0,0)', width: 0 }
           },
           text: stevePoints.map(() => "Steve's data"),
@@ -125,32 +124,7 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
       },
       error: (err) => console.error("Error loading clustering data:", err)
     });
-  }, [starSize]);
-
-  useEffect(() => {
-    if (activeStep === 5) {
-      let animationFrame;
-      let start = performance.now();
-
-      const animateSize = (timestamp) => {
-        const elapsed = timestamp - start;
-        const progress = Math.min(elapsed / 2000, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-
-        setStarSize(20 * eased);
-
-        if (progress < 1) {
-          animationFrame = requestAnimationFrame(animateSize);
-        }
-      };
-
-      animationFrame = requestAnimationFrame(animateSize);
-
-      return () => cancelAnimationFrame(animationFrame);
-    } else {
-      setStarSize(0);
-    }
-  }, [activeStep]);
+  }, []);
 
   return (
     <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative">
@@ -160,7 +134,7 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
       <Plot
         data={[...realTraces, johnTrace, steveTrace].filter(Boolean)}
         layout={{
-          title: 'Clusters with John & Steve Synthetic Points',
+          title: '',
           xaxis: { title: 'PCA Feature 1', showticklabels: false, showgrid: false, zeroline: false },
           yaxis: { title: 'PCA Feature 2', showticklabels: false, showgrid: false, zeroline: false },
           paper_bgcolor: 'rgba(0,0,0,0)',
