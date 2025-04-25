@@ -11,7 +11,7 @@ const DashboardClusterChart = () => {
   const [selectedCluster, setSelectedCluster] = useState(null);
   const [coordinateData, setCoordinateData] = useState(null);
 
-  // Parse clustering CSV data
+  // parsing 
   useEffect(() => {
     Papa.parse('/data/subkmeans_with_fertility_label.csv', {
       download: true,
@@ -19,31 +19,29 @@ const DashboardClusterChart = () => {
       skipEmptyLines: true,
       complete: (results) => {
         const data = results.data;
-        const pointsData = data.filter(row => {
-          const val = row.Centroid ? row.Centroid.toString().trim().toLowerCase() : "";
-          return val === "false" || val === "";
-        });
+        const pointsData = data.filter(row => row.Centroid === "False"); // filter out centroid points
+
 
         setChartData({
-          x:    pointsData.map(r => parseFloat(r['PCA Feature 1'])),
-          y:    pointsData.map(r => parseFloat(r['PCA Feature 2'])),
-          clusters:    pointsData.map(r => r.Subcluster?.trim() || ""),
-          participant: pointsData.map(r => r.participant),
-          fid:         pointsData.map(r => r.fid),
-          VCL:  pointsData.map(r => parseFloat(r.VCL)),
-          VSL:  pointsData.map(r => parseFloat(r.VSL)),
-          VAP:  pointsData.map(r => parseFloat(r.VAP)),
-          LIN:  pointsData.map(r => parseFloat(r.LIN)),
-          WOB:  pointsData.map(r => parseFloat(r.WOB)),
-          STR:  pointsData.map(r => parseFloat(r.STR)),
-          "ALH Max": pointsData.map(r => parseFloat(r["ALH Max"]))
+          x:    pointsData.map(row => parseFloat(row['PCA Feature 1'])),
+          y:    pointsData.map(row => parseFloat(row['PCA Feature 2'])),
+          clusters: pointsData.map(row => row.Subcluster || ""),
+          participant: pointsData.map(row => row.participant),
+          fid:         pointsData.map(row => row.fid),
+          VCL:  pointsData.map(row => parseFloat(row.VCL)),
+          VSL:  pointsData.map(row => parseFloat(row.VSL)),
+          VAP:  pointsData.map(row => parseFloat(row.VAP)),
+          LIN:  pointsData.map(row => parseFloat(row.LIN)),
+          WOB:  pointsData.map(row => parseFloat(row.WOB)),
+          STR:  pointsData.map(row => parseFloat(row.STR)),
+          "ALH Max": pointsData.map(row => parseFloat(row["ALH Max"]))
         });
       },
       error: (err) => console.error("Error parsing CSV:", err)
     });
   }, []);
 
-  // Parse the trajectory (coordinate) data
+  // only get coordinate data 
   useEffect(() => {
     Papa.parse('/data/subclustered_bb.csv', {
       download: true,
@@ -52,9 +50,9 @@ const DashboardClusterChart = () => {
       complete: (results) => {
         const data = results.data;
         setCoordinateData({
-          fid: data.map(r => r.fid),
-          bb0: data.map(r => parseFloat(r.bb0)),
-          bb1: data.map(r => parseFloat(r.bb1))
+          fid: data.map(row => row.fid),
+          bb0: data.map(row => parseFloat(row.bb0)),
+          bb1: data.map(row => parseFloat(row.bb1))
         });
       },
       error: (err) => console.error("Error parsing coordinated data:", err)
@@ -65,16 +63,13 @@ const DashboardClusterChart = () => {
     return <div className="text-white">Loading chart…</div>;
   }
 
-  const uniqueClusters = [...new Set(chartData.clusters.map(c => String(c).trim()))];
+  const uniqueClusters = Array.from(new Set(chartData.clusters.map(String)));
 
   return (
-    // TOP-LEVEL: even padding both sides
+   
     <div className="px-8 flex flex-col space-y-3">
       
-      {/* Cluster selector */}
-  
-
-      {/* Top row: scatter + trajectory */}
+      {/* Top row */}
       <div className="flex flex-col lg:flex-row gap-6 mb-8 justify-center items-center">
       <div className="w-full lg:w-1/2 h-[400px]">
           <ClusteringChart
@@ -91,7 +86,7 @@ const DashboardClusterChart = () => {
         </div>
       </div>
 
-      {/* Bottom row: metrics, narrower and centered */}
+      {/* Bottom row*/}
       <div>
         <label htmlFor="cluster-select" className="mr-2 font-bold text-white">
           Select Cluster:

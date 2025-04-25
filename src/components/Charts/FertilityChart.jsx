@@ -2,9 +2,9 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 
 const clusterColors = {
-  0: '#4fa0f7', // blue
-  1: '#E9A752', // red‑orange
-  2: '#fe4939'  // green
+  0: '#4fa0f7',
+  1: '#E9A752',
+  2: '#fe4939'
 };
 
 const clusterLabels = {
@@ -13,7 +13,7 @@ const clusterLabels = {
   2: 'Cluster 2 - Straight-Line Progressive'
 };
 
-const metrics = [
+const fertilityMetrics = [
   'Sperm vitality (%)',
   'Normal spermatozoa (%)',
   'Head defects (%)',
@@ -27,50 +27,59 @@ const metrics = [
 ];
 
 const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
-  const clusters = [...new Set(chartData.clusters.map((c) => String(c).trim()))];
+  const uniqueClusterLabels = Array.from(new Set(chartData.clusters.map(c => String(c).trim()))); // create new array from our clusters but convert to set to remove duploicates
   const data = [];
 
-  // Compute global statistics for normalization
-  const metricStats = {};
-  metrics.forEach(metric => {
-    const values = chartData[metric]?.filter(v => typeof v === 'number' && !isNaN(v));
-    const mean = values.reduce((a, b) => a + b, 0) / values.length;
-    const std = Math.sqrt(values.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / values.length);
-    const min = values.reduce((a, b) => Math.min(a, b), Infinity); // need to start from positive because any min value will be less than this
-    const max = values.reduce((a, b) => Math.max(a, b), -Infinity); // need to start from negative because any max value will be greater than this
-    metricStats[metric] = { mean, std, min, max };
+  // Precompute global stats for normalization
+  const stats = {};
+  fertilityMetrics.forEach(metric => {
+    const spermMetricValues = chartData[metric];
+    const mean = spermMetricValues.reduce((a, b) => a + b, 0) / spermMetricValues.length;
+    const std = Math.sqrt(spermMetricValues.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / spermMetricValues.length);
+    const min = Math.min(...spermMetricValues);
+    const max = Math.max(...spermMetricValues);
+    stats[metric] = { mean, std, min, max };
   });
 
-  // Create bar data per cluster
-  clusters.forEach(cluster => {
-    const indices = chartData.clusters
-      .map((c, i) => (String(c).trim() === cluster ? i : null))
-    
+  // Build data for each cluster
+  uniqueClusterLabels.forEach(clusterId => {
+    const spermIndicesInCluster = chartData.clusters
+      .map((c, i) => (String(c).trim() === clusterId ? i : null))
+      .filter(i => i !== null);
 
-    const processedValues = metrics.map(metric => {
-      const { mean, std, min, max } = metricStats[metric];
-      const values = indices.map(i => {
-        const raw = chartData[metric][i];
-        if (typeof raw !== 'number' || isNaN(raw)) return null; //if null value for metric return null 
+    const normalizedClusterMeans = [];
+
+    for (let m = 0; m < fertilityMetrics.length; m++) {
+      const metric = fertilityMetrics[m];
+      const { mean, std, min, max } = stats[metric];
+
+      let clusterMetricTotal = 0;
+
+      for (let j = 0; j < spermIndicesInCluster.length; j++) {
+        const value = chartData[metric][spermIndicesInCluster[j]];
+        let normalized;
 
         if (normalization === 'zscore') {
-          return std !== 0 ? (raw - mean) / std : 0;
+          normalized = std !== 0 ? (value - mean) / std : 0;
         } else if (normalization === 'minmax') {
-          return (max - min) !== 0 ? (raw - min) / (max - min) : 0.5;
+          normalized = (max - min !== 0) ? (value - min) / (max - min) : 0.5;
+        } else {
+          normalized = value;
         }
-        return raw;
-      });
 
-      const valid = values.filter(v => typeof v === 'number');
-      return valid.length > 0 ? valid.reduce((a, b) => a + b, 0) / valid.length : 0;
-    });
+        clusterMetricTotal += normalized;
+      }
+
+      const clusterMetricAverage = clusterMetricTotal / spermIndicesInCluster.length;
+      normalizedClusterMeans.push(clusterMetricAverage);
+    }
 
     data.push({
-      x: metrics,
-      y: processedValues,
+      x: fertilityMetrics,
+      y: normalizedClusterMeans,
       type: 'bar',
-      name: clusterLabels[cluster] || `Cluster ${cluster}`,
-      marker: { color: clusterColors[cluster] || '#ccc' }
+      name: clusterLabels[clusterId] || `Cluster ${clusterId}`,
+      marker: { color: clusterColors[clusterId] || '#ccc' }
     });
   });
 
@@ -92,7 +101,7 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
           },
           margin: { t: 140, b: 100, l: 70, r: 10 },
           xaxis: {
-            title: 'Metric',
+            title: 'Fertility Metric',
             type: 'category',
             tickangle: -45,
             automargin: true,
