@@ -1,18 +1,23 @@
-// SyntheticClusterChartPanel.jsx
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import Plot from 'react-plotly.js';
-import { motion } from 'framer-motion';
 
 const clusterColors = {
   0: '#4fa0f7',
   1: '#481231',
-  2: '#fe4939'
+  2: '#fe4939',
+};
+
+const clusterTitles = {
+  0: 'Intermediate Motility',
+  1: 'Hyperactivated Motility',
+  2: 'Progressive Motility',
 };
 
 const SyntheticClusterChartPanel = ({ activeStep }) => {
   const [realTraces, setRealTraces] = useState([]);
-  const [syntheticTrace, setSyntheticTrace] = useState(null);
+  const [johnTrace, setJohnTrace] = useState(null);
+  const [steveTrace, setSteveTrace] = useState(null);
   const [starSize, setStarSize] = useState(0);
 
   useEffect(() => {
@@ -20,106 +25,116 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
       download: true,
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
-        const data = results.data;
-        const points = data.filter(row => row.Centroid === "False"); // filter out centroid points
-
+      complete: ({ data }) => {
+        const points = data.filter(row => row.Centroid === "False");
 
         const x = points.map(row => parseFloat(row['PCA Feature 1']));
         const y = points.map(row => parseFloat(row['PCA Feature 2']));
         const clusters = points.map(row => row.Subcluster?.trim());
-        const participant = points.map(row => row.participant);
         const fid = points.map(row => row.fid);
 
-        // Inject synthetic points
-        const syntheticPoints = [
-          { x: 0.15, y: -0.25, cluster: '0', fid: 'synthetic-0a' },
-          { x: 0.18, y: -0.2, cluster: '0', fid: 'synthetic-0b' },
-          { x: 0.28, y: 0.12, cluster: '2', fid: 'synthetic-2a' },
-          { x: 0.25, y: 0.15, cluster: '2', fid: 'synthetic-2b' },
-          { x: -0.05, y: 0.1, cluster: '1', fid: 'synthetic-1a' },
-          { x: -0.13, y: -0.35, cluster: '1', fid: 'synthetic-1b' },
-          { x: -0.05, y: -0.2, cluster: '1', fid: 'synthetic-1c' },
+        // Define synthetic points
+        const johnPoints = [
+          { x: 0.15, y: -0.25, cluster: '0', fid: 'John-0a' },
+          { x: 0.18, y: -0.2, cluster: '0', fid: 'John-0b' },
+          { x: 0.28, y: 0.12, cluster: '2', fid: 'John-2a' },
+          { x: 0.25, y: 0.15, cluster: '2', fid: 'John-2b' },
+          { x: -0.05, y: 0.1, cluster: '1', fid: 'John-1a' },
+          { x: -0.13, y: -0.35, cluster: '1', fid: 'John-1b' },
+          { x: -0.05, y: -0.2, cluster: '1', fid: 'John-1c' },
         ];
 
-        syntheticPoints.forEach(pt => {
-          x.push(pt.x);
-          y.push(pt.y);
-          clusters.push(pt.cluster);
-          participant.push('synthetic');
-          fid.push(pt.fid);
-        });
+        const stevePoints = [
+          { x: -0.3, y: 0.25, cluster: '0', fid: 'Steve-0a' },
+          { x: 0.18, y: 0.4, cluster: '0', fid: 'Steve-0b' },
+          { x: 0.3, y: 0.2, cluster: '2', fid: 'Steve-2a' },
+          { x: 0.13, y: 0.15, cluster: '2', fid: 'Steve-2b' },
+          { x: -0.05, y: 0.2, cluster: '1', fid: 'Steve-1a' },
+          { x: -0.13, y: -0.1, cluster: '1', fid: 'Steve-1b' },
+          { x: -0.08, y: -0.2, cluster: '1', fid: 'Steve-1c' },
+        ];
 
-        // Create real traces
+        // Create real cluster traces
         const allClusters = [...new Set(clusters)];
-        const realTraces = allClusters.map(cluster => {
+        const realClusterTraces = allClusters.map(cluster => {
           const indices = clusters
-            .map((c, i) => (String(c).trim() === String(cluster)) ? i : null)
+            .map((c, i) => (String(c) === String(cluster)) ? i : null)
             .filter(i => i !== null);
 
           const traceX = indices.map(i => x[i]);
           const traceY = indices.map(i => y[i]);
           const traceFids = indices.map(i => fid[i]);
 
-          const symbols = traceFids.map(fid => fid.startsWith('synthetic') ? 'star' : 'circle');
-          const sizes = traceFids.map(fid => fid.startsWith('synthetic') ? 20 : 10);
-          const colors = traceFids.map(fid =>
-            fid.startsWith('synthetic') ? '#4ddb65' : clusterColors[cluster]
-          );
-          const opacities = traceFids.map(fid =>
-            fid.startsWith('synthetic') ? 0 : 1
-          );
-
           return {
             x: traceX,
             y: traceY,
             mode: 'markers',
             type: 'scatter',
-            name: `Cluster ${cluster}`,
+            name: clusterTitles[cluster] || `Cluster ${cluster}`,   // <<< this line
             marker: {
-              size: sizes,
-              symbol: symbols,
-              color: colors,
-              opacity: opacities,
+              size: 10,
+              symbol: 'circle',
+              color: clusterColors[cluster],
+              opacity: 1,
               line: { color: 'rgba(0,0,0,0)', width: 0 }
             },
-            text: traceFids.map(fid => fid.startsWith('synthetic') ? `Synthetic: ${fid}` : `FID: ${fid}`),
+            text: traceFids.map(fid => `FID: ${fid}`),
             hovertemplate: '%{text}<extra></extra>',
           };
         });
 
-        // Create synthetic star trace separately
-        const syntheticOnlyTrace = {
-          x: syntheticPoints.map(p => p.x),
-          y: syntheticPoints.map(p => p.y),
-          type: 'scatter',
+        // Create John's trace separately
+        const johnTrace = {
+          x: johnPoints.map(p => p.x),
+          y: johnPoints.map(p => p.y),
           mode: 'markers',
-          name: `John's Data`,
+          type: 'scatter',
+          name: "John's Data",
           marker: {
             size: starSize,
-            symbol: 'star',
-            color: '#4ddb65',
+            symbol: 'diamond',
+            color: '#f5d11d',
             opacity: starSize > 0 ? 1 : 0,
+            line: { color: 'rgba(0,0,0,0)', width: 0 }
           },
-          text: syntheticPoints.map(() => "John's data"),
+          text: johnPoints.map(() => "John's data"),
           hovertemplate: '%{text}<extra></extra>'
         };
 
-        setRealTraces(realTraces);
-        setSyntheticTrace(syntheticOnlyTrace);
+        // Create Steve's trace separately
+        const steveTrace = {
+          x: stevePoints.map(p => p.x),
+          y: stevePoints.map(p => p.y),
+          mode: 'markers',
+          type: 'scatter',
+          name: "Steve's Data",
+          marker: {
+            size: starSize,
+            symbol: 'diamond',
+            color: '#22d469',
+            opacity: starSize > 0 ? 1 : 0,
+            line: { color: 'rgba(0,0,0,0)', width: 0 }
+          },
+          text: stevePoints.map(() => "Steve's data"),
+          hovertemplate: '%{text}<extra></extra>'
+        };
+
+        setRealTraces(realClusterTraces);
+        setJohnTrace(johnTrace);
+        setSteveTrace(steveTrace);
       },
       error: (err) => console.error("Error loading clustering data:", err)
     });
   }, [starSize]);
 
   useEffect(() => {
-    if (activeStep === 4) {
+    if (activeStep === 5) {
       let animationFrame;
       let start = performance.now();
 
       const animateSize = (timestamp) => {
         const elapsed = timestamp - start;
-        const progress = Math.min(elapsed /2000, 1);
+        const progress = Math.min(elapsed / 2000, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
 
         setStarSize(20 * eased);
@@ -139,15 +154,19 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
 
   return (
     <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative">
+      <h2 className="text-center text-xl md:text-2xl font-bold text-burgundy mb-0" style={{ fontFamily: 'AtlasBold, serif' }}>
+        John and Steve's Cluster Distribution
+      </h2>
       <Plot
-        data={[...realTraces, syntheticTrace].filter(Boolean)}
+        data={[...realTraces, johnTrace, steveTrace].filter(Boolean)}
         layout={{
-          title: 'Clusters with Synthetic Points',
+          title: 'Clusters with John & Steve Synthetic Points',
           xaxis: { title: 'PCA Feature 1', showticklabels: false, showgrid: false, zeroline: false },
           yaxis: { title: 'PCA Feature 2', showticklabels: false, showgrid: false, zeroline: false },
           paper_bgcolor: 'rgba(0,0,0,0)',
           plot_bgcolor: 'rgba(0,0,0,0)',
           margin: { t: 50, l: 30, r: 30, b: 40 },
+          showlegend: true,
         }}
         config={{ displayModeBar: false }}
         useResizeHandler

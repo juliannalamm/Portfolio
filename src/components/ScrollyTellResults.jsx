@@ -190,27 +190,21 @@ function ScrollamaResults() {
                     <SyntheticClusterChartPanel activeStep={activeStep} />
                 </div>
             );
+    
         } else if (activeStep === 6) {
-
             return (
-                <div style={{ width: '100%', minHeight: '600px' }}>
-                    <SteveClusterChartPanel activeStep={activeStep} />
+                <div style={{ width: '80%', height: '400px' }}>
+
                 </div>
             );
+
         } else if (activeStep === 7) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
 
                 </div>
             );
-
         } else if (activeStep === 8) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
-            );
-        } else if (activeStep === 9) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -218,7 +212,7 @@ function ScrollamaResults() {
 
                 </div>
             );
-        } else if (activeStep === 10) {
+        } else if (activeStep === 9) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                 </div>
@@ -314,9 +308,7 @@ function ScrollamaResults() {
                         <p className="max-w-2xl">
                             So, what does this mean for John? 
                         </p>
-                        <p className="max-w-2xl">
-                            John was previously told his sperm was "normal" and motile. But what if we took his sperm and another man's sperm with similar metrics and looked at it using our automated motility classification!
-                        </p>
+                      
                       
                     </div>
 
@@ -324,13 +316,13 @@ function ScrollamaResults() {
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
                           <p className="max-w-2xl">
-                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                          John was previously told his sperm was "normal" and motile. However, him and his partner were still struggling to conceive.
                         </p>
                         <p className="max-w-2xl">
-                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                            Meanwhile, Steve, recieved similar results, but was able to conceive with his partner.
                         </p>
                         <p className="max-w-2xl">
-                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                            Suppose we took their data, and instead of running it through traditional CASA analysis, we ran it through our clustering algorithm to see if we could identify where John and Steve differ.
                         </p>
 
                     </div>
@@ -338,14 +330,13 @@ function ScrollamaResults() {
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
                         <p className="max-w-2xl">
-                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                            We take a video of John and Steve's Sperm under a microscope, calculate their metrics, and run it through our clustering algorithm as previously described.
                         </p>
                         <p className="max-w-2xl">
-                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                            Briefly looking at our scatter plot, we notice something striking, while both John and Steve have motile sperm, Steve has a higher proportion of sperm in the hyperactivated cluster, while John is mainly localized to Progressive and Intermediate motility. 
                         </p>
-                        <p className="max-w-2xl">
-                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
-                        </p>
+                        
+                        
 
                     </div>
 
