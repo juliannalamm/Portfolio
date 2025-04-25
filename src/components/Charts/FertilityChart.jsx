@@ -28,7 +28,7 @@ const metrics = [
 
 const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
   const clusters = [...new Set(chartData.clusters.map((c) => String(c).trim()))];
-  const traces = [];
+  const data = [];
 
   // Compute global statistics for normalization
   const metricStats = {};
@@ -41,7 +41,7 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
     metricStats[metric] = { mean, std, min, max };
   });
 
-  // Create bar traces per cluster
+  // Create bar data per cluster
   clusters.forEach(cluster => {
     const indices = chartData.clusters
       .map((c, i) => (String(c).trim() === cluster ? i : null))
@@ -65,7 +65,7 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
       return valid.length > 0 ? valid.reduce((a, b) => a + b, 0) / valid.length : 0;
     });
 
-    traces.push({
+    data.push({
       x: metrics,
       y: processedValues,
       type: 'bar',
@@ -77,7 +77,7 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
   return (
     <div className="w-full h-full">
       <Plot
-        data={traces}
+        data={data}
         layout={{
           barmode: 'group',
           font: {

@@ -1,41 +1,39 @@
-// src/components/Charts/AllClustersBoxPlot.jsx
 import React from 'react';
 import Plot from 'react-plotly.js';
 
 const clusterColors = {
-  0: '#4fa0f7', // blue
-  1: '#E9a752', // red-orange
-  2: '#fe4939'  // green
+  0: '#4fa0f7',
+  1: '#E9a752',
+  2: '#fe4939'
 };
 
-const AllClustersBoxPlot = ({ chartData }) => {
-  const metrics = ['VCL', 'VAP', 'VSL', 'LIN', 'WOB', 'STR', 'ALH Max'];
-  const clusters = Array.from(new Set(
-    chartData.clusters.map(c => String(c).trim())
-  ));
-  const traces = [];
+const metrics = ['VCL', 'VAP', 'VSL', 'LIN', 'WOB', 'STR', 'ALH Max'];
 
-  clusters.forEach(cluster => {
-    // indices of this cluster
-    const idxs = chartData.clusters
-      .map((c,i) => String(c).trim() === cluster ? i : null)
+const AllClustersBoxPlot = ({ chartData }) => {
+  const clusters = Array.from(new Set(chartData.clusters)); // remove duplicates, turn set into array, unique values from original 
+
+  //need to flatten it so cluster numbers are aligned with data
+  const points = clusters.flatMap(cluster => {
+    const indices = chartData.clusters
+      .map((c, i) => String(c).trim() === cluster ? i : null)
       .filter(i => i !== null);
 
-    metrics.forEach(metric => {
-      // extract & sort values
-      const values = idxs
-        .map(i => chartData[metric][i])
-        .filter(v => v != null)
-        .sort((a,b) => a - b);
+    //loop over all metrics (i.e. VCL, VAP, VSL, etc.) 
+    return metrics.map(metric => {
+      const values = indices
+        .map(i => chartData[metric][i]) // for each metric, create a new array of values that will be a trace 
+        .filter(value => value != null) // if value is not null 
+        .sort((val1, val2) => val1 - val2)         // sort values in ascendinng order for min max calc
 
-      // compute min, median, max
-      const min    = values[0];
-      const max    = values[values.length-1];
-      const median = values[Math.floor((values.length-1)/2)];
+      if (values.length === 0) return null;
 
-      traces.push({
-        y: values,
+      const min = values[0];
+      const max = values[values.length - 1];
+      const median = values[Math.floor((values.length - 1) / 2)];
+
+      return {
         x: Array(values.length).fill(metric),
+        y: values,
         name: `Cluster ${cluster}`,
         type: 'box',
         boxpoints: 'outliers',
@@ -47,70 +45,59 @@ const AllClustersBoxPlot = ({ chartData }) => {
         showlegend: metric === metrics[0],
         offsetgroup: cluster,
         hoveron: 'boxes+points',
-
-        // —— CUSTOM HOVER ——
         customdata: Array(values.length).fill([min, median, max]),
-        hovertemplate:
-          'Metric: %{x}<br>' +
-          'Min: %{customdata[0]}<br>' +
-          'Median: %{customdata[1]}<br>' +
-          'Max: %{customdata[2]}<extra></extra>',
-      });
-    });
+        hovertemplate: [
+          'Metric: %{x}<br>',
+          'Min: %{customdata[0]}<br>',
+          'Median: %{customdata[1]}<br>',
+          'Max: %{customdata[2]}',
+          '<extra></extra>'
+        ].join('')
+      };
+    }).filter(Boolean);
   });
 
   return (
     <Plot
-      data={traces}
+      data={points}
       layout={{
-        font: {
-          family: 'TiemposTextBold, sans-serif',
-          color: 'white',
-        },
         title: {
           text: 'All Clusters: Metric Distributions',
-          font: { size: 18, color: 'white' },
+          font: { size: 18, color: 'white' }
+        },
+        font: {
+          family: 'TiemposTextBold, sans-serif',
+          color: 'white'
         },
         margin: { t: 40, b: 80, l: 50, r: 20 },
         xaxis: {
-          title: {
-            text: 'Kinematic Metric',
-            font: {
-              family: 'TiemposTextBold, sans-serif',
-              color: 'white',
-            },
-          },
+          title: 'Kinematic Metric',
           type: 'category',
           tickangle: -45,
-          tickfont: { color: 'white' },
           automargin: true,
           showgrid: false,
           showline: true,
           linecolor: 'white',
+          tickfont: { color: 'white' }
         },
         yaxis: {
-          title: {
-            text: 'Value',
-            font: {
-              family: 'TiemposTextBold, sans-serif',
-              color: 'white',
-            },
-          },
+          title: 'Value',
           automargin: true,
-          tickfont: { color: 'white' },
           showgrid: false,
           showline: true,
           linecolor: 'white',
+          tickfont: { color: 'white' }
         },
         boxmode: 'group',
         showlegend: true,
         legend: {
           orientation: 'h',
-          x: 0.4, y: 0.9,
-          font: { color: 'white' },
+          x: 0.4,
+          y: 0.9,
+          font: { color: 'white' }
         },
         paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)'
       }}
       config={{ responsive: true, displayModeBar: false }}
       useResizeHandler
