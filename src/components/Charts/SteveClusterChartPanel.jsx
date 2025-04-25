@@ -148,7 +148,7 @@ const SteveClusterChartPanel = ({ activeStep }) => {
   }, [starSize]);
 
   useEffect(() => {
-    if (activeStep === 4) {
+    if (activeStep === 5) {
       let animationFrame;
       let start = performance.now();
 

@@ -12,6 +12,7 @@ import "../ScrollamaStylesResults.css";
 //charts
 import FertilityChartToggle from './Charts/FertilityChartToggle';
 import SpermWaffle from './Charts/SpermWaffle';
+import CASAComparisonTable from "./Charts/CASAComparisonTable";
 import SyntheticClusterChartPanel from './Charts/SyntheticClusterChartPanel';
 import SteveClusterChartPanel from "./Charts/SteveClusterChartPanel";
 
@@ -19,6 +20,8 @@ import SteveClusterChartPanel from "./Charts/SteveClusterChartPanel";
 import cluster0 from "/images/cluster_bbs/cluster_0.png";
 import cluster1 from "/images/cluster_bbs/cluster_1.png";
 import cluster2 from "/images/cluster_bbs/cluster_2.png";
+import JohnImage from "../assets/John.svg";
+
 
 
 
@@ -163,33 +166,51 @@ function ScrollamaResults() {
                 </div>
             );
         } else if (activeStep === 3) {
+            // John Sad + Chart
+            return (
+                <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
+                <img
+                    src={JohnImage}
+                    alt="John sad"
+                    style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                />
+                </div>
+            );
+        } else if (activeStep === 4) {
+            // John Sad + Chart
+            return (
+                <div style={{ width: '80%', minHeight: '300px' }}>
+                <CASAComparisonTable />
+            </div>
+            );
+        } else if (activeStep === 5) {
             // change the active chart in chart panel component for animation 
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
                     <SyntheticClusterChartPanel activeStep={activeStep} />
                 </div>
             );
-        } else if (activeStep === 4) {
+        } else if (activeStep === 6) {
 
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
                     <SteveClusterChartPanel activeStep={activeStep} />
                 </div>
             );
-        } else if (activeStep === 5) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
-            );
-
-        } else if (activeStep === 6) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
-            );
         } else if (activeStep === 7) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
+
+                </div>
+            );
+
+        } else if (activeStep === 8) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
+
+                </div>
+            );
+        } else if (activeStep === 9) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -197,7 +218,7 @@ function ScrollamaResults() {
 
                 </div>
             );
-        } else if (activeStep === 8) {
+        } else if (activeStep === 10) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                 </div>
@@ -277,28 +298,26 @@ function ScrollamaResults() {
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
                         <p className="max-w-2xl">
-                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                            Using the fertility status of the participants in the study, generated using WHO cut-off values, we can then see the distribution of sperm belonging to fertile and subfertile participants in each cluster.
                         </p>
                         <p className="max-w-2xl">
-                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                            Sperm exhibiting intermediate motility (Cluster 0) are more likely to be associated with subfertile participants, while hyperactivated and progressive sperm (Cluster 1) are more likely to be associated with fertile participants.
                         </p>
                         <p className="max-w-2xl">
-                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                            This aligns with our expectations: healthy participants should have a higher proportion of hyperactivated and progressive sperm, while subfertile participants should have a higher proportion of intermediate motility sperm!
                         </p>
-
+                        
                     </div>
                     {/* Step 3 */}
-                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                    <div className="results-step flex flex-col justify-evenly text-left h-full"
                         ref={addToStepRefs}>
                         <p className="max-w-2xl">
-                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                            So, what does this mean for John? 
                         </p>
                         <p className="max-w-2xl">
-                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                            John was previously told his sperm was "normal" and motile. But what if we took his sperm and another man's sperm with similar metrics and looked at it using our automated motility classification!
                         </p>
-                        <p className="max-w-2xl">
-                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
-                        </p>
+                      
                     </div>
 
                     {/* Step 4 */}
