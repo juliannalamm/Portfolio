@@ -2,11 +2,9 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 
 const clusterColors = {
-  0: '#4fa0f7',
-  1: '#481231',
-  2: '#fe4939',
-  3: '#ffb347',
-  4: '#6a0dad'
+  0: '#4fa0f7', // blue
+  1: '#E9a752', // red‑orange
+  2: '#fe4939'  // green
 };
 
 const metrics = [
@@ -15,8 +13,6 @@ const metrics = [
   'Head defects (%)',
   'Midpiece and neck defects (%)',
   'Tail defects (%)',
-  'Cytoplasmic droplet (%)',
-  'Teratozoospermia index',
   'Progressive motility (%)',
   'Non progressive sperm motility (%)',
   'Immotile sperm (%)',

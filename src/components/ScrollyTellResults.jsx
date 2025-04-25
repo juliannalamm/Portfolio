@@ -6,12 +6,19 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 
-// Our custom CSS with the .scroll__graphic, .scroll-container, etc.
+// custom CSS with the .scroll__graphic, .scroll-container, etc.
 import "../ScrollamaStylesResults.css";
+
+//charts
 import FertilityChartToggle from './Charts/FertilityChartToggle';
 import SpermWaffle from './Charts/SpermWaffle';
 import SyntheticClusterChartPanel from './Charts/SyntheticClusterChartPanel';
 import SteveClusterChartPanel from "./Charts/SteveClusterChartPanel";
+
+//images
+import cluster0 from "/images/cluster_bbs/cluster_0.png";
+import cluster1 from "/images/cluster_bbs/cluster_1.png";
+import cluster2 from "/images/cluster_bbs/cluster_2.png";
 
 
 
@@ -92,48 +99,97 @@ function ScrollamaResults() {
 
 
     const renderVisual = () => {
+
         if (activeStep === 0) {
+            return (
+
+                <div className="w-full flex justify-between items-start gap-2 px-4">
+                    {/* Cluster 0 */}
+                    <div className="w-[32%] text-center">
+                        <img
+                            src={cluster0}
+                            alt="Cluster 0"
+                            className="w-full h-auto object-contain"
+                        />
+                        <p className="mt-2 text-sm text-burgundy">
+                            Cluster 0 Trajectories
+                        </p>
+                    </div>
+
+                    {/* Cluster 1 */}
+                    <div className="w-[32%] text-center">
+                        <img
+                            src={cluster1}
+                            alt="Cluster 1"
+                            className="w-full h-auto object-contain"
+                        />
+                        <p className="mt-2 text-sm text-burgundy">
+                            Cluster 1 Trajectories
+                        </p>
+                    </div>
+
+                    {/* Cluster 2 */}
+                    <div className="w-[32%] text-center">
+                        <img
+                            src={cluster2}
+                            alt="Cluster 2"
+                            className="w-full h-auto object-contain"
+                        />
+                        <p className="mt-2 text-sm text-burgundy">
+                            Cluster 2 Trajectories
+                        </p>
+                    </div>
+                </div>
+            );
+
+
+
+
+
+
+
+        } else if (activeStep === 1) {
             return (
 
                 <div className="relative w-screen max-w-screen -mt-50">
                     <FertilityChartToggle />
                 </div>
             );
-        } else if (activeStep === 1) {
+        } else if (activeStep === 2) {
             // John Sad + Chart
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
                     <SpermWaffle />
                 </div>
             );
-        } else if (activeStep === 2) {
+        } else if (activeStep === 3) {
             // change the active chart in chart panel component for animation 
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
                     <SyntheticClusterChartPanel activeStep={activeStep} />
                 </div>
             );
-        } else if (activeStep === 3) {
+        } else if (activeStep === 4) {
 
             return (
                 <div style={{ width: '100%', minHeight: '600px' }}>
                     <SteveClusterChartPanel activeStep={activeStep} />
                 </div>
             );
-        } else if (activeStep === 4) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
-            );
-
         } else if (activeStep === 5) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
 
                 </div>
             );
+
         } else if (activeStep === 6) {
+            return (
+                <div style={{ width: '80%', height: '400px' }}>
+
+                </div>
+            );
+        } else if (activeStep === 7) {
             return (
                 // attach ref to the wrapper div so that we can measure the width 
                 <div
@@ -141,7 +197,7 @@ function ScrollamaResults() {
 
                 </div>
             );
-        } else if (activeStep === 7) {
+        } else if (activeStep === 8) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
                 </div>
