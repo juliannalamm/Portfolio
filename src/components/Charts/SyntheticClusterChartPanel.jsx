@@ -115,7 +115,7 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
   }, [starSize]);
 
   useEffect(() => {
-    if (activeStep === 2) {
+    if (activeStep === 3) {
       let animationFrame;
       let start = performance.now();
 
