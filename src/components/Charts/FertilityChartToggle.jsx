@@ -14,12 +14,10 @@ const FertilityChartToggle = () => {
       complete: (results) => {
         const data = results.data;
 
-        const pointsData = data.filter(row => {
-          const val = row.Centroid?.toString().trim().toLowerCase();
-          return val === "false" || val === "";
-        });
+        const pointsData = data.filter(row => row.Centroid === "False"); // filter out centroid points
 
-        const clusters = pointsData.map(row => row.Subcluster?.trim());
+
+        const clusters = pointsData.map(row => row.Subcluster);
         const participant = pointsData.map(row => row.participant);
 
         const fertilityMetrics = {};

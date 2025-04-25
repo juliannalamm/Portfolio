@@ -22,10 +22,8 @@ const SyntheticClusterChartPanel = ({ activeStep }) => {
       skipEmptyLines: true,
       complete: (results) => {
         const data = results.data;
-        const points = data.filter(row => {
-          const val = row.Centroid ? row.Centroid.toString().trim().toLowerCase() : '';
-          return val === 'false' || val === '';
-        });
+        const points = data.filter(row => row.Centroid === "False"); // filter out centroid points
+
 
         const x = points.map(row => parseFloat(row['PCA Feature 1']));
         const y = points.map(row => parseFloat(row['PCA Feature 2']));
