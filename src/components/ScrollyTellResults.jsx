@@ -112,7 +112,7 @@ function ScrollamaResults() {
                             className="w-full h-auto object-contain"
                         />
                         <p className="mt-2 text-sm text-burgundy">
-                            Cluster 0 Trajectories
+                            Cluster 0 - Intermediate Motility
                         </p>
                     </div>
 
@@ -124,7 +124,7 @@ function ScrollamaResults() {
                             className="w-full h-auto object-contain"
                         />
                         <p className="mt-2 text-sm text-burgundy">
-                            Cluster 1 Trajectories
+                            Cluster 1 - Hyperactivated Motility
                         </p>
                     </div>
 
@@ -136,16 +136,11 @@ function ScrollamaResults() {
                             className="w-full h-auto object-contain"
                         />
                         <p className="mt-2 text-sm text-burgundy">
-                            Cluster 2 Trajectories
+                            Cluster 2 - Straight Line Progressive Motility
                         </p>
                     </div>
                 </div>
             );
-
-
-
-
-
 
 
         } else if (activeStep === 1) {
