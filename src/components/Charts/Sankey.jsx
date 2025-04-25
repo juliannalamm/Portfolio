@@ -77,7 +77,15 @@ const Sankey = () => {
       .attr('viewBox', [0, 0, width, height]);
 
     const g = svg.append('g')
-      .attr('transform', `translate(${margin.left},${margin.top})`);
+    .attr('transform', `translate(${margin.left + 100},${margin.top})`);
+
+    svg.append('text')
+      .attr('x', width / 2)
+      .attr('y', 30) // vertical position
+      .attr('text-anchor', 'middle')
+      .attr('font-size', 24)
+      .attr('font-weight', 'bold')
+      .text('Sperm Cluster Distribution: John vs Steve');
 
     // 9) SPERM SYMBOL
     svg.append('defs')
@@ -233,7 +241,7 @@ const Sankey = () => {
         .attr('y', 32)
         .attr('fill', '#E9a752')
         .attr('text-anchor', 'start');
-    
+
 
 
 
