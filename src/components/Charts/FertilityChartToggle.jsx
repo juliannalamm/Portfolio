@@ -54,7 +54,7 @@ const FertilityChartToggle = () => {
     <section className="w-full min-h-screen bg-lightblue flex flex-col items-center justify-center">
     <div className="w-full max-w-screen-xl mx-auto bg-transparent p-8">
   
-      <div className="w-full mb-6">
+      <div className="w-full mb-0">
         <select
           className="border p-2 rounded bg-transparent text-black w-full sm:w-64"
           value={normalization}
