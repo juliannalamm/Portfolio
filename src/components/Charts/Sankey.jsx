@@ -231,7 +231,6 @@ const Sankey = () => {
     let people = [];
     const markersG = g.append('g');
 
-    // ←←← THIS is the correct placement for your timerRef assignment:
     timerRef.current = timer(elapsed => {
       const alive = [];
       people.forEach(d => {
