@@ -15,9 +15,9 @@ const Sankey = () => {
     const personNames = ['John', 'Steve'];
     const personIds = [0, 1];
     const clusterNames = [
-      'Intermediate Motility',
-      'Hyperactivated Motility',
       'Progressive Motility',
+      'Hyperactivated Motility',
+      'Intermediate Motility',
     ];
     const clusterIds = [0, 1, 2];
 
