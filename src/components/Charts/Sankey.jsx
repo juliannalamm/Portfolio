@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 import spermData from '../../data/sankeysperm.json';
 
@@ -6,8 +6,39 @@ const { bisect, scaleLinear, line, curveMonotoneX, select, timer } = d3;
 
 const Sankey = () => {
   const containerRef = useRef();
+  const timerRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  // Track if Sankey is visible
+  
+  
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting); // true if on screen
+      },
+      { threshold: 0.1 } // Trigger when at least 10% of the div is visible
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
+
 
   useEffect(() => {
+    if (!isVisible) {
+      if (timerRef.current) {
+        timerRef.current.stop();
+        timerRef.current = null;
+      }
+      return; // <--- STOP and do nothing if not visible
+    }
     // 1) DATA
     const dataset = spermData;
 
@@ -302,8 +333,14 @@ const Sankey = () => {
         .style('opacity', 0)
         .remove();
     });
+    return () => {
+      if (timerRef.current) {
+        timerRef.current.stop();
+        timerRef.current = null;
+      }
+    };
+  }, [isVisible]);
 
-  }, []);
 
   return <div ref={containerRef} style={{ width: '100%', height: '100%' }} />;
 };
