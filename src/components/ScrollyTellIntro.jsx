@@ -97,7 +97,7 @@ function ScrollamaIntro() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [2, 3, 4, 5, 6].includes(activeStep);
+    const shouldAnimate = [ 2, 3, 4, 5, 6,7,8].includes(activeStep);
 
 
 
@@ -174,6 +174,11 @@ function ScrollamaIntro() {
             );
         } else if (activeStep === 9 || activeStep === 10) {
             return (
+                
+                <div style={{ width: '80%', height: '400px' }}>
+                <h2 className="text-2xl font-bold text-burgundy mb-6 text-center">
+                  Example Computer Assisted Analysis (CASA) Results
+                </h2>
                 <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2%' }}>
                     <img
                         src={LegacyReport}
@@ -185,6 +190,7 @@ function ScrollamaIntro() {
                         alt="Right"
                         style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
                     />
+                </div>
                 </div>
             );
 

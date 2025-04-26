@@ -119,47 +119,58 @@ function ScrollamaMethods() {
         } else if (activeStep === 1) {
             return (
 
-                <div className="w-4/5 flex justify-between items-start gap-2">
-                    
-                    <div className="w-[48%] text-center">
-                        <img
-                            src={labeledSperm}
-                            alt="Labeled Sperm"
-                            className="w-full h-auto object-contain"
-                        />
-                        <p className="mt-2 text-sm text-burgundy">
-                            Ground truth bounding boxes from the annotated dataset.
-                        </p>
-                    </div>
-                    <div className="w-[48%] text-center">
-                        <img
-                            src={predictedSperm}
-                            alt="Predicted Labels for Sperm"
-                            className="w-full h-auto object-contain"
-                        />
-                        <p className="mt-2 text-sm text-burgundy">
-                            Model-predicted bounding boxes after training.
-                        </p>
-                    </div>
+                <div className="w-4/5 mx-auto flex flex-col items-center">
+                <h2 className="text-2xl font-bold text-burgundy mb-6 text-center">
+                  Model Detection Results
+                </h2>
+              
+                <div className="w-full flex justify-between items-start gap-2">
+                  <div className="w-[48%] text-center">
+                    <img
+                      src={labeledSperm}
+                      alt="Labeled Sperm"
+                      className="w-full h-auto object-contain"
+                    />
+                    <p className="mt-2 text-sm text-burgundy">
+                      Ground truth bounding boxes from the annotated dataset.
+                    </p>
+                  </div>
+                  <div className="w-[48%] text-center">
+                    <img
+                      src={predictedSperm}
+                      alt="Predicted Labels for Sperm"
+                      className="w-full h-auto object-contain"
+                    />
+                    <p className="mt-2 text-sm text-burgundy">
+                      Model-predicted bounding boxes after training.
+                    </p>
+                  </div>
                 </div>
+              </div>
+              
 
             );
 
         } else if (activeStep === 2) {
             return (
-                <div className={{ width: '80%', height: '400px' }}>
-                    <video
-                        className="w-full h-full object-contain"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="auto"
-                    >
-                        <source src={trackingResults} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                
+                
+                <div style={{ width: '80%', height: '400px' }}>
+                <h2 className="text-xl font-semibold text-center text-burgundy mb-4">
+                    Object Tracking Results
+                </h2>
+                <video
+                  className="w-full h-full object-contain"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                >
+                  <source src={trackingResults} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
 
             );
         } else if (activeStep === 3) {
