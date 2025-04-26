@@ -100,7 +100,7 @@ function ScrollamaResults() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [2].includes(activeStep);
+    const shouldAnimate = [0,1,2,3,4,5,6,7,8,9].includes(activeStep);
 
 
 
