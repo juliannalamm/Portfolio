@@ -34,7 +34,7 @@ const SpermHero = () => {
     setIsAutoplayBlocked(false);
   };
   const handleScrollToHighlights = () => {
-    const section = document.getElementById("key-highlights");
+    const section = document.getElementById("scroll");
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }

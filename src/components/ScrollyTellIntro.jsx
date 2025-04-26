@@ -63,7 +63,7 @@ function ScrollamaIntro() {
 
         // On step enter, we set the active step
         const handleStepEnter = ({ index }) => {
-            console.log("Entering step index:", index); // debug
+            // console.log("Entering step index:", index); // debug
             setActiveStep(index);
             // highlight the active step visually
             stepRefs.current.forEach((step, i) => {
@@ -229,7 +229,7 @@ function ScrollamaIntro() {
                 <div className="scroll__text" ref={textRef}>
                     {/* Step 0 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy  text-left h-full"
                         ref={addToStepRefs}
                     >
                         {/* Header stays near top */}
@@ -246,7 +246,7 @@ function ScrollamaIntro() {
                             Recently, John and his partner embarked on their journey to start a family.
                         </p>
                         <p className="max-w-2xl">
-                            However, they have been struggling to get pregnant.
+                            However, they have been struggling to conceive.
                         </p>
                     </div>
 
@@ -276,7 +276,7 @@ function ScrollamaIntro() {
 
                     {/* Step 2 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy  text-left h-full"
                         ref={addToStepRefs}
                     >
                         <h2 className="text-center text-xl mb-10">Men have a biological clock too.</h2>
@@ -284,7 +284,7 @@ function ScrollamaIntro() {
 
                     {/* Step 3 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy  text-left h-full"
                         ref={addToStepRefs}
                     >
 
@@ -300,12 +300,12 @@ function ScrollamaIntro() {
 
                     {/* Step 4 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy text-left h-full"
                         ref={addToStepRefs}
                     >
                         {/* div 1 */}
 
-                        <p className="text-left mb-20 pl-6"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
+                        <p className="text-left mb-20"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
                             <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -317,7 +317,7 @@ function ScrollamaIntro() {
                     </div>
                     {/* Step 5 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy text-left h-full"
                         ref={addToStepRefs}
                     >
                         <p className="max-w-2xl"> A study on 1,976 couples reported that the amount of time it takes to achieve pregnancy (TTP), became accelerated when the men’s age was 45 years or older. Normalized data relative to age 20 is shown in the chart to the left  <a href="https://www.sciencedirect.com/science/article/pii/S0015028203003662"
@@ -331,7 +331,7 @@ function ScrollamaIntro() {
 
                     {/* Step 6 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy text-left h-full"
                         ref={addToStepRefs}
                     >
                         <p className="max-w-2xl">
@@ -346,7 +346,7 @@ function ScrollamaIntro() {
                     </div>
                     {/* step 7 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy text-left h-full"
                         ref={addToStepRefs}
                     >
 
@@ -370,7 +370,7 @@ function ScrollamaIntro() {
 
                     {/* Step 8 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy text-left h-full"
                         ref={addToStepRefs}
                     >
 
@@ -388,7 +388,7 @@ function ScrollamaIntro() {
 
                     {/* Step 9 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy text-left h-full"
                         ref={addToStepRefs}
                     >
 
@@ -420,7 +420,7 @@ function ScrollamaIntro() {
 
                     {/* Step 10 */}
                     <div
-                        className="step flex flex-col justify-evenly text-burgundy items-center text-left h-full"
+                        className="step flex flex-col justify-evenly text-burgundy text-left h-full"
                         ref={addToStepRefs}
                     >
 

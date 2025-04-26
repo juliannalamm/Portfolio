@@ -63,7 +63,7 @@ function ScrollamaMethods() {
 
         // On step enter, we set the active step
         const handleStepEnter = ({ index }) => {
-            console.log("Entering step index:", index); // debug
+            // console.log("Entering step index:", index); // debug
             setActiveStep(index);
             // highlight the active step visually
             stepRefs.current.forEach((step, i) => {
