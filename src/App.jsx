@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react"; // <--- add this
 import Navbar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import SpermTrackPage from "./pages/SpermTrackPage";
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/projects/sperm-classification" element={<SpermTrackClassification />} />
         </Routes>
       </div>
+      <Analytics/>
     </Router>
   );
 };
