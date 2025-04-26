@@ -173,19 +173,19 @@ function ScrollamaResults() {
             // John Sad + Chart
             return (
                 <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
-                <img
-                    src={JohnImage}
-                    alt="John sad"
-                    style={{ width: "80%", height: "auto", objectFit: "contain" }}
-                />
+                    <img
+                        src={JohnImage}
+                        alt="John sad"
+                        style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                    />
                 </div>
             );
         } else if (activeStep === 4) {
             // John Sad + Chart
             return (
                 <div style={{ width: '80%', minHeight: '300px' }}>
-                <CASAComparisonTable />
-            </div>
+                    <CASAComparisonTable />
+                </div>
             );
         } else if (activeStep === 5) {
             // change the active chart in chart panel component for animation 
@@ -194,40 +194,40 @@ function ScrollamaResults() {
                     <SyntheticClusterChartPanel activeStep={activeStep} />
                 </div>
             );
-    
+
         } else if (activeStep === 6) {
             return (
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                <Sankey/>
+                    <Sankey />
 
                 </div>
             );
 
         } else if (activeStep === 7) {
             return (
-              <div style={{ width: '80%', height: '400px' }} className="flex justify-center items-center">
-                <HelpCircle size={200} strokeWidth={1.5} />
-              </div>
+                <div style={{ width: '80%', height: '400px' }} className="flex justify-center items-center">
+                    <HelpCircle size={200} strokeWidth={1.5} />
+                </div>
             );
-          
+
         } else if (activeStep === 8) {
             return (
                 <div style={{ position: "relative", width: "100%", margin: "0 auto" }}>
-                <img
-                    src={electrolyte}
-                    alt="electrolyte sperm image"
-                    style={{ width: "80%", height: "auto", objectFit: "contain" }}
-                />
+                    <img
+                        src={electrolyte}
+                        alt="electrolyte sperm image"
+                        style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                    />
                 </div>
             );
         } else if (activeStep === 9) {
             return (
                 <div style={{ width: '100%', height: '400px' }}>
-                 <img
-                    src={baby}
-                    alt="John with Baby"
-                    style={{ width: "80%", height: "auto", objectFit: "contain" }}
-                />
+                    <img
+                        src={baby}
+                        alt="John with Baby"
+                        style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                    />
                 </div>
             );
         }
@@ -263,21 +263,23 @@ function ScrollamaResults() {
                 <div className="results-scroll__text text-burgundy" ref={textRef}>
                     {/* Step 0 */}
                     <div
-                        className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                        className="results-step flex flex-col justify-evenly  text-left h-full"
                         ref={addToStepRefs}
                     >
                         <h2 className="text-xl font-semibold">Results and Discussion</h2>
 
                         <p className="max-w-2xl">
-                            When visualizing the trajectories of the three clusters, we observe distinct movement patterns that align with the motility types identified earlier:
+                            When visualizing sperm trajectories by cluster, distinct movement patterns emerge, corresponding to three motility types:                         </p>
+
+                        <p className="max-w-2xl">
+                            Straight-Line Progressive, Intermediate, and Hyperactivated.
                         </p>
 
                         <p className="max-w-2xl">
-                            Straight-Line Progressive, Intermediate, and Hyperactivated movement.
+                            Although Clusters 0 and 1 may appear visually similar at first glance, their kinematic profiles tell a different story...
                         </p>
-
                         <p className="max-w-2xl">
-                            While Clusters 0 and 1 may appear visually similar in static plots, our previously computed kinematic metrics reveal important differences—Cluster 0 exhibits slower, sometimes circular motion, whereas Cluster 1 shows more erratic, high-energy movement characteristic of hyperactivation.
+                            Cluster 0 sperm move more slowly and often in circles, while Cluster 1 sperm exhibit high-energy, erratic motion characteristic of hyperactivation.
                         </p>
 
 
@@ -290,13 +292,13 @@ function ScrollamaResults() {
                         ref={addToStepRefs}
                     >
                         <p className="max-w-2xl">
-                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                            Cluster 1 consistently shows higher scores in metrics associated with positive fertility, and lower scores in those linked to infertility.
                         </p>
                         <p className="max-w-2xl">
                             Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
                         </p>
                         <p className="max-w-2xl">
-                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                            Z-scores are calculated to standardize the motility traits, allowing us to clearly highlight positive and negative associations between specific motility patterns and fertility indicators.
                         </p>
 
                     </div>
@@ -305,101 +307,107 @@ function ScrollamaResults() {
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
                         <p className="max-w-2xl">
-                            Using the fertility status of the participants in the study, generated using WHO cut-off values, we can then see the distribution of sperm belonging to fertile and subfertile participants in each cluster.
+                            By applying  <a
+                                href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8706130/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:underline"
+                            >  WHO cut-off values </a> to classify fertility status, we can observe how sperm from fertile and subfertile participants distribute differently across motility clusters.
                         </p>
                         <p className="max-w-2xl">
-                            Sperm exhibiting intermediate motility (Cluster 0) are more likely to be associated with subfertile participants, while hyperactivated and progressive sperm (Cluster 1) are more likely to be associated with fertile participants.
+                            Sperm with intermediate motility (Cluster 0) are more common among subfertile individuals, while hyperactivated and progressive sperm (Cluster 1) are enriched among fertile individuals.
                         </p>
                         <p className="max-w-2xl">
-                            This aligns with our expectations: healthy participants should have a higher proportion of hyperactivated and progressive sperm, while subfertile participants should have a higher proportion of intermediate motility sperm!
+                            This matches our expectations: fertile participants tend to have a higher proportion of hyperactivated and progressive sperm, while subfertile participants show a greater proportion of sperm with intermediate motility.
                         </p>
-                        
+
                     </div>
                     {/* Step 3 */}
                     <div className="results-step flex flex-col justify-evenly text-left h-full"
                         ref={addToStepRefs}>
                         <p className="max-w-2xl">
-                            So, what does this mean for John? 
+                            So, what does this mean for John?
                         </p>
-                      
-                      
+
+
                     </div>
 
                     {/* Step 4 */}
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
-                          <p className="max-w-2xl">
-                          John was previously told his sperm was "normal" and motile. However, him and his partner were still struggling to conceive.
+                        <p className="max-w-2xl">
+                            John was previously told his sperm was "normal" and motile. Yet, he and his partner struggled to conceive.
                         </p>
                         <p className="max-w-2xl">
-                            Meanwhile, Steve, recieved similar results, but was able to conceive with his partner.
+                            Meanwhile, Steve—who received similar results—was able to conceive without difficulty.
                         </p>
                         <p className="max-w-2xl">
-                            Suppose we took their data, and instead of running it through traditional CASA analysis, we ran it through our clustering algorithm to see if we could identify where John and Steve differ.
+                            Suppose instead of stopping at traditional CASA analysis, we ran John and Steve’s data through our clustering algorithm. By doing so, we could uncover subtle but important differences between them—differences that standard metrics might miss.
                         </p>
-
                     </div>
                     {/* Step 5 */}
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
                         <p className="max-w-2xl">
-                            We take a video of John and Steve's Sperm under a microscope, calculate their metrics, and run it through our clustering algorithm as previously described.
+                            To put this into practice, we could analyze videos of their sperm under a microscope, extract motility features, and map them into our clustering framework.
                         </p>
                         <p className="max-w-2xl">
-                            Briefly looking at our scatter plot, we notice something striking, while both John and Steve have motile sperm, Steve has a higher proportion of sperm in the hyperactivated cluster, while John is mainly localized to Progressive and Intermediate motility. 
+                            At first glance, both men have motile sperm. But the clustering reveals something striking: Steve’s sperm shows a much higher proportion in the hyperactivated cluster, while John’s sperm is concentrated in the progressive and intermediate clusters.
                         </p>
-                        
-                        
+
+
 
                     </div>
 
                     {/* Step 6 */}
                     <div className="results-step flex flex-col justify-evenly  text-left h-full"
                         ref={addToStepRefs}>
-                         <p className="max-w-2xl">
-                            Recontextualizing what we said above, when we sort out John vs. Steve's Sperm, we notice that Steve has nearly 20% more sperm in the hyperactivated cluster, while John has nearly 30% more sperm in the intermediate motility cluster.
+                        <p className="max-w-2xl">
+                            When we quantify the results, Steve has nearly 20% more sperm in the hyperactivated cluster, while John has almost 30% more in the intermediate cluster.
                         </p>
                         <p className="max-w-2xl">
-                            This has incredibly important implications for John's fertility. 
+                            This has major implications...
                         </p>
                         <p className="max-w-2xl">
-                            While traditional CASA analysis may have indicated that John and Steve have nearly identical profiles, Johns lack of hyperactivated sperm means that his 
-                            sperm will never reach the high energy state required to fertilize an egg! 
+                            although traditional analysis made their profiles seem similar, John’s sperm lack the ability to reach the hyperactivated state critical for fertilizing an egg.
                         </p>
 
-                      
+
 
                     </div>
                     {/* Step 7 */}
 
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
-                          <p className="max-w-2xl">
+                        <p className="max-w-2xl">
                             The solution?
                         </p>
                     </div>
 
-            {/* Step 8 */}
+                    {/* Step 8 */}
                     <div className="results-step flex flex-col justify-evenly text-left h-full"
                         ref={addToStepRefs}>
-                          <p className="max-w-2xl">
-                            Electrolytes! (but not that kind)
+                        <p className="max-w-2xl">
+                            Electrolytes! (But not the kind you find in a sports drink.)
+
                         </p>
                         <p className="max-w-2xl">
-                            Rather, we can expose John's Sperm to "capacitation media", which is a solution that contains electrolytes and other nutrients that are known to induce hyperactivation in sperm.
+                            Rather, We can expose John’s sperm to capacitation media—a solution containing electrolytes and other nutrients that induce hyperactivation.
                         </p>
                         <p className="max-w-2xl">
-                            And.. if all goes to plan... 
+                            If successful...
+
+
                         </p>
 
                     </div>
-                
-                {/* Step 9 */}
-                <div className="results-step flex flex-col justify-evenly text-left h-full"
+
+                    {/* Step 9 */}
+                    <div className="results-step flex flex-col justify-evenly text-left h-full"
                         ref={addToStepRefs}>
-                          <p className="max-w-2xl">
-                            John and his partner may soon have their wish!
-                        </p>                
+                        <p className="max-w-2xl">
+                        John and his partner may soon have their wish fulfilled.
+                        </p>
                     </div>
                 </div>
             </div>

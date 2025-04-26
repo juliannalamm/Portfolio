@@ -23,11 +23,10 @@ const Sankey = () => {
 
     // 3) CUMULATIVE PROBABILITIES
     const probs = {
-      John: [0.4, 0.6, 1.0],  // 20% Intermediate, 40% Hyperactivated, 40% Progressive
-      Steve: [0.5, 0.8, 1.0], // 50% Intermediate, 30% Hyperactivated, 20% Progressive
+      John: [0.4, 0.6, 1.0],
+      Steve: [0.5, 0.8, 1.0],
     };
 
-    // 4) SPAWN HELPERx
     let nextId = 0;
     function generatePerson(elapsed) {
       nextId++;
@@ -81,10 +80,12 @@ const Sankey = () => {
 
     svg.append('text')
       .attr('x', width / 2 - 40)
-      .attr('y', 30) // vertical position
+      .attr('y', 30)
       .attr('text-anchor', 'middle')
       .attr('font-size', 24)
       .attr('font-weight', 'bold')
+      .attr('fill', '#481231')
+      .attr('font-family', 'AtlasBold')
       .text('Sperm Cluster Distribution: John vs Steve');
 
     // 9) SPERM SYMBOL
@@ -105,27 +106,12 @@ const Sankey = () => {
       .join('path')
       .attr('d', linkGen)
       .attr('fill', 'none')
-      .attr('stroke', '#fff')
+      .attr('stroke', '#bfdaf7')
       .attr('stroke-width', pathH);
 
-    // // CLUSTER LABELS
-    // g.append('g')
-    //   .attr('transform', `translate(${innerW + 32}, 0)`)
-    //   .selectAll('text')
-    //   .data(clusterIds)
-    //   .join('text')
-    //   .text(d => clusterNames[d])
-    //   .attr('x', 0)
-    //   .attr('y', d => yEnd(d) - pathH / 2 + 12)
-    //   .attr('font-size', 13)
-    //   .attr('font-weight', 600)
-    //   .attr('text-anchor', 'start')
-    //   .attr('fill', 'currentColor');
-
-
-    // 11) STARTING BARS for John and Steve
+    // 11) STARTING BARS
     const startBarGroup = g.append('g')
-      .attr('transform', `translate(-10, 0)`); // move them a bit left of the starting point
+      .attr('transform', `translate(-10, 0)`);
 
     const startBars = startBarGroup.selectAll('g')
       .data(personIds)
@@ -143,27 +129,25 @@ const Sankey = () => {
       .attr('text-anchor', 'end')
       .attr('dominant-baseline', 'middle')
       .attr('font-size', 12)
-      .text(d => d === 0 ? 'John' : 'Steve')
-      .attr('fill', 'currentColor');
+      .attr('fill', '#481231')
+      .attr('font-family', 'AtlasBold')
+      .text(d => d === 0 ? 'John' : 'Steve');
 
-
-    // 12) LEGEND (John & Steve)
+    // 12) LEGEND
     const legend = g.append('g')
-      .attr('transform', `translate(${innerW / 2 - 50}, ${20})`) // move up above the tubes
-      .attr('text-anchor', 'middle')
-      .attr('fill', 'currentColor');
+      .attr('transform', `translate(${innerW / 2 - 50}, ${20})`)
+      .attr('text-anchor', 'middle');
 
     const personLegend = legend.selectAll('g')
       .data(personNames.map((name, i) => ({
         name,
         color: i === 0 ? '#D44720' : '#E9a752',
-        xOffset: i * 100,  // space them horizontally
+        xOffset: i * 100,
       })))
       .enter()
       .append('g')
       .attr('transform', d => `translate(${d.xOffset}, 0)`);
 
-    // Add sperm icon
     personLegend.append('use')
       .attr('href', '#spermIcon')
       .attr('width', 25)
@@ -171,10 +155,11 @@ const Sankey = () => {
       .attr('fill', d => d.color)
       .attr('transform', 'translate(-9, -9)');
 
-    // Add label
     personLegend.append('text')
       .attr('y', 30)
       .attr('font-size', 16)
+      .attr('fill', '#481231')
+      .attr('font-family', 'AtlasBold')
       .text(d => d.name)
       .attr('dominant-baseline', 'middle')
       .attr('text-anchor', 'middle');
@@ -187,9 +172,6 @@ const Sankey = () => {
       .join('g')
       .attr('transform', d => `translate(0, ${yEnd(d) - pathH / 2 + 12})`);
 
-
-
-    // 13) STACKED BARS
     const legendBarHeight = 50;
     const legendBarWidth = 25;
     let dataMetrics = clusterIds.map(() => personIds.map(() => 0));
@@ -232,13 +214,14 @@ const Sankey = () => {
     function highlightMetrics() {
       drawLegendBars();
 
-      clusterLabels.selectAll('text').remove(); // Clear old text
+      clusterLabels.selectAll('text').remove();
       clusterLabels.append('text')
         .text(d => clusterNames[d])
         .attr('font-size', 13)
         .attr('font-weight', 600)
         .attr('text-anchor', 'start')
-        .attr('fill', 'currentColor');
+        .attr('fill', '#481231')
+        .attr('font-family', 'AtlasBold');
 
       clusterLabels.append('text')
         .text(d => {
@@ -251,6 +234,7 @@ const Sankey = () => {
         .attr('font-size', 10)
         .attr('y', 16)
         .attr('fill', '#D44720')
+        .attr('font-family', 'AtlasBold')
         .attr('text-anchor', 'start');
 
       clusterLabels.append('text')
@@ -261,19 +245,13 @@ const Sankey = () => {
           const stevePct = Math.round((steve / total) * 100);
           return `Steve: ${stevePct}%`;
         })
-
         .attr('font-size', 10)
         .attr('y', 32)
         .attr('fill', '#E9a752')
+        .attr('font-family', 'AtlasBold')
         .attr('text-anchor', 'start');
-
-
-
-
     }
 
-
-    // 14) ANIMATION
     let people = [];
     const markersG = g.append('g');
 
