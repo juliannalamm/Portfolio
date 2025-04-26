@@ -21,6 +21,10 @@ import cluster0 from "/images/cluster_bbs/cluster_0.png";
 import cluster1 from "/images/cluster_bbs/cluster_1.png";
 import cluster2 from "/images/cluster_bbs/cluster_2.png";
 import JohnImage from "../assets/John.svg";
+import electrolyte from "../assets/electrolyte.svg";
+import { HelpCircle } from 'lucide-react';
+import baby from "../assets/baby.svg";
+
 
 
 
@@ -201,21 +205,29 @@ function ScrollamaResults() {
 
         } else if (activeStep === 7) {
             return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
+              <div style={{ width: '80%', height: '400px' }} className="flex justify-center items-center">
+                <HelpCircle size={200} strokeWidth={1.5} />
+              </div>
             );
+          
         } else if (activeStep === 8) {
             return (
-                // attach ref to the wrapper div so that we can measure the width 
-                <div
-                    style={{ width: '90%', height: '1000px' }}>
-
+                <div style={{ position: "relative", width: "100%", margin: "0 auto" }}>
+                <img
+                    src={electrolyte}
+                    alt="electrolyte sperm image"
+                    style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                />
                 </div>
             );
         } else if (activeStep === 9) {
             return (
-                <div style={{ width: '80%', height: '400px' }}>
+                <div style={{ width: '100%', height: '400px' }}>
+                 <img
+                    src={baby}
+                    alt="John with Baby"
+                    style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                />
                 </div>
             );
         }
@@ -342,17 +354,20 @@ function ScrollamaResults() {
                     </div>
 
                     {/* Step 6 */}
-                    <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
+                    <div className="results-step flex flex-col justify-evenly  text-left h-full"
                         ref={addToStepRefs}>
                          <p className="max-w-2xl">
-                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                            Recontextualizing what we said above, when we sort out John vs. Steve's Sperm, we notice that Steve has nearly 20% more sperm in the hyperactivated cluster, while John has nearly 30% more sperm in the intermediate motility cluster.
                         </p>
                         <p className="max-w-2xl">
-                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                            This has incredibly important implications for John's fertility. 
                         </p>
                         <p className="max-w-2xl">
-                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                            While traditional CASA analysis may have indicated that John and Steve have nearly identical profiles, Johns lack of hyperactivated sperm means that his 
+                            sperm will never reach the high energy state required to fertilize an egg! 
                         </p>
+
+                      
 
                     </div>
                     {/* Step 7 */}
@@ -360,20 +375,32 @@ function ScrollamaResults() {
                     <div className="results-step flex flex-col justify-evenly items-center text-left h-full"
                         ref={addToStepRefs}>
                           <p className="max-w-2xl">
-                            Now, we take this analysis a step further: by integrating metadata on fertility outcomes and sperm health, we aim to determine whether these movement-based clusters correlate with biological indicators of fertility. This allows us to move beyond descriptive tracking and assess how distinct motility patterns may be predictive of reproductive potential.
+                            The solution?
+                        </p>
+                    </div>
+
+            {/* Step 8 */}
+                    <div className="results-step flex flex-col justify-evenly text-left h-full"
+                        ref={addToStepRefs}>
+                          <p className="max-w-2xl">
+                            Electrolytes! (but not that kind)
                         </p>
                         <p className="max-w-2xl">
-                            Across all normalized metrics, we observe that cluster 1 exhibits the highest values in categories corresponding to positive fertility and lowest values in those corresponding to negative fertility.
+                            Rather, we can expose John's Sperm to "capacitation media", which is a solution that contains electrolytes and other nutrients that are known to induce hyperactivation in sperm.
                         </p>
                         <p className="max-w-2xl">
-                            Z-Scores are also provided to highlight this positive and negative correlation with metrics.
+                            And.. if all goes to plan... 
                         </p>
 
                     </div>
-
-
-                    {/* Extra space so Step 2 can actually become active */}
-                    <div style={{ height: "0vh" }} />
+                
+                {/* Step 9 */}
+                <div className="results-step flex flex-col justify-evenly text-left h-full"
+                        ref={addToStepRefs}>
+                          <p className="max-w-2xl">
+                            John and his partner may soon have their wish!
+                        </p>                
+                    </div>
                 </div>
             </div>
         </section>
