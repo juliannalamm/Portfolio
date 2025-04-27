@@ -34,10 +34,29 @@ const FertilityChart = ({ chartData, normalization = 'zscore' }) => {
   const stats = {};
   fertilityMetrics.forEach(metric => {
     const spermMetricValues = chartData[metric];
-    const mean = spermMetricValues.reduce((a, b) => a + b, 0) / spermMetricValues.length;
-    const std = Math.sqrt(spermMetricValues.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / spermMetricValues.length);
-    const min = Math.min(...spermMetricValues);
-    const max = Math.max(...spermMetricValues);
+
+    let sum = 0;
+    let squareDiff = 0;
+    let min = Infinity;
+    let max = -Infinity;
+    // calc mean
+    for (let i = 0; i < spermMetricValues.length; i++) {
+      const val = spermMetricValues[i];
+
+      sum += val;
+
+      if (val < min) min = val;
+      if (val > max) max = val;
+    }
+    const mean = sum / spermMetricValues.length;
+    // calc sum of square difference 
+    for (let i = 0; i < spermMetricValues.length; i++) {
+      const val = spermMetricValues[i];
+      squareDiff += Math.pow(val - mean, 2)
+    }
+
+    const std = Math.sqrt(squareDiff / spermMetricValues.length);
+
     stats[metric] = { mean, std, min, max };
   });
 

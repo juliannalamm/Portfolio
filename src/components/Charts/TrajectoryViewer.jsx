@@ -10,11 +10,12 @@ const TrajectoryViewer = ({ fid, coordinateData }) => {
         .filter(i => i !== null)
     : [];
 
-  // Prepare the content (either Plotly or video)
+  // Prepare the content 
   let content;
   if (fid && indices.length >= 5) {
     const rawX = indices.map(i => coordinateData.bb0[i]);
     const rawY = indices.map(i => coordinateData.bb1[i]);
+    // for centering 
     const minX = Math.min(...rawX), maxX = Math.max(...rawX);
     const minY = Math.min(...rawY), maxY = Math.max(...rawY);
     const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
