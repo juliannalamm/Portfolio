@@ -29,7 +29,7 @@ const Sankey = () => {
     }
   }, [isVisible]);
 
-  // 3) Build & animate only when in view
+  // Build & animate only when in view
   useEffect(() => {
     if (!isVisible) return;
 
@@ -165,7 +165,7 @@ const Sankey = () => {
       .attr('dominant-baseline','middle')
       .text(d=>d.name);
 
-    // Cluster labels & dynamic legend bars
+    // Cluster labels  dynamic legend bars
     const clusterGroup = g.append('g').attr('transform',`translate(${innerW+32},0)`);
     const clusterLabels = clusterGroup.selectAll('g')
       .data(clusterIds)

@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
 
 const projects = [
@@ -19,26 +18,30 @@ const projects = [
     title: "Gouger: Anti-gouging detection app",
     date: "01.23.2025",
     imgSrc: "/images/gouger.png",
-    link: "/projects/gouger"
+    link: "https://gouger-git-main-juliannalamms-projects.vercel.app" // external link
   }
 ];
 
 export default function ProjectGrid() {
-  const navigate = useNavigate(); //  React Router navigation hook
+  const navigate = useNavigate();
 
   const handleClick = (e, link) => {
+    if (link.startsWith("http")) {
+      // External link — allow default browser behavior
+      return;
+    }
+
     e.preventDefault();
-  
+
     if (link.startsWith("#")) {
-      // ✅ Smooth scrolling for in-page anchors
       const target = document.querySelector(link);
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     } else {
-      // ✅ Navigate and scroll to top
+      // Internal navigation via React Router
       navigate(link);
-      window.scrollTo(0, 0); // Forces scroll to top on navigation
+      window.scrollTo(0, 0);
     }
   };
 
@@ -52,9 +55,10 @@ export default function ProjectGrid() {
             key={index} 
             href={project.link} 
             onClick={(e) => handleClick(e, project.link)}
+            target={project.link.startsWith("http") ? "_blank" : "_self"}
+            rel={project.link.startsWith("http") ? "noopener noreferrer" : undefined}
             className="block group border-t border-gray-700 pt-6 cursor-pointer"
           >
-            {/* Render Video if available, else Image */}
             <div className="w-full h-[300px] overflow-hidden mb-4">
               {project.videoSrc ? (
                 <video 
@@ -64,8 +68,6 @@ export default function ProjectGrid() {
                   loop 
                   muted
                   playsInline
-                  playbackRate = {0.1}
-                  
                 />
               ) : (
                 <img 
@@ -76,12 +78,10 @@ export default function ProjectGrid() {
               )}
             </div>
 
-            {/* Project Title */}
             <h3 className="text-lg font-semibold group-hover:text-gray-300 transition-colors">
               {project.title}
             </h3>
 
-            {/* Project Date */}
             <p className="text-gray-500 text-sm mt-1">{project.date}</p>
           </a>
         ))}
