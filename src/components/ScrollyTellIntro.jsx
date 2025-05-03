@@ -97,7 +97,7 @@ function ScrollamaIntro() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [ 2, 3, 4, 5, 6,7,8].includes(activeStep);
+    const shouldAnimate = [ 2, 3, 4, 5, 6].includes(activeStep);
 
 
 
@@ -290,7 +290,7 @@ function ScrollamaIntro() {
 
                         <p className="max-w-2xl"> Average Sperm motility peaks at age 35 and
                             declines at a rate of 2.9% thereafter
-                            <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                            <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-600 hover:underline"> [2]</a>.
@@ -306,7 +306,7 @@ function ScrollamaIntro() {
                         {/* div 1 */}
 
                         <p className="text-left mb-20"> Similarly, average sperm count declines at a rate of 1.1% per year relative to age 20.
-                            <a href="https://rbej.biomedcentral.com/articles/10.1186/s12958-015-0028-x"
+                            <a href="https://www.fertstert.org/article/S0015-0282(13)00687-0/fulltext"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-600 hover:underline"> [2]</a>.

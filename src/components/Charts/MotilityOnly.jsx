@@ -12,11 +12,12 @@ const MotilityOnly = () => {
 
         // Skip the header row
         const parsed = rows.slice(1).map((row) => {
-          const [age, metric, value] = row.split(',');
+          const [age, metric, value, RawValue] = row.split(',');
           return {
             age: parseFloat(age.replace(/[^\d.]/g, '')),
             metric: metric.trim(),
             value: parseFloat(value),
+            rawValue: parseFloat(RawValue),
           };
         });
 
@@ -32,9 +33,10 @@ const MotilityOnly = () => {
   }
 
   // Create Plotly trace
-  const trace = {
+  const line = {
     x: motilityData.map((d) => d.age),
     y: motilityData.map((d) => d.value),
+    customdata: motilityData.map((d) => d.rawValue),
     mode: 'lines+markers+text',
     name: 'Motility',
     line: {
@@ -43,7 +45,7 @@ const MotilityOnly = () => {
     },
     yaxis: 'y1',
     connectgaps: true,
-    hovertemplate: 'Age: %{x}<br>Motility: %{y:.2f}%<extra></extra>',
+    hovertemplate: 'Age: %{x}<br>Motility Change: %{y:.2f}%<br> Motility: %{customdata:.1f}%',
     text: motilityData.map((d) => `${d.value.toFixed(1)}%`),
     textposition: 'bottom center',
     textfont: {
@@ -153,7 +155,7 @@ const MotilityOnly = () => {
 
   return (
     <Plot
-      data={[trace]}
+      data={[line]}
       layout={layout}
       useResizeHandler={true}
       style={{ width: '100%', height: '100%' }}
