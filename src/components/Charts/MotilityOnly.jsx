@@ -32,7 +32,7 @@ const MotilityOnly = () => {
     return <p>Loading Motility chart...</p>;
   }
 
-  // Create Plotly trace
+  // Create plotly chart
   const line = {
     x: motilityData.map((d) => d.age),
     y: motilityData.map((d) => d.value),

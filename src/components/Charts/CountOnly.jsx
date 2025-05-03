@@ -10,11 +10,12 @@ const CountOnly = () => {
             .then(csv => {
                 const rows = csv.split('\n').filter(r => r.trim().length > 0);
                 const parsed = rows.slice(1).map(row => {
-                    const [age, metric, value] = row.split(',');
+                    const [age, metric, value, RawValue] = row.split(',');
                     return {
                         age: parseFloat(age.replace(/[^\d.]/g, '')),
                         metric: metric.trim(),
-                        value: parseFloat(value)
+                        value: parseFloat(value),
+                        rawValue: parseFloat(RawValue)
                     };
                 });
                 setData(parsed);
@@ -31,6 +32,8 @@ const CountOnly = () => {
         return {
             x: filtered.map(d => d.age),
             y: filtered.map(d => d.value),
+            customdata: filtered.map((d) => d.rawValue),
+
             mode: 'lines+markers+text',
             name: metric,
             line: {
@@ -39,7 +42,7 @@ const CountOnly = () => {
             },
             yaxis: 'y1',
             connectgaps: true,
-            hovertemplate: `Age: %{x}<br>${metric}: %{y:.2f}%<extra></extra>`,
+            hovertemplate: 'Age: %{x}<br>Motility Change: %{y:.2f}%<br>Raw Sperm Count: %{customdata:.1f} million<extra></extra>',
             text: filtered.map(d => `${d.value.toFixed(1)}%`), // Value shown on each point
             textposition: 'bottom center', 
             textfont: {
