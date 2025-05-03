@@ -26,13 +26,13 @@ const CountOnly = () => {
         ['Total Sperm'].includes(metric)
     );
 
-    const traces = metrics.map((metric, i) => {
+    const countTrace = metrics.map((metric, i) => {
         const colorPalette = ['4fa0f7'];
-        const filtered = data.filter(d => d.metric === metric);
+        const count = data.filter(d => d.metric === metric);
         return {
-            x: filtered.map(d => d.age),
-            y: filtered.map(d => d.value),
-            customdata: filtered.map((d) => d.rawValue),
+            x: count.map(d => d.age),
+            y: count.map(d => d.value),
+            customdata: count.map(d => d.rawValue),
 
             mode: 'lines+markers+text',
             name: metric,
@@ -43,7 +43,7 @@ const CountOnly = () => {
             yaxis: 'y1',
             connectgaps: true,
             hovertemplate: 'Age: %{x}<br>Motility Change: %{y:.2f}%<br>Raw Sperm Count: %{customdata:.1f} million<extra></extra>',
-            text: filtered.map(d => `${d.value.toFixed(1)}%`), // Value shown on each point
+            text: count.map(d => `${d.value.toFixed(1)}%`), 
             textposition: 'bottom center', 
             textfont: {
                 size: 11,
@@ -56,7 +56,7 @@ const CountOnly = () => {
 
     return (
         <Plot
-            data={traces}
+            data={countTrace}
             layout={{
                 autosize: true,
                 aspectratio: { x: 1, y: 0.7 },
