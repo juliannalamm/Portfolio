@@ -21,6 +21,7 @@ import SpermMotilityAge from "./Charts/SpermMotilityChart";
 import MotilityOnly from "./Charts/MotilityOnly";
 import CountOnly from "./Charts/CountOnly";
 import TTPOnly from "./Charts/TTPOnly";
+import SpermAgeChart from "./Charts/SpermAgeChart";
 
 
 
@@ -29,6 +30,7 @@ import TTPOnly from "./Charts/TTPOnly";
 import "../simplifiedScrollamaStyles.css";
 import StackedChart from "./Charts/StackedChart";
 import InfertilityFundingChart from "./Charts/InfertilityFunding";
+
 
 function ScrollamaIntro() {
     const containerRef = useRef(null);
@@ -79,7 +81,7 @@ function ScrollamaIntro() {
                 container: containerRef.current, // main scrolly container
                 text: textRef.current,          // the container with .step
                 step: ".step",                  // each step class
-                offset: 0.5,                    // trigger in the middle of the viewport
+                offset: 0.6,                    // trigger in the middle of the viewport
                 debug: false,                    // show debug lines
             })
             .onStepEnter(handleStepEnter);
@@ -97,7 +99,12 @@ function ScrollamaIntro() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [ 2, 3, 4, 5, 6].includes(activeStep);
+    const shouldAnimate = [].includes(activeStep);
+    const STEP_TO_METRIC = {
+        3: 'Motility',
+        4: 'Total Sperm',
+        5: 'TTP',
+    };
 
 
 
@@ -133,26 +140,22 @@ function ScrollamaIntro() {
                     <SpermMotilityAge />
                 </div>
             );
-        } else if (activeStep === 3) {
-            // John Sad + Chart
+        } else if (activeStep >= 3 && activeStep <= 5) {
+            const metric = STEP_TO_METRIC[activeStep];
             return (
-                <div style={{ width: '80%', height: '400px' }}>
-                    <MotilityOnly />
+
+                <div
+                    key="morph"                    // ← static across steps 3–5
+                    style={{ width: '80%', height: '400px' }}
+                >
+                    <SpermAgeChart selectedMetric={metric} />
                 </div>
             );
-        } else if (activeStep === 4) {
-            // John Sad + Chart
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-                    <CountOnly />
-                </div>
-            );
-        } else if (activeStep === 5) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-                    <TTPOnly />
-                </div>
-            );
+
+
+
+
+
         } else if (activeStep === 6) {
             return (
                 <div style={{ width: '80%', height: '400px' }}>
@@ -174,23 +177,23 @@ function ScrollamaIntro() {
             );
         } else if (activeStep === 9 || activeStep === 10) {
             return (
-                
+
                 <div style={{ width: '80%', height: '400px' }}>
-                <h2 className="text-2xl font-bold text-burgundy mb-6 text-center">
-                  Example Computer Assisted Analysis (CASA) Results
-                </h2>
-                <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2%' }}>
-                    <img
-                        src={LegacyReport}
-                        alt="Left"
-                        style={{ width: '55%', height: 'auto', objectFit: 'contain' }}
-                    />
-                    <img
-                        src={StandardReport}
-                        alt="Right"
-                        style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
-                    />
-                </div>
+                    <h2 className="text-2xl font-bold text-burgundy mb-6 text-center">
+                        Example Computer Assisted Analysis (CASA) Results
+                    </h2>
+                    <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '2%' }}>
+                        <img
+                            src={LegacyReport}
+                            alt="Left"
+                            style={{ width: '55%', height: 'auto', objectFit: 'contain' }}
+                        />
+                        <img
+                            src={StandardReport}
+                            alt="Right"
+                            style={{ width: '48%', height: 'auto', objectFit: 'contain' }}
+                        />
+                    </div>
                 </div>
             );
 
@@ -218,12 +221,16 @@ function ScrollamaIntro() {
                                 {renderVisual()}
                             </motion.div>
                         ) : (
-                            <div className="chart" key={activeStep}>
-                                {renderVisual()}
+                            // plain div, but use a fixed key for morph steps
+                            <div
+                                className="chart"
+                                key={activeStep >= 3 && activeStep <= 5 ? 'morph' : activeStep}
+                            > {renderVisual()}
                             </div>
                         )}
                     </AnimatePresence>
                 </div>
+
 
                 {/* RIGHT: scrolly text steps */}
                 <div className="scroll__text" ref={textRef}>

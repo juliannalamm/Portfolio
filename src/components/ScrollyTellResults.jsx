@@ -55,7 +55,7 @@ function ScrollamaResults() {
 
         // We'll resize each .step to 75% viewport
         const handleResize = () => {
-            const stepHeight = Math.floor(window.innerHeight * 0.75);
+            const stepHeight = Math.floor(window.innerHeight * 1.25);
             stepRefs.current.forEach((step) => {
                 step.style.height = `${stepHeight}px`;
             });
