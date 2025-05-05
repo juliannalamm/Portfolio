@@ -11,16 +11,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 
 // images
-import JohnImage from "../assets/John.svg";
 import JohnSad from "../assets/JohnSad.svg";
 import LegacyReport from "/images/legacy_report.png";
 import StandardReport from "/images/standard_report.png";
 
 // chart
 import SpermMotilityAge from "./Charts/SpermMotilityChart";
-import MotilityOnly from "./Charts/MotilityOnly";
-import CountOnly from "./Charts/CountOnly";
-import TTPOnly from "./Charts/TTPOnly";
 import SpermAgeChart from "./Charts/SpermAgeChart";
 
 
@@ -102,8 +98,8 @@ function ScrollamaIntro() {
     const shouldAnimate = [].includes(activeStep);
     const STEP_TO_METRIC = {
         3: 'Motility',
-        4: 'Total Sperm',
-        5: 'TTP',
+        4: 'TTP',
+        5: 'Total Sperm',
     };
 
 
