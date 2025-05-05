@@ -22,7 +22,6 @@ const fertilityMetrics = [
   'Progressive motility (%)',
   'Non progressive sperm motility (%)',
   'Immotile sperm (%)',
-  'High DNA stainability, HDS (%)',
   'DNA fragmentation index, DFI (%)'
 ];
 

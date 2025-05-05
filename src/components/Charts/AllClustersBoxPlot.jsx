@@ -81,7 +81,13 @@ const AllClustersBoxPlot = ({ chartData }) => {
           tickfont: { color: 'white' }
         },
         yaxis: {
-          title: 'Value',
+          title: {
+            text: 'VCL, VSL, VAP in µm/s; others unitless',
+            font: {
+              color: 'white',
+              family: 'AtlasBold, sans-serif'
+            },
+          },
           automargin: true,
           showgrid: false,
           showline: true,

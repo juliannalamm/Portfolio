@@ -70,7 +70,13 @@ const MetricBoxPlot = memo(({ chartData, selectedCluster }) => {
           tickfont: { color: 'white' }
         },
         yaxis: {
-          title: 'Value',
+          title: {
+            text: 'VCL, VSL, VAP in µm/s; others unitless',
+            font: {
+              color: 'white',
+              family: 'AtlasBold, sans-serif'
+            },
+          },
           automargin: true,
           showgrid: false,
           showline: true,
