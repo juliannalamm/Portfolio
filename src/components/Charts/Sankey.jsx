@@ -166,7 +166,7 @@ const Sankey = () => {
       .text(d=>d.name);
 
     // Cluster labels  dynamic legend bars
-    const clusterGroup = g.append('g').attr('transform',`translate(${innerW+32},0)`);
+    const clusterGroup = g.append('g').attr('transform',`translate(${innerW+32},3)`);
     const clusterLabels = clusterGroup.selectAll('g')
       .data(clusterIds)
       .join('g')
@@ -180,7 +180,7 @@ const Sankey = () => {
       });
       g.selectAll('.legend-bar').remove();
       const barsG = g.append('g').attr('class','legend-bar')
-        .attr('transform',`translate(${innerW+1},0)`)
+        .attr('transform',`translate(${innerW+0},0)`)
         .selectAll('g')
         .data(clusterData)
         .join('g')

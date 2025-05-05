@@ -40,7 +40,7 @@ function ScrollamaMethods() {
         }
     };
 
-    // active step index
+    //active step index
     const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
 
 
@@ -97,7 +97,7 @@ function ScrollamaMethods() {
     }, []);
 
     // keep johnhappy to johnsad as unanimated. 
-    const shouldAnimate = [0, 3, 4, 5, 6].includes(activeStep);
+    const shouldAnimate = [0, 1, 2, 3, 4, 5, 6].includes(activeStep);
 
 
 
@@ -175,7 +175,7 @@ function ScrollamaMethods() {
             );
         } else if (activeStep === 3) {
             return (
-                <div style={{ width: '80%', height: '500px' }}>
+                <div style={{ width: '80%', height: '600px' }}>
                     <video
                         className="object-contain"
                         autoPlay
@@ -213,20 +213,7 @@ function ScrollamaMethods() {
                     <TrackVideoGrid />
                 </div>
             );
-        } else if (activeStep === 7) {
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
-            );
-        } else if (activeStep === 8) {
-
-            return (
-                <div style={{ width: '80%', height: '400px' }}>
-
-                </div>
-            );
-        }
+        } 
 
     };
 
