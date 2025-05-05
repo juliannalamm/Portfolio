@@ -48,14 +48,6 @@ const BASE_LAYOUT = {
   shapes: [
     { type: 'line', x0: 35, y0: 0, x1: 35, y1: 1, xref: 'x', yref: 'paper', line: { color: '#481231', dash: 'dash' } }
   ],
-  annotations: [
-    {
-      x: 35, y: 0.85, xref: 'x', yref: 'paper', text: 'John is here',
-      showarrow: true, arrowhead: 2, arrowsize: 1, arrowwidth: 2, arrowcolor: '#481231',
-      ax: -80, ay: 40, bordercolor: '#481231', borderwidth: 1, borderpad: 4,
-      bgcolor: 'rgba(255,255,255,0.8)', font: { color: '#481231', size: 12 }
-    }
-  ]
 };
 
 export default function SpermAgeChart({ selectedMetric }) {
@@ -100,7 +92,7 @@ export default function SpermAgeChart({ selectedMetric }) {
 
     const trace = buildTrace(selectedMetric);
     const vals = rawData.filter(d => d.metric === selectedMetric).map(d => d.value);
-    const min = Math.min(...vals), max = Math.max(...vals), pad = (max - min) * 0.1;
+    const min = Math.min(...vals), max = Math.max(...vals), pad = (max - min) * 0.2;
     const { chartTitle, yTitle } = METRIC_CONFIG[selectedMetric] || {};
 
     // prepare update object
@@ -120,7 +112,7 @@ export default function SpermAgeChart({ selectedMetric }) {
 
     const animOpts = {
       transition: { duration: 1200, easing: 'cubic-in-out',fromcurrent: true },
-      frame: { duration: 1200 }
+      frame: { duration: 1200, }
     };
 
     Plotly.animate(gd, update, animOpts);
