@@ -95,8 +95,8 @@ function ScrollamaIntro() {
     const shouldAnimate = [].includes(activeStep);
     const STEP_TO_METRIC = {
         3: 'Motility',
-        4: 'TTP',
-        5: 'Total Sperm',
+        4: 'Total Sperm',
+        5: 'TTP',
     };
 
 
