@@ -106,9 +106,15 @@ function ScrollamaIntro() {
         const isMobile = window.innerWidth <= 768;
         // STEP 0 & 1: mobile only show motility chart
         if (isMobile && (activeStep === 0 || activeStep === 1)) {
+            const metric = STEP_TO_METRIC[activeStep];
             return (
-                <div style={{ width: "100vh", margin: 0, padding: 0 }}>
-                    <SpermMotilityAge />
+
+                <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
+                <img
+                    src={JohnSad}
+                    alt="John sad"
+                    style={{ width: "80%", height: "auto", objectFit: "contain" }}
+                />
                 </div>
             );
         }

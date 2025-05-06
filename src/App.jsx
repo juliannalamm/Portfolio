@@ -5,6 +5,9 @@ import Navbar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import SpermTrackPage from "./pages/SpermTrackPage";
 import SpermTrackClassification from "./pages/SpermClassificationPage";
+import Resume from "./pages/Resume";
+import ContactMe from "./pages/ContactMe";
+
 
 const App = () => {
   return (
@@ -15,6 +18,10 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/sperm-track" element={<SpermTrackPage/>} />
           <Route path="/projects/sperm-classification" element={<SpermTrackClassification />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/contact" element={<ContactMe />} />
+
+
         </Routes>
       </div>
       <Analytics/>
