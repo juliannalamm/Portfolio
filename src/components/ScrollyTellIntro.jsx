@@ -375,14 +375,12 @@ function ScrollamaIntro() {
 
                         <p className="max-w-2xl">
                             When it comes to women's health, it’s about making babies. When it comes to men’s health, we fund survival.
-                            Prostate cancer receives $305M, while ovarian cancer receives only $171M — over 2x less, despite both being deadly, gender-specific cancers.
-                        </p>
+                            Prostate cancer receives $305 million in funding, while ovarian cancer receives only $171 million — nearly 50% less, despite both being deadly, gender-specific cancers.
+                            </p>
 
                         <p className="max-w-2xl">
-                            Endometriosis, a painful chronic condition affecting ~10% of reproductive-age women, receives only $29M — nearly 7x less than funding for female fertility and IVF-related research ($200.3M)
+                        Endometriosis, a painful chronic condition affecting ~10% of reproductive-age women, receives only $29 million —  86% less than the $200.3 million allocated to female fertility and IVF-related research.                        
                         </p>
-
-
 
                     </div>
 
