@@ -53,7 +53,7 @@ function ScrollamaMethods() {
 
         // Resize each .step to a fraction of the viewport
         const handleResize = () => {
-            const ratio = isMobile() ? 0.5 : 0.75;
+            const ratio = isMobile() ? 0.5 : 1.25;
             const stepHeight = Math.floor(window.innerHeight * ratio);
             stepRefs.current.forEach((step) => {
                 step.style.height = `${stepHeight}px`;
@@ -255,13 +255,16 @@ function ScrollamaMethods() {
                                 className="text-blue-600 hover:underline"
                             >
                                 {" "}VISEM-Tracking dataset
-                            </a>, containing manually annotated sperm tracking data including video recordings of 30 seconds, comprising 29,196 frames from 20 participants.
+                            </a>, containing manually annotated sperm tracking data including video recordings of 30 seconds, comprising 29,196 frames from 20 participants. 
                         </p>
-
+<p className="max-w-2xl">
+                        In total, the dataset contains 656,334 bounding box coordinates corresponding to 1,121 uniquely identified sperm, each with a persistent tracking ID. 
+</p>
                         <p className="max-w-2xl">
                             These videos were used to train a deep learning model capable of detecting and tracking individual sperm cells across frames. Learn more
                             <Link to="/sperm-track" className="text-blue-600 hover:underline"> here</Link>.
                         </p>
+                        
 
                         <p className="max-w-2xl">
                             Using the resulting trajectories, we classified distinct patterns of sperm movement, enabling a more nuanced understanding of motility beyond traditional CASA metrics.
@@ -298,7 +301,7 @@ function ScrollamaMethods() {
                             Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
                         </p>
                         <p className="max-w-2xl">
-                            The bounding box coordinates identifying individual sperm across frames from the tracking algorithm can then be used to visualize trajectories!
+                            The bounding box coordinates identifying individual sperm across frames from the tracking algorithm can then be used to visualize trajectories.
                         </p>
                     </div>
 

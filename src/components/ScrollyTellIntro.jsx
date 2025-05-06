@@ -409,15 +409,14 @@ function ScrollamaIntro() {
                     >
 
                         <p className="max-w-2xl">
-                            John can decide to go to the doctor, typically an andrologist or a fertility clinic, where he will be given a standard semen analysis report, shown here.
-                        </p>
+                        John may choose to visit a doctor—typically an andrologist or a specialist at a fertility clinic—where he will receive a standard semen analysis report, as shown here.                        </p>
 
 
                         {/* div 2 */}
 
                         <p className="max-w-2xl">
-                            These types of analyses are helpful in providing a general snapshot of sperm health, but they examine only general properties and it is widely
-                            accepted that the use of these parameters cannot precisely and accurately predict the fertility of a man presenting to a clinician
+                        These types of analyses offer a broad overview of sperm health by measuring general properties. However, it is widely recognized that parameters like semen volume, sperm count, 
+                        and concentration alone are insufficient for accurately predicting male fertility.
                             <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4254491/#R34"
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -432,8 +431,7 @@ function ScrollamaIntro() {
                     >
 
                         <p className="max-w-2xl">
-                            Multiple studies dating back to 1988 have found that relying just on the defined normal values of isolated parameters such as sperm density and motility as defined by the WHO were not very predictive of that couple’s chances of naturally establishing a pregnancy
-                            <a href="https://www.maleinfertilityguide.com/density-motility-and-total-motile-count"
+                        Multiple studies dating back to 1988 have shown that relying solely on WHO-defined normal ranges for individual parameters—such as sperm density and motility—provides limited predictive value for a couple’s chances of achieving natural pregnancy.                            <a href="https://www.maleinfertilityguide.com/density-motility-and-total-motile-count"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-blue-600 hover:underline"> [6]</a>.
