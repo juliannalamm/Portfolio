@@ -7,6 +7,7 @@ import SpermTrackPage from "./pages/SpermTrackPage";
 import SpermTrackClassification from "./pages/SpermClassificationPage";
 import Resume from "./pages/Resume";
 import ContactMe from "./pages/ContactMe";
+import { useLocation } from "react-router-dom";
 
 
 const App = () => {

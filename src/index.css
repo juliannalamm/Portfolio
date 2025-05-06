@@ -5,7 +5,16 @@
 @tailwind utilities;
 /* 🌟 Container */
 /* 🌟 Remove default margins/padding */
-
+@layer utilities {
+  /* Animated gradient */
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+  }
+  .animate-gradient {
+    animation: gradient 15s ease infinite;
+  }
+}
 @theme {
   --color-burgundy: #481231;
   --color-lightblue: #e3f2fe;
@@ -82,4 +91,18 @@
 /* 🌟 Content Offsets */
 .content-offset {
   @apply mt-4;
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
