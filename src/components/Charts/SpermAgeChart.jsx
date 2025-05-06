@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Plot from 'react-plotly.js';
-import Plotly from 'plotly.js-dist-min';
+import Plotly from 'plotly.js-basic-dist';
 
 // line colors & metrics
 const COLORS = ['#fe4939', '#4fa0f7', '#481231'];

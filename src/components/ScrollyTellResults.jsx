@@ -50,54 +50,50 @@ function ScrollamaResults() {
 
 
 
+    
     useEffect(() => {
         const scroller = scrollama();
-
-        // We'll resize each .step to 75% viewport
+        const isMobile = () => window.innerWidth <= 768;
+    
+        // Resize each .step to a fraction of the viewport
         const handleResize = () => {
-            const stepHeight = Math.floor(window.innerHeight * 1.25);
-            stepRefs.current.forEach((step) => {
-                step.style.height = `${stepHeight}px`;
-            });
-            scroller.resize();
+          const ratio = isMobile() ? 0.5 : 0.75;
+          const stepHeight = Math.floor(window.innerHeight * ratio);
+          stepRefs.current.forEach((step) => {
+            step.style.height = `${stepHeight}px`;
+          });
+          scroller.resize();
         };
-
-
-        // On step enter, we set the active step
+    
+        // Update activeStep on enter
         const handleStepEnter = ({ index }) => {
-            // console.log("Entering step index:", index, "Total steps:", stepRefs.current.length);
-            setActiveStep(index);
-            // highlight the active step visually
-            stepRefs.current.forEach((step, i) => {
-                step.classList.toggle("is-active", i === index);
-            });
-            window.dispatchEvent(new Event('resize'));
-
+          setActiveStep(index);
+          stepRefs.current.forEach((step, i) => {
+            step.classList.toggle("is-active", i === index);
+          });
+          // force a resize in case graphic panel needs adjustment
+          window.dispatchEvent(new Event("resize"));
         };
-
-        // Initialize scrollama
+    
         scroller
-            .setup({
-                container: containerRef.current, // main scrolly container
-                text: textRef.current,          // the container with .step
-                step: ".results-step",                  // each step class
-                offset: 0.5,                    // trigger in the middle of the viewport
-                debug: false,                    // show debug lines
-            })
-            .onStepEnter(handleStepEnter);
-
-
-        // run once on load
+          .setup({
+            container: containerRef.current,
+            text: textRef.current,
+            step: ".results-step",
+            offset: isMobile() ? 0.5 : 0.6,
+            debug: false,
+          })
+          .onStepEnter(handleStepEnter);
+    
+        // initial sizing & listeners
         handleResize();
         window.addEventListener("resize", handleResize);
-
-
-        // cleanup on unmount
+    
         return () => {
-            window.removeEventListener("resize", handleResize);
-            scroller.destroy();
+          window.removeEventListener("resize", handleResize);
+          scroller.destroy();
         };
-    }, []);
+      }, []);
 
     // keep johnhappy to johnsad as unanimated. 
     const shouldAnimate = [0,1,2,3,4,5,6,7,8,9].includes(activeStep);

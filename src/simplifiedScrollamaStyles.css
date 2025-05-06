@@ -54,3 +54,29 @@
 .step.is-active {
   background: #ddeafc;
 } */
+@media (max-width: 768px) {
+  /* turn your two-column into two rows */
+  .scroll-container {
+    flex-direction: column;
+  }
+
+  /* make the graphic full-width, stick to top, and shave its height */
+  .scroll__graphic {
+    width: 100%;
+    height: 50vh;     /* adjust as you like */
+    position: sticky; /* already is—just stays at top now */
+    top: 0;
+  }
+
+  /* text takes the full width below it */
+  .scroll__text {
+    width: 100%;
+  }
+
+  /* scale your chart/images to fit under that 50vh panel */
+  .chart img,
+  .chart > div {
+    max-width: 90vw;
+    max-height: 45vh;
+  }
+}

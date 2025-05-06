@@ -49,47 +49,42 @@ function ScrollamaMethods() {
 
     useEffect(() => {
         const scroller = scrollama();
+        const isMobile = () => window.innerWidth <= 768;
 
-        // We'll resize each .step to 75% viewport
+        // Resize each .step to a fraction of the viewport
         const handleResize = () => {
-            const stepHeight = Math.floor(window.innerHeight * 1.25);
+            const ratio = isMobile() ? 0.5 : 0.75;
+            const stepHeight = Math.floor(window.innerHeight * ratio);
             stepRefs.current.forEach((step) => {
                 step.style.height = `${stepHeight}px`;
             });
             scroller.resize();
         };
-        // checks if the ref is pointing to the actual element, gets width of the element (offsetWidth) stores the width in the state variable
 
-
-        // On step enter, we set the active step
+        // Update activeStep on enter
         const handleStepEnter = ({ index }) => {
-            // console.log("Entering step index:", index); // debug
             setActiveStep(index);
-            // highlight the active step visually
             stepRefs.current.forEach((step, i) => {
                 step.classList.toggle("is-active", i === index);
             });
-            window.dispatchEvent(new Event('resize'));
-
+            // force a resize in case graphic panel needs adjustment
+            window.dispatchEvent(new Event("resize"));
         };
 
-        // Initialize scrollama
         scroller
             .setup({
-                container: containerRef.current, // main scrolly container
-                text: textRef.current,          // the container with .step
-                step: ".methods-step",                  // each step class
-                offset: 0.5,                    // trigger in the middle of the viewport
-                debug: false,                    // show debug lines
+                container: containerRef.current,
+                text: textRef.current,
+                step: ".methods-step",
+                offset: isMobile() ? 0.5 : 0.6,
+                debug: false,
             })
             .onStepEnter(handleStepEnter);
 
-        // run once on load
+        // initial sizing & listeners
         handleResize();
         window.addEventListener("resize", handleResize);
 
-
-        // cleanup on unmount
         return () => {
             window.removeEventListener("resize", handleResize);
             scroller.destroy();
@@ -120,57 +115,57 @@ function ScrollamaMethods() {
             return (
 
                 <div className="w-4/5 mx-auto flex flex-col items-center">
-                <h2 className="text-2xl font-bold text-burgundy mb-6 text-center">
-                  Model Detection Results
-                </h2>
-              
-                <div className="w-full flex justify-between items-start gap-2">
-                  <div className="w-[48%] text-center">
-                    <img
-                      src={labeledSperm}
-                      alt="Labeled Sperm"
-                      className="w-full h-auto object-contain"
-                    />
-                    <p className="mt-2 text-sm text-burgundy">
-                      Ground truth bounding boxes from the annotated dataset.
-                    </p>
-                  </div>
-                  <div className="w-[48%] text-center">
-                    <img
-                      src={predictedSperm}
-                      alt="Predicted Labels for Sperm"
-                      className="w-full h-auto object-contain"
-                    />
-                    <p className="mt-2 text-sm text-burgundy">
-                      Model-predicted bounding boxes after training.
-                    </p>
-                  </div>
+                    <h2 className="text-2xl font-bold text-burgundy mb-6 text-center">
+                        Model Detection Results
+                    </h2>
+
+                    <div className="w-full flex justify-between items-start gap-2">
+                        <div className="w-[48%] text-center">
+                            <img
+                                src={labeledSperm}
+                                alt="Labeled Sperm"
+                                className="w-full h-auto object-contain"
+                            />
+                            <p className="mt-2 text-sm text-burgundy">
+                                Ground truth bounding boxes from the annotated dataset.
+                            </p>
+                        </div>
+                        <div className="w-[48%] text-center">
+                            <img
+                                src={predictedSperm}
+                                alt="Predicted Labels for Sperm"
+                                className="w-full h-auto object-contain"
+                            />
+                            <p className="mt-2 text-sm text-burgundy">
+                                Model-predicted bounding boxes after training.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              
+
 
             );
 
         } else if (activeStep === 2) {
             return (
-                
-                
+
+
                 <div style={{ width: '80%', height: '400px' }}>
-                <h2 className="text-xl font-semibold text-center text-burgundy mb-4">
-                    Object Tracking Results
-                </h2>
-                <video
-                  className="w-full h-full object-contain"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                >
-                  <source src={trackingResults} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
+                    <h2 className="text-xl font-semibold text-center text-burgundy mb-4">
+                        Object Tracking Results
+                    </h2>
+                    <video
+                        className="w-full h-full object-contain"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                    >
+                        <source src={trackingResults} type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
 
             );
         } else if (activeStep === 3) {
@@ -192,7 +187,7 @@ function ScrollamaMethods() {
             );
         } else if (activeStep === 4) {
             return (
-                <div style={{ width: '80%', height: '800px' }}>
+                <div className="chart-content">
                     <KinematicMetricsDef />
                 </div>
 
@@ -213,7 +208,7 @@ function ScrollamaMethods() {
                     <TrackVideoGrid />
                 </div>
             );
-        } 
+        }
 
     };
 
@@ -278,98 +273,98 @@ function ScrollamaMethods() {
 
 
 
-                {/* Step 1 */}
-                <div
-                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
-                    ref={addToStepRefs}
-                >
-                    <p className="max-w-2xl">
-                        Results from model detection training are shown to the left. The blue boxes are known as "bounding boxes" and identify the positions of
-                        sperm objects in the image.
-                    </p>
-                    <p className="max-w-2xl">
-                        The model successfully identifies and localizes individual sperm cells with high accuracy.
+                    {/* Step 1 */}
+                    <div
+                        className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl">
+                            Results from model detection training are shown to the left. The blue boxes are known as "bounding boxes" and identify the positions of
+                            sperm objects in the image.
+                        </p>
+                        <p className="max-w-2xl">
+                            The model successfully identifies and localizes individual sperm cells with high accuracy.
 
-                    </p>
+                        </p>
+                    </div>
+                    {/* Step 2 */}
+                    <div
+                        className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl">
+                            After object-detection training, each frame was passed through
+                            a Kalman-filter based tracking model called BoT-SORT.
+                        </p>
+                        <p className="max-w-2xl">
+                            Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
+                        </p>
+                        <p className="max-w-2xl">
+                            The bounding box coordinates identifying individual sperm across frames from the tracking algorithm can then be used to visualize trajectories!
+                        </p>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div
+                        className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl">
+                            Here, we visualize the trajectories of individual sperm by plotting their coordinates over time. Each path is animated to reflect the motion captured in the original video.
+                        </p>
+                        <p className="max-w-2xl">
+                            The lines are color-coded based on the type of movement each sperm exhibits: red indicates fast and straight progression, yellow reflects highly erratic or zigzag motion, and blue represents slower, jagged paths.
+                        </p>
+                        <p className="max-w-2xl">
+                            But how do we know which sperm moves in which way? Let’s unpack how we classified these motion patterns.
+                        </p>
+                    </div>
+
+                    {/* Step 4 */}
+                    <div
+                        className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl">
+                            In traditional clinical settings, sperm motility is typically assessed using kinematic metrics calculated by Computer-Assisted Sperm Analysis (CASA).
+                        </p>
+                        <p className="max-w-2xl">
+                            These metrics are extracted from each sperm’s trajectory and quantify characteristics such as velocity, linearity, and the curvature of its path.
+                        </p>
+                        <p className="max-w-2xl">
+                            Use the panel on the left to explore definitions of these terms and see how clinicians interpret sperm movement in practice.
+                        </p>
+
+                    </div>
+
+                    {/* Step 5 */}
+                    <div
+                        className="methods-step flex flex-col justify-evenly items-start text-left h-full"
+                        ref={addToStepRefs}
+                    >
+                        <p className="max-w-2xl">
+                            As it turns out, we can feed each of these metrics: VSL, VCL, VAP, LIN, WOB,STR, and ALH into an unsupervised machine learning algorithm called K-means clustering.
+                        </p>
+                        <p className="max-w-2xl">
+                            This algorithm allows us to automatically detect three distinct types of sperm movement that might otherwise just be described as "moving" but, in reality, have different
+                            impacts on fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Hover over each of the videos to learn more about the types of movement and how they relate to fertility.
+                        </p>
+                        <p className="max-w-2xl">
+                            Next, we will explore the outcome of this clustering process and evaluate the ability for the model to automatically classify different types of movement and the clinical implications for evaluating John's sample!
+                        </p>
+
+
+                    </div>
+
+
+
+                    {/* Extra space so Step 2 can actually become active */}
+                    <div style={{ height: "0vh" }} />
                 </div>
-                {/* Step 2 */}
-                <div
-                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
-                    ref={addToStepRefs}
-                >
-                    <p className="max-w-2xl">
-                        After object-detection training, each frame was passed through
-                        a Kalman-filter based tracking model called BoT-SORT.
-                    </p>
-                    <p className="max-w-2xl">
-                        Custom modifications were made to improve performance in high-occlusion environments, ensuring better identity preservation over time.
-                    </p>
-                    <p className="max-w-2xl">
-                       The bounding box coordinates identifying individual sperm across frames from the tracking algorithm can then be used to visualize trajectories!
-                    </p>
-                </div>
-
-                {/* Step 3 */}
-                <div
-                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
-                    ref={addToStepRefs}
-                >
-                    <p className="max-w-2xl">
-                    Here, we visualize the trajectories of individual sperm by plotting their coordinates over time. Each path is animated to reflect the motion captured in the original video.
-                    </p>
-                    <p className="max-w-2xl">
-                    The lines are color-coded based on the type of movement each sperm exhibits: red indicates fast and straight progression, yellow reflects highly erratic or zigzag motion, and blue represents slower, jagged paths.
-                    </p>
-                    <p className="max-w-2xl">
-                    But how do we know which sperm moves in which way? Let’s unpack how we classified these motion patterns.
-                    </p>
-                </div>
-
-                {/* Step 4 */}
-                <div
-                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
-                    ref={addToStepRefs}
-                >
-                    <p className="max-w-2xl">
-                    In traditional clinical settings, sperm motility is typically assessed using kinematic metrics calculated by Computer-Assisted Sperm Analysis (CASA).
-                    </p>
-                    <p className="max-w-2xl">
-                    These metrics are extracted from each sperm’s trajectory and quantify characteristics such as velocity, linearity, and the curvature of its path.
-                    </p>
-                    <p className="max-w-2xl">
-                    Use the panel on the left to explore definitions of these terms and see how clinicians interpret sperm movement in practice.
-                    </p>
-                         
-                </div>
-
-                {/* Step 5 */}
-                <div
-                    className="methods-step flex flex-col justify-evenly items-start text-left h-full"
-                    ref={addToStepRefs}
-                >
-                    <p className="max-w-2xl">
-                        As it turns out, we can feed each of these metrics: VSL, VCL, VAP, LIN, WOB,STR, and ALH into an unsupervised machine learning algorithm called K-means clustering. 
-                    </p>
-                    <p className="max-w-2xl">
-                        This algorithm allows us to automatically detect three distinct types of sperm movement that might otherwise just be described as "moving" but, in reality, have different 
-                        impacts on fertility. 
-                    </p>
-                    <p className="max-w-2xl">
-                        Hover over each of the videos to learn more about the types of movement and how they relate to fertility.
-                    </p>
-                    <p className="max-w-2xl">
-                        Next, we will explore the outcome of this clustering process and evaluate the ability for the model to automatically classify different types of movement and the clinical implications for evaluating John's sample! 
-                    </p>
-                   
-                         
-                </div>
-
-
-
-                {/* Extra space so Step 2 can actually become active */}
-                <div style={{ height: "0vh" }} />
             </div>
-        </div>
         </section >
     );
 }

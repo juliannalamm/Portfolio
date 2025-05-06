@@ -40,6 +40,7 @@ function ScrollamaIntro() {
             stepRefs.current.push(el);
         }
     };
+    
 
     // active step index
     const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
@@ -48,51 +49,48 @@ function ScrollamaIntro() {
 
     useEffect(() => {
         const scroller = scrollama();
-
-        // We'll resize each .step to 75% viewport
+        const isMobile = () => window.innerWidth <= 768;
+    
+        // Resize each .step to a fraction of the viewport
         const handleResize = () => {
-            const stepHeight = Math.floor(window.innerHeight * 0.75);
-            stepRefs.current.forEach((step) => {
-                step.style.height = `${stepHeight}px`;
-            });
-            scroller.resize();
+          const ratio = isMobile() ? 0.5 : 0.75;
+          const stepHeight = Math.floor(window.innerHeight * ratio);
+          stepRefs.current.forEach((step) => {
+            step.style.height = `${stepHeight}px`;
+          });
+          scroller.resize();
         };
-
-
-        // On step enter, we set the active step
+    
+        // Update activeStep on enter
         const handleStepEnter = ({ index }) => {
-            // console.log("Entering step index:", index); // debug
-            setActiveStep(index);
-            // highlight the active step visually
-            stepRefs.current.forEach((step, i) => {
-                step.classList.toggle("is-active", i === index);
-            });
-            window.dispatchEvent(new Event('resize'));
-
+          setActiveStep(index);
+          stepRefs.current.forEach((step, i) => {
+            step.classList.toggle("is-active", i === index);
+          });
+          // force a resize in case graphic panel needs adjustment
+          window.dispatchEvent(new Event("resize"));
         };
-
-        // Initialize scrollama
+    
         scroller
-            .setup({
-                container: containerRef.current, // main scrolly container
-                text: textRef.current,          // the container with .step
-                step: ".step",                  // each step class
-                offset: 0.6,                    // trigger in the middle of the viewport
-                debug: false,                    // show debug lines
-            })
-            .onStepEnter(handleStepEnter);
-
-        // run once on load
+          .setup({
+            container: containerRef.current,
+            text: textRef.current,
+            step: ".step",
+            offset: isMobile() ? 0.5 : 0.6,
+            debug: false,
+          })
+          .onStepEnter(handleStepEnter);
+    
+        // initial sizing & listeners
         handleResize();
         window.addEventListener("resize", handleResize);
-
-
-        // cleanup on unmount
+    
         return () => {
-            window.removeEventListener("resize", handleResize);
-            scroller.destroy();
+          window.removeEventListener("resize", handleResize);
+          scroller.destroy();
         };
-    }, []);
+      }, []);
+       
 
     // keep johnhappy to johnsad as unanimated. 
     const shouldAnimate = [].includes(activeStep);
