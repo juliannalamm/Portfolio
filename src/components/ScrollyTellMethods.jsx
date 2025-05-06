@@ -172,7 +172,7 @@ function ScrollamaMethods() {
             return (
                 <div style={{ width: '80%', height: '600px' }}>
                     <video
-                        className="object-contain"
+                        className="w-full h-full object-contain"
                         autoPlay
                         loop
                         muted
@@ -193,11 +193,9 @@ function ScrollamaMethods() {
 
             );
 
-
-
         } else if (activeStep === 5) {
             return (
-                <div style={{ width: '80%', height: '400px' }}>
+                <div className= "chart-content" style={{ width: '80%', height: '400px' }}>
                     <TrackVideoGrid />
                 </div>
             );

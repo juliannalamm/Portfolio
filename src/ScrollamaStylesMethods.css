@@ -61,11 +61,13 @@
   }
 
   /* make tables inside .chart-content scrollable */
-  .chart-content > table {
-    display: block;               /* allow overflow */
-    width: 100%;
-    max-height: 45vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* smooth iOS scrolling */
+  .chart-content {
+    width: 90vw;
+    height: 45vh;                       /* ← fixed height */
+    overflow-y: auto;                   /* ← enable vertical scroll */
+    -webkit-overflow-scrolling: touch;  /* ← smooth on iOS */
+    /* optional padding so scrollbar doesn’t cover text */
+    padding-right: 1rem;
+    box-sizing: content-box;
   }
 }

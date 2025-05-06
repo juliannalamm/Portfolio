@@ -40,57 +40,56 @@ function ScrollamaIntro() {
             stepRefs.current.push(el);
         }
     };
-    
+
 
     // active step index
-    const [activeStep, setActiveStep] = useState(0); //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
-    const [imageLoaded, setImageLoaded] = useState(false);
-    const johnSadRef = useRef(null);
+    const [activeStep, setActiveStep] = useState(0);
+     //active step is the current value of the state variable (initialized to zero) and will store the active step. setActive step is the function used to update the state
 
     useEffect(() => {
         const scroller = scrollama();
         const isMobile = () => window.innerWidth <= 768;
-    
+
         // Resize each .step to a fraction of the viewport
         const handleResize = () => {
-          const ratio = isMobile() ? 0.5 : 0.75;
-          const stepHeight = Math.floor(window.innerHeight * ratio);
-          stepRefs.current.forEach((step) => {
-            step.style.height = `${stepHeight}px`;
-          });
-          scroller.resize();
+            const ratio = isMobile() ? 0.5 : 0.75;
+            const stepHeight = Math.floor(window.innerHeight * ratio);
+            stepRefs.current.forEach((step) => {
+                step.style.height = `${stepHeight}px`;
+            });
+            scroller.resize();
         };
-    
+
         // Update activeStep on enter
         const handleStepEnter = ({ index }) => {
-          setActiveStep(index);
-          stepRefs.current.forEach((step, i) => {
-            step.classList.toggle("is-active", i === index);
-          });
-          // force a resize in case graphic panel needs adjustment
-          window.dispatchEvent(new Event("resize"));
+            setActiveStep(index);
+            stepRefs.current.forEach((step, i) => {
+                step.classList.toggle("is-active", i === index);
+            });
+            // force a resize in case graphic panel needs adjustment
+            window.dispatchEvent(new Event("resize"));
         };
-    
+
         scroller
-          .setup({
-            container: containerRef.current,
-            text: textRef.current,
-            step: ".step",
-            offset: isMobile() ? 0.5 : 0.6,
-            debug: false,
-          })
-          .onStepEnter(handleStepEnter);
-    
+            .setup({
+                container: containerRef.current,
+                text: textRef.current,
+                step: ".step",
+                offset: isMobile() ? 0.5 : 0.6,
+                debug: false,
+            })
+            .onStepEnter(handleStepEnter);
+
         // initial sizing & listeners
         handleResize();
         window.addEventListener("resize", handleResize);
-    
+
         return () => {
-          window.removeEventListener("resize", handleResize);
-          scroller.destroy();
+            window.removeEventListener("resize", handleResize);
+            scroller.destroy();
         };
-      }, []);
-       
+    }, []);
+
 
     // keep johnhappy to johnsad as unanimated. 
     const shouldAnimate = [].includes(activeStep);
@@ -104,6 +103,18 @@ function ScrollamaIntro() {
 
 
     const renderVisual = () => {
+        const isMobile = window.innerWidth <= 768;
+        // STEP 0 & 1: mobile only show motility chart
+        if (isMobile && (activeStep === 0 || activeStep === 1)) {
+            return (
+                <div style={{ width: "100vh", margin: 0, padding: 0 }}>
+                    <SpermMotilityAge />
+                </div>
+            );
+        }
+        // STEP 0 & 1: desktop show John + overlay
+
+
         if (activeStep === 0 || activeStep === 1) {
             return (
                 <div style={{ position: "relative", width: "80%", margin: "0 auto" }}>
@@ -394,18 +405,9 @@ function ScrollamaIntro() {
                     >
 
                         <p className="max-w-2xl">
-                            John can decide to go to the doctor, typically an andrologist or a fertility clinic, where he will be given a standard semen analysis report. Key parameters returned typically include:
+                            John can decide to go to the doctor, typically an andrologist or a fertility clinic, where he will be given a standard semen analysis report, shown here.
                         </p>
-                        <ul className="text-left mb-10 pl-30 list-disc space-y-2 text-sm ">
-                            <li>Volume: Total amount of semen ejaculated</li>
-                            <li>Concentration: Number of sperm per milliliter</li>
-                            <li>Total sperm count: Total number of sperm in the sample</li>
-                            <li>Motility: Percentage of sperm that are moving</li>
-                            <li>Progressive motility: Sperm moving forward in a straight line</li>
-                            <li>Vitality: Percentage of live sperm (if motility is low)</li>
-                            <li>Morphology: Percentage of sperm with normal shape</li>
-                            <li> among others...</li>
-                        </ul>
+
 
                         {/* div 2 */}
 
