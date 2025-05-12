@@ -17,7 +17,7 @@ const projects = [
   { 
     title: "Gouger: Anti-gouging detection app",
     date: "Full-Stack Web-Application",
-    imgSrc: "/images/gouger.png",
+    imgSrc: "/images/gougerscreenshot.png",
     link: "https://gouger-git-main-juliannalamms-projects.vercel.app" // external link
   }
 ];
