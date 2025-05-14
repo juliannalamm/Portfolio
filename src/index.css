@@ -16,6 +16,10 @@
   }
 }
 
+.js-plotly-plot .draglayer {
+  background: transparent !important;
+  pointer-events: none !important;
+}
 
 .blinking-cursor {
   display: inline-block;

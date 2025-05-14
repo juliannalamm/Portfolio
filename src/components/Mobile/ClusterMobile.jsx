@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
-import ClusteringChart from './ClusteringChartMobile';
+import ClusteringChartMobile from './ClusteringChartMobile';
 import TrajectoryViewer from '../Charts/TrajectoryViewer';
 import { Shapes } from 'lucide-react';
 
@@ -59,9 +59,9 @@ const ClusterMobile = () => {
       </div>
 
       <div className="mb-6">
-        <ClusteringChart
+        <ClusteringChartMobile
           chartData={chartData}
-          onClickFid={setSelectedFid}  // NOTE: click not hover
+          onClickFid={setSelectedFid}  
         />
       </div>
 

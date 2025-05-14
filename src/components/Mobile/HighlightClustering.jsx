@@ -18,9 +18,8 @@ const HighlightClustering = () => {
         <p><b>KMeans and hierarchical clustering</b> categorize sperm movement into four groups:</p>
         <ul className="list-disc pl-5 mt-1">
           <li><b>Hyperactivated</b> – High-energy erratic movement</li>
-          <li><b>Progressive</b> – Forward, controlled motion</li>
-          <li><b>Progressive Linear</b> – Consistent straight path</li>
-          <li><b>Weakly Motile</b> – Minimal movement</li>
+          <li><b>Intermediate Progressive</b> – Forward, moderate, controlled motion</li>
+          <li><b> Straight-line</b> – Consistent straight path</li>
         </ul>
       </div>
 
