@@ -13,11 +13,11 @@ import { useLocation } from "react-router-dom";
 const App = () => {
   return (
     <Router>
-      <div className="bg-lightblue min-h-screen">
+      <div className="bg-lightblue min-h-screen overflow-visible relative">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/sperm-track" element={<SpermTrackPage/>} />
+          <Route path="/sperm-track" element={<SpermTrackPage />} />
           <Route path="/projects/sperm-classification" element={<SpermTrackClassification />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/contact" element={<ContactMe />} />
@@ -25,7 +25,7 @@ const App = () => {
 
         </Routes>
       </div>
-      <Analytics/>
+      <Analytics />
     </Router>
   );
 };

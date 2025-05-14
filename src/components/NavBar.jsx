@@ -4,46 +4,86 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { to: "/", label: "Home" },
+  {
+    label: "Projects",
+    dropdown: [
+      { to: "/sperm-track", label: "YOLO Sperm Tracking" },
+      { to: "/projects/sperm-classification", label: "Motility Classifier" },
+      {
+        to: "https://gouger-git-main-juliannalamms-projects.vercel.app",
+        label: "Gouger",
+        external: true,
+      },
+    ],
+  },
   { to: "/resume", label: "Resume" },
-  { to: "/contact", label: "Contact" }
+  { to: "/contact", label: "Contact" },
 ];
 
 function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="w-full bg-grenadine/80 backdrop-blur-md">
+    <header className="w-full bg-grenadine/80 backdrop-blur-md relative z-50">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-        {/* Brand / logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold tracking-tight text-lightblue select-none"
-        >
+        <Link to="/" className="text-2xl font-bold tracking-tight text-lightblue select-none">
           Julianna<span className="text-lightblue">.</span>
         </Link>
 
-        {/* Desktop links */}
+        {/* Desktop */}
         <nav className="hidden md:block">
           <ul className="flex items-center space-x-8">
-            {navItems.map(({ to, label }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  className={({ isActive }) =>
-                    `border-b-2 pb-0.5 transition-colors duration-200
-                     ${isActive
-                       ? "border-white text-lightblue"
-                       : "border-transparent text-gray-100 hover:text-darlington hover:border-darlington"}`
-                  }
-                >
-                  {label}
-                </NavLink>
+            {navItems.map((item, index) => (
+              <li key={index} className="relative group">
+                {item.dropdown ? (
+                  <>
+                    <span className="cursor-pointer text-gray-100 hover:text-darlington">
+                      {item.label}
+                    </span>
+                    <ul className="absolute left-0 top-full bg-white text-burgundy rounded shadow-lg mt-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-2 transition-all duration-200 z-50">
+                      {item.dropdown.map((sub, i) => (
+                        <li key={i}>
+                          {sub.external ? (
+                            <a
+                              href={sub.to}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block px-4 py-2 hover:bg-orange-100 whitespace-nowrap"
+                            >
+                              {sub.label}
+                            </a>
+                          ) : (
+                            <NavLink
+                              to={sub.to}
+                              className="block px-4 py-2 hover:bg-orange-100 whitespace-nowrap"
+                            >
+                              {sub.label}
+                            </NavLink>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      `border-b-2 pb-0.5 transition-colors duration-200 ${
+                        isActive
+                          ? "border-white text-lightblue"
+                          : "border-transparent text-gray-100 hover:text-darlington hover:border-darlington"
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
         </nav>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile Toggle */}
         <button
           aria-label="Toggle menu"
           onClick={() => setOpen(!open)}
@@ -53,24 +93,51 @@ function Navbar() {
         </button>
       </div>
 
-      {/* Mobile panel */}
+      {/* Mobile Menu */}
       {open && (
         <nav className="md:hidden bg-grenadine/95 backdrop-blur pb-4">
           <ul className="flex flex-col space-y-4 px-6">
-            {navItems.map(({ to, label }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  onClick={() => setOpen(false)}
-                  className={({ isActive }) =>
-                    `block text-lg transition-colors duration-200
-                     ${isActive
-                       ? "text-white"
-                       : "text-gray-100 hover:text-gray-300"}`
-                  }
-                >
-                  {label}
-                </NavLink>
+            {navItems.map((item, index) => (
+              <li key={index}>
+                {item.dropdown ? (
+                  <>
+                    <span className="block font-semibold text-white mb-2">{item.label}</span>
+                    {item.dropdown.map((sub, i) => (
+                      <div key={i}>
+                        {sub.external ? (
+                          <a
+                            href={sub.to}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-sm text-white/90 hover:text-white ml-4"
+                          >
+                            {sub.label}
+                          </a>
+                        ) : (
+                          <NavLink
+                            to={sub.to}
+                            onClick={() => setOpen(false)}
+                            className="block text-sm text-white/90 hover:text-white ml-4"
+                          >
+                            {sub.label}
+                          </NavLink>
+                        )}
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.to}
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `block text-lg transition-colors duration-200 ${
+                        isActive ? "text-white" : "text-gray-100 hover:text-gray-300"
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
