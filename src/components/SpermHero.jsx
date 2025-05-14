@@ -34,11 +34,14 @@ const SpermHero = () => {
     setIsAutoplayBlocked(false);
   };
   const handleScrollToHighlights = () => {
-    const section = document.getElementById("scroll");
+    const isMobile = window.innerWidth <= 768;
+    const sectionId = isMobile ? "mobile-scroll" : "desktop-scroll";
+    const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center px-0 overflow-hidden">

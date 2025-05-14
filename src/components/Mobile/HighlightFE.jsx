@@ -1,9 +1,6 @@
-import { useState } from "react";
 import { RadicalIcon } from "lucide-react";
 
 const HighlightFE = () => {
-  const [showVideo, setShowVideo] = useState(false);
-
   return (
     <div className="bg-lightblue p-6 rounded-lg">
       <div className="flex items-center space-x-3">
@@ -22,24 +19,13 @@ const HighlightFE = () => {
           <li><b>ALH</b> (Amplitude of Lateral Head Displacement)</li>
         </ul>
 
-        {!showVideo && (
-          <button
-            onClick={() => setShowVideo(true)}
-            className="mt-4 text-orangebright underline underline-offset-4 font-semibold"
-          >
-            ▶️ See example plotted trajectories
-          </button>
-        )}
-
-        {showVideo && (
-          <div className="mt-4 rounded overflow-hidden shadow-md">
-            <video
-              src="/videos/SpermTrajectories.mp4"
-              controls
-              className="w-full rounded"
-            />
-          </div>
-        )}
+        <div className="mt-4 rounded overflow-hidden shadow-md">
+          <video
+            src="/videos/SpermTrajectories.mp4"
+            controls
+            className="w-full rounded"
+          />
+        </div>
       </div>
     </div>
   );

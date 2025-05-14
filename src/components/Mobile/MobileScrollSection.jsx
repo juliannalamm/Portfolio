@@ -7,7 +7,10 @@ import MobileMessageCard from "./MobileMessageCard";
 const MobileScrollSection = () => {
   return (
     <section className="px-4 pt-12 pb-24 bg-skyblue block md:hidden">
-      <MobileMessageCard />
+      <section id="mobile-scroll" className="px-4 pt-12 pb-24 bg-skyblue block md:hidden">
+        <MobileMessageCard />
+      </section>
+
       <RevealSection>
         <HighlightFA />
       </RevealSection>
@@ -20,7 +23,7 @@ const MobileScrollSection = () => {
         <HighlightClustering />
       </RevealSection>
 
-  
+
     </section>
   );
 };

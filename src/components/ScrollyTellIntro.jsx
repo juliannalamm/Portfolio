@@ -213,7 +213,7 @@ function ScrollamaIntro() {
     };
 
     return (
-        <section id="scroll" ref={containerRef}>
+        <section id="desktop-scroll" ref={containerRef}>
             <div className="scroll-container">
 
                 {/* LEFT: sticky graphic panel */}
