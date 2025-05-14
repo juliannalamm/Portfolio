@@ -15,6 +15,20 @@
     animation: gradient 15s ease infinite;
   }
 }
+
+
+.blinking-cursor {
+  display: inline-block;
+  left: 100%;
+  top: 0;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @theme {
   --color-burgundy: #481231;
   --color-lightblue: #e3f2fe;
