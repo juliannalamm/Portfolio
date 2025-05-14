@@ -1,12 +1,19 @@
+
 import React from "react";
 
 import ProjectGrid from "../components/ProjectGrid";
+import MainHero from "../components/MainHero";
+
+
 import { Table } from "lucide-react";
 
 const HomePage = () => {
 
   return (
     <div>
+            <MainHero /> {/* Your particle background hero */}
+
+ 
       <section className="section-spacing flex justify-center mt-10">
         <div className="bg-skyblue rounded-2xl p-8 max-w-3xl w-full text-center">
           <img
