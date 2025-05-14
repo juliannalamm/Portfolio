@@ -27,12 +27,19 @@ export default function ContactMe() {
         >
           LinkedIn
         </a>
-        .
+        &nbsp;or &nbsp;
+        <a
+          href="https://github.com/juliannalamm"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-600 underline"
+        >
+          GitHub.
+        </a>
+
       </p>
 
-      <span className="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full font-semibold tracking-wide shadow">
-        Coming&nbsp;Soon&nbsp;🚧
-      </span>
+     
 
       <Link to="/" className="mt-10 text-blue-500 underline">
         ← Back to Home

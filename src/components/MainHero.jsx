@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const fromLeft = {
   initial: { opacity: 0, x: -60 },
@@ -18,7 +19,7 @@ const MainHero = () => {
   const [paused, setPaused] = useState(false); // toggle pause state
 
   useEffect(() => {
-    const words = [ "DEVELOPER", "ENGINEER", "DATA-SCIENTIST"];
+    const words = ["DEVELOPER", "ENGINEER", "DATA-SCIENTIST"];
     const el = typingRef.current;
 
     let wordIndex = 0;
@@ -46,17 +47,17 @@ const MainHero = () => {
       const isLastLoopAndWord =
         loopCount === maxLoops - 1 && currentWord === "ENGINEER";
 
-        if (!isDeleting && charIndex === currentWord.length + 1) {
-            if (isLastLoopAndWord) {
-              document.querySelector(".blinking-cursor").style.display = "none";
-              return;
-            }
-          
-            timeoutId = setTimeout(() => {
-              isDeleting = true;
-              type();
-            }, 1000);
-          
+      if (!isDeleting && charIndex === currentWord.length + 1) {
+        if (isLastLoopAndWord) {
+          document.querySelector(".blinking-cursor").style.display = "none";
+          return;
+        }
+
+        timeoutId = setTimeout(() => {
+          isDeleting = true;
+          type();
+        }, 1000);
+
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         wordIndex = (wordIndex + 1) % words.length;
@@ -92,9 +93,11 @@ const MainHero = () => {
         {/* Bio */}
         <motion.div {...fromRight} className="order-3 md:order-none md:col-start-3 md:row-start-1 text-justify md:text-right self-start">
           <p className="text-md md:text-m text-neutral-700 leading-relaxed max-w-xl md:ml-auto">
+
             An interdisciplinary developer with a B.S. in Biochemistry (UC Berkeley) and an M.S. in Computer Science (Fordham).
-            I develop tools at the intersection of data, design, and technology—from machine learning models to full-stack web apps.
-            Across all projects, I focus on data-driven solutions to socially impactful challenges.
+            I develop tools at the intersection of data, design, and technology ranging from machine learning models to full-stack web apps.
+            Amongst this variety my focus remains the same: using data-driven solutions to tackle socially impactful challenges.
+
           </p>
         </motion.div>
 
@@ -105,9 +108,12 @@ const MainHero = () => {
 
         {/* CTA */}
         <motion.div {...fromRight} className="order-5 md:order-none md:col-start-3 md:row-start-2 flex justify-center md:justify-end items-center">
-          <a href="#contact" className="w-40 h-40 rounded-full bg-orangebright text-white font-semibold text-l flex items-center justify-center text-center hover:bg-burgundy transition">
+          <Link
+            to="/contact"
+            className="w-40 h-40 rounded-full bg-orangebright text-white font-semibold text-l flex items-center justify-center text-center hover:bg-burgundy transition"
+          >
             LET'S CONNECT
-          </a>
+          </Link>
         </motion.div>
       </div>
 
