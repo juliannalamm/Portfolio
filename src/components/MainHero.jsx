@@ -94,7 +94,7 @@ const MainHero = () => {
         <motion.div {...fromRight} className="order-3 md:order-none md:col-start-3 md:row-start-1 text-justify md:text-right self-start">
           <p className="text-md md:text-m text-neutral-700 leading-relaxed max-w-xl md:ml-auto">
 
-            An interdisciplinary developer with a B.S. in Biochemistry (UC Berkeley) and an M.S. in Computer Science (Fordham).
+            An interdisciplinary developer with an M.S. in Computer Science from Fordham University and a B.S. in Biochemistry from UC Berkeley.
             I develop tools at the intersection of data, design, and technology ranging from machine learning models to full-stack web apps.
             Amongst this variety my focus remains the same: using data-driven solutions to tackle socially impactful challenges.
 
