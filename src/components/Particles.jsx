@@ -27,30 +27,29 @@ export default function Particles({ count = 5000 }) {
 
   /* ---------- 2. circular sprite texture ----------------------------- */
   const circleTexture = useMemo(() => {
-    const size = 64;
+    const size = 128;                                   // bigger, crisper texture
     const canvas = document.createElement('canvas');
     canvas.width = canvas.height = size;
     const ctx = canvas.getContext('2d');
-
-    const gradient = ctx.createRadialGradient(
-      size / 2,
-      size / 2,
-      0,
-      size / 2,
-      size / 2,
-      size / 2
+  
+    // warm centre → fast fade to transparent
+    const g = ctx.createRadialGradient(
+      size / 2, size / 2, 0,
+      size / 2, size / 2, size / 2
     );
-    gradient.addColorStop(0, '#ffffff');
-    gradient.addColorStop(1, 'transparent');
-
-    ctx.fillStyle = gradient;
+    g.addColorStop(0.00, '#fffaf0');                    // soft off‑white core
+    g.addColorStop(0.35, 'rgba(255,255,255,0)');        // fade out quickly
+    g.addColorStop(1.00, 'rgba(255,255,255,0)');
+  
+    ctx.fillStyle = g;
     ctx.fillRect(0, 0, size, size);
-
-    const texture = new THREE.CanvasTexture(canvas);
-    texture.magFilter = THREE.LinearFilter;
-    texture.minFilter = THREE.LinearMipMapLinearFilter;
-    return texture;
+  
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.magFilter = THREE.LinearFilter;
+    tex.minFilter = THREE.LinearMipMapLinearFilter;
+    return tex;
   }, []);
+  
 
   /* ---------- 3. animate --------------------------------------------- */
   const pointsRef = useRef();
@@ -96,11 +95,12 @@ export default function Particles({ count = 5000 }) {
         map={circleTexture}          /* ✔️ round sprite */
         transparent
         alphaTest={0.5}
-        size={0.05}                  /* world units */
+        size={0.07}                  /* world units */
         sizeAttenuation
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        opacity={0.9}
+        
+        // blending={THREE.AdditiveBlending}
+        opacity={0.8}
       />
     </points>
   );
