@@ -7,7 +7,7 @@ import ScrollamaResults from "../components/ScrollyTellResults";
 import ScrollamaMethods from "../components/ScrollyTellMethods";
 import MethodsHero from "../components/MethodsHero";
 import HeroCloud from "../components/HeroCloud";
-import MobileScrollSection from "../components/MobileScrollSection";
+import MobileScrollSection from "../components/Mobile/MobileScrollSection";
 
 
 const MobileOnly = ({ children }) => <div className="block md:hidden">{children}</div>;

@@ -1,8 +1,8 @@
-import RevealSection from "../components/RevealSection";
-import HighlightFE from "../components/HighlightFE";
-import HighlightClustering from "../components/HighlightClustering";
-import HighlightFA from "../components/HighlightFA";
-import MobileMessageCard from "../components/MobileMessageCard";
+import RevealSection from "./RevealSection";
+import HighlightFE from "./HighlightFE";
+import HighlightClustering from "./HighlightClustering";
+import HighlightFA from "./HighlightFA";
+import MobileMessageCard from "./MobileMessageCard";
 
 const MobileScrollSection = () => {
   return (
