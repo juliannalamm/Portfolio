@@ -8,6 +8,9 @@ const MobileScrollSection = () => {
   return (
     <section className="px-4 pt-12 pb-24 bg-skyblue block md:hidden">
       <MobileMessageCard />
+      <RevealSection>
+        <HighlightFA />
+      </RevealSection>
 
       <RevealSection>
         <HighlightFE />
@@ -17,9 +20,7 @@ const MobileScrollSection = () => {
         <HighlightClustering />
       </RevealSection>
 
-      <RevealSection>
-        <HighlightFA />
-      </RevealSection>
+  
     </section>
   );
 };
