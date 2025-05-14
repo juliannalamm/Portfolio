@@ -74,7 +74,7 @@ const SpermHero = () => {
 
       {/* Hero Content (Lowered for Visibility) */}
       <div className="absolute bottom-12 left-8 text-left text-white z-10 max-w-3xl">
-        <h1 className="text-5xl md:text-4xl font-extrabold leading-tight drop-shadow-md">
+        <h1 className=" text-3xl md:text-5xl md:text-4xl font-extrabold leading-tight drop-shadow-md">
         Beyond the Count: What Traditional Fertility Tests Miss — and Why It Matters <br /> 
         </h1>
         <p className="mt-6 text-lg md:text-xl text-gray-300">
