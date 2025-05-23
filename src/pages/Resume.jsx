@@ -1,14 +1,17 @@
 // src/pages/Resume.jsx   (or wherever your pages live)
 import React from "react";
 import MyResume from "../assets/resume.pdf";      // relative path to the PDF
+import CurvedLineScroll from "../components/CurvedLineScroll";
 
 export default function Resume() {
   return (
+    
     <div className="min-h-screen flex flex-col items-center bg-gray-50 p-4">
-     
-      
       
       <h1 className="text-2xl font-bold text-burgundy mb-4">My Resume</h1>
+      <div className="w-[80%] mx-auto">
+        <CurvedLineScroll />
+      </div>
 
       {/* embedded viewer */}
       <object
