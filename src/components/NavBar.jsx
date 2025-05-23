@@ -17,7 +17,8 @@ const navItems = [
     ],
   },
   { to: "/resume", label: "Resume" },
-  { to: "/contact", label: "Contact" },
+  {to: "/AboutMe", label: "About Me"},
+  {to: "/contact", label: "Contact"}
 ];
 
 function Navbar() {

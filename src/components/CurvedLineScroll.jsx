@@ -6,8 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function CurvedLineScroll() {
   /* refs --------------------------------------------------------------- */
-  const pathRef   = useRef(null);            // main red path
-  const ballRefs  = useRef([]);              // one <circle> per milestone
+  const pathRef   = useRef(null);            // single DOM element, use null
+  const ballRefs  = useRef([]);              // one <circle> per milestone, need array 
   const guideRefs = useRef([]);              // one <line>  per milestone
 
   /* milestones along the path ----------------------------------------- */
