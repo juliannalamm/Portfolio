@@ -5,6 +5,9 @@ import MyResume from "../assets/resume.pdf";      // relative path to the PDF
 export default function Resume() {
   return (
     <div className="min-h-screen flex flex-col items-center bg-gray-50 p-4">
+     
+      
+      
       <h1 className="text-2xl font-bold text-burgundy mb-4">My Resume</h1>
 
       {/* embedded viewer */}
@@ -22,7 +25,7 @@ export default function Resume() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            download the résumé&nbsp;here
+            download the resume&nbsp;here
           </a>
           .
         </p>
