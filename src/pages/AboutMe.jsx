@@ -14,7 +14,7 @@ export default function Resume() {
             </p>
             
             <div className="w-[80%] mx-auto">
-                {/* <CurvedLineScroll /> */}
+                <CurvedLineScroll />
 
             </div>
 

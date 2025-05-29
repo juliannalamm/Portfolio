@@ -80,13 +80,27 @@ const MainHero = () => {
         {/* Greeting */}
         <motion.div {...fromLeft} className="order-1 md:order-none md:col-start-1 md:row-start-1 self-start">
           <h1 className="text-3xl md:text-4xl text-burgundy leading-none mb-2">Hey there, I’m</h1>
-          <h2 className="text-5xl md:text-6xl font-extrabold text-burgundy leading-tight">Julianna&nbsp;Lamm</h2>
+          <h2 className="text-4xl md:text-6xl font-extrabold text-burgundy leading-tight">Julianna&nbsp;Lamm</h2>
         </motion.div>
 
         {/* Photo */}
-        <motion.div {...fromLeft} className="order-2 md:order-none md:col-start-2 md:row-span-2 flex justify-center items-center">
-          <div className="w-[34rem] md:-mb-100 aspect-square rounded-full overflow-hidden bg-gray-100 shadow-lg">
-            <img src="/images/Julianna.jpg" alt="Julianna Lamm" className="w-full h-full object-cover object-top" />
+        <motion.div
+          {...fromLeft}
+          className="order-2 md:order-none md:col-start-2 md:row-span-2 flex justify-center items-center relative"
+        >          <div className=" w-[18rem] md:w-[34rem] md:-mb-100 aspect-square rounded-full overflow-hidden bg-gray-100 shadow-lg relative z-10">
+            <img
+              src="/images/Julianna.jpg"
+              alt="Julianna Lamm"
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+          <div className="absolute bottom-[-1.5rem] left-[55%] md:static md:hidden z-20">
+            <Link
+              to="/contact"
+              className="w-24 h-24 rounded-full bg-orangebright text-white font-semibold text-sm flex items-center justify-center text-center hover:bg-burgundy transition"
+            >
+              LET'S CONNECT
+            </Link>
           </div>
         </motion.div>
 
@@ -107,7 +121,10 @@ const MainHero = () => {
         </motion.div>
 
         {/* CTA */}
-        <motion.div {...fromRight} className="order-5 md:order-none md:col-start-3 md:row-start-2 flex justify-center md:justify-end items-center">
+        <motion.div
+          {...fromRight}
+          className="order-5 md:order-none md:col-start-3 md:row-start-2 hidden md:flex justify-end items-center"
+        >
           <Link
             to="/contact"
             className="w-40 h-40 rounded-full bg-orangebright text-white font-semibold text-l flex items-center justify-center text-center hover:bg-burgundy transition"

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import useTimelineData from "../hooks/useTimelineData";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,15 +10,15 @@ export default function CurvedLineScroll() {
   /* refs --------------------------------------------------------------- */
   const pathRef   = useRef(null);            // single DOM element, use null
   const ballRefs  = useRef([]);              // one <circle> per milestone, need array 
-  const guideRefs = useRef([]);              // one <line>  per milestone
+  const guideRefs = useRef([]);             // one <line>  per milestone
+  const milestonePositions = useRef([]);
+
 
   /* milestones along the path ----------------------------------------- */
-  const milestones = [
-    { pct: 0.30, label: "30 %" },
-    { pct: 0.40, label: "40 %" },
-    { pct: 0.60, label: "60 %" },
-    { pct: 0.80, label: "80 %" }
-  ];
+  const milestones = useTimelineData();
+
+
+
 
   /* GSAP setup --------------------------------------------------------- */
   useEffect(() => {
@@ -144,6 +146,7 @@ export default function CurvedLineScroll() {
               r="10"
               fill="#fe4939"
             />
+            
           </g>
         ))}
       </svg>
