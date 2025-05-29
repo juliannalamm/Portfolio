@@ -14,9 +14,12 @@ const fromRight = {
   transition: { duration: 0.6, ease: "easeOut" },
 };
 
+
 const MainHero = () => {
   const typingRef = useRef(null);
   const [paused, setPaused] = useState(false); // toggle pause state
+  const [ctaVisible, setCtaVisible] = useState(false);
+
 
   useEffect(() => {
     const words = ["DEVELOPER", "ENGINEER", "DATA-SCIENTIST"];
@@ -94,14 +97,43 @@ const MainHero = () => {
               className="w-full h-full object-cover object-top"
             />
           </div>
-          <div className="absolute bottom-[-1.5rem] left-[55%] md:static md:hidden z-20">
-            <Link
-              to="/contact"
-              className="w-24 h-24 rounded-full bg-orangebright text-white font-semibold text-sm flex items-center justify-center text-center hover:bg-burgundy transition"
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 18 }}
+            viewport={{ once: true }}
+            onAnimationComplete={() => setCtaVisible(true)}
+            className="absolute bottom-[-1.5rem] left-[60%] md:static md:hidden z-20"
+          >
+            <motion.div
+              key={ctaVisible ? 'pulsing' : 'idle'} // ensures re-triggering
+              animate={
+                ctaVisible
+                  ? {
+                    scale: [1, 1.1, 1],
+                  }
+                  : {}
+              }
+              transition={
+                ctaVisible
+                  ? {
+                    duration: 1.2,
+                    repeat: 2,
+                    repeatDelay: 0.3,
+                    ease: "easeInOut",
+                  }
+                  : {}
+              }
             >
-              LET'S CONNECT
-            </Link>
-          </div>
+              <Link
+                to="/contact"
+                className="w-24 h-24 rounded-full bg-orangebright text-white font-semibold text-sm flex items-center justify-center text-center hover:bg-burgundy transition"
+              >
+                LET'S CONNECT!
+              </Link>
+            </motion.div>
+          </motion.div>
+
         </motion.div>
 
         {/* Bio */}

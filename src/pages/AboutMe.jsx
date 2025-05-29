@@ -12,11 +12,11 @@ export default function Resume() {
             <p className="text-lg text-gray-700 mb-8 max-w-prose text-center">
             Under Construction! Please check back later.
             </p>
-            
+{/*             
             <div className="w-[80%] mx-auto">
                 <CurvedLineScroll />
 
-            </div>
+            </div> */}
 
 
         </div>
