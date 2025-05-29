@@ -89,7 +89,7 @@ const MainHero = () => {
         {/* Photo */}
         <motion.div
           {...fromLeft}
-          className="order-2 md:order-none md:col-start-2 md:row-span-2 flex justify-center items-center relative"
+          className="order-1 md:order-none md:col-start-2 md:row-span-2 flex justify-center items-center relative"
         >          <div className=" w-[18rem] md:w-[34rem] md:-mb-100 aspect-square rounded-full overflow-hidden bg-gray-100 shadow-lg relative z-10">
             <img
               src="/images/Julianna.jpg"
@@ -167,7 +167,7 @@ const MainHero = () => {
       </div>
 
       {/* Background Title with Typing Effect */}
-      <h3 className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 text-[8vw] font-extrabold tracking-tight leading-none text-skyblue opacity-60 pointer-events-none text-center">
+      <h3 className="hidden md:block absolute bottom-0 left-1/2 -translate-x-1/2 text-[8vw] font-extrabold tracking-tight leading-none text-skyblue opacity-60 pointer-events-none text-center z-30">
         <span className="relative inline-block whitespace-nowrap">
           <span ref={typingRef}></span>
           <span className="blinking-cursor absolute">|</span>
