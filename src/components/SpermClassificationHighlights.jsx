@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { CheckCircle, RadicalIcon, Shapes } from "lucide-react";
-import trackingResults from "/videos/compressed_video.mp4";
+import trackingResults from "/videos/12custom_botsort_compressed.mp4";
 import useSpermChartData from "../hooks/useSpermChartData";
 import ClusteringChart from "./Charts/ClusteringChart";
 import TrajectoryViewer from "./Charts/TrajectoryViewer";
