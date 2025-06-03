@@ -5,7 +5,7 @@ import trackingResults from "/videos/12custom_botsort_compressed.mp4"
 import useSpermChartData from '../hooks/useSpermChartData';
 import ClusteringChart from './Charts/ClusteringChart';
 import TrajectoryViewer from './Charts/TrajectoryViewer';
-
+import SankeyHighlights from './Charts/SankeyHighlights';
 
 
 const KeyHighlights = () => {
@@ -31,9 +31,9 @@ const KeyHighlights = () => {
         <div className="border-b border-burgundy my-6 md:my-8" />
 
         {/* Highlight Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
-          {/* Card 1 */}
+          {/* Card 1: Feature Engineering */}
           <div className="bg-lightblue p-4 sm:p-5 md:p-6 rounded-lg">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <RadicalIcon className="text-orangebright w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10" />
@@ -41,10 +41,7 @@ const KeyHighlights = () => {
                 Feature Engineering & CASA Metrics
               </h3>
             </div>
-
-            <div className="text-burgundy text-sm sm:text-base mt-4 pl-2 ">
-
-
+            <div className="text-burgundy text-sm sm:text-base mt-4 pl-2">
               <p className="mb-4">
                 Extracts precise sperm positions from tracking models and computes key kinematic metrics used in CASA.
               </p>
@@ -59,8 +56,6 @@ const KeyHighlights = () => {
                 <source src={trackingResults} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-
-
             </div>
           </div>
 
@@ -114,7 +109,7 @@ const KeyHighlights = () => {
           </div>
 
           {/* Card 3 */}
-          <div className="bg-lightblue p-4 sm:p-5 md:p-6 rounded-lg">
+          <div className="bg-lightblue p-4 sm:p-5 md:p-6 rounded-lg col-span-full">
             <div className="flex items-center space-x-2 sm:space-x-3">
               <CheckCircle className="text-orangebright w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10" />
               <h3 className="text-lg sm:text-xl font-semibold text-burgundy">
@@ -122,6 +117,8 @@ const KeyHighlights = () => {
               </h3>
             </div>
             <div className="text-burgundy text-sm sm:text-base mt-3 pl-2">
+              <SankeyHighlights/>
+              
               <p>This project improves fertility diagnostics by:</p>
               <ul className="list-disc pl-5 mt-1">
                 <li>Using <b>bounding box tracking</b> for precise motion extraction</li>
@@ -130,8 +127,9 @@ const KeyHighlights = () => {
               </ul>
             </div>
           </div>
-
         </div>
+
+
       </div>
     </section>
   );
