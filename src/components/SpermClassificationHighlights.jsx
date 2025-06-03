@@ -1,7 +1,18 @@
 import React from "react";
 import { CheckCircle, RadicalIcon, Shapes } from "lucide-react";
+import trackingResults from "/videos/12custom_botsort_compressed.mp4"
+import useSpermChartData from '../hooks/useSpermChartData';
+import ClusteringChart from './Charts/ClusteringChart';
+
+
+
 
 const KeyHighlights = () => {
+  const { chartData } = useSpermChartData();
+
+  if (!chartData) {
+    return <div className="text-white">Loading highlights…</div>;
+  }
   return (
     <section
       id="key-highlights"
@@ -27,16 +38,26 @@ const KeyHighlights = () => {
                 Feature Engineering & CASA Metrics
               </h3>
             </div>
-            <div className="text-burgundy text-sm sm:text-base mt-3 pl-2">
-              <p>
+
+            <div className="text-burgundy text-sm sm:text-base mt-4 pl-2 ">
+
+
+              <p className="mb-4">
                 Extracts precise sperm positions from tracking models and computes key kinematic metrics used in CASA.
               </p>
-              <p className="mt-2 font-semibold">Metrics include:</p>
-              <ul className="list-disc pl-5 mt-1">
-                <li><b>VCL</b> (Curvilinear Velocity)</li>
-                <li><b>VSL</b> (Straight-Line Velocity)</li>
-                <li><b>ALH</b> (Amplitude of Lateral Head Displacement)</li>
-              </ul>
+              <video
+                className="w-full h-full object-contain"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+              >
+                <source src={trackingResults} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
+
             </div>
           </div>
 
@@ -49,6 +70,11 @@ const KeyHighlights = () => {
               </h3>
             </div>
             <div className="text-burgundy text-sm sm:text-base mt-3 pl-2">
+              <ClusteringChart
+                chartData={chartData}
+                onHoverFid={() => { }}
+                selectedCluster={null}
+              />
               <p><b>KMeans and hierarchical clustering</b> categorize sperm movement into four groups:</p>
               <ul className="list-disc pl-5 mt-1">
                 <li><b>Hyperactivated</b> – High-energy erratic movement</li>

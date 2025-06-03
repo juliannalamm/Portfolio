@@ -18,6 +18,7 @@ const SpermTrackClassification = () => {
     <>
       {/* Always visible */}
       <SpermHero />
+      <KeyHighlights/>
 
       {/* Show only on mobile */}
       <MobileOnly>
