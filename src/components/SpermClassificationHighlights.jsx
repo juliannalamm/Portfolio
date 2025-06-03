@@ -1,12 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { CheckCircle, RadicalIcon, Shapes } from "lucide-react";
-import trackingResults from "/videos/12custom_botsort_compressed.mp4"
-import useSpermChartData from '../hooks/useSpermChartData';
-import ClusteringChart from './Charts/ClusteringChart';
-import TrajectoryViewer from './Charts/TrajectoryViewer';
-import SankeyHighlights from './Charts/SankeyHighlights';
-
+import trackingResults from "/videos/12custom_botsort_compressed.mp4";
+import useSpermChartData from "../hooks/useSpermChartData";
+import ClusteringChart from "./Charts/ClusteringChart";
+import TrajectoryViewer from "./Charts/TrajectoryViewer";
+import SankeyHighlights from "/videos/SankeyHighlights.mp4";
 
 const KeyHighlights = () => {
   const { chartData, coordinateData } = useSpermChartData();
@@ -17,36 +15,33 @@ const KeyHighlights = () => {
   }
 
   return (
-    <section
-      id="key-highlights"
-      className="flex justify-center px-4 sm:px-6 md:px-8 lg:px-12 mt-10 md:mt-16"
-    >
-      <div className="max-w-8xl w-full bg-skyblue rounded-sm overflow-hidden p-6 sm:p-8 md:p-14">
+    <section id="key-highlights" className="w-full px-0 mt-8">
+      <div className="w-full bg-skyblue p-4 sm:p-5 md:p-6">
 
         {/* Section Title */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-burgundy leading-tight text-center">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-burgundy text-center">
           Key Highlights
         </h2>
 
-        <div className="border-b border-burgundy my-6 md:my-8" />
+        <div className="border-b border-burgundy my-3 sm:my-4" />
 
-        {/* Highlight Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
 
-          {/* Card 1: Feature Engineering */}
-          <div className="bg-lightblue p-4 sm:p-5 md:p-6 rounded-lg">
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <RadicalIcon className="text-orangebright w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10" />
-              <h3 className="text-lg sm:text-xl font-semibold text-burgundy">
+          {/* Card 1: CASA Metrics */}
+          <div className="bg-lightblue p-3 sm:p-4 rounded-md flex flex-col items-center text-center">
+            <div className="flex items-center space-x-2 mb-2">
+            <div className="text-center mb-2">
+              <h3 className="text-base font-semibold text-burgundy">
                 Feature Engineering & CASA Metrics
               </h3>
             </div>
-            <div className="text-burgundy text-sm sm:text-base mt-4 pl-2">
-              <p className="mb-4">
+            </div>
+            <div className="text-burgundy text-xs sm:text-sm max-w-prose">
+              <p className="mb-2">
                 Extracts precise sperm positions from tracking models and computes key kinematic metrics used in CASA.
               </p>
               <video
-                className="w-full h-full object-contain"
+                className="w-full max-h-[40vh] object-contain rounded mt-2"
                 autoPlay
                 loop
                 muted
@@ -54,82 +49,91 @@ const KeyHighlights = () => {
                 preload="auto"
               >
                 <source src={trackingResults} type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
             </div>
           </div>
 
-          {/* Card 2 */}
-          <div className="bg-lightblue p-4 sm:p-5 md:p-6 rounded-lg">
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <Shapes className="text-orangebright w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10" />
-              <h3 className="text-lg sm:text-xl font-semibold text-burgundy">
-                Classification through Unsupervised Learning
-              </h3>
-            </div>
-            <div className="text-burgundy text-sm sm:text-base mt-3 pl-2">
-              <ClusteringChart
-                chartData={chartData}
-                onHoverFid={setHoveredFid}
-                selectedCluster={null}
-                className="w-full h-[300px] sm:h-[400px]"
-                chartStyle={{
-                  textColor: '#481231',
-                  showLegend: true,
-                  title: '',
-                  clusterLabels: {
-                    0: 'Hyperactivated',
-                    1: 'Progressive',
-                    2: 'Weakly Motile',
-                  },
-                  legendPosition: {
-                    x: 0.5,
-                    y: -0.2,
-                    xanchor: 'center',
-                    yanchor: 'top',
-                    orientation: 'h',
-                  }
-
-                }}
-              />
-              <div className="mt-6 flex justify-center">
-                <TrajectoryViewer
-                  fid={hoveredFid}
-                  coordinateData={coordinateData}
-                />
+          {/* Card 2: Fertility Automation */}
+          <div className="bg-lightblue p-3 sm:p-4 rounded-md flex flex-col items-center text-center">
+            <div className="flex items-center space-x-2 mb-2">
+              <div className="text-center mb-2">
+                <h3 className="text-base font-semibold text-burgundy">
+                  Automated Sperm Motility Analysis
+                </h3>
+                <p className="text-xs text-burgundy mt-1">
+                 Sperm are automatically classified into hyperactivated, progressive, and weakly motile categories using unsupervised learning techniques.
+                </p>
               </div>
-              <p><b>KMeans and hierarchical clustering</b> categorize sperm movement into four groups:</p>
-              <ul className="list-disc pl-5 mt-1">
-                <li><b>Hyperactivated</b> – High-energy erratic movement</li>
-                <li><b>Progressive</b> – Forward, controlled motion</li>
-                <li><b>Progressive Linear</b> – Consistent straight path</li>
-                <li><b>Weakly Motile</b> – Minimal movement</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="bg-lightblue p-4 sm:p-5 md:p-6 rounded-lg col-span-full">
-            <div className="flex items-center space-x-2 sm:space-x-3">
-              <CheckCircle className="text-orangebright w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10" />
-              <h3 className="text-lg sm:text-xl font-semibold text-burgundy">
-                Automating Fertility Sample Analysis
-              </h3>
-            </div>
-            <div className="text-burgundy text-sm sm:text-base mt-3 pl-2">
-              <SankeyHighlights/>
               
-              <p>This project improves fertility diagnostics by:</p>
-              <ul className="list-disc pl-5 mt-1">
-                <li>Using <b>bounding box tracking</b> for precise motion extraction</li>
-                <li>Leveraging <b>machine learning</b> for objective sperm classification</li>
-                <li>Reducing <b>human bias</b> and increasing efficiency in fertility assessment</li>
-              </ul>
+            </div>
+            <div className="text-burgundy text-xs sm:text-sm max-w-prose">
+              <video
+                className="w-full max-h-[45vh] object-contain rounded mb-2"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+              >
+                <source src={SankeyHighlights} type="video/mp4" />
+              </video>
+          
             </div>
           </div>
+
+          {/* Card 3: Clustering + Trajectory Side-by-Side */}
+          <div className="bg-lightblue p-3 sm:p-4 rounded-md col-span-full flex flex-col items-center text-center">
+            <div className="flex items-center space-x-2 mb-2">
+              <div className="text-center mb-2">
+                <h3 className="text-base font-semibold text-burgundy">
+                  Classification through Unsupervised Learning
+                </h3>
+                <p className="text-xs text-burgundy mt-1">
+                  <b>KMeans and hierarchical clustering</b> categorize sperm into three distinct groups based on kinematic features.
+                </p>
+              </div>
+            </div>
+            <div className="text-burgundy text-xs sm:text-sm w-full max-w-6xl">
+              <div className="flex flex-col sm:flex-row justify-between items-start gap-2 mt-3">
+
+                {/* Left: ClusteringChart */}
+                <div className="w-full sm:w-2/3 max-w-[600px] mx-auto">
+                  <ClusteringChart
+                    chartData={chartData}
+                    onHoverFid={setHoveredFid}
+                    selectedCluster={null}
+                    className="w-full h-[300px]"
+                    chartStyle={{
+                      textColor: '#481231',
+                      showLegend: true,
+                      title: '',
+                      clusterLabels: {
+                        0: 'Hyperactivated',
+                        1: 'Progressive',
+                        2: 'Weakly Motile',
+                      },
+                      legendPosition: {
+                        x: 0.5,
+                        y: -0.3,
+                        xanchor: 'center',
+                        yanchor: 'top',
+                        orientation: 'h',
+                      }
+                    }}
+                  />
+                </div>
+                {/* Right: TrajectoryViewer */}
+                <div className="sm:w-1/3 w-full">
+                  <TrajectoryViewer fid={hoveredFid} coordinateData={coordinateData} />
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
         </div>
-
-
       </div>
     </section>
   );

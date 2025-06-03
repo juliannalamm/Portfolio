@@ -35,7 +35,7 @@ const SpermHero = () => {
   };
   const handleScrollToHighlights = () => {
     const isMobile = window.innerWidth <= 768;
-    const sectionId = isMobile ? "mobile-scroll" : "desktop-scroll";
+    const sectionId = isMobile ? "mobile-scroll" : "key-highlights";
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
