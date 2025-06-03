@@ -30,18 +30,18 @@ const KeyHighlights = () => {
           {/* Card 1: CASA Metrics */}
           <div className="bg-lightblue p-3 sm:p-4 rounded-md flex flex-col items-center text-center">
             <div className="flex items-center space-x-2 mb-2">
-            <div className="text-center mb-2">
-              <h3 className="text-base font-semibold text-burgundy">
-                Feature Engineering & CASA Metrics
-              </h3>
-            </div>
-            </div>
-            <div className="text-burgundy text-xs sm:text-sm max-w-prose">
-              <p className="mb-2">
+              <div className="text-center mb-2">
+                <h3 className="text-base font-semibold text-burgundy">
+                  Feature Engineering & CASA Metrics
+                </h3>
+                <p className="text-xs text-burgundy mt-1">
                 Extracts precise sperm positions from tracking models and computes key kinematic metrics used in CASA.
               </p>
-              <video
-                className="w-full max-h-[40vh] object-contain rounded mt-2"
+              </div>
+            </div>
+              
+            <video
+                className="w-full max-h-[45vh] object-contain rounded mt-2"
                 autoPlay
                 loop
                 muted
@@ -50,7 +50,6 @@ const KeyHighlights = () => {
               >
                 <source src={trackingResults} type="video/mp4" />
               </video>
-            </div>
           </div>
 
           {/* Card 2: Fertility Automation */}
@@ -61,10 +60,10 @@ const KeyHighlights = () => {
                   Automated Sperm Motility Analysis
                 </h3>
                 <p className="text-xs text-burgundy mt-1">
-                 Sperm are automatically classified into hyperactivated, progressive, and weakly motile categories using unsupervised learning techniques.
+                  Sperm are automatically classified into hyperactivated, progressive, and weakly motile categories using unsupervised learning techniques.
                 </p>
               </div>
-              
+
             </div>
             <div className="text-burgundy text-xs sm:text-sm max-w-prose">
               <video
@@ -77,7 +76,7 @@ const KeyHighlights = () => {
               >
                 <source src={SankeyHighlights} type="video/mp4" />
               </video>
-          
+
             </div>
           </div>
 
@@ -124,8 +123,12 @@ const KeyHighlights = () => {
                 </div>
                 {/* Right: TrajectoryViewer */}
                 <div className="sm:w-1/3 w-full">
-                  <TrajectoryViewer fid={hoveredFid} coordinateData={coordinateData} />
-                </div>
+                  <TrajectoryViewer
+                    fid={hoveredFid}
+                    coordinateData={coordinateData}
+                    width={240}
+                    height={200}
+                  />                </div>
               </div>
 
 

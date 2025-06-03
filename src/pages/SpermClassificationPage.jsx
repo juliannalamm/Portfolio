@@ -17,7 +17,7 @@ const SpermTrackClassification = () => {
 
   useEffect(() => {
     // Wait a moment before rendering other content
-    const timeout = setTimeout(() => setKeyHighlightsReady(true), 50);
+    const timeout = setTimeout(() => setKeyHighlightsReady(true), 70);
     return () => clearTimeout(timeout);
   }, []);
 
