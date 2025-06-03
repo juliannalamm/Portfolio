@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CheckCircle, RadicalIcon, Shapes } from "lucide-react";
-import trackingResults from "/videos/12custom_botsort_compressed.mp4";
+import trackingResults from "/videos/compressed_video.mp4";
 import useSpermChartData from "../hooks/useSpermChartData";
 import ClusteringChart from "./Charts/ClusteringChart";
 import TrajectoryViewer from "./Charts/TrajectoryViewer";
@@ -41,7 +41,7 @@ const KeyHighlights = () => {
             </div>
               
             <video
-                className="w-full max-h-[45vh] object-contain rounded mt-2"
+                className="w-full max-h-[40vh] object-contain rounded mt-2"
                 autoPlay
                 loop
                 muted
@@ -101,15 +101,15 @@ const KeyHighlights = () => {
                     chartData={chartData}
                     onHoverFid={setHoveredFid}
                     selectedCluster={null}
-                    className="w-full h-[300px]"
+                    className="w-full h-[400px]"
                     chartStyle={{
                       textColor: '#481231',
                       showLegend: true,
                       title: '',
                       clusterLabels: {
-                        0: 'Hyperactivated',
-                        1: 'Progressive',
-                        2: 'Weakly Motile',
+                        0: 'Intermediate',
+                        1: 'Hyperactivated',
+                        2: 'Straight-line Progressive',
                       },
                       legendPosition: {
                         x: 0.5,
@@ -122,13 +122,14 @@ const KeyHighlights = () => {
                   />
                 </div>
                 {/* Right: TrajectoryViewer */}
-                <div className="sm:w-1/3 w-full">
+                <div className="mt-10 sm:w-1/3 w-full">
                   <TrajectoryViewer
                     fid={hoveredFid}
                     coordinateData={coordinateData}
                     width={240}
                     height={200}
-                  />                </div>
+                  />                
+                  </div>
               </div>
 
 

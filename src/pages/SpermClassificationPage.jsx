@@ -1,48 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import KeyHighlights from "../components/SpermClassificationHighlights";
 import SpermHero from "../components/SpermHero";
-import Dashboard from "../components/Dashboard";
+import Dashboard from '../components/Dashboard';
 import ScrollamaIntro from "../components/ScrollyTellIntro";
 import ScrollamaResults from "../components/ScrollyTellResults";
 import ScrollamaMethods from "../components/ScrollyTellMethods";
 import MethodsHero from "../components/MethodsHero";
 import HeroCloud from "../components/HeroCloud";
 import MobileScrollSection from "../components/Mobile/MobileScrollSection";
+import trackingResults from "/videos/compressed_video.mp4"
+
 
 const MobileOnly = ({ children }) => <div className="block md:hidden">{children}</div>;
 const DesktopOnly = ({ children }) => <div className="hidden md:block">{children}</div>;
 
 const SpermTrackClassification = () => {
-  const [keyHighlightsReady, setKeyHighlightsReady] = useState(false);
-
-  useEffect(() => {
-    // Wait a moment before rendering other content
-    const timeout = setTimeout(() => setKeyHighlightsReady(true), 70);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <>
+      {/* Always visible */}
       <SpermHero />
-      <KeyHighlights />
+      <MobileOnly>
+       <MobileScrollSection/>
 
-      {keyHighlightsReady && (
-        <>
-          <MobileOnly>
-            <MobileScrollSection />
-          </MobileOnly>
+      </MobileOnly>
 
-          <DesktopOnly>
-            <ScrollamaIntro />
-            <MethodsHero />
-            <ScrollamaMethods />
-            <HeroCloud />
-            <Dashboard />
-            <ScrollamaResults />
-          </DesktopOnly>
-        </>
-      )}
+      <KeyHighlights/>
 
+    
+      {/* Show everything else only on desktop */}
+      <DesktopOnly>
+        <ScrollamaIntro />
+        <MethodsHero />
+        <ScrollamaMethods />
+        <HeroCloud />
+        <Dashboard />
+        <ScrollamaResults />
+      </DesktopOnly>
+
+      {/* Back Link */}
       <div className="mt-6">
         <a href="/" className="text-blue-500 hover:underline text-lg">
           ← Back to Home

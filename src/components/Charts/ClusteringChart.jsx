@@ -91,7 +91,6 @@ const ClusteringChart = ({
   return (
     <div className={`relative ${className}`} style={style}>
       <Plot
-        key={filteredClusters.join('-')}  // <- this is the fix
 
         data={dataTraces}
         layout={{

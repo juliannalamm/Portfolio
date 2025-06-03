@@ -11,18 +11,6 @@ const MobileScrollSection = () => {
         <MobileMessageCard />
       </section>
 
-      <RevealSection>
-        <HighlightFA />
-      </RevealSection>
-
-      <RevealSection>
-        <HighlightFE />
-      </RevealSection>
-
-      <RevealSection>
-        <HighlightClustering />
-      </RevealSection>
-
 
     </section>
   );
