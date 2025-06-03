@@ -1,18 +1,21 @@
 import React from "react";
+import { useState } from "react";
 import { CheckCircle, RadicalIcon, Shapes } from "lucide-react";
 import trackingResults from "/videos/12custom_botsort_compressed.mp4"
 import useSpermChartData from '../hooks/useSpermChartData';
 import ClusteringChart from './Charts/ClusteringChart';
-
+import TrajectoryViewer from './Charts/TrajectoryViewer';
 
 
 
 const KeyHighlights = () => {
-  const { chartData } = useSpermChartData();
+  const { chartData, coordinateData } = useSpermChartData();
+  const [hoveredFid, setHoveredFid] = useState(null);
 
-  if (!chartData) {
-    return <div className="text-white">Loading highlights…</div>;
+  if (!chartData || !coordinateData) {
+    return <div className="text-white">Loading...</div>;
   }
+
   return (
     <section
       id="key-highlights"
@@ -72,9 +75,34 @@ const KeyHighlights = () => {
             <div className="text-burgundy text-sm sm:text-base mt-3 pl-2">
               <ClusteringChart
                 chartData={chartData}
-                onHoverFid={() => { }}
+                onHoverFid={setHoveredFid}
                 selectedCluster={null}
+                className="w-full h-[300px] sm:h-[400px]"
+                chartStyle={{
+                  textColor: '#481231',
+                  showLegend: true,
+                  title: '',
+                  clusterLabels: {
+                    0: 'Hyperactivated',
+                    1: 'Progressive',
+                    2: 'Weakly Motile',
+                  },
+                  legendPosition: {
+                    x: 0.5,
+                    y: -0.2,
+                    xanchor: 'center',
+                    yanchor: 'top',
+                    orientation: 'h',
+                  }
+
+                }}
               />
+              <div className="mt-6 flex justify-center">
+                <TrajectoryViewer
+                  fid={hoveredFid}
+                  coordinateData={coordinateData}
+                />
+              </div>
               <p><b>KMeans and hierarchical clustering</b> categorize sperm movement into four groups:</p>
               <ul className="list-disc pl-5 mt-1">
                 <li><b>Hyperactivated</b> – High-energy erratic movement</li>
