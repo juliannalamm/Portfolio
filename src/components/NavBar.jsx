@@ -8,6 +8,7 @@ const navItems = [
     label: "Projects",
     dropdown: [
       { to: "https://juliannalamm-spermapp-streamlit-app-0avwqu.streamlit.app/", label: "SpermClass: Motility Classifier App", external: true },
+      { to: "https://gouger-git-main-juliannalamms-projects.vercel.app", label: "Gouger: Rent Gouging Detection Tool", external: true },
       { to: "/sperm-track", label: "Object Detection and Tracking" },
       { to: "/projects/sperm-classification", label: "Fertility Data Visualization" },
      
