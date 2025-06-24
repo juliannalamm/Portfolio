@@ -7,7 +7,7 @@ const projects = [
     date: "Clustering multivariate time-series tracking data with Streamlit-based interface",
     stack: "Python, Pandas, Streamlit, Scikit-learn, Matplotlib",
     videoSrc: "/videos/streamlitApp.mp4",
-    link: "https://juliannalamm-spermapp-streamlit-app-0avwqu.streamlit.app/"
+    link: "https://spermtrack.streamlit.app/"
   },
   {
     title: "Gouger: Real-Time Price Gouging Detection Tool",
