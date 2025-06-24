@@ -7,17 +7,15 @@ const navItems = [
   {
     label: "Projects",
     dropdown: [
-      { to: "/sperm-track", label: "YOLO Sperm Tracking" },
-      { to: "/projects/sperm-classification", label: "Motility Classifier" },
-      {
-        to: "https://gouger-git-main-juliannalamms-projects.vercel.app",
-        label: "Gouger",
-        external: true,
-      },
+      { to: "https://juliannalamm-spermapp-streamlit-app-0avwqu.streamlit.app/", label: "SpermClass: Motility Classifier App", external: true },
+      { to: "/sperm-track", label: "Object Detection and Tracking" },
+      { to: "/projects/sperm-classification", label: "Fertility Data Visualization" },
+     
     ],
   },
   { to: "/resume", label: "Resume" },
-  {to: "/AboutMe", label: "About Me"},
+  // {to: "/AboutMe", label: "About Me"},
+  { to: "https://github.com/juliannalamm", label: "GitHub", external: true },
   {to: "/contact", label: "Contact"}
 ];
 
