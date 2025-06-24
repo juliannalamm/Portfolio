@@ -79,6 +79,7 @@ export default function ProjectGrid() {
                 <video
                   src={project.videoSrc}
                   className="w-full h-full object-cover rounded-lg"
+                  style={{ objectPosition: index === 0 ? 'center top' : 'center' }}
                   autoPlay
                   loop
                   muted
@@ -149,6 +150,7 @@ export default function ProjectGrid() {
                   <video
                     src={project.videoSrc}
                     className="w-full h-full object-cover rounded-lg"
+                    style={{ objectPosition: index === 0 ? 'center top' : 'center' }}
                     autoPlay
                     loop
                     muted
