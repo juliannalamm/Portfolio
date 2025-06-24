@@ -3,6 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 const projects = [
   {
+    title: "End-to-End Fertility Analysis App",
+    date: "Clustering of Sperm Motility Data",
+    stack: "Python, Pandas, Scikit-learn, Matplotlib, Seaborn",
+    videoSrc: "/videos/streamlitApp.mp4",
+    link: "https://juliannalamm-spermapp-streamlit-app-0avwqu.streamlit.app/"
+  },
+  {
     title: "Gouger: Anti-gouging detection app",
     date: "Full-Stack Web-Application",
     stack: "React, Node.js, Tailwind CSS, RentCast API, Google Places API, AWS S3",
@@ -10,19 +17,20 @@ const projects = [
     link: "https://gouger-git-main-juliannalamms-projects.vercel.app"
   },
   {
-    title: "Automated Fertility Assessment",
-    date: "Interactive scrollytelling and sperm motility visualization",
+    title: "Beyond the Count: Visualizing Hidden Patterns in Fertility Data",
+    date: "Scroll-driven narrative uncovering behavioral insights through motion tracking and interactive visualization",
     stack: "React, D3, Framer Motion, Three.js, Tailwind CSS, GSAP, Scrollama, Tableau, Python",
     videoSrc: "/videos/tracks/starspin.mp4",
     link: "/projects/sperm-classification"
   },
   {
-    title: "YOLO Sperm Tracking and Detection",
-    date: "Custom object tracking leveraging YOLOv8, custom CNN, and BoT-SORT",
-    stack: "Python, YOLOv8, OpenCV, Pandas, CometML",
-    videoSrc: "/videos/compressed_video.mp4",
+    title: "Training YOLO for Microscopic Object Detection",
+    date: "Custom training pipeline for sperm detection using YOLOv8 and BoT-SORT, with real-time evaluation and model tuning",
+    stack: "Python, YOLOv8, OpenCV, Pandas, CometML, DeepSORT",
+    imgSrc: "/images/detectionresults/YOLOv8s/labels.jpg",
     link: "/sperm-track"
   }
+
 ];
 
 export default function ProjectGrid() {

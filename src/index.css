@@ -6,6 +6,16 @@
 /* 🌟 Container */
 /* 🌟 Remove default margins/padding */
 @layer utilities {
+  /* Hide scrollbars for webkit browsers */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
   /* Animated gradient */
   @keyframes gradient {
     0%, 100% { background-position: 0% 50%; }
